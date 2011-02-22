@@ -8,21 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "L1NodeManager.h"
 #import "L1NodeContentViewController.h"
+#import "L1Scenario.h"
 
 @interface L1MapViewController : UIViewController<MKMapViewDelegate> {
 	NSMutableDictionary * annotationImages;
 	IBOutlet MKMapView * primaryMapView;
-	L1NodeManager * nodeManager;
 	IBOutlet L1NodeContentViewController * nodeContentViewController;
+	L1Scenario * scenario;
 	
 }
 
+@property (retain) L1Scenario * scenario;
 @property (retain) L1NodeContentViewController * nodeContentViewController;
 -(IBAction) testPolygon:(id) sender;
 -(void) testMap:(id) sender;
--(void) nodeManager:(L1NodeManager*) nodeManager didReceiveNodes:(NSArray*) nodes;
+-(void) nodeSource:(id) nodeManager didReceiveNodes:(NSArray*) nodes;
 -(IBAction) fakeNodeTest:(id) sender;
 
 

@@ -7,7 +7,6 @@
 //
 
 #import "locations1ViewController.h"
-#import "L1NodeManager.h"
 #import "L1Node.h"
 
 @implementation locations1ViewController

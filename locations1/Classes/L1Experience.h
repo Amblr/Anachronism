@@ -10,7 +10,10 @@
 
 
 @interface L1Experience : NSObject {
-
+	NSString * eventID;
+	NSDate * date;
 }
 
+@property (retain) NSString * eventID;
+@property (retain) NSDate * date;
 @end

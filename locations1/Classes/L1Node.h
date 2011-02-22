@@ -9,8 +9,22 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MKAnnotation.h>
 
+
 //Nodes have state
 //They have pre-requisites, which change their availability and state.
+
+@class L1Node;
+@class L1Experience;
+@protocol L1NodeDelegate
+
+-(void) nodeWasSelected:(L1Node*)node;
+-(void) node:(L1Node*) node didChangeState:(NSString*)state;
+-(void) node:(L1Node*) node didCreateExperience:(L1Experience*)experience;
+-(L1Experience*) node:(L1Node*) node requestsExperience:(L1Experience*)experience;
+-(L1Experience*) node:(L1Node*) node requestsExperienceByName:(NSString*) name;
+@end
+
+
 
 @interface L1Node : NSObject<MKAnnotation> {
 	NSNumber * latitude;
@@ -19,13 +33,14 @@
 	NSString * text;
 	NSString * name;
 	UIImage  * image;
+	id<L1NodeDelegate> delegate;
 	//Eventually this should contain an L1NodeContent instance.
 	//Which should know what its associated view is, and how to
 	//display itself.
 }
 
 
-
+@property (retain) 	id<L1NodeDelegate> delegate;
 @property (retain) NSNumber * latitude;
 @property (retain) NSNumber * longitude;
 @property (retain) NSNumber * radius;
@@ -51,3 +66,5 @@
 
 
 @end
+
+

@@ -7,16 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "L1Node.h"
 
 //Has many nodes
 //Has many plots
 //Each plot can have many nodes
 //Has many user experiences
 
-@interface L1Scenario : NSObject {
+
+
+@interface L1Scenario : NSObject<NSFastEnumeration,L1NodeDelegate> {
 	NSMutableArray * nodes;
 	NSMutableArray * plots;
-	NSMutableArray * experiences;
+	NSMutableDictionary * experiences;
+	id delegate;
+
 }
+@property (retain) id delegate;
+
+-(int) nodeCount;
+-(void) downloadedNodeData:(NSData*) data withResponse:(NSHTTPURLResponse*) response;
+-(void) failedNodeDownloadWithError:(NSError*) error;
+-(void) startNodeDownload:(NSString *) url;
+-(void) fakeNodes;
 
 @end

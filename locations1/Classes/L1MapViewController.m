@@ -92,7 +92,6 @@
 
 
 
-
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
 	id<MKAnnotation> annotation = view.annotation;
@@ -155,20 +154,17 @@
 
 -(IBAction) fakeNodeTest:(id) sender
 {
-	nodeManager = [[L1NodeManager alloc] init];
-	nodeManager.delegate=self;
-	[nodeManager fakeNodes];
+	scenario.delegate=self;
+	[scenario fakeNodes];
 }
 
 -(IBAction) testMap:(id) sender{
-	nodeManager = [[L1NodeManager alloc] init];
-	nodeManager.delegate=self;
 	NSString * baseURL = @"";
 	NSString * url = [NSString stringWithFormat:@"%@/nodes",baseURL];
-	[nodeManager startNodeDownload:url];
+	[scenario startNodeDownload:url];
 }
 
--(void) nodeManager:(L1NodeManager*) nodeManager didReceiveNodes:(NSArray*) nodes
+-(void) nodeSource:(id) nodeManager didReceiveNodes:(NSArray*) nodes
 {
 	for(L1Node * node in nodes){
 		[primaryMapView addAnnotation:node];
@@ -177,12 +173,12 @@
 
 
 -(IBAction) testPolygon:(id) sender{
-	if (!nodeManager) return;
-	int n = [nodeManager count];
+
+	int n = [scenario nodeCount];
 	CLLocationCoordinate2D * coords = malloc(sizeof(CLLocationCoordinate2D)*n);
 	
 	int i=0;
-	for(L1Node * node in nodeManager){
+	for(L1Node * node in scenario){
 		assert ([node isKindOfClass:[L1Node class]]);
 		coords[i++] = node.coordinate;
 	}
@@ -192,7 +188,13 @@
 }
 
 
+-(void) setScenario:(L1Scenario *)newScenario
+{
+	[scenario autorelease];
+	scenario = newScenario;
+	scenario.delegate=self;
+}
 
-@synthesize annotationImages, nodeContentViewController;
+@synthesize annotationImages, nodeContentViewController, scenario;
 
 @end

@@ -75,6 +75,6 @@
 
 
 @synthesize coordinate;
-
+@synthesize delegate;
 
 @end

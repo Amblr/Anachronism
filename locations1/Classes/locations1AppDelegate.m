@@ -8,7 +8,7 @@
 
 #import "locations1AppDelegate.h"
 #import "locations1ViewController.h"
-#import "L1NodeManager.h"
+#import "L1LoginViewController.h"
 
 @implementation locations1AppDelegate
 
@@ -23,10 +23,23 @@
     
     // Override point for customization after application launch.
 
+	scenario = [[L1Scenario alloc] init];
+	user = [[L1User alloc] init];
+	
     // Add the view controller's view to the window and display.
     [window addSubview:viewController.view];
     [window makeKeyAndVisible];
 
+	user = [[L1User alloc] init];
+	L1LoginViewController * loginViewController = [[L1LoginViewController alloc] initWithNibName:@"L1LoginViewController" bundle:[NSBundle mainBundle]];
+	
+	NSLog(@"Should now present login view: %@",loginViewController);
+
+	[viewController presentModalViewController:loginViewController animated:YES];
+	[user loginWithWebView:loginViewController.webView];
+	
+
+	
 	
     return YES;
 }

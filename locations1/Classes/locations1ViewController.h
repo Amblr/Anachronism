@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "L1NodeManager.h"
 #import "L1MapViewController.h"
-#import "L1NodeManager.h"
 
 
 @interface locations1ViewController : UIViewController {
