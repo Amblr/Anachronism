@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="7.10">
+	<data>
+		<int key="IBDocument.SystemTarget">800</int>
+		<string key="IBDocument.SystemVersion">10J567</string>
+		<string key="IBDocument.InterfaceBuilderVersion">804</string>
+		<string key="IBDocument.AppKitVersion">1038.35</string>
+		<string key="IBDocument.HIToolboxVersion">462.00</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+			<string key="NS.object.0">123</string>
+		</object>
+		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="6"/>
+		</object>
+		<object class="NSArray" key="IBDocument.PluginDependencies">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+		</object>
+		<object class="NSMutableDictionary" key="IBDocument.Metadata">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys" id="0">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
+		</object>
+		<object class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="IBProxyObject" id="841351856">
+				<string key="IBProxiedObjectIdentifier">IBFilesOwner</string>
+				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+			</object>
+			<object class="IBProxyObject" id="606714003">
+				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
+				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+			</object>
+			<object class="IBUIView" id="954924833">
+				<reference key="NSNextResponder"/>
+				<int key="NSvFlags">292</int>
+				<object class="NSMutableArray" key="NSSubviews">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="IBUITextView" id="116347199">
+						<reference key="NSNextResponder" ref="954924833"/>
+						<int key="NSvFlags">319</int>
+						<string key="NSFrame">{{20, 20}, {560, 560}}</string>
+						<reference key="NSSuperview" ref="954924833"/>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MSAxIDEAA</bytes>
+						</object>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIMultipleTouchEnabled">YES</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
+						<bool key="IBUIEditable">NO</bool>
+						<string type="base64-UTF8" key="IBUIText">MSBJbiB0aGUgYmVnaW5uaW5nIEdvZCBjcmVhdGVkIHRoZSBoZWF2ZW4gYW5kIHRoZSBlYXJ0aC4KCjIg
+QW5kIHRoZSBlYXJ0aCB3YXMgd2l0aG91dCBmb3JtLCBhbmQgdm9pZDsgYW5kIGRhcmtuZXNzIHdhcyB1
+cG9uIHRoZSBmYWNlIG9mIHRoZSBkZWVwLiBBbmQgdGhlIFNwaXJpdCBvZiBHb2QgbW92ZWQgdXBvbiB0
+aGUgZmFjZSBvZiB0aGUgd2F0ZXJzLgoKMyBBbmQgR29kIHNhaWQsIExldCB0aGVyZSBiZSBsaWdodDog
+YW5kIHRoZXJlIHdhcyBsaWdodC4KCjQgQW5kIEdvZCBzYXcgdGhlIGxpZ2h0LCB0aGF0IGl0IHdhcyBn
+b29kOiBhbmQgR29kIGRpdmlkZWQgdGhlIGxpZ2h0IGZyb20gdGhlIGRhcmtuZXNzLgoKNSBBbmQgR29k
+IGNhbGxlZCB0aGUgbGlnaHQgRGF5LCBhbmQgdGhlIGRhcmtuZXNzIGhlIGNhbGxlZCBOaWdodC4gQW5k
+IHRoZSBldmVuaW5nIGFuZCB0aGUgbW9ybmluZyB3ZXJlIHRoZSBmaXJzdCBkYXkuCgo2IEFuZCBHb2Qg
+c2FpZCwgTGV0IHRoZXJlIGJlIGEgZmlybWFtZW50IGluIHRoZSBtaWRzdCBvZiB0aGUgd2F0ZXJzLCBh
+bmQgbGV0IGl0IGRpdmlkZSB0aGUgd2F0ZXJzIGZyb20gdGhlIHdhdGVycy4KCjcgQW5kIEdvZCBtYWRl
+IHRoZSBmaXJtYW1lbnQsIGFuZCBkaXZpZGVkIHRoZSB3YXRlcnMgd2hpY2ggd2VyZSB1bmRlciB0aGUg
+ZmlybWFtZW50IGZyb20gdGhlIHdhdGVycyB3aGljaCB3ZXJlIGFib3ZlIHRoZSBmaXJtYW1lbnQ6IGFu
+ZCBpdCB3YXMgc28uCgo4IEFuZCBHb2QgY2FsbGVkIHRoZSBmaXJtYW1lbnQgSGVhdmVuLiBBbmQgdGhl
+IGV2ZW5pbmcgYW5kIHRoZSBtb3JuaW5nIHdlcmUgdGhlIHNlY29uZCBkYXkuCgo5IEFuZCBHb2Qgc2Fp
+ZCwgTGV0IHRoZSB3YXRlcnMgdW5kZXIgdGhlIGhlYXZlbiBiZSBnYXRoZXJlZCB0b2dldGhlciB1bnRv
+IG9uZSBwbGFjZSwgYW5kIGxldCB0aGUgZHJ5IGxhbmQgYXBwZWFyOiBhbmQgaXQgd2FzIHNvLgoKMTAg
+QW5kIEdvZCBjYWxsZWQgdGhlIGRyeSBsYW5kIEVhcnRoOyBhbmQgdGhlIGdhdGhlcmluZyB0b2dldGhl
+ciBvZiB0aGUgd2F0ZXJzIGNhbGxlZCBoZSBTZWFzOiBhbmQgR29kIHNhdyB0aGF0IGl0IHdhcyBnb29k
+LgoKMTEgQW5kIEdvZCBzYWlkLCBMZXQgdGhlIGVhcnRoIGJyaW5nIGZvcnRoIGdyYXNzLCB0aGUgaGVy
+YiB5aWVsZGluZyBzZWVkLCBhbmQgdGhlIGZydWl0IHRyZWUgeWllbGRpbmcgZnJ1aXQgYWZ0ZXIgaGlz
+IGtpbmQsIHdob3NlIHNlZWQgaXMgaW4gaXRzZWxmLCB1cG9uIHRoZSBlYXJ0aDogYW5kIGl0IHdhcyBz
+by4KCjEyIEFuZCB0aGUgZWFydGggYnJvdWdodCBmb3J0aCBncmFzcywgYW5kIGhlcmIgeWllbGRpbmcg
+c2VlZCBhZnRlciBoaXMga2luZCwgYW5kIHRoZSB0cmVlIHlpZWxkaW5nIGZydWl0LCB3aG9zZSBzZWVk
+IHdhcyBpbiBpdHNlbGYsIGFmdGVyIGhpcyBraW5kOiBhbmQgR29kIHNhdyB0aGF0IGl0IHdhcyBnb29k
+LgoKMTMgQW5kIHRoZSBldmVuaW5nIGFuZCB0aGUgbW9ybmluZyB3ZXJlIHRoZSB0aGlyZCBkYXkuCgox
+NCBBbmQgR29kIHNhaWQsIExldCB0aGVyZSBiZSBsaWdodHMgaW4gdGhlIGZpcm1hbWVudCBvZiB0aGUg
+aGVhdmVuIHRvIGRpdmlkZSB0aGUgZGF5IGZyb20gdGhlIG5pZ2h0OyBhbmQgbGV0IHRoZW0gYmUgZm9y
+IHNpZ25zLCBhbmQgZm9yIHNlYXNvbnMsIGFuZCBmb3IgZGF5cywgYW5kIHllYXJzOgoKMTUgQW5kIGxl
+dCB0aGVtIGJlIGZvciBsaWdodHMgaW4gdGhlIGZpcm1hbWVudCBvZiB0aGUgaGVhdmVuIHRvIGdpdmUg
+bGlnaHQgdXBvbiB0aGUgZWFydGg6IGFuZCBpdCB3YXMgc28uCgoxNiBBbmQgR29kIG1hZGUgdHdvIGdy
+ZWF0IGxpZ2h0czsgdGhlIGdyZWF0ZXIgbGlnaHQgdG8gcnVsZSB0aGUgZGF5LCBhbmQgdGhlIGxlc3Nl
+ciBsaWdodCB0byBydWxlIHRoZSBuaWdodDogaGUgbWFkZSB0aGUgc3RhcnMgYWxzby4KCjE3IEFuZCBH
+b2Qgc2V0IHRoZW0gaW4gdGhlIGZpcm1hbWVudCBvZiB0aGUgaGVhdmVuIHRvIGdpdmUgbGlnaHQgdXBv
+biB0aGUgZWFydGgsCgoxOCBBbmQgdG8gcnVsZSBvdmVyIHRoZSBkYXkgYW5kIG92ZXIgdGhlIG5pZ2h0
+LCBhbmQgdG8gZGl2aWRlIHRoZSBsaWdodCBmcm9tIHRoZSBkYXJrbmVzczogYW5kIEdvZCBzYXcgdGhh
+dCBpdCB3YXMgZ29vZC4KCjE5IEFuZCB0aGUgZXZlbmluZyBhbmQgdGhlIG1vcm5pbmcgd2VyZSB0aGUg
+Zm91cnRoIGRheS4KCjIwIEFuZCBHb2Qgc2FpZCwgTGV0IHRoZSB3YXRlcnMgYnJpbmcgZm9ydGggYWJ1
+bmRhbnRseSB0aGUgbW92aW5nIGNyZWF0dXJlIHRoYXQgaGF0aCBsaWZlLCBhbmQgZm93bCB0aGF0IG1h
+eSBmbHkgYWJvdmUgdGhlIGVhcnRoIGluIHRoZSBvcGVuIGZpcm1hbWVudCBvZiBoZWF2ZW4uCgoyMSBB
+bmQgR29kIGNyZWF0ZWQgZ3JlYXQgd2hhbGVzLCBhbmQgZXZlcnkgbGl2aW5nIGNyZWF0dXJlIHRoYXQg
+bW92ZXRoLCB3aGljaCB0aGUgd2F0ZXJzIGJyb3VnaHQgZm9ydGggYWJ1bmRhbnRseSwgYWZ0ZXIgdGhl
+aXIga2luZCwgYW5kIGV2ZXJ5IHdpbmdlZCBmb3dsIGFmdGVyIGhpcyBraW5kOiBhbmQgR29kIHNhdyB0
+aGF0IGl0IHdhcyBnb29kLgoKMjIgQW5kIEdvZCBibGVzc2VkIHRoZW0sIHNheWluZywgQmUgZnJ1aXRm
+dWwsIGFuZCBtdWx0aXBseSwgYW5kIGZpbGwgdGhlIHdhdGVycyBpbiB0aGUgc2VhcywgYW5kIGxldCBm
+b3dsIG11bHRpcGx5IGluIHRoZSBlYXJ0aC4KCjIzIEFuZCB0aGUgZXZlbmluZyBhbmQgdGhlIG1vcm5p
+bmcgd2VyZSB0aGUgZmlmdGggZGF5LgoKMjQgQW5kIEdvZCBzYWlkLCBMZXQgdGhlIGVhcnRoIGJyaW5n
+IGZvcnRoIHRoZSBsaXZpbmcgY3JlYXR1cmUgYWZ0ZXIgaGlzIGtpbmQsIGNhdHRsZSwgYW5kIGNyZWVw
+aW5nIHRoaW5nLCBhbmQgYmVhc3Qgb2YgdGhlIGVhcnRoIGFmdGVyIGhpcyBraW5kOiBhbmQgaXQgd2Fz
+IHNvLgoKMjUgQW5kIEdvZCBtYWRlIHRoZSBiZWFzdCBvZiB0aGUgZWFydGggYWZ0ZXIgaGlzIGtpbmQs
+IGFuZCBjYXR0bGUgYWZ0ZXIgdGhlaXIga2luZCwgYW5kIGV2ZXJ5IHRoaW5nIHRoYXQgY3JlZXBldGgg
+dXBvbiB0aGUgZWFydGggYWZ0ZXIgaGlzIGtpbmQ6IGFuZCBHb2Qgc2F3IHRoYXQgaXQgd2FzIGdvb2Qu
+CgoyNiBBbmQgR29kIHNhaWQsIExldCB1cyBtYWtlIG1hbiBpbiBvdXIgaW1hZ2UsIGFmdGVyIG91ciBs
+aWtlbmVzczogYW5kIGxldCB0aGVtIGhhdmUgZG9taW5pb24gb3ZlciB0aGUgZmlzaCBvZiB0aGUgc2Vh
+LCBhbmQgb3ZlciB0aGUgZm93bCBvZiB0aGUgYWlyLCBhbmQgb3ZlciB0aGUgY2F0dGxlLCBhbmQgb3Zl
+ciBhbGwgdGhlIGVhcnRoLCBhbmQgb3ZlciBldmVyeSBjcmVlcGluZyB0aGluZyB0aGF0IGNyZWVwZXRo
+IHVwb24gdGhlIGVhcnRoLgoKMjcgU28gR29kIGNyZWF0ZWQgbWFuIGluIGhpcyBvd24gaW1hZ2UsIGlu
+IHRoZSBpbWFnZSBvZiBHb2QgY3JlYXRlZCBoZSBoaW07IG1hbGUgYW5kIGZlbWFsZSBjcmVhdGVkIGhl
+IHRoZW0uCgoyOCBBbmQgR29kIGJsZXNzZWQgdGhlbSwgYW5kIEdvZCBzYWlkIHVudG8gdGhlbSwgQmUg
+ZnJ1aXRmdWwsIGFuZCBtdWx0aXBseSwgYW5kIHJlcGxlbmlzaCB0aGUgZWFydGgsIGFuZCBzdWJkdWUg
+aXQ6IGFuZCBoYXZlIGRvbWluaW9uIG92ZXIgdGhlIGZpc2ggb2YgdGhlIHNlYSwgYW5kIG92ZXIgdGhl
+IGZvd2wgb2YgdGhlIGFpciwgYW5kIG92ZXIgZXZlcnkgbGl2aW5nIHRoaW5nIHRoYXQgbW92ZXRoIHVw
+b24gdGhlIGVhcnRoLgoKMjkgQW5kIEdvZCBzYWlkLCBCZWhvbGQsIEkgaGF2ZSBnaXZlbiB5b3UgZXZl
+cnkgaGVyYiBiZWFyaW5nIHNlZWQsIHdoaWNoIGlzIHVwb24gdGhlIGZhY2Ugb2YgYWxsIHRoZSBlYXJ0
+aCwgYW5kIGV2ZXJ5IHRyZWUsIGluIHRoZSB3aGljaCBpcyB0aGUgZnJ1aXQgb2YgYSB0cmVlIHlpZWxk
+aW5nIHNlZWQ7IHRvIHlvdSBpdCBzaGFsbCBiZSBmb3IgbWVhdC4KCjMwIEFuZCB0byBldmVyeSBiZWFz
+dCBvZiB0aGUgZWFydGgsIGFuZCB0byBldmVyeSBmb3dsIG9mIHRoZSBhaXIsIGFuZCB0byBldmVyeSB0
+aGluZyB0aGF0IGNyZWVwZXRoIHVwb24gdGhlIGVhcnRoLCB3aGVyZWluIHRoZXJlIGlzIGxpZmUsIEkg
+aGF2ZSBnaXZlbiBldmVyeSBncmVlbiBoZXJiIGZvciBtZWF0OiBhbmQgaXQgd2FzIHNvLgoKMzEgQW5k
+IEdvZCBzYXcgZXZlcnkgdGhpbmcgdGhhdCBoZSBoYWQgbWFkZSwgYW5kLCBiZWhvbGQsIGl0IHdhcyB2
+ZXJ5IGdvb2QuIEFuZCB0aGUgZXZlbmluZyBhbmQgdGhlIG1vcm5pbmcgd2VyZSB0aGUgc2l4dGggZGF5
+LgoKA</string>
+						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+							<int key="IBUIAutocapitalizationType">2</int>
+							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						</object>
+					</object>
+				</object>
+				<string key="NSFrameSize">{600, 600}</string>
+				<reference key="NSSuperview"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">3</int>
+					<bytes key="NSWhite">MQA</bytes>
+				</object>
+				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+			</object>
+		</object>
+		<object class="IBObjectContainer" key="IBDocument.Objects">
+			<object class="NSMutableArray" key="connectionRecords">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">view</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="954924833"/>
+					</object>
+					<int key="connectionID">5</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">textView</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="116347199"/>
+					</object>
+					<int key="connectionID">7</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="116347199"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">8</int>
+				</object>
+			</object>
+			<object class="IBMutableOrderedSet" key="objectRecords">
+				<object class="NSArray" key="orderedObjects">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="IBObjectRecord">
+						<int key="objectID">0</int>
+						<reference key="object" ref="0"/>
+						<reference key="children" ref="1000"/>
+						<nil key="parent"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">-1</int>
+						<reference key="object" ref="841351856"/>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">File's Owner</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">-2</int>
+						<reference key="object" ref="606714003"/>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">4</int>
+						<reference key="object" ref="954924833"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="116347199"/>
+						</object>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">6</int>
+						<reference key="object" ref="116347199"/>
+						<reference key="parent" ref="954924833"/>
+					</object>
+				</object>
+			</object>
+			<object class="NSMutableDictionary" key="flattenedProperties">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="NSArray" key="dict.sortedKeys">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>-1.CustomClassName</string>
+					<string>-2.CustomClassName</string>
+					<string>4.IBEditorWindowLastContentRect</string>
+					<string>4.IBPluginDependency</string>
+					<string>6.IBPluginDependency</string>
+					<string>6.IBViewBoundsToFrameTransform</string>
+				</object>
+				<object class="NSMutableArray" key="dict.values">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>TextViewController</string>
+					<string>UIResponder</string>
+					<string>{{329, 384}, {600, 600}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAxBCAAA</bytes>
+					</object>
+				</object>
+			</object>
+			<object class="NSMutableDictionary" key="unlocalizedProperties">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<reference key="dict.sortedKeys" ref="0"/>
+				<object class="NSMutableArray" key="dict.values">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+				</object>
+			</object>
+			<nil key="activeLocalization"/>
+			<object class="NSMutableDictionary" key="localizations">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<reference key="dict.sortedKeys" ref="0"/>
+				<object class="NSMutableArray" key="dict.values">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+				</object>
+			</object>
+			<nil key="sourceID"/>
+			<int key="maxID">8</int>
+		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">TextViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>delegate</string>
+							<string>textView</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>UITextView</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>delegate</string>
+							<string>textView</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">delegate</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">textView</string>
+								<string key="candidateClassName">UITextView</string>
+							</object>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">TextViewController.h</string>
+					</object>
+				</object>
+			</object>
+			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.2+">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSError.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSFileManager.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSKeyValueCoding.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSKeyValueObserving.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSKeyedArchiver.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSNetServices.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSObject.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSPort.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSRunLoop.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSStream.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSThread.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSURL.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSURLConnection.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSXMLParser.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UIAccessibility.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UINibLoading.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="786211723">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UIResponder.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIResponder</string>
+					<string key="superclassName">NSObject</string>
+					<reference key="sourceIdentifier" ref="786211723"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIScrollView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UIScrollView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UISearchBar</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UISearchBar.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UISearchDisplayController</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UISearchDisplayController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UITextView</string>
+					<string key="superclassName">UIScrollView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UITextView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UITextField.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIView</string>
+					<string key="superclassName">UIResponder</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UIView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UINavigationController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UIPopoverController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UISplitViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UITabBarController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIViewController</string>
+					<string key="superclassName">UIResponder</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UIViewController.h</string>
+					</object>
+				</object>
+			</object>
+		</object>
+		<int key="IBDocument.localizationMode">0</int>
+		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
+			<integer value="800" key="NS.object.0"/>
+		</object>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.InterfaceBuilder3</string>
+			<integer value="3100" key="NS.object.0"/>
+		</object>
+		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
+		<string key="IBDocument.LastKnownRelativeProjectPath">Amblr.xcodeproj</string>
+		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<string key="IBCocoaTouchPluginVersion">123</string>
+	</data>
+</archive>
