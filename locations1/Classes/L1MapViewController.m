@@ -8,6 +8,8 @@
 
 #import "L1MapViewController.h"
 #import "L1Node.h"
+#import "L1MapImageOverlay.h"
+#import "L1MapImageOverlayView.h"
 
 @implementation L1MapViewController
 
@@ -47,6 +49,8 @@
 	
     [primaryMapView setRegion:newRegion animated:YES];
 	
+	scenario = [[L1Scenario alloc] init];
+	
 }
 
 
@@ -82,6 +86,13 @@
 	NSObject * nodeObject = view.annotation;
 	if ([nodeObject isKindOfClass:[L1Node class]]){
 		L1Node * node = (L1Node*)nodeObject;
+		NSLog(@"Selected %@",node.name);
+		
+		self.nodeContentViewController.modalTransitionStyle  = UIModalTransitionStyleCrossDissolve;
+		[self presentModalViewController:nodeContentViewController animated:YES];
+		[self.nodeContentViewController setName:node.name];
+		[self.nodeContentViewController setText:node.text];
+		[mapView deselectAnnotation:node animated:NO];
 	}
 }
 
@@ -115,13 +126,13 @@
 
 	annotationView.image = [self.annotationImages objectForKey:@"node"];
 	annotationView.enabled = [node isVisible];
-	annotationView.canShowCallout = YES;
+	annotationView.canShowCallout = NO;
 	
 	UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 //	[rightButton addTarget:self
 //					action:@selector(showDetails:)
 //		  forControlEvents:UIControlEventTouchUpInside];
-	annotationView.rightCalloutAccessoryView = rightButton;
+	annotationView.leftCalloutAccessoryView = rightButton;
 	
 		
 	return annotationView;
@@ -139,21 +150,73 @@
 
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
+	NSLog(@"Getting view overlay.");
+	if ([overlay isKindOfClass:[MKPolygon class]]){
+		MKPolygonView * polygonView = [[MKPolygonView alloc] initWithPolygon:overlay];
+		UIColor * color = [[UIColor redColor] colorWithAlphaComponent:0.25];
+		polygonView.fillColor = color;	
+		return polygonView;
+	}
+	else if ([overlay isKindOfClass:[L1MapImageOverlay class]]){
+		UIImage * image = [UIImage imageNamed:@"oxford_map.jpg"];
+		NSLog(@"Loaded image %@",image);
 
-	if (![overlay isKindOfClass:[MKPolygon class]]) return nil;
-	MKPolygonView * polygonView = [[MKPolygonView alloc] initWithPolygon:overlay];
-	UIColor * color = [[UIColor redColor] colorWithAlphaComponent:0.3];
-	polygonView.fillColor = color;
+
+		
+		
+		
+		L1MapImageOverlayView * overlayView = [[L1MapImageOverlayView alloc] initWithOverlay:overlay image:image.CGImage];
+//		L1MapImageOverlayView * overlayView = [[L1MapImageOverlayView alloc] initWithOverlay:overlay image:image.CGImage topLeft:topLeft bottomRight:bottomRight];
+		return overlayView;
+	}
 	
-	return polygonView;
+	return nil;
+}
+
+-(IBAction) overlayImage:(id) sender
+{
+	MKMapRect currentArea = [primaryMapView visibleMapRect];
+	NSLog(@"current area origin = (%e,%e)  size = (%e,%e)",currentArea.origin.x,currentArea.origin.y,currentArea.size.width,currentArea.size.height);
+	L1MapImageOverlay * overlay = 	[[L1MapImageOverlay alloc] init];
+	CLLocationCoordinate2D coord;
+
+	float r = 0.8312997348;
+	
+	CLLocationCoordinate2D originCoord;
+	CLLocationCoordinate2D endCoord;
+
+	endCoord.latitude=54.0;
+	endCoord.longitude=1.0;
+	
+	originCoord.latitude=54.8312997348;
+	originCoord.longitude=0.0;
+	
+	coord.latitude=endCoord.latitude+r/2;
+	coord.longitude=0.5;
+	
+		
+	MKMapPoint originPoint = MKMapPointForCoordinate(originCoord);
+	MKMapPoint endPoint = MKMapPointForCoordinate(endCoord);
+	
+	MKMapRect rect = MKMapRectMake(originPoint.x, originPoint.y, endPoint.x-originPoint.x, endPoint.y-originPoint.y);
+
+	
+	NSLog(@"overlay area origin = (%e,%e)  size = (%e,%e)",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
+
+	[overlay setCoordinate:coord];
+	[overlay setMapRect:rect];
+	[primaryMapView addOverlay:overlay];
+	[overlay release];
+	NSLog(@"Added overlay");
+	
 	
 }
 
 
 
-
 -(IBAction) fakeNodeTest:(id) sender
 {
+	NSLog(@"Faking Node");
 	scenario.delegate=self;
 	[scenario fakeNodes];
 }
@@ -166,6 +229,7 @@
 
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSArray*) nodes
 {
+	NSLog(@"Received nodes");
 	for(L1Node * node in nodes){
 		[primaryMapView addAnnotation:node];
 	}
@@ -184,7 +248,7 @@
 	}
 	MKPolygon * polygon = [MKPolygon polygonWithCoordinates:coords count:n];
 	[primaryMapView addOverlay:polygon];
-	MKPolygonView * polygonView = (MKPolygonView *)[primaryMapView viewForOverlay:polygon];
+//	MKPolygonView * polygonView = (MKPolygonView *)[primaryMapView viewForOverlay:polygon];
 }
 
 

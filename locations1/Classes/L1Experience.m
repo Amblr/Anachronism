@@ -11,4 +11,5 @@
 
 @implementation L1Experience
 @synthesize eventID;
+@synthesize date;
 @end

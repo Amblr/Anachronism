@@ -19,5 +19,7 @@
 -(void) setText:(NSString*)text;
 -(void) setImage:(UIImage*)image;
 
+-(IBAction) exitModal:(id) sender;
+-(IBAction) rotate:(id) sender;
 
 @end

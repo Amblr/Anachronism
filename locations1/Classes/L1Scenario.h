@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "L1Node.h"
-
+#import <CoreLocation/CoreLocation.h>
 //Has many nodes
 //Has many plots
 //Each plot can have many nodes
@@ -16,10 +16,11 @@
 
 
 
-@interface L1Scenario : NSObject<NSFastEnumeration,L1NodeDelegate> {
+@interface L1Scenario : NSObject<NSFastEnumeration,L1NodeDelegate,CLLocationManagerDelegate> {
 	NSMutableArray * nodes;
 	NSMutableArray * plots;
 	NSMutableDictionary * experiences;
+	CLLocationManager * locationManager;
 	id delegate;
 
 }
@@ -30,5 +31,8 @@
 -(void) failedNodeDownloadWithError:(NSError*) error;
 -(void) startNodeDownload:(NSString *) url;
 -(void) fakeNodes;
+
+-(void) startMonitoringAllNodesProximity;
+-(void) startMonitoringNodeProximity:(L1Node*)node;
 
 @end

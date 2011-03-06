@@ -159,7 +159,7 @@
     data = [ASIHTTPRequest uncompressZippedData:rawData];
   }
     
-  NSError *parseError = nil;
+//  NSError *parseError = nil;
 	SBJsonParser * parser = [[SBJsonParser alloc] init];
 	
 	NSDictionary *authorizationData = [parser objectWithData:data];

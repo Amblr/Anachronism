@@ -11,8 +11,10 @@
 
 
 @interface L1ResponsiveNode : L1MultiNode {
-	NSArray * possibleResponses;
+	NSMutableArray * possibleResponses;
 
 }
 -(void) selectResponse:(NSString*)response;
+
+@property (retain) NSMutableArray * possibleResponses;
 @end

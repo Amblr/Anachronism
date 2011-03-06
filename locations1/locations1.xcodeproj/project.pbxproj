@@ -18,7 +18,7 @@
 		D82E000813104E8200057D16 /* ParadiseLost.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D82E000713104E8200057D16 /* ParadiseLost.jpg */; };
 		D82E005D1311893600057D16 /* L1MultiNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D82E005C1311893600057D16 /* L1MultiNode.m */; };
 		D82EFEBE13103BB900057D16 /* L1Scenario.m in Sources */ = {isa = PBXBuildFile; fileRef = D82EFEBD13103BB900057D16 /* L1Scenario.m */; };
-		D82EFEC313103BC700057D16 /* L1Plotline.m in Sources */ = {isa = PBXBuildFile; fileRef = D82EFEC213103BC700057D16 /* L1Plotline.m */; };
+		D82EFEC313103BC700057D16 /* L1Story.m in Sources */ = {isa = PBXBuildFile; fileRef = D82EFEC213103BC700057D16 /* L1Story.m */; };
 		D82EFED913103E1A00057D16 /* L1Experience.m in Sources */ = {isa = PBXBuildFile; fileRef = D82EFED813103E1A00057D16 /* L1Experience.m */; };
 		D82EFFF213104D4600057D16 /* L1NodeContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D82EFFF013104D4600057D16 /* L1NodeContentViewController.m */; };
 		D82EFFF313104D4600057D16 /* L1NodeContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D82EFFF113104D4600057D16 /* L1NodeContentViewController.xib */; };
@@ -57,6 +57,13 @@
 		D8778F0C1312F549003874F6 /* L1User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8778F0B1312F549003874F6 /* L1User.m */; };
 		D8778FA9131303FF003874F6 /* L1LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8778FA7131303FF003874F6 /* L1LoginViewController.m */; };
 		D8778FAA131303FF003874F6 /* L1LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8778FA8131303FF003874F6 /* L1LoginViewController.xib */; };
+		D8B19D90131EDD1F00FB56A4 /* pentagram_high_res.png in Resources */ = {isa = PBXBuildFile; fileRef = D8B19D8F131EDD1F00FB56A4 /* pentagram_high_res.png */; };
+		D8B19DCB131F022B00FB56A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B19DCA131F022B00FB56A4 /* QuartzCore.framework */; };
+		D8B19E21131F957D00FB56A4 /* L1MapImageOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B19E20131F957C00FB56A4 /* L1MapImageOverlayView.m */; };
+		D8B19E4E131F9E9500FB56A4 /* L1MapImageOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B19E4D131F9E9500FB56A4 /* L1MapImageOverlay.m */; };
+		D8B1A0391323020D00FB56A4 /* oxford_map.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8B1A0381323020D00FB56A4 /* oxford_map.jpg */; };
+		D8B1A12D1323CB4100FB56A4 /* MockupMainWindom.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8B1A12C1323CB4100FB56A4 /* MockupMainWindom.xib */; };
+		D8D130DE1316EB7D00243D80 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D130DD1316EB7D00243D80 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,8 +85,8 @@
 		D82E005C1311893600057D16 /* L1MultiNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1MultiNode.m; sourceTree = "<group>"; };
 		D82EFEBC13103BB900057D16 /* L1Scenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1Scenario.h; sourceTree = "<group>"; };
 		D82EFEBD13103BB900057D16 /* L1Scenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Scenario.m; sourceTree = "<group>"; };
-		D82EFEC113103BC700057D16 /* L1Plotline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1Plotline.h; sourceTree = "<group>"; };
-		D82EFEC213103BC700057D16 /* L1Plotline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Plotline.m; sourceTree = "<group>"; };
+		D82EFEC113103BC700057D16 /* L1Story.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1Story.h; sourceTree = "<group>"; };
+		D82EFEC213103BC700057D16 /* L1Story.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Story.m; sourceTree = "<group>"; };
 		D82EFED713103E1A00057D16 /* L1Experience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1Experience.h; sourceTree = "<group>"; };
 		D82EFED813103E1A00057D16 /* L1Experience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Experience.m; sourceTree = "<group>"; };
 		D82EFFEF13104D4600057D16 /* L1NodeContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1NodeContentViewController.h; sourceTree = "<group>"; };
@@ -156,6 +163,15 @@
 		D8778FA6131303FF003874F6 /* L1LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1LoginViewController.h; sourceTree = "<group>"; };
 		D8778FA7131303FF003874F6 /* L1LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1LoginViewController.m; sourceTree = "<group>"; };
 		D8778FA8131303FF003874F6 /* L1LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = L1LoginViewController.xib; path = Classes/L1LoginViewController.xib; sourceTree = "<group>"; };
+		D8B19D8F131EDD1F00FB56A4 /* pentagram_high_res.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pentagram_high_res.png; path = Images/pentagram_high_res.png; sourceTree = SOURCE_ROOT; };
+		D8B19DCA131F022B00FB56A4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D8B19E1F131F957C00FB56A4 /* L1MapImageOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1MapImageOverlayView.h; sourceTree = "<group>"; };
+		D8B19E20131F957C00FB56A4 /* L1MapImageOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1MapImageOverlayView.m; sourceTree = "<group>"; };
+		D8B19E4C131F9E9500FB56A4 /* L1MapImageOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1MapImageOverlay.h; sourceTree = "<group>"; };
+		D8B19E4D131F9E9500FB56A4 /* L1MapImageOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1MapImageOverlay.m; sourceTree = "<group>"; };
+		D8B1A0381323020D00FB56A4 /* oxford_map.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oxford_map.jpg; sourceTree = "<group>"; };
+		D8B1A12C1323CB4100FB56A4 /* MockupMainWindom.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MockupMainWindom.xib; sourceTree = "<group>"; };
+		D8D130DD1316EB7D00243D80 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +186,8 @@
 				D8778E991312F2B4003874F6 /* CFNetwork.framework in Frameworks */,
 				D8778EB41312F2E8003874F6 /* MobileCoreServices.framework in Frameworks */,
 				D8778EBC1312F2F7003874F6 /* SystemConfiguration.framework in Frameworks */,
+				D8D130DE1316EB7D00243D80 /* CoreLocation.framework in Frameworks */,
+				D8B19DCB131F022B00FB56A4 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,11 +218,15 @@
 				D82EFEBC13103BB900057D16 /* L1Scenario.h */,
 				D82EFEBD13103BB900057D16 /* L1Scenario.m */,
 				D82EFED713103E1A00057D16 /* L1Experience.h */,
+				D8B19E4C131F9E9500FB56A4 /* L1MapImageOverlay.h */,
+				D8B19E4D131F9E9500FB56A4 /* L1MapImageOverlay.m */,
+				D8B19E1F131F957C00FB56A4 /* L1MapImageOverlayView.h */,
+				D8B19E20131F957C00FB56A4 /* L1MapImageOverlayView.m */,
 				D82EFED813103E1A00057D16 /* L1Experience.m */,
 				D8778F0A1312F549003874F6 /* L1User.h */,
 				D8778F0B1312F549003874F6 /* L1User.m */,
-				D82EFEC113103BC700057D16 /* L1Plotline.h */,
-				D82EFEC213103BC700057D16 /* L1Plotline.m */,
+				D82EFEC113103BC700057D16 /* L1Story.h */,
+				D82EFEC213103BC700057D16 /* L1Story.m */,
 				D82EFFEF13104D4600057D16 /* L1NodeContentViewController.h */,
 				D82EFFF013104D4600057D16 /* L1NodeContentViewController.m */,
 				D8778FA6131303FF003874F6 /* L1LoginViewController.h */,
@@ -250,6 +272,7 @@
 				2899E5210DE3E06400AC0155 /* locations1ViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* locations1-Info.plist */,
+				D8B1A12C1323CB4100FB56A4 /* MockupMainWindom.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -264,6 +287,8 @@
 				D8778E981312F2B4003874F6 /* CFNetwork.framework */,
 				D8778EB31312F2E8003874F6 /* MobileCoreServices.framework */,
 				D8778EBB1312F2F7003874F6 /* SystemConfiguration.framework */,
+				D8D130DD1316EB7D00243D80 /* CoreLocation.framework */,
+				D8B19DCA131F022B00FB56A4 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -271,7 +296,9 @@
 		D800308E130E9BD700763C05 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D8B1A0381323020D00FB56A4 /* oxford_map.jpg */,
 				D82E000713104E8200057D16 /* ParadiseLost.jpg */,
+				D8B19D8F131EDD1F00FB56A4 /* pentagram_high_res.png */,
 				D841B755130F0AB900AD449F /* pentagram.png */,
 			);
 			path = Images;
@@ -423,6 +450,9 @@
 				D82EFFF313104D4600057D16 /* L1NodeContentViewController.xib in Resources */,
 				D82E000813104E8200057D16 /* ParadiseLost.jpg in Resources */,
 				D8778FAA131303FF003874F6 /* L1LoginViewController.xib in Resources */,
+				D8B19D90131EDD1F00FB56A4 /* pentagram_high_res.png in Resources */,
+				D8B1A0391323020D00FB56A4 /* oxford_map.jpg in Resources */,
+				D8B1A12D1323CB4100FB56A4 /* MockupMainWindom.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,7 +479,7 @@
 				D840068F130B1F0F0038286A /* SBJsonWriter.m in Sources */,
 				D8400740130BD1660038286A /* L1MapViewController.m in Sources */,
 				D82EFEBE13103BB900057D16 /* L1Scenario.m in Sources */,
-				D82EFEC313103BC700057D16 /* L1Plotline.m in Sources */,
+				D82EFEC313103BC700057D16 /* L1Story.m in Sources */,
 				D82EFED913103E1A00057D16 /* L1Experience.m in Sources */,
 				D82EFFF213104D4600057D16 /* L1NodeContentViewController.m in Sources */,
 				D82E005D1311893600057D16 /* L1MultiNode.m in Sources */,
@@ -470,6 +500,8 @@
 				D8778F0C1312F549003874F6 /* L1User.m in Sources */,
 				D8778FA9131303FF003874F6 /* L1LoginViewController.m in Sources */,
 				D844F8E413130C7B00E4AE13 /* L1ResponsiveNode.m in Sources */,
+				D8B19E21131F957D00FB56A4 /* L1MapImageOverlayView.m in Sources */,
+				D8B19E4E131F9E9500FB56A4 /* L1MapImageOverlay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

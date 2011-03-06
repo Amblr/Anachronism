@@ -3,7 +3,7 @@
 //  locations1
 //
 //  Created by Joe Zuntz on 15/02/2011.
-//  Copyright 2011 Imperial College London. All rights reserved.
+//  Copyright 2011 Joe Zuntz. All rights reserved.
 //
 
 #import "locations1AppDelegate.h"
@@ -35,8 +35,8 @@
 	
 	NSLog(@"Should now present login view: %@",loginViewController);
 
-	[viewController presentModalViewController:loginViewController animated:YES];
-	[user loginWithWebView:loginViewController.webView];
+//	[viewController presentModalViewController:loginViewController animated:YES];
+//	[user loginWithWebView:loginViewController.webView];
 	
 
 	

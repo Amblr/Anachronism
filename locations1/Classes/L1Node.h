@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MKAnnotation.h>
 
+#define STANDARD_NODE_RADIUS 20.0  //meters
+
 
 //Nodes have state
 //They have pre-requisites, which change their availability and state.
@@ -33,26 +35,35 @@
 	NSString * text;
 	NSString * name;
 	UIImage  * image;
-	id<L1NodeDelegate> delegate;
+	NSObject<L1NodeDelegate> * delegate;
+	//JAZ We need a key field for this.  "Name" is probably a user friendly name
+	//So we add another
+	NSString * key;
 	//Eventually this should contain an L1NodeContent instance.
 	//Which should know what its associated view is, and how to
 	//display itself.
+	BOOL enabled;
 }
 
 
-@property (retain) 	id<L1NodeDelegate> delegate;
+@property (retain) 	NSObject<L1NodeDelegate> * delegate;
 @property (retain) NSNumber * latitude;
 @property (retain) NSNumber * longitude;
+@property (copy) NSString * key;
 @property (retain) NSNumber * radius;
 @property (retain) NSString * text;
 @property (retain) NSString * name;
 @property (retain) UIImage * image;
+@property (assign) BOOL enabled;
 
--(id) initWithDictionary:(NSDictionary*) nodeDictionary;
+
+-(id) initWithDictionary:(NSDictionary*) nodeDictionary key:(NSString*)keyName;
 
 //Separate this out so that sub-classes can use it
 //apart from the initializer.
 -(void) setStateFromDictionary:(NSDictionary*) nodeDictionary;
+
+-(CLRegion*) region;
 
 
 // MKAnnotation protocol
@@ -63,8 +74,7 @@
 //Sub-classes should override this to decide whether or not to 
 //make the node visible, depending on the user experiences.
 -(BOOL) isVisible;
-
-
+-(L1Experience*) generateVisitedExperience;
 @end
 
 

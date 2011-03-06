@@ -7,7 +7,7 @@
 //
 
 #import "L1NodeContentViewController.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 @implementation L1NodeContentViewController
 
@@ -65,6 +65,31 @@
 	nodeImage.image=image;
 }
 
+
+-(IBAction) exitModal:(id) sender
+{
+	NSLog(@"Exit Modal");
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+
+
+-(IBAction) rotate:(id) sender
+{
+	NSLog(@"Rotate");
+	CALayer * layer = nodeImage.layer;
+
+	CABasicAnimation *spinAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+	spinAnimation.fromValue =[NSNumber numberWithFloat:0];
+	spinAnimation.toValue = [NSNumber numberWithFloat:3.14*2];
+	spinAnimation.duration=3.0;
+	spinAnimation.repeatCount=666666;
+	[layer addAnimation:spinAnimation forKey:@"spinAnimation"];
+	
+	
+	
+	
+}
 
 
 - (void)dealloc {

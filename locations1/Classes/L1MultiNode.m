@@ -12,10 +12,10 @@
 @implementation L1MultiNode
 
 
--(id) initWithDictionary:(NSDictionary*) statesDictionary initialState:(NSString*)initialState
+-(id) initWithDictionary:(NSDictionary*) statesDictionary key:(NSString*)keyName initialState:(NSString*)initialState
 {
 	NSDictionary * nodeDictionary = [statesDictionary objectForKey:initialState];
-	self = [super initWithDictionary:nodeDictionary];
+	self = [super initWithDictionary:nodeDictionary key:keyName];
 	if (self){
 		states=[[NSMutableDictionary dictionaryWithDictionary:statesDictionary] retain];
 		activeState=[initialState retain];

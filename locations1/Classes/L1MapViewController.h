@@ -3,7 +3,7 @@
 //  locations1
 //
 //  Created by Joe Zuntz on 16/02/2011.
-//  Copyright 2011 Imperial College London. All rights reserved.
+//  Copyright 2011 Joe Zuntz. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -25,6 +25,7 @@
 -(void) testMap:(id) sender;
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSArray*) nodes;
 -(IBAction) fakeNodeTest:(id) sender;
+-(IBAction) overlayImage:(id) sender;
 
 
 -(void) mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view;

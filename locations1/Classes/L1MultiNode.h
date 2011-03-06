@@ -17,5 +17,5 @@
 
 @property (retain) NSString * state;
 
-
+-(id) initWithDictionary:(NSDictionary*) statesDictionary key:(NSString*)keyName initialState:(NSString*)initialState;
 @end
