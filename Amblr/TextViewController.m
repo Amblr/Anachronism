@@ -7,7 +7,7 @@
 //
 
 #import "TextViewController.h"
-
+#import "AmblrViewController.h"
 
 @implementation TextViewController
 

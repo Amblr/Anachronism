@@ -31,6 +31,7 @@
 	NSString * text;
 	NSString * name;
 	UIImage  * image;
+	float date; // This is a really bad way to store a date.
 	NSObject<AmblrNodeDelegate> * delegate;
 	//JAZ We need a key field for this.  "Name" is probably a user friendly name
 	//So we add another
@@ -39,6 +40,7 @@
 	//Which should know what its associated view is, and how to
 	//display itself.
 	BOOL enabled;
+	BOOL assigned;
 }
 
 
@@ -51,6 +53,8 @@
 @property (retain) NSString * name;
 @property (retain) UIImage * image;
 @property (assign) BOOL enabled;
+@property (assign) BOOL assigned;
+@property (assign) float date;
 
 
 -(id) initWithDictionary:(NSDictionary*) nodeDictionary key:(NSString*)keyName;

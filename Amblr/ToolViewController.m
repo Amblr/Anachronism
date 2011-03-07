@@ -7,7 +7,7 @@
 //
 
 #import "ToolViewController.h"
-
+#import "AmblrViewController.h"
 
 @implementation ToolViewController
 
@@ -21,12 +21,12 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
-*/
+
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -54,8 +54,17 @@
     [super dealloc];
 }
 
+-(IBAction) addNode:(id) sender
+{
+	[self.delegate.mapViewController addNewRandomAnnotation];
 
+	
+}
 
+-(void) dateSliderChanged:(id) sender
+{	
+	
+}
 
 @synthesize delegate;
 @end

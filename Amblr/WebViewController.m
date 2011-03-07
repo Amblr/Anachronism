@@ -25,15 +25,21 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	NSString * filePath = [[NSBundle mainBundle] pathForResource:@"genesis" ofType:@"html"];
+//	NSString * filePath = [[NSBundle mainBundle] pathForResource:@"genesis" ofType:@"html"];
 
-	NSError * error;
-	NSStringEncoding * encoding;
-	NSString * htmlContent = [NSString stringWithContentsOfFile:filePath usedEncoding:encoding error:&error];
+//	NSError * error;
+//	NSStringEncoding * encoding;
+//	NSString * htmlContent = [NSString stringWithContentsOfFile:filePath usedEncoding:encoding error:&error];
+	NSURL * url = [NSURL URLWithString:@"http://www.picturesofengland.com/history/oxford-university-history.html"];
+	NSURLRequest * request = [NSURLRequest requestWithURL:url];
+	[webView loadRequest:request];
+	
 	webView.delegate=self;
-	[webView loadHTMLString:htmlContent baseURL:nil];
+//	[webView loadHTMLString:htmlContent baseURL:nil];
 
     webView.backgroundColor = [UIColor whiteColor];
+	[webView stringByEvaluatingJavaScriptFromString:@"document.body.style.zoom = 5.0;"];
+
 //    for (UIView* subView in [webView subviews])
 //    {
 //        if ([subView isKindOfClass:[UIScrollView class]]) {

@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-
+@class AmblrViewController;
 @interface ToolViewController : UIViewController<UITextViewDelegate> {
-	id delegate;
+	AmblrViewController * delegate;
+	IBOutlet UISlider * dateSlider;
+	IBOutlet UIButton * addNodeButton;
 }
-@property (retain) id delegate;
-
+@property (retain) AmblrViewController * delegate;
+-(IBAction) dateSliderChanged:(id) sender;
+-(IBAction) addNode:(id) sender;
 @end

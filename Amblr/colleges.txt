@@ -1,0 +1,38 @@
+All Souls College 51.753279 -1.253041
+Balliol College 51.7547 -1.2578
+Brasenose College 51.753206 -1.254731
+Christ Church 51.750199 -1.255853
+Corpus Christi College 51.750909 -1.253702
+Exeter College 51.753871 -1.256046
+Green Templeton College 51.761223 -1.262866
+Harris Manchester 51.755758 -1.252044
+Hertford College 51.754205 -1.253467
+Jesus College 51.753422 -1.256968
+Keble College 51.758899 -1.257715
+Kellogg College 51.764 -1.260
+Lady Margaret Hall 51.76483 -1.254036
+Linacre College 51.75935 -1.24984
+Lincoln College 51.75326 -1.255905
+Magdalen College 51.752374 -1.247077
+Mansfield College 51.757428 -1.252876
+Merton College 51.751062 -1.252109
+New College 51.754277 -1.251288
+Nuffield College 51.752834 -1.262917
+Oriel College 51.751567 -1.253702
+Pembroke College 51.750062 -1.257827
+The Queen's College 51.753187 -1.251043
+St Anne's College 51.762123 -1.261974
+St Antony's College 51.763149 -1.262903
+St Catherine's College 51.757066 -1.245098
+St Cross College 51.756528 -1.260311
+St Hilda's College 51.749162 -1.245334
+St Hugh's College 51.765675 -1.263406
+St John Baptist College 51.75612 -1.258605
+St Peter's College 51.752762 -1.260721
+Somerville College 51.759644 -1.261872
+Trinity College 51.754914 -1.256599
+University College 51.752453 -1.251996
+Wadham College 51.755871 -1.254593
+Wolfson College 51.770977 -1.255263
+Worcester College 51.754971 -1.263701
+

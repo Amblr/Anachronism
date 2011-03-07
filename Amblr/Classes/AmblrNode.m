@@ -40,6 +40,8 @@
 	latitude = [[coords objectAtIndex:0] retain];
 	longitude = [[coords objectAtIndex:1] retain];
 	
+	assigned=NO;
+	
 }
 
 
@@ -77,6 +79,7 @@
 
 //@synthesize coordinate;
 @synthesize delegate;
-@synthesize enabled;
+@synthesize enabled,assigned;
 @synthesize key;
+@synthesize date;
 @end

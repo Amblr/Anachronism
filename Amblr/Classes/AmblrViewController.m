@@ -29,23 +29,39 @@
 }
 */
 
+-(void) viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	NSLog(@"View Did Appear");
+	[self performSelector:@selector(startup:) withObject:nil afterDelay:0.4];
 
+	
+}
 
+-(void) startup:(id) obj
+{
+	[self chooseMockup0];
+}
+	 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	NSLog(@"view Did Load");
     [super viewDidLoad];
 	self.toolViewController = [[ToolViewController alloc] initWithNibName:@"ToolViewController" bundle:nil];
 	self.mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
 	self.textViewController = [[TextViewController alloc] initWithNibName:@"TextViewController" bundle:nil];
 	self.webViewController = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:nil];
 	self.purchaseViewController = [[PurchaseViewController alloc] initWithNibName:@"PurchaseViewController" bundle:nil];
+	self.distanceViewController = [[DistanceViewController alloc] initWithNibName:@"DistanceViewController" bundle:nil];
+
 	
 	self.toolViewController.delegate = self;
 	self.mapViewController.delegate = self;
 	self.textViewController.delegate = self;
 	self.webViewController.delegate = self;
+	self.distanceViewController.delegate = self;
 	
-	bottomLeftRect = CGRectFromString(@"{{70, 380}, {300, 300}}");
+	bottomLeftRect = CGRectFromString(@"{{70, 350}, {300, 300}}");
 	topLeftRect = CGRectFromString(@"{{70, 50}, {300, 300}}");
 	bigRect = CGRectFromString(@"{{400, 50}, {600, 600}}");
 	
@@ -53,6 +69,10 @@
 	NSLog(@"top: %@",NSStringFromCGRect(topLeftRect));
 	NSLog(@"big: %@",NSStringFromCGRect(bigRect));
 	
+	
+	self.inAnnotationMode=YES;
+//	[self chooseMockup0];
+
 
 	
 	
@@ -128,43 +148,46 @@
 	if (![newViews member:textViewController.view]) [textViewController.view removeFromSuperview];	
 	if (![newViews member:webViewController.view]) [webViewController.view removeFromSuperview];	
 	if (![newViews member:purchaseViewController.view]) [purchaseViewController.view removeFromSuperview];	
+	if (![newViews member:distanceViewController.view]) [distanceViewController.view removeFromSuperview];	
+	
+	if ([newViews member:webViewController.view]){
+		self.inAnnotationMode=YES;
+	}
+	else {
+		self.inAnnotationMode=NO;
+	}
+
+	
 }
 
 -(void) putInBigView:(UIView*) subView
 {
 	if ([subView superview]!=self.view) [self.view addSubview:subView];
 	subView.frame = bigRect;
-	
-//	[self.bigView addSubview:subView];
-//	subView.frame = self.bigView.bounds;
 }
 
 -(void) putInTopView:(UIView*) subView
 {
 	if ([subView superview]!=self.view) [self.view addSubview:subView];
 	subView.frame=topLeftRect;
-//	[self.topLeftView addSubview:subView];
-//	subView.frame = self.topLeftView.bounds;
 }
 
 -(void) putInBottomView:(UIView*) subView
 {
 	if ([subView superview]!=self.view) [self.view addSubview:subView];
 	subView.frame=bottomLeftRect;
-//	[self.bottomLeftView addSubview:subView];
-//	subView.frame = self.bottomLeftView.bounds;
 }
 
 
 
  -(void) chooseMockup0
 {
-	NSSet * views = [NSSet setWithObjects:mapViewController.view,webViewController.view,toolViewController.view,nil];
+	NSSet * views = [NSSet setWithObjects:mapViewController.view,distanceViewController.view,toolViewController.view,nil];
 	[UIView beginAnimations:@"mockup0" context:NULL];
 	[UIView setAnimationDuration:0.4];
 	[self removeViewsNotIn:views];
 	[self putInBigView:mapViewController.view];
-	[self putInBottomView:webViewController.view];
+	[self putInBottomView:distanceViewController.view];
 	[self putInTopView:toolViewController.view];
 	[UIView commitAnimations];
 
@@ -173,29 +196,26 @@
 
 -(void) chooseMockup1
 {
-	NSSet * views = [NSSet setWithObjects:mapViewController.view,webViewController.view,toolViewController.view,nil];
+	NSSet * views = [NSSet setWithObjects:mapViewController.view,distanceViewController.view,toolViewController.view,nil];
 	[UIView beginAnimations:@"mockup1" context:NULL];
 	[self removeViewsNotIn:views];
 	[UIView setAnimationDuration:0.4];
-//	NSLog(@"subviews: %@",[self.view subviews]);
-
 	[self putInBigView:mapViewController.view];
-//	NSLog(@"subviews: %@",[self.view subviews]);
 	[self putInBottomView:toolViewController.view];
-	[self putInTopView:webViewController.view];
+	[self putInTopView:distanceViewController.view];
 	[UIView commitAnimations];
 	
 }
 
 -(void) chooseMockup2{
-	NSSet * views = [NSSet setWithObjects:mapViewController.view,webViewController.view,toolViewController.view,nil];
+	NSSet * views = [NSSet setWithObjects:mapViewController.view,webViewController.view,distanceViewController.view,nil];
 	[UIView beginAnimations:@"mockup2" context:NULL];
 	[UIView setAnimationDuration:0.4];
 	[self removeViewsNotIn:views];
 
 	[self putInBigView:webViewController.view];
 	[self putInBottomView:mapViewController.view];
-	[self putInTopView:toolViewController.view];	
+	[self putInTopView:distanceViewController.view];	
 	[UIView commitAnimations];
 
 }
@@ -212,7 +232,17 @@
 
 }
 
--(void) chooseMockup4{}
+-(void) chooseMockup4{
+	NSSet * views = [NSSet setWithObjects:mapViewController.view,webViewController.view,self.toolViewController.view,nil];
+	[UIView beginAnimations:@"mockup4" context:NULL];
+	[UIView setAnimationDuration:0.4];
+	
+	[self removeViewsNotIn:views];
+	[self putInTopView:webViewController.view];	
+	[self putInBottomView:toolViewController.view];
+	[self putInBigView:mapViewController.view];
+	[UIView commitAnimations];
+}
 
 - (void)dealloc {
     [super dealloc];
@@ -222,7 +252,7 @@
 
 -(IBAction) addNodes:(id)sender
 {
-	for (int i=0;i<10;i++)  [self.mapViewController addNodeAnnotation:i];	
+	for (int i=0;i<NUMBER_OF_NODES;i++)  [self.mapViewController addNodeAnnotation:i];	
 }
 
 
@@ -234,8 +264,16 @@
 	
 }
 
+-(void) setDate:(float)newDate
+{
+	date=newDate;
+	mapViewController.date=newDate;
+	
+}
+
 
 //@synthesize topLeftView, bigView, bottomLeftView, barView;
 @synthesize toolViewController, mapViewController, textViewController, webViewController, purchaseViewController;
-@synthesize currentTextSelection;
+@synthesize currentTextSelection,date, inAnnotationMode;
+@synthesize distanceViewController;
 @end

@@ -45,7 +45,7 @@
 					<object class="IBMKMapView" id="214617409">
 						<reference key="NSNextResponder" ref="495059998"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{20, 20}, {551, 551}}</string>
+						<string key="NSFrameSize">{600, 600}</string>
 						<reference key="NSSuperview" ref="495059998"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>

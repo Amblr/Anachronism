@@ -8,14 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class AmblrViewController;
 
 @interface TextViewController : UIViewController {
 	IBOutlet UITextView * textView;
-	id delegate;
+	AmblrViewController * delegate;
 }
 
 -(void) deselectText;
 
 @property (retain) UITextView * textView;
-@property (retain) id delegate;
+@property (retain) AmblrViewController * delegate;
 @end
