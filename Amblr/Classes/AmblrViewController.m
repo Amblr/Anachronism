@@ -45,6 +45,17 @@
 	self.textViewController.delegate = self;
 	self.webViewController.delegate = self;
 	
+	bottomLeftRect = CGRectFromString(@"{{70, 380}, {300, 300}}");
+	topLeftRect = CGRectFromString(@"{{70, 50}, {300, 300}}");
+	bigRect = CGRectFromString(@"{{400, 50}, {600, 600}}");
+	
+	NSLog(@"bottom: %@",NSStringFromCGRect(bottomLeftRect));
+	NSLog(@"top: %@",NSStringFromCGRect(topLeftRect));
+	NSLog(@"big: %@",NSStringFromCGRect(bigRect));
+	
+
+	
+	
 	
 	
 //	mapViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
@@ -69,6 +80,15 @@
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
+}
+
+-(IBAction) logMap:(id)sender
+{
+	MKMapView * mapView = mapViewController.mapView;
+	MKCoordinateRegion region = mapView.region;
+	
+	NSLog(@"%f,%f  %f,%f",region.center.latitude,region.center.longitude,region.span.latitudeDelta,region.span.longitudeDelta);
+	
 }
 
 
@@ -100,72 +120,96 @@
 	}
 }
 
--(void) removeAllViews
+
+-(void) removeViewsNotIn:(NSSet*) newViews
 {
-	[mapViewController.view removeFromSuperview];
-	[toolViewController.view removeFromSuperview];
-	[textViewController.view removeFromSuperview];		
+	if (![newViews member:mapViewController.view]) [mapViewController.view removeFromSuperview];	
+	if (![newViews member:toolViewController.view]) [toolViewController.view removeFromSuperview];	
+	if (![newViews member:textViewController.view]) [textViewController.view removeFromSuperview];	
+	if (![newViews member:webViewController.view]) [webViewController.view removeFromSuperview];	
+	if (![newViews member:purchaseViewController.view]) [purchaseViewController.view removeFromSuperview];	
 }
 
 -(void) putInBigView:(UIView*) subView
 {
-	[self.bigView addSubview:subView];
-	subView.frame = self.bigView.bounds;
+	if ([subView superview]!=self.view) [self.view addSubview:subView];
+	subView.frame = bigRect;
+	
+//	[self.bigView addSubview:subView];
+//	subView.frame = self.bigView.bounds;
 }
 
 -(void) putInTopView:(UIView*) subView
 {
-	[self.topLeftView addSubview:subView];
-	subView.frame = self.topLeftView.bounds;
+	if ([subView superview]!=self.view) [self.view addSubview:subView];
+	subView.frame=topLeftRect;
+//	[self.topLeftView addSubview:subView];
+//	subView.frame = self.topLeftView.bounds;
 }
 
 -(void) putInBottomView:(UIView*) subView
 {
-	[self.bottomLeftView addSubview:subView];
-	subView.frame = self.bottomLeftView.bounds;
+	if ([subView superview]!=self.view) [self.view addSubview:subView];
+	subView.frame=bottomLeftRect;
+//	[self.bottomLeftView addSubview:subView];
+//	subView.frame = self.bottomLeftView.bounds;
 }
 
 
 
  -(void) chooseMockup0
 {
-	[self removeAllViews];
+	NSSet * views = [NSSet setWithObjects:mapViewController.view,webViewController.view,toolViewController.view,nil];
+	[UIView beginAnimations:@"mockup0" context:NULL];
+	[UIView setAnimationDuration:0.4];
+	[self removeViewsNotIn:views];
 	[self putInBigView:mapViewController.view];
 	[self putInBottomView:webViewController.view];
 	[self putInTopView:toolViewController.view];
-	
+	[UIView commitAnimations];
+
 }
 
--(IBAction) logMap:(id)sender
-{
-	MKMapView * mapView = mapViewController.mapView;
-	MKCoordinateRegion region = mapView.region;
-	
-	NSLog(@"%f,%f  %f,%f",region.center.latitude,region.center.longitude,region.span.latitudeDelta,region.span.longitudeDelta);
-	
-}
 
 -(void) chooseMockup1
 {
-	
-	[self removeAllViews];
+	NSSet * views = [NSSet setWithObjects:mapViewController.view,webViewController.view,toolViewController.view,nil];
+	[UIView beginAnimations:@"mockup1" context:NULL];
+	[self removeViewsNotIn:views];
+	[UIView setAnimationDuration:0.4];
+//	NSLog(@"subviews: %@",[self.view subviews]);
+
 	[self putInBigView:mapViewController.view];
+//	NSLog(@"subviews: %@",[self.view subviews]);
 	[self putInBottomView:toolViewController.view];
 	[self putInTopView:webViewController.view];
+	[UIView commitAnimations];
 	
 }
 
 -(void) chooseMockup2{
-	[self removeAllViews];
+	NSSet * views = [NSSet setWithObjects:mapViewController.view,webViewController.view,toolViewController.view,nil];
+	[UIView beginAnimations:@"mockup2" context:NULL];
+	[UIView setAnimationDuration:0.4];
+	[self removeViewsNotIn:views];
+
 	[self putInBigView:webViewController.view];
 	[self putInBottomView:mapViewController.view];
 	[self putInTopView:toolViewController.view];	
+	[UIView commitAnimations];
+
 }
 -(void) chooseMockup3{
-	[self removeAllViews];
+	NSSet * views = [NSSet setWithObjects:mapViewController.view,webViewController.view,purchaseViewController.view,nil];
+	[UIView beginAnimations:@"mockup3" context:NULL];
+	[UIView setAnimationDuration:0.4];
+
+	[self removeViewsNotIn:views];
 	[self putInTopView:mapViewController.view];	
 	[self putInBottomView:purchaseViewController.view];
 	[self putInBigView:webViewController.view];
+	[UIView commitAnimations];
+
 }
 
 -(void) chooseMockup4{}
@@ -191,7 +235,7 @@
 }
 
 
-@synthesize topLeftView, bigView, bottomLeftView, barView;
+//@synthesize topLeftView, bigView, bottomLeftView, barView;
 @synthesize toolViewController, mapViewController, textViewController, webViewController, purchaseViewController;
 @synthesize currentTextSelection;
 @end

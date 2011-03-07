@@ -18,7 +18,6 @@
 		D860A198132437D000DD49EA /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D860A196132437D000DD49EA /* WebViewController.m */; };
 		D860A199132437D000DD49EA /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D860A197132437D000DD49EA /* WebViewController.xib */; };
 		D860A1D613243BFE00DD49EA /* genesis.html in Resources */ = {isa = PBXBuildFile; fileRef = D860A1D513243BFE00DD49EA /* genesis.html */; };
-		D860A2301324434300DD49EA /* getSelection.js in Sources */ = {isa = PBXBuildFile; fileRef = D860A22F1324434300DD49EA /* getSelection.js */; };
 		D860A2611324463700DD49EA /* PurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D860A25F1324463700DD49EA /* PurchaseViewController.m */; };
 		D860A2621324463700DD49EA /* PurchaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D860A2601324463700DD49EA /* PurchaseViewController.xib */; };
 		D860A2671324471D00DD49EA /* satanic_bible.png in Resources */ = {isa = PBXBuildFile; fileRef = D860A2661324471D00DD49EA /* satanic_bible.png */; };
@@ -54,7 +53,6 @@
 		D860A196132437D000DD49EA /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		D860A197132437D000DD49EA /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		D860A1D513243BFE00DD49EA /* genesis.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = genesis.html; sourceTree = "<group>"; };
-		D860A22F1324434300DD49EA /* getSelection.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = getSelection.js; sourceTree = "<group>"; };
 		D860A25E1324463700DD49EA /* PurchaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseViewController.h; sourceTree = "<group>"; };
 		D860A25F1324463700DD49EA /* PurchaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseViewController.m; sourceTree = "<group>"; };
 		D860A2601324463700DD49EA /* PurchaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PurchaseViewController.xib; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				D860A2661324471D00DD49EA /* satanic_bible.png */,
-				D860A22F1324434300DD49EA /* getSelection.js */,
 				D860A1D513243BFE00DD49EA /* genesis.html */,
 				D8B1AA7B1323F4D100FB56A4 /* world.png */,
 				D8B1AA7C1323F4D100FB56A4 /* guy.png */,
@@ -257,7 +254,6 @@
 				D8B1AB28132401DB00FB56A4 /* TextViewController.m in Sources */,
 				D8B1ABEE1324162D00FB56A4 /* AmblrNode.m in Sources */,
 				D860A198132437D000DD49EA /* WebViewController.m in Sources */,
-				D860A2301324434300DD49EA /* getSelection.js in Sources */,
 				D860A2611324463700DD49EA /* PurchaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

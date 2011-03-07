@@ -12,12 +12,17 @@
 #import "TextViewController.h"
 #import "WebViewController.h"
 #import "PurchaseViewController.h"
+#import <CoreGraphics/CoreGraphics.h>
 
 @interface AmblrViewController : UIViewController {
-	IBOutlet UIView * topLeftView;
-	IBOutlet UIView * bottomLeftView;
-	IBOutlet UIView * bigView;
-	IBOutlet UIView * barView;
+//	IBOutlet UIView * topLeftView;
+//	IBOutlet UIView * bottomLeftView;
+//	IBOutlet UIView * bigView;
+//	IBOutlet UIView * barView;
+	
+	CGRect topLeftRect;
+	CGRect bottomLeftRect;
+	CGRect bigRect;
 	
 	ToolViewController * toolViewController;
 	MapViewController * mapViewController;
@@ -27,10 +32,10 @@
 		
 }
 
-@property (readonly) UIView * topLeftView;
-@property (readonly) UIView * bottomLeftView;
-@property (readonly) UIView * bigView;
-@property (readonly) UIView * barView;
+//@property (readonly) UIView * topLeftView;
+//@property (readonly) UIView * bottomLeftView;
+//@property (readonly) UIView * bigView;
+//@property (readonly) UIView * barView;
 
 @property (retain) ToolViewController * toolViewController;
 @property (retain) MapViewController * mapViewController;

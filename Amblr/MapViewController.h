@@ -15,6 +15,7 @@
 	IBOutlet MKMapView * mapView;
 	AmblrViewController * delegate;
 	NSMutableArray * nodes;
+	float date;
 	
 	BOOL inSelectionProcess;
 }
@@ -24,6 +25,7 @@
 -(void) addNodeAnnotation:(int) n;
 -(void) changeNodeColors:(int) color;
 
+@property (assign) float date;
 @property (retain) NSMutableArray * nodes;
 @property (readonly) MKMapView * mapView;
 @property (retain) id delegate;

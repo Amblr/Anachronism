@@ -163,12 +163,12 @@
 	
 }
 */
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation{
+- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation{
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
 	
 	if ([annotation isKindOfClass:[AmblrNode class]]){
-		return [self annotationViewFor:mapView forNode:(AmblrNode*)annotation];
+		return [self annotationViewFor:theMapView forNode:(AmblrNode*)annotation];
 	}
 	return nil;
 }
@@ -176,7 +176,7 @@
 
 -(void) addTextToNode:(id)sender
 {
-	UIButton * button = (UIButton*) sender;
+
 	
 	MKAnnotationView * annotationView = (MKAnnotationView *) [[sender superview] superview];
 	NSLog(@"annotationView = %@",annotationView);
@@ -200,11 +200,11 @@
 	
 }
 
--(MKAnnotationView *)annotationViewFor:(MKMapView *)mapView forNode:(AmblrNode*)node{
+-(MKAnnotationView *)annotationViewFor:(MKMapView *)theMapView forNode:(AmblrNode*)node{
 	
 	
 	
-	MKAnnotationView * annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"node"];
+	MKAnnotationView * annotationView = (MKAnnotationView *)[theMapView dequeueReusableAnnotationViewWithIdentifier:@"node"];
 	
 	if (!annotationView){
 		annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:node reuseIdentifier:@"node"];
@@ -228,6 +228,7 @@
 
 
 
+@synthesize date;
 @synthesize nodes;
 @synthesize mapView, delegate;
 @end
