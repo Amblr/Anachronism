@@ -35,13 +35,13 @@
 	pinImage2 = [[UIImage imageNamed:@"gold_pin.png"] retain];
 	minDate=1850;
 	maxDate=1925;
-	date=1887.5;
+	date=1925;
 	self.pathNodes=[NSMutableArray arrayWithCapacity:0];
 	[self setupCollegeNodes];
-	for(int i=0;i<[self.nodes count];i++) [self addNodeAnnotation:i];
+	AmblrNode * node = [self.nodes objectAtIndex:0];
+	node.assigned=YES;
 
 }
-
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -108,10 +108,14 @@
 	
 }
 
+
+
+
+
 -(void) addNodeAnnotation:(int) n
 {
 	if (n<0 || n>=[nodes count]) return;
-	NSLog(@"Adding node annotation %d",n);
+//	NSLog(@"Adding node annotation %d",n);
 	AmblrNode * node = [self.nodes objectAtIndex:n];
 	[mapView addAnnotation:node];
 	
@@ -235,6 +239,23 @@
 }
 
 
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views { 
+	MKAnnotationView *aV; 
+	for (aV in views) {
+		CGRect endFrame = aV.frame;
+		
+		aV.frame = CGRectMake(aV.frame.origin.x, aV.frame.origin.y - 230.0, aV.frame.size.width, aV.frame.size.height);
+		
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:0.45];
+		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+		[aV setFrame:endFrame];
+		[UIView commitAnimations];
+		
+	}
+}
+
+
 -(void) clickNodeButton:(id)sender
 {
 	MKAnnotationView * annotationView = (MKAnnotationView *) [[sender superview] superview];
@@ -289,7 +310,7 @@
 //	annotationView.image = [self.annotationImages objectForKey:@"node"];
 	annotationView.enabled = (date>=node.date);
 	annotationView.centerOffset = CGPointMake(19.0, -6.0);
-	NSLog(@"enabled = %d  (%f,%f)",annotationView.enabled,date,node.date);
+	//NSLog(@"enabled = %d  (%f,%f)",annotationView.enabled,date,node.date);
 	annotationView.canShowCallout = YES;
 	if (annotationView.enabled){
 		if (node.assigned){

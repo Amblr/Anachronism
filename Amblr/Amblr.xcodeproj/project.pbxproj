@@ -15,6 +15,22 @@
 		2899E5220DE3E06400AC0155 /* AmblrViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* AmblrViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* AmblrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* AmblrViewController.m */; };
+		D843054A1326D9230065A78F /* row1.png in Resources */ = {isa = PBXBuildFile; fileRef = D84305491326D9230065A78F /* row1.png */; };
+		D843056F1326E56C0065A78F /* titlePage.png in Resources */ = {isa = PBXBuildFile; fileRef = D843056E1326E56C0065A78F /* titlePage.png */; };
+		D84305741326E5E50065A78F /* title_text.png in Resources */ = {isa = PBXBuildFile; fileRef = D84305721326E5E50065A78F /* title_text.png */; };
+		D84305751326E5E50065A78F /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D84305731326E5E50065A78F /* logo.png */; };
+		D843062213277E800065A78F /* SplashScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = D843062013277E800065A78F /* SplashScreenController.m */; };
+		D843062313277E800065A78F /* SplashScreenController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D843062113277E800065A78F /* SplashScreenController.xib */; };
+		D84306481327806A0065A78F /* MediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D84306461327806A0065A78F /* MediaViewController.m */; };
+		D84306491327806A0065A78F /* MediaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D84306471327806A0065A78F /* MediaViewController.xib */; };
+		D8430650132780D70065A78F /* paradise_lost.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D843064F132780D70065A78F /* paradise_lost.jpeg */; };
+		D84306BC132786A40065A78F /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D84306BA132786A40065A78F /* TabViewController.m */; };
+		D84306BD132786A40065A78F /* TabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D84306BB132786A40065A78F /* TabViewController.xib */; };
+		D84306C41327876B0065A78F /* mapButtonBright.png in Resources */ = {isa = PBXBuildFile; fileRef = D84306C21327876B0065A78F /* mapButtonBright.png */; };
+		D84306C51327876B0065A78F /* mapButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D84306C31327876B0065A78F /* mapButton.png */; };
+		D84306C9132788070065A78F /* mediaButtonBright.png in Resources */ = {isa = PBXBuildFile; fileRef = D84306C8132788070065A78F /* mediaButtonBright.png */; };
+		D84306CF132788420065A78F /* mediaButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D84306CE132788420065A78F /* mediaButton.png */; };
+		D84306D3132788760065A78F /* ToolButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D84306D2132788760065A78F /* ToolButton.png */; };
 		D860A198132437D000DD49EA /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D860A196132437D000DD49EA /* WebViewController.m */; };
 		D860A199132437D000DD49EA /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D860A197132437D000DD49EA /* WebViewController.xib */; };
 		D860A1D613243BFE00DD49EA /* genesis.html in Resources */ = {isa = PBXBuildFile; fileRef = D860A1D513243BFE00DD49EA /* genesis.html */; };
@@ -60,6 +76,25 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Amblr_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Amblr_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Amblr-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Amblr-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		D84305491326D9230065A78F /* row1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = row1.png; sourceTree = "<group>"; };
+		D843056E1326E56C0065A78F /* titlePage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titlePage.png; sourceTree = "<group>"; };
+		D84305721326E5E50065A78F /* title_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title_text.png; sourceTree = "<group>"; };
+		D84305731326E5E50065A78F /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		D843061F13277E800065A78F /* SplashScreenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenController.h; sourceTree = "<group>"; };
+		D843062013277E800065A78F /* SplashScreenController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenController.m; sourceTree = "<group>"; };
+		D843062113277E800065A78F /* SplashScreenController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashScreenController.xib; sourceTree = "<group>"; };
+		D84306451327806A0065A78F /* MediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaViewController.h; sourceTree = "<group>"; };
+		D84306461327806A0065A78F /* MediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaViewController.m; sourceTree = "<group>"; };
+		D84306471327806A0065A78F /* MediaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaViewController.xib; sourceTree = "<group>"; };
+		D843064F132780D70065A78F /* paradise_lost.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = paradise_lost.jpeg; sourceTree = "<group>"; };
+		D84306B9132786A40065A78F /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
+		D84306BA132786A40065A78F /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
+		D84306BB132786A40065A78F /* TabViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabViewController.xib; sourceTree = "<group>"; };
+		D84306C21327876B0065A78F /* mapButtonBright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapButtonBright.png; sourceTree = "<group>"; };
+		D84306C31327876B0065A78F /* mapButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapButton.png; sourceTree = "<group>"; };
+		D84306C8132788070065A78F /* mediaButtonBright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mediaButtonBright.png; sourceTree = "<group>"; };
+		D84306CE132788420065A78F /* mediaButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mediaButton.png; sourceTree = "<group>"; };
+		D84306D2132788760065A78F /* ToolButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToolButton.png; sourceTree = "<group>"; };
 		D860A195132437D000DD49EA /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		D860A196132437D000DD49EA /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		D860A197132437D000DD49EA /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
@@ -161,6 +196,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D843064F132780D70065A78F /* paradise_lost.jpeg */,
+				D84305491326D9230065A78F /* row1.png */,
 				D8AF34FF1326ADBF00F638B2 /* icon_ipad.png */,
 				D8AF34DF1326AC7800F638B2 /* backdrop.png */,
 				D860A61B1325918B00DD49EA /* NVPolylineAnnotationView.m */,
@@ -198,6 +235,23 @@
 				D860A4BA132569F600DD49EA /* DistanceViewController.h */,
 				D860A4BB132569F600DD49EA /* DistanceViewController.m */,
 				D860A4BC132569F600DD49EA /* DistanceViewController.xib */,
+				D84305721326E5E50065A78F /* title_text.png */,
+				D84306D2132788760065A78F /* ToolButton.png */,
+				D84306CE132788420065A78F /* mediaButton.png */,
+				D84306C8132788070065A78F /* mediaButtonBright.png */,
+				D84306C21327876B0065A78F /* mapButtonBright.png */,
+				D84306C31327876B0065A78F /* mapButton.png */,
+				D84305731326E5E50065A78F /* logo.png */,
+				D843056E1326E56C0065A78F /* titlePage.png */,
+				D843061F13277E800065A78F /* SplashScreenController.h */,
+				D843062013277E800065A78F /* SplashScreenController.m */,
+				D843062113277E800065A78F /* SplashScreenController.xib */,
+				D84306451327806A0065A78F /* MediaViewController.h */,
+				D84306461327806A0065A78F /* MediaViewController.m */,
+				D84306471327806A0065A78F /* MediaViewController.xib */,
+				D84306B9132786A40065A78F /* TabViewController.h */,
+				D84306BA132786A40065A78F /* TabViewController.m */,
+				D84306BB132786A40065A78F /* TabViewController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -283,6 +337,19 @@
 				D860A4BE132569F600DD49EA /* DistanceViewController.xib in Resources */,
 				D8AF34E01326AC7800F638B2 /* backdrop.png in Resources */,
 				D8AF35001326ADBF00F638B2 /* icon_ipad.png in Resources */,
+				D843054A1326D9230065A78F /* row1.png in Resources */,
+				D843056F1326E56C0065A78F /* titlePage.png in Resources */,
+				D84305741326E5E50065A78F /* title_text.png in Resources */,
+				D84305751326E5E50065A78F /* logo.png in Resources */,
+				D843062313277E800065A78F /* SplashScreenController.xib in Resources */,
+				D84306491327806A0065A78F /* MediaViewController.xib in Resources */,
+				D8430650132780D70065A78F /* paradise_lost.jpeg in Resources */,
+				D84306BD132786A40065A78F /* TabViewController.xib in Resources */,
+				D84306C41327876B0065A78F /* mapButtonBright.png in Resources */,
+				D84306C51327876B0065A78F /* mapButton.png in Resources */,
+				D84306C9132788070065A78F /* mediaButtonBright.png in Resources */,
+				D84306CF132788420065A78F /* mediaButton.png in Resources */,
+				D84306D3132788760065A78F /* ToolButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +372,9 @@
 				D860A4BD132569F600DD49EA /* DistanceViewController.m in Sources */,
 				D860A61F1325918B00DD49EA /* NVPolylineAnnotationView.m in Sources */,
 				D860A6201325918B00DD49EA /* NVPolylineAnnotation.m in Sources */,
+				D843062213277E800065A78F /* SplashScreenController.m in Sources */,
+				D84306481327806A0065A78F /* MediaViewController.m in Sources */,
+				D84306BC132786A40065A78F /* TabViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

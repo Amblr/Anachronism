@@ -9,7 +9,7 @@
 #import "AmblrViewController.h"
 #import "MapViewController.h"
 #import <CoreLocation/CoreLocation.h>
-
+#import "SplashScreenController.h"
 @implementation AmblrViewController
 
 
@@ -28,18 +28,22 @@
 - (void)loadView {
 }
 */
-
+ 
 -(void) viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	NSLog(@"View Did Appear");
-	[self performSelector:@selector(startup:) withObject:nil afterDelay:0.4];
+	if (started) return;
+	SplashScreenController * splashScreenController = [[SplashScreenController alloc] initWithNibName:@"SplashScreenController" bundle:nil];
+	[self presentModalViewController:splashScreenController animated:NO];
+	[self performSelector:@selector(startup:) withObject:nil afterDelay:2.0];
 
 	
 }
 
 -(void) startup:(id) obj
 {
+	[self dismissModalViewControllerAnimated:YES];
+	started=YES;
 	[self chooseMockup0];
 }
 	 
@@ -47,12 +51,15 @@
 - (void)viewDidLoad {
 	NSLog(@"view Did Load");
     [super viewDidLoad];
+	started=NO;
 	self.toolViewController = [[ToolViewController alloc] initWithNibName:@"ToolViewController" bundle:nil];
 	self.mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
 	self.textViewController = [[TextViewController alloc] initWithNibName:@"TextViewController" bundle:nil];
 	self.webViewController = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:nil];
+	self.tabViewController = [[TabViewController alloc] initWithNibName:@"TabViewController" bundle:nil];
 	self.purchaseViewController = [[PurchaseViewController alloc] initWithNibName:@"PurchaseViewController" bundle:nil];
 	self.distanceViewController = [[DistanceViewController alloc] initWithNibName:@"DistanceViewController" bundle:nil];
+	self.mediaViewController = [[MediaViewController alloc] initWithNibName:@"MediaViewController" bundle:nil];
 
 	
 	self.toolViewController.delegate = self;
@@ -61,9 +68,10 @@
 	self.webViewController.delegate = self;
 	self.distanceViewController.delegate = self;
 	
-	bottomLeftRect = CGRectFromString(@"{{70, 350}, {300, 300}}");
-	topLeftRect = CGRectFromString(@"{{70, 50}, {300, 300}}");
-	bigRect = CGRectFromString(@"{{400, 50}, {600, 600}}");
+	bottomLeftRect = CGRectFromString(@"{{45, 420}, {275, 275}}");
+	topLeftRect = CGRectFromString(@"{{45, 70}, {275, 275}}");
+	tabRect = CGRectFromString(@"{{45, 355}, {300, 50}}");
+	bigRect = CGRectFromString(@"{{375, 70}, {600, 600}}");
 	
 	NSLog(@"bottom: %@",NSStringFromCGRect(bottomLeftRect));
 	NSLog(@"top: %@",NSStringFromCGRect(topLeftRect));
@@ -178,17 +186,25 @@
 	subView.frame=bottomLeftRect;
 }
 
+-(void) putInTabView:(UIView*) subView
+{
+	if ([subView superview]!=self.view) [self.view addSubview:subView];
+	subView.frame=tabRect;
+}
+
+
 
 
  -(void) chooseMockup0
 {
-	NSSet * views = [NSSet setWithObjects:mapViewController.view,distanceViewController.view,toolViewController.view,nil];
+	[self putInTabView:self.tabViewController.view];
+	NSSet * views = [NSSet setWithObjects:mapViewController.view,distanceViewController.view,mediaViewController.view,nil];
 	[UIView beginAnimations:@"mockup0" context:NULL];
 	[UIView setAnimationDuration:0.4];
 	[self removeViewsNotIn:views];
 	[self putInBigView:mapViewController.view];
-	[self putInBottomView:distanceViewController.view];
-	[self putInTopView:toolViewController.view];
+	[self putInBottomView:mediaViewController.view];
+	[self putInTopView:distanceViewController.view];
 	[UIView commitAnimations];
 
 }
@@ -255,6 +271,27 @@
 	for (int i=0;i<NUMBER_OF_NODES;i++)  [self.mapViewController addNodeAnnotation:i];	
 }
 
+-(void) flashImageBorder
+{
+//	AmblrNode * node = [self.mapViewController.nodes objectAtIndex:0];
+//	double lat = [node.latitude doubleValue];
+//	double lon = [node.longitude doubleValue];
+//	CLLocation * location = [[CLLocation alloc] initWithLatitude:lat longitude:lon];
+//	CLLocationCoordinate2D coord = location.coordinate;
+//	MKMapView * MV = mapViewController.mapView;
+//	CGPoint targetPoint = [MV convertCoordinate:coord toPointToView:self.view];
+//	CGRect targetRect;
+//	targetRect.origin=targetPoint;
+//	targetRect.size.width=0;
+//	targetRect.size.height=0;
+	UIColor * gold = [UIColor colorWithRed:215.0/256. green:203.0/256. blue:158.0/256. alpha:1.0];
+	self.mediaViewController.view.backgroundColor=gold;
+	[UIView beginAnimations:@"flashDim" context:nil];
+	[UIView setAnimationDuration:2.0];
+	self.mediaViewController.view.backgroundColor=[UIColor whiteColor];
+	[UIView commitAnimations];
+	
+}
 
 -(NSString*) currentTextSelection
 {
@@ -273,7 +310,8 @@
 
 
 //@synthesize topLeftView, bigView, bottomLeftView, barView;
-@synthesize toolViewController, mapViewController, textViewController, webViewController, purchaseViewController;
+@synthesize toolViewController, mapViewController, tabViewController, textViewController, webViewController, purchaseViewController, mediaViewController;
 @synthesize currentTextSelection,date, inAnnotationMode;
 @synthesize distanceViewController;
+
 @end

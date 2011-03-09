@@ -1,16 +1,15 @@
     //
-//  distanceViewController.m
+//  SplashScreenController.m
 //  Amblr
 //
-//  Created by Joe Zuntz on 07/03/2011.
+//  Created by Joe Zuntz on 09/03/2011.
 //  Copyright 2011 Joe Zuntz. All rights reserved.
 //
 
-#import "DistanceViewController.h"
-#import "AmblrViewController.h"
+#import "SplashScreenController.h"
 
 
-@implementation DistanceViewController
+@implementation SplashScreenController
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -51,25 +50,9 @@
 }
 
 
--(IBAction) addNode:(id) sender
-{
-	[self.delegate.mapViewController addNodeAnnotation:0];
-	[self.delegate flashImageBorder];
-	
-}
-
 - (void)dealloc {
     [super dealloc];
 }
 
 
--(IBAction) distanceSliderChanged:(id) sender
-{
-	self.delegate.mapViewController.date=distanceSlider.value;
-	
-}
-
-
-
-@synthesize delegate;
 @end

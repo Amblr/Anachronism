@@ -14,6 +14,8 @@
 #import "PurchaseViewController.h"
 #import <CoreGraphics/CoreGraphics.h>
 #import "DistanceViewController.h"
+#import "MediaViewController.h"
+#import "TabViewController.h"
 #define NUMBER_OF_NODES 20
 
 @interface AmblrViewController : UIViewController {
@@ -25,8 +27,10 @@
 	CGRect topLeftRect;
 	CGRect bottomLeftRect;
 	CGRect bigRect;
-	
+	CGRect tabRect;
 	float date;
+	
+	BOOL started;
 	
 	
 	// Sub views and controllers
@@ -36,6 +40,8 @@
 	WebViewController * webViewController;
 	PurchaseViewController * purchaseViewController;
 	DistanceViewController * distanceViewController;
+	MediaViewController * mediaViewController;
+	TabViewController * tabViewController;
 	BOOL inAnnotationMode;
 	
 }
@@ -45,8 +51,9 @@
 //@property (readonly) UIView * bigView;
 //@property (readonly) UIView * barView;
 @property (retain) ToolViewController * toolViewController;
+@property (retain) TabViewController * tabViewController;
 
-
+@property (retain) MediaViewController * mediaViewController;
 @property (retain) MapViewController * mapViewController;
 @property (retain) TextViewController * textViewController;
 @property (retain) WebViewController * webViewController;
@@ -61,7 +68,7 @@
 -(void) putInBigView:(UIView*) subView;
 -(void) putInTopView:(UIView*) subView;
 -(void) putInBottomView:(UIView*) subView;
-
+-(void) putInTabView:(UIView*) subView;
 
 //-(IBAction) logMap:(id)sender;
 -(IBAction) addNodes:(id)sender;
