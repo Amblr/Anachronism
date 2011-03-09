@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class AmblrViewController;
 
 @interface PurchaseViewController : UIViewController {
-
+	AmblrViewController * delegate;
 }
-
+@property (retain) AmblrViewController * delegate;
+-(IBAction) clickBuy:(id)sender;
 @end

@@ -16,6 +16,9 @@
 #import "DistanceViewController.h"
 #import "MediaViewController.h"
 #import "TabViewController.h"
+#import "DirectoryViewController.h"
+#import "ExploreViewController.h"
+#import "SplashScreenController.h"
 #define NUMBER_OF_NODES 20
 
 @interface AmblrViewController : UIViewController {
@@ -42,17 +45,21 @@
 	DistanceViewController * distanceViewController;
 	MediaViewController * mediaViewController;
 	TabViewController * tabViewController;
+	SplashScreenController * splashScreenController;
+	DirectoryViewController * directoryViewController;
+	ExploreViewController * exploreViewController;
 	BOOL inAnnotationMode;
 	
 }
-
+-(void) flashImageBorder;
 //@property (readonly) UIView * topLeftView;
 //@property (readonly) UIView * bottomLeftView;
 //@property (readonly) UIView * bigView;
 //@property (readonly) UIView * barView;
+@property (retain) ExploreViewController * exploreViewController;
 @property (retain) ToolViewController * toolViewController;
 @property (retain) TabViewController * tabViewController;
-
+@property (retain) DirectoryViewController * directoryViewController;
 @property (retain) MediaViewController * mediaViewController;
 @property (retain) MapViewController * mapViewController;
 @property (retain) TextViewController * textViewController;
@@ -79,9 +86,9 @@
 -(void) chooseMockup2;
 -(void) chooseMockup3;
 -(void) chooseMockup4;
-
+-(void) showPurchaseView;
 @property BOOL inAnnotationMode;
-
+-(void) resplash:(id)sender;
 //-(void) stringSelected:(NSString*) string;
 
 @end

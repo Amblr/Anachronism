@@ -53,6 +53,12 @@
 - (void)dealloc {
     [super dealloc];
 }
+-(IBAction) clickBuy:(id)sender
+{
+	NSLog(@"Click Buy");
+	[self.delegate performSelector:@selector(resplash:) withObject:nil afterDelay:3.0];
+	
+}
 
-
+@synthesize delegate;
 @end

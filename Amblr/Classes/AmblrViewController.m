@@ -33,11 +33,17 @@
 {
 	[super viewDidAppear:animated];
 	if (started) return;
-	SplashScreenController * splashScreenController = [[SplashScreenController alloc] initWithNibName:@"SplashScreenController" bundle:nil];
-	[self presentModalViewController:splashScreenController animated:NO];
+	 SplashScreenController * splashScreenController2 = [[SplashScreenController alloc] initWithNibName:@"SplashScreenController" bundle:nil];
+	[self presentModalViewController:splashScreenController2 animated:NO];
 	[self performSelector:@selector(startup:) withObject:nil afterDelay:2.0];
+}
 
-	
+-(void) resplash:(id)sender
+{
+	SplashScreenController * splashScreenController3 = [[SplashScreenController alloc] initWithNibName:@"SplashScreenController" bundle:nil];
+
+	[self presentModalViewController:splashScreenController3 animated:YES];
+
 }
 
 -(void) startup:(id) obj
@@ -60,13 +66,19 @@
 	self.purchaseViewController = [[PurchaseViewController alloc] initWithNibName:@"PurchaseViewController" bundle:nil];
 	self.distanceViewController = [[DistanceViewController alloc] initWithNibName:@"DistanceViewController" bundle:nil];
 	self.mediaViewController = [[MediaViewController alloc] initWithNibName:@"MediaViewController" bundle:nil];
-
+	self.directoryViewController = [[DirectoryViewController alloc] initWithNibName:@"DirectoryViewController" bundle:nil];
+	self.exploreViewController = [[ExploreViewController alloc] initWithNibName:@"ExploreViewController" bundle:nil];
 	
 	self.toolViewController.delegate = self;
 	self.mapViewController.delegate = self;
 	self.textViewController.delegate = self;
 	self.webViewController.delegate = self;
 	self.distanceViewController.delegate = self;
+	self.tabViewController.delegate = self;
+	self.directoryViewController.delegate = self;
+	self.exploreViewController.delegate = self;
+	self.purchaseViewController.delegate = self;
+	
 	
 	bottomLeftRect = CGRectFromString(@"{{45, 420}, {275, 275}}");
 	topLeftRect = CGRectFromString(@"{{45, 70}, {275, 275}}");
@@ -157,12 +169,18 @@
 	if (![newViews member:webViewController.view]) [webViewController.view removeFromSuperview];	
 	if (![newViews member:purchaseViewController.view]) [purchaseViewController.view removeFromSuperview];	
 	if (![newViews member:distanceViewController.view]) [distanceViewController.view removeFromSuperview];	
+	if (![newViews member:distanceViewController.view]) [distanceViewController.view removeFromSuperview];	
+//	if (![newViews member:tabViewController.view]) [tabViewController.view removeFromSuperview];	
+	if (![newViews member:mediaViewController.view]) [mediaViewController.view removeFromSuperview];	
+	if (![newViews member:directoryViewController.view]) [directoryViewController.view removeFromSuperview];	
 	
 	if ([newViews member:webViewController.view]){
 		self.inAnnotationMode=YES;
+		NSLog(@"Entering/staying in annotation mode");
 	}
 	else {
 		self.inAnnotationMode=NO;
+		NSLog(@"Exiting/staying out of annotation mode");
 	}
 
 	
@@ -212,50 +230,51 @@
 
 -(void) chooseMockup1
 {
-	NSSet * views = [NSSet setWithObjects:mapViewController.view,distanceViewController.view,toolViewController.view,nil];
+	NSSet * views = [NSSet setWithObjects:webViewController.view,mapViewController.view,toolViewController.view,nil];
 	[UIView beginAnimations:@"mockup1" context:NULL];
 	[self removeViewsNotIn:views];
 	[UIView setAnimationDuration:0.4];
-	[self putInBigView:mapViewController.view];
-	[self putInBottomView:toolViewController.view];
-	[self putInTopView:distanceViewController.view];
+	[self putInBigView:webViewController.view];
+	[self putInBottomView:mapViewController.view];
+	[self putInTopView:toolViewController.view];
 	[UIView commitAnimations];
 	
 }
 
 -(void) chooseMockup2{
-	NSSet * views = [NSSet setWithObjects:mapViewController.view,webViewController.view,distanceViewController.view,nil];
+	NSSet * views = [NSSet setWithObjects:mapViewController.view,directoryViewController.view,distanceViewController.view,nil];
 	[UIView beginAnimations:@"mockup2" context:NULL];
 	[UIView setAnimationDuration:0.4];
 	[self removeViewsNotIn:views];
 
-	[self putInBigView:webViewController.view];
-	[self putInBottomView:mapViewController.view];
+	[self putInBigView:mapViewController.view];
+	[self putInBottomView:directoryViewController.view];
 	[self putInTopView:distanceViewController.view];	
 	[UIView commitAnimations];
 
 }
 -(void) chooseMockup3{
-	NSSet * views = [NSSet setWithObjects:mapViewController.view,webViewController.view,purchaseViewController.view,nil];
+	NSSet * views = [NSSet setWithObjects:exploreViewController.view,mediaViewController.view,mapViewController.view,nil];
 	[UIView beginAnimations:@"mockup3" context:NULL];
 	[UIView setAnimationDuration:0.4];
 
 	[self removeViewsNotIn:views];
-	[self putInTopView:mapViewController.view];	
-	[self putInBottomView:purchaseViewController.view];
-	[self putInBigView:webViewController.view];
+	[self putInTopView:exploreViewController.view];	
+	[self putInBottomView:mapViewController.view];
+	[self putInBigView:mediaViewController.view];
 	[UIView commitAnimations];
 
 }
 
 -(void) chooseMockup4{
-	NSSet * views = [NSSet setWithObjects:mapViewController.view,webViewController.view,self.toolViewController.view,nil];
+	NSSet * views = [NSSet setWithObjects:mapViewController.view,directoryViewController.view,self.distanceViewController.view,nil];
+	directoryViewController.imageView.image = [UIImage imageNamed:@"directory1.png"];
 	[UIView beginAnimations:@"mockup4" context:NULL];
 	[UIView setAnimationDuration:0.4];
 	
 	[self removeViewsNotIn:views];
-	[self putInTopView:webViewController.view];	
-	[self putInBottomView:toolViewController.view];
+	[self putInTopView:distanceViewController.view];	
+	[self putInBottomView:directoryViewController.view];
 	[self putInBigView:mapViewController.view];
 	[UIView commitAnimations];
 }
@@ -268,26 +287,19 @@
 
 -(IBAction) addNodes:(id)sender
 {
-	for (int i=0;i<NUMBER_OF_NODES;i++)  [self.mapViewController addNodeAnnotation:i];	
+	for (int i=1;i<NUMBER_OF_NODES;i++){
+		NSNumber * num = [NSNumber numberWithInt:i];
+		[self.mapViewController performSelector:@selector(addNodeAnnotation:) withObject:num afterDelay:i*0.05];
+	}
+		//		[self.mapViewController addNodeAnnotation:i];	
 }
 
 -(void) flashImageBorder
 {
-//	AmblrNode * node = [self.mapViewController.nodes objectAtIndex:0];
-//	double lat = [node.latitude doubleValue];
-//	double lon = [node.longitude doubleValue];
-//	CLLocation * location = [[CLLocation alloc] initWithLatitude:lat longitude:lon];
-//	CLLocationCoordinate2D coord = location.coordinate;
-//	MKMapView * MV = mapViewController.mapView;
-//	CGPoint targetPoint = [MV convertCoordinate:coord toPointToView:self.view];
-//	CGRect targetRect;
-//	targetRect.origin=targetPoint;
-//	targetRect.size.width=0;
-//	targetRect.size.height=0;
 	UIColor * gold = [UIColor colorWithRed:215.0/256. green:203.0/256. blue:158.0/256. alpha:1.0];
 	self.mediaViewController.view.backgroundColor=gold;
 	[UIView beginAnimations:@"flashDim" context:nil];
-	[UIView setAnimationDuration:2.0];
+	[UIView setAnimationDuration:3.0];
 	self.mediaViewController.view.backgroundColor=[UIColor whiteColor];
 	[UIView commitAnimations];
 	
@@ -308,10 +320,19 @@
 	
 }
 
+-(void) showPurchaseView
+{
+	[UIView beginAnimations:@"mockup3" context:NULL];
+	[self putInTopView:purchaseViewController.view];	
+	[UIView commitAnimations];
+	
+	
+}
+
 
 //@synthesize topLeftView, bigView, bottomLeftView, barView;
 @synthesize toolViewController, mapViewController, tabViewController, textViewController, webViewController, purchaseViewController, mediaViewController;
 @synthesize currentTextSelection,date, inAnnotationMode;
-@synthesize distanceViewController;
+@synthesize distanceViewController, directoryViewController, exploreViewController;
 
 @end

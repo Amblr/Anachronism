@@ -1,15 +1,15 @@
     //
-//  MediaViewController.m
+//  ExploreViewController.m
 //  Amblr
 //
 //  Created by Joe Zuntz on 09/03/2011.
 //  Copyright 2011 Joe Zuntz. All rights reserved.
 //
 
-#import "MediaViewController.h"
+#import "ExploreViewController.h"
+#import "AmblrViewController.h"
 
-
-@implementation MediaViewController
+@implementation ExploreViewController
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -54,5 +54,12 @@
     [super dealloc];
 }
 
-@synthesize imageView;
+-(IBAction) immerse:(id)sender
+{
+	imageView.image = [UIImage imageNamed:@"exploreButtonsHighlighted.png"];
+	delegate.mediaViewController.imageView.image = [UIImage imageNamed:@"paradise_lost_audio.jpg"];
+	
+}
+
+@synthesize delegate;
 @end

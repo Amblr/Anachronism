@@ -7,7 +7,7 @@
 //
 
 #import "TabViewController.h"
-
+#import "AmblrViewController.h"
 
 @implementation TabViewController
 
@@ -21,12 +21,16 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[mediaButton setImage:[UIImage imageNamed:@"mediaButton.png"] forState:UIControlStateNormal];
+	[mapButton setImage:[UIImage imageNamed:@"mapButtonBright.png"] forState:UIControlStateNormal];
+
+	currentMode=1;
 }
-*/
+
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -55,4 +59,44 @@
 }
 
 
+-(IBAction) pressMediaButton:(id)sender
+{
+	NSLog(@"Mode = %d\n",currentMode);
+	if (currentMode==1){
+		currentMode++;	
+		[mediaButton setImage:[UIImage imageNamed:@"mediaButtonBright.png"] forState:UIControlStateNormal];
+		[mapButton setImage:[UIImage imageNamed:@"mapButton.png"] forState:UIControlStateNormal];
+		[delegate chooseMockup1];
+	}
+	
+	if (currentMode==3){
+		currentMode++;
+		[mediaButton setImage:[UIImage imageNamed:@"mediaButtonBright.png"] forState:UIControlStateNormal];
+		[mapButton setImage:[UIImage imageNamed:@"mapButton.png"] forState:UIControlStateNormal];
+		[delegate chooseMockup3];
+
+		
+	}
+}
+-(IBAction) pressMapButton:(id)sender
+{
+	NSLog(@"Press map");
+	if (currentMode==2){
+		currentMode++;
+		[mediaButton setImage:[UIImage imageNamed:@"mediaButton.png"] forState:UIControlStateNormal];
+		[mapButton setImage:[UIImage imageNamed:@"mapButtonBright.png"] forState:UIControlStateNormal];
+		[delegate chooseMockup2];
+	}
+	if (currentMode==4){
+		currentMode++;
+		[mediaButton setImage:[UIImage imageNamed:@"mediaButton.png"] forState:UIControlStateNormal];
+		[mapButton setImage:[UIImage imageNamed:@"mapButtonBright.png"] forState:UIControlStateNormal];
+		[delegate chooseMockup4];
+	}
+	
+	
+	
+}
+
+@synthesize delegate;
 @end

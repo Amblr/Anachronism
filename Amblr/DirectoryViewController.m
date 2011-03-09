@@ -1,15 +1,15 @@
     //
-//  MediaViewController.m
+//  DirectoryViewController.m
 //  Amblr
 //
 //  Created by Joe Zuntz on 09/03/2011.
 //  Copyright 2011 Joe Zuntz. All rights reserved.
 //
 
-#import "MediaViewController.h"
+#import "DirectoryViewController.h"
+#import "AmblrViewController.h"
 
-
-@implementation MediaViewController
+@implementation DirectoryViewController
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -50,9 +50,24 @@
 }
 
 
+-(IBAction) tapJill:(id) sender
+{
+	imageView.image = [UIImage imageNamed:@"directory2.png"];
+	[self.delegate addNodes:nil];
+}
+
+-(IBAction) tapNorthernLights:(id) sender
+{
+	imageView.image = [UIImage imageNamed:@"directory3.png"];
+	[self.delegate showPurchaseView];
+
+}
+
+
 - (void)dealloc {
     [super dealloc];
 }
 
+@synthesize delegate;
 @synthesize imageView;
 @end

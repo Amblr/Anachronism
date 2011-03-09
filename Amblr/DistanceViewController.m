@@ -53,7 +53,7 @@
 
 -(IBAction) addNode:(id) sender
 {
-	[self.delegate.mapViewController addNodeAnnotation:0];
+	[self.delegate.mapViewController addNodeAnnotation:[NSNumber numberWithInt:0]];
 	[self.delegate flashImageBorder];
 	
 }

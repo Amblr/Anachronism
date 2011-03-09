@@ -31,7 +31,7 @@
 -(void) zoomToOxford;
 -(AmblrNode*) nodeWithKey:(NSString*) key name:(NSString*)name description:(NSString*)description latitude:(float) latitude longitude:(float)longitude radius:(float)radius;
 -(void) setupNodes;
--(void) addNodeAnnotation:(int) n;
+-(void) addNodeAnnotation:(NSNumber*) num;
 //-(void) changeNodeColors:(int) color;
 -(UIImageOrientation) randomOrientation;
 -(NSString*) randomName;

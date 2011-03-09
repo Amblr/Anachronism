@@ -10,7 +10,7 @@
 
 
 @interface MediaViewController : UIViewController {
-
+	IBOutlet UIImageView * imageView;
 }
-
+@property (retain) UIImageView * imageView;
 @end

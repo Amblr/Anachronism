@@ -31,6 +31,17 @@
 		D84306C9132788070065A78F /* mediaButtonBright.png in Resources */ = {isa = PBXBuildFile; fileRef = D84306C8132788070065A78F /* mediaButtonBright.png */; };
 		D84306CF132788420065A78F /* mediaButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D84306CE132788420065A78F /* mediaButton.png */; };
 		D84306D3132788760065A78F /* ToolButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D84306D2132788760065A78F /* ToolButton.png */; };
+		D84307821327F6F60065A78F /* DirectoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D84307801327F6F60065A78F /* DirectoryViewController.m */; };
+		D84307831327F6F60065A78F /* DirectoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D84307811327F6F60065A78F /* DirectoryViewController.xib */; };
+		D84307881327F7480065A78F /* directory1.png in Resources */ = {isa = PBXBuildFile; fileRef = D84307871327F7480065A78F /* directory1.png */; };
+		D843078C1327F75B0065A78F /* directory2.png in Resources */ = {isa = PBXBuildFile; fileRef = D843078B1327F75B0065A78F /* directory2.png */; };
+		D84307EB132803A20065A78F /* ExploreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D84307E9132803A20065A78F /* ExploreViewController.m */; };
+		D84307EC132803A20065A78F /* ExploreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D84307EA132803A20065A78F /* ExploreViewController.xib */; };
+		D84307F1132804190065A78F /* exploreButtons.png in Resources */ = {isa = PBXBuildFile; fileRef = D84307F0132804190065A78F /* exploreButtons.png */; };
+		D84307F5132804450065A78F /* exploreButtonsHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = D84307F4132804450065A78F /* exploreButtonsHighlighted.png */; };
+		D8430822132807400065A78F /* paradise_lost_audio.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8430821132807400065A78F /* paradise_lost_audio.jpg */; };
+		D843084313280A330065A78F /* directory3.png in Resources */ = {isa = PBXBuildFile; fileRef = D843084213280A330065A78F /* directory3.png */; };
+		D843084913280AE00065A78F /* dark_materials.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D843084813280AE00065A78F /* dark_materials.jpg */; };
 		D860A198132437D000DD49EA /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D860A196132437D000DD49EA /* WebViewController.m */; };
 		D860A199132437D000DD49EA /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D860A197132437D000DD49EA /* WebViewController.xib */; };
 		D860A1D613243BFE00DD49EA /* genesis.html in Resources */ = {isa = PBXBuildFile; fileRef = D860A1D513243BFE00DD49EA /* genesis.html */; };
@@ -95,6 +106,19 @@
 		D84306C8132788070065A78F /* mediaButtonBright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mediaButtonBright.png; sourceTree = "<group>"; };
 		D84306CE132788420065A78F /* mediaButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mediaButton.png; sourceTree = "<group>"; };
 		D84306D2132788760065A78F /* ToolButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToolButton.png; sourceTree = "<group>"; };
+		D843077F1327F6F60065A78F /* DirectoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryViewController.h; sourceTree = "<group>"; };
+		D84307801327F6F60065A78F /* DirectoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectoryViewController.m; sourceTree = "<group>"; };
+		D84307811327F6F60065A78F /* DirectoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DirectoryViewController.xib; sourceTree = "<group>"; };
+		D84307871327F7480065A78F /* directory1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = directory1.png; sourceTree = "<group>"; };
+		D843078B1327F75B0065A78F /* directory2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = directory2.png; sourceTree = "<group>"; };
+		D84307E8132803A20065A78F /* ExploreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExploreViewController.h; sourceTree = "<group>"; };
+		D84307E9132803A20065A78F /* ExploreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreViewController.m; sourceTree = "<group>"; };
+		D84307EA132803A20065A78F /* ExploreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExploreViewController.xib; sourceTree = "<group>"; };
+		D84307F0132804190065A78F /* exploreButtons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exploreButtons.png; sourceTree = "<group>"; };
+		D84307F4132804450065A78F /* exploreButtonsHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exploreButtonsHighlighted.png; sourceTree = "<group>"; };
+		D8430821132807400065A78F /* paradise_lost_audio.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = paradise_lost_audio.jpg; sourceTree = "<group>"; };
+		D843084213280A330065A78F /* directory3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = directory3.png; sourceTree = "<group>"; };
+		D843084813280AE00065A78F /* dark_materials.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dark_materials.jpg; sourceTree = "<group>"; };
 		D860A195132437D000DD49EA /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		D860A196132437D000DD49EA /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		D860A197132437D000DD49EA /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
@@ -196,7 +220,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D84307871327F7480065A78F /* directory1.png */,
+				D843084213280A330065A78F /* directory3.png */,
+				D843078B1327F75B0065A78F /* directory2.png */,
+				D843084813280AE00065A78F /* dark_materials.jpg */,
 				D843064F132780D70065A78F /* paradise_lost.jpeg */,
+				D8430821132807400065A78F /* paradise_lost_audio.jpg */,
 				D84305491326D9230065A78F /* row1.png */,
 				D8AF34FF1326ADBF00F638B2 /* icon_ipad.png */,
 				D8AF34DF1326AC7800F638B2 /* backdrop.png */,
@@ -239,8 +268,8 @@
 				D84306D2132788760065A78F /* ToolButton.png */,
 				D84306CE132788420065A78F /* mediaButton.png */,
 				D84306C8132788070065A78F /* mediaButtonBright.png */,
-				D84306C21327876B0065A78F /* mapButtonBright.png */,
 				D84306C31327876B0065A78F /* mapButton.png */,
+				D84306C21327876B0065A78F /* mapButtonBright.png */,
 				D84305731326E5E50065A78F /* logo.png */,
 				D843056E1326E56C0065A78F /* titlePage.png */,
 				D843061F13277E800065A78F /* SplashScreenController.h */,
@@ -252,6 +281,14 @@
 				D84306B9132786A40065A78F /* TabViewController.h */,
 				D84306BA132786A40065A78F /* TabViewController.m */,
 				D84306BB132786A40065A78F /* TabViewController.xib */,
+				D843077F1327F6F60065A78F /* DirectoryViewController.h */,
+				D84307801327F6F60065A78F /* DirectoryViewController.m */,
+				D84307811327F6F60065A78F /* DirectoryViewController.xib */,
+				D84307E8132803A20065A78F /* ExploreViewController.h */,
+				D84307E9132803A20065A78F /* ExploreViewController.m */,
+				D84307EA132803A20065A78F /* ExploreViewController.xib */,
+				D84307F4132804450065A78F /* exploreButtonsHighlighted.png */,
+				D84307F0132804190065A78F /* exploreButtons.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -350,6 +387,15 @@
 				D84306C9132788070065A78F /* mediaButtonBright.png in Resources */,
 				D84306CF132788420065A78F /* mediaButton.png in Resources */,
 				D84306D3132788760065A78F /* ToolButton.png in Resources */,
+				D84307831327F6F60065A78F /* DirectoryViewController.xib in Resources */,
+				D84307881327F7480065A78F /* directory1.png in Resources */,
+				D843078C1327F75B0065A78F /* directory2.png in Resources */,
+				D84307EC132803A20065A78F /* ExploreViewController.xib in Resources */,
+				D84307F1132804190065A78F /* exploreButtons.png in Resources */,
+				D84307F5132804450065A78F /* exploreButtonsHighlighted.png in Resources */,
+				D8430822132807400065A78F /* paradise_lost_audio.jpg in Resources */,
+				D843084313280A330065A78F /* directory3.png in Resources */,
+				D843084913280AE00065A78F /* dark_materials.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +421,8 @@
 				D843062213277E800065A78F /* SplashScreenController.m in Sources */,
 				D84306481327806A0065A78F /* MediaViewController.m in Sources */,
 				D84306BC132786A40065A78F /* TabViewController.m in Sources */,
+				D84307821327F6F60065A78F /* DirectoryViewController.m in Sources */,
+				D84307EB132803A20065A78F /* ExploreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

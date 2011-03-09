@@ -82,9 +82,9 @@
 {
 	NSLog(@"Awoke.");
 	[super awakeFromNib];
-	[self zoomToOxford];
-	[self setupCollegeNodes];
-	for(int i=0;i<[self.nodes count];i++) [self addNodeAnnotation:i];
+//	[self zoomToOxford];
+//	[self setupCollegeNodes];
+//	for(int i=0;i<[self.nodes count];i++) [self addNodeAnnotation:i];
 
 	
 }
@@ -104,7 +104,7 @@
 {
 	int n = [self.nodes count];
 	[self generateRandomNode:n];
-	[self addNodeAnnotation:n];
+	[self addNodeAnnotation:[NSNumber numberWithInt:n]];
 	
 }
 
@@ -112,8 +112,9 @@
 
 
 
--(void) addNodeAnnotation:(int) n
+-(void) addNodeAnnotation:(NSNumber*) num
 {
+	int n = [num intValue];
 	if (n<0 || n>=[nodes count]) return;
 //	NSLog(@"Adding node annotation %d",n);
 	AmblrNode * node = [self.nodes objectAtIndex:n];
@@ -198,6 +199,17 @@
 	
 }
 
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+	NSLog(@"Selected.");
+	if ((!delegate.inAnnotationMode) && [view.annotation isKindOfClass:[AmblrNode class]]) [self addSelectedNodeToPath:(AmblrNode*)view.annotation];
+
+	
+	
+}
+
+
 -(void) setupNodes
 {
 	for(int i=0;i<NUMBER_OF_NODES;i++) [self generateRandomNode:i];
@@ -231,7 +243,6 @@
 	}
 	
 	if ([annotation isKindOfClass:[NVPolylineAnnotation class]]){
-		NSLog(@"weib");
 		return [self polylineViewForPolyline:(NVPolylineAnnotation*)annotation];
 	}
 	
@@ -240,8 +251,9 @@
 
 
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views { 
-	MKAnnotationView *aV; 
+	MKAnnotationView *aV;
 	for (aV in views) {
+		if ([aV isKindOfClass:[NVPolylineAnnotationView class]]) continue;
 		CGRect endFrame = aV.frame;
 		
 		aV.frame = CGRectMake(aV.frame.origin.x, aV.frame.origin.y - 230.0, aV.frame.size.width, aV.frame.size.height);
@@ -370,6 +382,7 @@
 {
 	NSLog(@"Added node to path: %@",node.name);
 	[self.pathNodes addObject:node];
+	node.assigned=YES;
 	MKAnnotationView * annotationView = [mapView viewForAnnotation:node];
 	annotationView.image=pinImage2;
 
