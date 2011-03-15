@@ -11,6 +11,7 @@
 @class AmblrViewController;
 @interface DirectoryViewController : UIViewController {
 	AmblrViewController * delegate;
+	BOOL jillPressedOnce;
 	IBOutlet UIImageView * imageView;
 }
 

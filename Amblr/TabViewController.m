@@ -89,6 +89,10 @@
 	}
 	if (currentMode==4){
 		currentMode++;
+		[self.delegate.mapViewController.mapView removeAnnotations:self.delegate.mapViewController.nodes];
+		[self.delegate.mapViewController.mapView removeAnnotations:self.delegate.mapViewController.polylines];
+		[self.delegate.mapViewController.mapView removeAnnotations:self.delegate.mapViewController.pathNodes];
+
 		[mediaButton setImage:[UIImage imageNamed:@"mediaButton.png"] forState:UIControlStateNormal];
 		[mapButton setImage:[UIImage imageNamed:@"mapButtonBright.png"] forState:UIControlStateNormal];
 		[delegate chooseMockup4];

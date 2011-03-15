@@ -63,10 +63,8 @@
 
 -(void) setCoordinate:(CLLocationCoordinate2D)newCoordinate
 {
-	
 	latitude=[NSNumber numberWithFloat: newCoordinate.latitude];
-	longitude=[NSNumber numberWithFloat: newCoordinate.longitude];
-	
+	longitude=[NSNumber numberWithFloat: newCoordinate.longitude];	
 }
 
 

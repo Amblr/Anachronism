@@ -11,7 +11,7 @@
 #import "NVPolylineAnnotationView.h"
 
 @implementation MapViewController
-
+@synthesize nodeViews;
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -37,9 +37,11 @@
 	maxDate=1925;
 	date=1925;
 	self.pathNodes=[NSMutableArray arrayWithCapacity:0];
+	polylines=[[NSMutableArray arrayWithCapacity:0] retain];
 	[self setupCollegeNodes];
 	AmblrNode * node = [self.nodes objectAtIndex:0];
 	node.assigned=YES;
+	nodeViews = [[NSMutableArray arrayWithCapacity:0] retain];
 
 }
 
@@ -95,8 +97,8 @@
 
 	MKCoordinateSpan span = MKCoordinateSpanMake(0.014638, 0.023646);
 	CLLocationCoordinate2D center;
-	center.latitude = 51.755475;
-	center.longitude = -1.260660;
+	center.latitude = 51.753206;
+	center.longitude = -1.254731;
 	[self.mapView setRegion:MKCoordinateRegionMake(center, span)];
 }
 
@@ -288,6 +290,7 @@
 	
 }
 
+
 -(void) addTextToNode:(AmblrNode*)node
 {
 	
@@ -336,8 +339,8 @@
 	} else{
 		annotationView.image=nil;
 	}
-	
-//	CGFloat angle = (arc4random()%10000)/10000.0*2*M_PI;
+	[nodeViews addObject:annotationView];
+	//	CGFloat angle = (arc4random()%10000)/10000.0*2*M_PI;
 //	annotationView.transform = CGAffineTransformRotate(CGAffineTransformIdentity,angle);
 
 //	pinAnnotationView.pinColor=MKPinAnnotationColorRed;
@@ -346,6 +349,7 @@
 	SEL buttonAction = @selector(clickNodeButton:);
 	[rightButton addTarget:self action:buttonAction forControlEvents:UIControlEventTouchUpInside];
 	annotationView.leftCalloutAccessoryView = rightButton;
+//	annotationView.canShowCallout = delegate.inAnnotationMode;
 	
 	
 	return annotationView;
@@ -387,7 +391,6 @@
 	annotationView.image=pinImage2;
 
 	if ([self.pathNodes count]>1){
-		if (self.polyline) [mapView removeAnnotation:self.polyline];
 		NSMutableArray * pathPoints = [NSMutableArray arrayWithCapacity:0];
 		
 		for (AmblrNode * pathNode in self.pathNodes){
@@ -396,6 +399,7 @@
 		}
 		self.polyline = [[NVPolylineAnnotation alloc] initWithPoints:pathPoints mapView:mapView];
 		[mapView addAnnotation:self.polyline];
+		[polylines addObject:self.polyline];
 	}
 	
 	
@@ -413,6 +417,7 @@
 
 -(void) setupCollegeNodes
 {
+	[self randomDateNode:@"Oriel College" latitude:51.751567 longitude:-1.253702];
 	[self randomDateNode:@"All Souls College" latitude:51.753279 longitude:-1.253041];
 	[self randomDateNode:@"Balliol College" latitude:51.754700 longitude:-1.257800];
 	[self randomDateNode:@"Brasenose College" latitude:51.753206 longitude:-1.254731];
@@ -433,7 +438,6 @@
 	[self randomDateNode:@"Merton College" latitude:51.751062 longitude:-1.252109];
 	[self randomDateNode:@"New College" latitude:51.754277 longitude:-1.251288];
 	[self randomDateNode:@"Nuffield College" latitude:51.752834 longitude:-1.262917];
-	[self randomDateNode:@"Oriel College" latitude:51.751567 longitude:-1.253702];
 	[self randomDateNode:@"Pembroke College" latitude:51.750062 longitude:-1.257827];
 	[self randomDateNode:@"The Queen's College" latitude:51.753187 longitude:-1.251043];
 	[self randomDateNode:@"St Anne's College" latitude:51.762123 longitude:-1.261974];
@@ -455,6 +459,5 @@
 	
 }
 
-
-
+@synthesize polylines;
 @end

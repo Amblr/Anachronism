@@ -21,12 +21,13 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	jillPressedOnce=NO;
 }
-*/
+
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -52,14 +53,22 @@
 
 -(IBAction) tapJill:(id) sender
 {
-	imageView.image = [UIImage imageNamed:@"directory2.png"];
-	[self.delegate addNodes:nil];
+	if (jillPressedOnce){
+		[self.delegate showPurchaseView];
+	}
+	else{
+		imageView.image = [UIImage imageNamed:@"directory2.png"];
+		jillPressedOnce=YES;
+		for (int i=1;i<5;i++){
+			NSNumber * num = [NSNumber numberWithInt:i];
+			[self.delegate.mapViewController performSelector:@selector(addNodeAnnotation:) withObject:num afterDelay:i*0.05];
+		}
 }
-
+}
 -(IBAction) tapNorthernLights:(id) sender
 {
 	imageView.image = [UIImage imageNamed:@"directory3.png"];
-	[self.delegate showPurchaseView];
+	[self.delegate addNodes:nil];
 
 }
 

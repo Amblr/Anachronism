@@ -57,7 +57,7 @@
 -(IBAction) immerse:(id)sender
 {
 	imageView.image = [UIImage imageNamed:@"exploreButtonsHighlighted.png"];
-	delegate.mediaViewController.imageView.image = [UIImage imageNamed:@"paradise_lost_audio.jpg"];
+	delegate.mediaViewController.imageView.image = [UIImage imageNamed:@"fairground_audio.jpg"];
 	
 }
 

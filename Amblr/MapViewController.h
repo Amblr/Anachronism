@@ -20,10 +20,13 @@
 	UIImage * pinImage1;
 	UIImage * pinImage2;
 	NSMutableArray * pathNodes;
+	NSMutableArray * nodeViews;
+	NSMutableArray * polylines;
 	BOOL inSelectionProcess;
 	NVPolylineAnnotation * polyline;
 }
-
+@property (retain) NSMutableArray * nodeViews;
+@property (retain) NSMutableArray * polylines;
 -(void) setupCollegeNodes;
 @property (retain) NVPolylineAnnotation * polyline;
 -(void) randomDateNode:(NSString*)name latitude:(float)latitude longitude:(float)longitude;

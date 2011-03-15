@@ -71,6 +71,10 @@
 		D8B1AB29132401DB00FB56A4 /* TextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8B1AB27132401DB00FB56A4 /* TextViewController.xib */; };
 		D8B1ABA01324132B00FB56A4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B1AB9F1324132B00FB56A4 /* CoreLocation.framework */; };
 		D8B1ABEE1324162D00FB56A4 /* AmblrNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B1ABEC1324162D00FB56A4 /* AmblrNode.m */; };
+		D8BE8E9313282F3500630326 /* fairground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8BE8E9113282F3500630326 /* fairground.jpg */; };
+		D8BE8E9413282F3500630326 /* stairway.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8BE8E9213282F3500630326 /* stairway.jpg */; };
+		D8BE8EB313282FF700630326 /* fairground_audio.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8BE8EB213282FF700630326 /* fairground_audio.jpg */; };
+		D8BE8EC8132830EC00630326 /* jill_cover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8BE8EC7132830EC00630326 /* jill_cover.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +143,7 @@
 		D860A61C1325918B00DD49EA /* NVPolylineAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVPolylineAnnotationView.h; sourceTree = "<group>"; };
 		D860A61D1325918B00DD49EA /* NVPolylineAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVPolylineAnnotation.m; sourceTree = "<group>"; };
 		D860A61E1325918B00DD49EA /* NVPolylineAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVPolylineAnnotation.h; sourceTree = "<group>"; };
+		D89C4185132855E700737948 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; plistStructureDefinitionIdentifier = "<none>"; sourceTree = "<group>"; };
 		D8AF34DF1326AC7800F638B2 /* backdrop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backdrop.png; sourceTree = "<group>"; };
 		D8AF34FF1326ADBF00F638B2 /* icon_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_ipad.png; sourceTree = "<group>"; };
 		D8B1A2B91323E90A00FB56A4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -157,6 +162,10 @@
 		D8B1AB9F1324132B00FB56A4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D8B1ABEC1324162D00FB56A4 /* AmblrNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmblrNode.m; sourceTree = "<group>"; };
 		D8B1ABED1324162D00FB56A4 /* AmblrNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmblrNode.h; sourceTree = "<group>"; };
+		D8BE8E9113282F3500630326 /* fairground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fairground.jpg; sourceTree = "<group>"; };
+		D8BE8E9213282F3500630326 /* stairway.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stairway.jpg; sourceTree = "<group>"; };
+		D8BE8EB213282FF700630326 /* fairground_audio.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fairground_audio.jpg; sourceTree = "<group>"; };
+		D8BE8EC7132830EC00630326 /* jill_cover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jill_cover.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +229,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D8BE8EB213282FF700630326 /* fairground_audio.jpg */,
+				D8BE8E9113282F3500630326 /* fairground.jpg */,
+				D8BE8E9213282F3500630326 /* stairway.jpg */,
 				D84307871327F7480065A78F /* directory1.png */,
 				D843084213280A330065A78F /* directory3.png */,
 				D843078B1327F75B0065A78F /* directory2.png */,
@@ -260,6 +272,7 @@
 				D860A197132437D000DD49EA /* WebViewController.xib */,
 				D860A25E1324463700DD49EA /* PurchaseViewController.h */,
 				D860A25F1324463700DD49EA /* PurchaseViewController.m */,
+				D8BE8EC7132830EC00630326 /* jill_cover.jpg */,
 				D860A2601324463700DD49EA /* PurchaseViewController.xib */,
 				D860A4BA132569F600DD49EA /* DistanceViewController.h */,
 				D860A4BB132569F600DD49EA /* DistanceViewController.m */,
@@ -289,6 +302,7 @@
 				D84307EA132803A20065A78F /* ExploreViewController.xib */,
 				D84307F4132804450065A78F /* exploreButtonsHighlighted.png */,
 				D84307F0132804190065A78F /* exploreButtons.png */,
+				D89C4185132855E700737948 /* Entitlements.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -396,6 +410,10 @@
 				D8430822132807400065A78F /* paradise_lost_audio.jpg in Resources */,
 				D843084313280A330065A78F /* directory3.png in Resources */,
 				D843084913280AE00065A78F /* dark_materials.jpg in Resources */,
+				D8BE8E9313282F3500630326 /* fairground.jpg in Resources */,
+				D8BE8E9413282F3500630326 /* stairway.jpg in Resources */,
+				D8BE8EB313282FF700630326 /* fairground_audio.jpg in Resources */,
+				D8BE8EC8132830EC00630326 /* jill_cover.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +451,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "~/src/projects/locations/Anachronism/Amblr/Entitlements.plist";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joe ZUNTZ";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -440,6 +460,8 @@
 				GCC_PREFIX_HEADER = Amblr_Prefix.pch;
 				INFOPLIST_FILE = "Amblr-Info.plist";
 				PRODUCT_NAME = Amblr;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B61FDD2A-36A9-4B13-9307-21052D976DEC";
+				SDKROOT = iphoneos3.2;
 			};
 			name = Debug;
 		};
@@ -447,11 +469,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "~/src/projects/locations/Anachronism/Amblr/Entitlements.plist";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joe ZUNTZ";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Amblr_Prefix.pch;
 				INFOPLIST_FILE = "Amblr-Info.plist";
 				PRODUCT_NAME = Amblr;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B61FDD2A-36A9-4B13-9307-21052D976DEC";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -485,6 +510,37 @@
 			};
 			name = Release;
 		};
+		D89C419F132856D100737948 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Distribution;
+		};
+		D89C41A0132856D100737948 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "~/src/projects/locations/Anachronism/Amblr/Entitlements.plist";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joe ZUNTZ";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Amblr_Prefix.pch;
+				INFOPLIST_FILE = "Amblr-Info.plist";
+				PRODUCT_NAME = Amblr;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B61FDD2A-36A9-4B13-9307-21052D976DEC";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -493,6 +549,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				D89C41A0132856D100737948 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -502,6 +559,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				D89C419F132856D100737948 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
