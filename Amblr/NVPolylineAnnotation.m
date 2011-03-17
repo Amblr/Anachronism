@@ -7,7 +7,7 @@
 //
 
 #import "NVPolylineAnnotation.h"
-
+#warning This is now obsolete in 4.3
 
 @implementation NVPolylineAnnotation
 
