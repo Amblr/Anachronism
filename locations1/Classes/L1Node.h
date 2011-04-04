@@ -35,6 +35,9 @@
 	NSString * text;
 	NSString * name;
 	UIImage  * image;
+    NSMutableDictionary * metadata;
+    NSMutableArray * resources;
+    
 	NSObject<L1NodeDelegate> * delegate;
 	//JAZ We need a key field for this.  "Name" is probably a user friendly name
 	//So we add another

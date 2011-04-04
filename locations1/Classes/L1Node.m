@@ -35,10 +35,11 @@
 	name = [[nodeDictionary objectForKey:@"name"] retain]; 
 	text = [[nodeDictionary objectForKey:@"description"] retain]; 
 	radius = [[nodeDictionary objectForKey:@"radius"] retain];
-	
 	NSArray * coords = [nodeDictionary objectForKey:@"coords"];
 	latitude = [[coords objectAtIndex:0] retain];
 	longitude = [[coords objectAtIndex:1] retain];
+    metadata = [[nodeDictionary objectForKey:@"meta_data"] retain];
+    resources = [[nodeDictionary objectForKey:@"resource_hooks"] retain];
 	
 }
 
