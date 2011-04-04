@@ -232,7 +232,7 @@
 
 -(MKAnnotationView*) polylineViewForPolyline:(NVPolylineAnnotation*)line
 {
-	return [[NVPolylineAnnotationView alloc] initWithAnnotation:line mapView:mapView];
+	return [[[NVPolylineAnnotationView alloc] initWithAnnotation:line mapView:mapView] autorelease];
 	
 }
 
@@ -318,6 +318,7 @@
 	
 	if (!annotationView){
 		annotationView = [[MKAnnotationView alloc] initWithAnnotation:node reuseIdentifier:@"node"];
+        [annotationView autorelease];
 	}
 	
 //	MKPinAnnotationView * pinAnnotationView = (MKPinAnnotationView *) annotationView;

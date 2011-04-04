@@ -27,7 +27,7 @@ const CGFloat POLYLINE_WIDTH = 4.0;
 
 - (id) initWithPolylineView:(NVPolylineAnnotationView *)polylineView
 					mapView:(MKMapView *)mapView {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		_polylineView = [polylineView retain];
 		_mapView = [mapView retain];
 		
@@ -83,7 +83,7 @@ const CGFloat POLYLINE_WIDTH = 4.0;
 
 - (id)initWithAnnotation:(NVPolylineAnnotation *)annotation
 				 mapView:(MKMapView *)mapView {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.annotation = annotation;
 		
 		_mapView = [mapView retain];

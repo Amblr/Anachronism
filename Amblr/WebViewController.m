@@ -28,7 +28,7 @@
 	NSString * filePath = [[NSBundle mainBundle] pathForResource:@"genesis" ofType:@"html"];
 
 	NSError * error;
-	NSStringEncoding * encoding;
+	NSStringEncoding * encoding = nil;
 	NSString * htmlContent = [NSString stringWithContentsOfFile:filePath usedEncoding:encoding error:&error];
 //	NSURL * url = [NSURL URLWithString:@"http://www.picturesofengland.com/history/oxford-university-history.html"];
 //	NSURLRequest * request = [NSURLRequest requestWithURL:url];
