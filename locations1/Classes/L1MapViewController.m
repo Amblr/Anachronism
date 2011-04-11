@@ -121,7 +121,7 @@
 	MKAnnotationView * annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"node"];
 	
 	if (!annotationView){
-		annotationView = [[MKAnnotationView alloc] initWithAnnotation:node reuseIdentifier:@"node"];
+		annotationView = [[[MKAnnotationView alloc] initWithAnnotation:node reuseIdentifier:@"node"] autorelease];
 	}
 
 	annotationView.image = [self.annotationImages objectForKey:@"node"];
@@ -155,7 +155,7 @@
 		MKPolygonView * polygonView = [[MKPolygonView alloc] initWithPolygon:overlay];
 		UIColor * color = [[UIColor redColor] colorWithAlphaComponent:0.25];
 		polygonView.fillColor = color;	
-		return polygonView;
+		return [polygonView autorelease];
 	}
 	else if ([overlay isKindOfClass:[L1MapImageOverlay class]]){
 		UIImage * image = [UIImage imageNamed:@"oxford_map.jpg"];
@@ -167,7 +167,7 @@
 		
 		L1MapImageOverlayView * overlayView = [[L1MapImageOverlayView alloc] initWithOverlay:overlay image:image.CGImage];
 //		L1MapImageOverlayView * overlayView = [[L1MapImageOverlayView alloc] initWithOverlay:overlay image:image.CGImage topLeft:topLeft bottomRight:bottomRight];
-		return overlayView;
+		return [overlayView autorelease];
 	}
 	
 	return nil;

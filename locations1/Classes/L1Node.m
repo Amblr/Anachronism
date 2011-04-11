@@ -90,7 +90,7 @@
 	experience.eventID = [@"Visited " stringByAppendingString:self.key];
 	SEL call = @selector(node:didCreateExperience:);
 	if ([self.delegate respondsToSelector:call]) [self.delegate performSelector:call withObject:self withObject:experience];
-	return experience;
+	return [experience autorelease];
 	
 }
 

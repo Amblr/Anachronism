@@ -24,13 +24,13 @@
 {
 	L1Experience * experience = [[L1Experience alloc] init];
 	experience.date=[NSDate date];
-	experience.eventID = [[@"SELECTED RESPONSE" stringByAppendingString:self.key] stringByAppendingString:response];
+	experience.eventID = [[@"SELECTED RESPONSE " stringByAppendingString:self.key] stringByAppendingString:response];
 
 	SEL call = @selector(node:didCreateExperience:);
 	if ([self.delegate respondsToSelector:call]){
 		[self.delegate performSelector:call withObject:self withObject:experience];
 	}
-	
+	[experience autorelease];
 	
 	
 }
