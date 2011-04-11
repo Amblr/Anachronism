@@ -32,7 +32,7 @@
                 secret:(NSString *)_secret 
            redirectURL:(NSURL *)url;
 {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     clientID = [_clientID copy];
     clientSecret = [_secret copy];
     redirectURL = [url copy];
