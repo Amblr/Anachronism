@@ -79,13 +79,20 @@
 	NSLog(@"Rotate");
 	CALayer * layer = nodeImage.layer;
 
-	CABasicAnimation *spinAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+	CABasicAnimation *spinAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.x"];
 	spinAnimation.fromValue =[NSNumber numberWithFloat:0];
 	spinAnimation.toValue = [NSNumber numberWithFloat:3.14*2];
 	spinAnimation.duration=3.0;
 	spinAnimation.repeatCount=666666;
 	[layer addAnimation:spinAnimation forKey:@"spinAnimation"];
-	
+    
+    CABasicAnimation *spinAnimation2 = [CABasicAnimation animationWithKeyPath:@"transform.rotation.y"];
+	spinAnimation2.fromValue =[NSNumber numberWithFloat:0];
+	spinAnimation2.toValue = [NSNumber numberWithFloat:3.14*2];
+	spinAnimation2.duration=3.0;
+	spinAnimation2.repeatCount=666666;
+	[layer addAnimation:spinAnimation2 forKey:@"spinAnimation2"];
+
 	
 	
 	

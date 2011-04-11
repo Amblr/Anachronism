@@ -90,7 +90,7 @@
 								<object class="IBMKMapView" id="805786279">
 									<reference key="NSNextResponder" ref="444950638"/>
 									<int key="NSvFlags">274</int>
-									<string key="NSFrame">{{11, 20}, {300, 273}}</string>
+									<string key="NSFrame">{{11, 20}, {300, 374}}</string>
 									<reference key="NSSuperview" ref="444950638"/>
 									<reference key="NSWindow"/>
 									<bool key="IBUIClipsSubviews">YES</bool>
@@ -99,7 +99,7 @@
 									<bool key="IBMKShowsUserLocation">YES</bool>
 								</object>
 							</object>
-							<string key="NSFrame">{{0, 64}, {320, 416}}</string>
+							<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 							<reference key="NSSuperview"/>
 							<reference key="NSWindow"/>
 							<object class="NSColor" key="IBUIBackgroundColor">
@@ -123,6 +123,7 @@
 						<bool key="IBUIHorizontal">NO</bool>
 					</object>
 				</object>
+				<bool key="IBUINavigationBarHidden">YES</bool>
 			</object>
 			<object class="IBUIViewController" id="546234502">
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>

@@ -153,9 +153,6 @@
 	for(L1Node * node in nodes){
 		[self startMonitoringNodeProximity:node];
 	}
-		
-	
-	
 }
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
