@@ -10,7 +10,7 @@
 #import <MapKit/MKAnnotation.h>
 #import "L1Resource.h"
 
-#define STANDARD_NODE_RADIUS 20.0  //meters
+#define STANDARD_NODE_RADIUS 15.0  //meters
 
 
 //Nodes have state

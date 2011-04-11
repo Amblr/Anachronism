@@ -34,5 +34,5 @@
 
 -(void) startMonitoringAllNodesProximity;
 -(void) startMonitoringNodeProximity:(L1Node*)node;
-
++(L1Scenario*) scenarioFromURL:(NSString*) url;
 @end

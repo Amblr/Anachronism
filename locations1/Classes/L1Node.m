@@ -85,7 +85,9 @@
 -(CLRegion*) region
 {
 	CLLocationDistance r = [self.radius doubleValue];
-	if (radius==0) r=STANDARD_NODE_RADIUS;
+	r=STANDARD_NODE_RADIUS;
+#warning Ignoring node radii 
+    
 	return [[[CLRegion alloc] initCircularRegionWithCenter:self.coordinate radius:r identifier:self.name] autorelease];
 	
 }

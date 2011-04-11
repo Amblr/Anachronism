@@ -11,7 +11,7 @@
 #import "L1Scenario.h"
 #import "L1User.h"
 
-@class locations1ViewController;
+//@class locations1ViewController;
 
 @interface locations1AppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
@@ -20,6 +20,10 @@
 	IBOutlet UIWebView * loginView;
 	L1User * user;
 }
+
+
+-(void) selectScenarioURL:(NSString*) url;
+
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet L1MapViewController *viewController;

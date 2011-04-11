@@ -21,11 +21,11 @@
 
 @property (retain) L1Scenario * scenario;
 @property (retain) L1NodeContentViewController * nodeContentViewController;
--(IBAction) testPolygon:(id) sender;
+//-(IBAction) testPolygon:(id) sender;
 -(void) testMap:(id) sender;
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSArray*) nodes;
--(IBAction) fakeNodeTest:(id) sender;
--(IBAction) overlayImage:(id) sender;
+//-(IBAction) fakeNodeTest:(id) sender;
+//-(IBAction) overlayImage:(id) sender;
 
 
 -(void) mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view;

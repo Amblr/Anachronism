@@ -40,16 +40,21 @@
 
     [super viewDidLoad];
 	primaryMapView.delegate=self;
+    
+   // 51°45′7″N 1°15′28″W
 	// start off by default in San Francisco
     MKCoordinateRegion newRegion;
-    newRegion.center.latitude = 51.0;
-    newRegion.center.longitude = 0.1;
-    newRegion.span.latitudeDelta = 1.0;
-    newRegion.span.longitudeDelta = 1.0;
+    newRegion.center.latitude = 51.75;
+    newRegion.center.longitude = -1.25;
+    newRegion.span.latitudeDelta = 0.04;
+    newRegion.span.longitudeDelta = 0.04;
 	
     [primaryMapView setRegion:newRegion animated:YES];
 	
-	scenario = [[L1Scenario alloc] init];
+//    NSString * baseURL = @"";
+//    NSString * url = [NSString stringWithFormat:@"%@/nodes",baseURL];
+//    self.scenario = [L1Scenario scenarioFromURL:url];
+
 	
 }
 
@@ -83,7 +88,7 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-	NSObject * nodeObject = view.annotation;
+	NSObject<MKAnnotation> * nodeObject = view.annotation;
 	if ([nodeObject isKindOfClass:[L1Node class]]){
 		L1Node * node = (L1Node*)nodeObject;
 		NSLog(@"Selected %@",node.name);
@@ -121,10 +126,11 @@
 	MKAnnotationView * annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"node"];
 	
 	if (!annotationView){
-		annotationView = [[[MKAnnotationView alloc] initWithAnnotation:node reuseIdentifier:@"node"] autorelease];
+//		annotationView = [[[MKAnnotationView alloc] initWithAnnotation:node reuseIdentifier:@"node"] autorelease];
+        annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:node reuseIdentifier:@"node"] autorelease];
 	}
 
-	annotationView.image = [self.annotationImages objectForKey:@"node"];
+//	annotationView.image = [self.annotationImages objectForKey:@"node"];
 	annotationView.enabled = [node isVisible];
 	annotationView.canShowCallout = NO;
 	
@@ -210,21 +216,6 @@
 	NSLog(@"Added overlay");
 	
 	
-}
-
-
-
--(IBAction) fakeNodeTest:(id) sender
-{
-	NSLog(@"Faking Node");
-	scenario.delegate=self;
-	[scenario fakeNodes];
-}
-
--(IBAction) testMap:(id) sender{
-	NSString * baseURL = @"";
-	NSString * url = [NSString stringWithFormat:@"%@/nodes",baseURL];
-	[scenario startNodeDownload:url];
 }
 
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSArray*) nodes

@@ -30,6 +30,15 @@
 }
 
 
+
+
++(L1Scenario*) scenarioFromURL:(NSString*) url
+{
+    L1Scenario * scenario = [[L1Scenario alloc] init];
+    [scenario startNodeDownload:url];
+    return scenario;
+}
+
 -(void) startNodeDownload:(NSString *) url
 {
 	SimpleURLConnection * connection = [[SimpleURLConnection alloc] initWithURL:url 
@@ -76,10 +85,15 @@
 	for(NSDictionary * nodeDictionary in nodeArray){
 		L1Node * node = [[L1Node alloc] initWithDictionary:nodeDictionary key:[nodeDictionary objectForKey:@"name"]];
 		[nodes addObject:[node autorelease]];
+        CLLocation * nodeLocation = [[CLLocation alloc] initWithLatitude:[node.latitude doubleValue] longitude:[node.longitude doubleValue]];
+        CLLocationDistance dist = [nodeLocation distanceFromLocation:locationManager.location];
+        NSLog(@"Distance from %@ = %f",node.name,dist);
 	}
 	
 	[delegate performSelector:@selector(nodeSource:didReceiveNodes:) withObject:self withObject:nodes];
 	
+    
+    
 	[self startMonitoringAllNodesProximity];
 	
 }
@@ -87,13 +101,12 @@
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id *)stackbuf count:(NSUInteger)len
 {
 	return [nodes countByEnumeratingWithState:state objects:stackbuf count:len];
-	
 }
 
 
 -(void) failedNodeDownloadWithError:(NSError*) error
 {
-	NSLog(@"You are disgrace to humanity.");
+	NSLog(@"Node download failed: you are disgrace to humanity.");
 }
 
 
@@ -126,7 +139,12 @@
 
 -(void) startMonitoringNodeProximity:(L1Node*)node
 {
-	[locationManager startMonitoringForRegion:[node region] desiredAccuracy:1.0];
+    CLRegion * region = [node region];
+	[locationManager startMonitoringForRegion:[node region] desiredAccuracy:0.0];
+    if ([region containsCoordinate:locationManager.location.coordinate]){
+        NSLog(@"Started inside region");
+        [self locationManager:locationManager didEnterRegion:region];
+    }
 	
 }
 
@@ -142,7 +160,11 @@
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
-	NSLog(@"Approached the region for the node named %@",region);	
+	NSLog(@"Approached the region for the node named %@",region);
+    NSString * text = [NSString stringWithFormat:@"You are near the %@",region.identifier];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Pub Found!" message:text delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Pub Found" message:@"Why not visit the lovely pub that is nearby?" delegate:self cancelButtonTitle:@"OK",nil];
+    [alert show];
 	
 }
 
