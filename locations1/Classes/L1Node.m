@@ -39,7 +39,14 @@
 	latitude = [[coords objectAtIndex:0] retain];
 	longitude = [[coords objectAtIndex:1] retain];
     metadata = [[nodeDictionary objectForKey:@"meta_data"] retain];
-    resources = [[nodeDictionary objectForKey:@"resource_hooks"] retain];
+
+    /* Resources.  Get an array of them. */
+    resources = [[NSMutableArray alloc] init];
+    NSArray * resourceDictionaryArray = [nodeDictionary objectForKey:@"resource_hooks"];
+    for (NSDictionary * resourceDictionary in resourceDictionaryArray){
+        L1Resource * resource = [[L1Resource alloc] initWithDictionary:resourceDictionary];
+        [resources addObject:resource];
+    }
 	
 }
 

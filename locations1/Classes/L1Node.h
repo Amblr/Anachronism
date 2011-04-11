@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MKAnnotation.h>
+#import "L1Resource.h"
 
 #define STANDARD_NODE_RADIUS 20.0  //meters
 
