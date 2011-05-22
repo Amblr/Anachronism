@@ -31,7 +31,7 @@
 {
     NSLog(@"Created fake pin.");
     MKAnnotationView * view = [[MKAnnotationView alloc] initWithAnnotation:self reuseIdentifier:identifier];
-    view.image = [UIImage imageNamed:@"fakeUserLocation.png"];
+    view.image = [UIImage imageNamed:@"mapIcon.png"];
 
 //    MKAnnotationView * pin = [[MKPinAnnotationView alloc] initWithAnnotation:self reuseIdentifier:identifier];
 //    return [view autorelease];

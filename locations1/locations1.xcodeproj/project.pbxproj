@@ -13,14 +13,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow-IPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow-IPhone.xib */; };
-		B9226E3913898C17008E8F62 /* dog.caf in Resources */ = {isa = PBXBuildFile; fileRef = B9226E3813898C17008E8F62 /* dog.caf */; };
-		B9226E3B13898C96008E8F62 /* thunder.caf in Resources */ = {isa = PBXBuildFile; fileRef = B9226E3A13898C96008E8F62 /* thunder.caf */; };
-		B9F74BD01389771B0076722D /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F74BCF1389771B0076722D /* SoundManager.m */; };
-		B9F74BD41389774C0076722D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F74BD11389774C0076722D /* AudioToolbox.framework */; };
-		B9F74BD51389774C0076722D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F74BD21389774C0076722D /* AVFoundation.framework */; };
-		B9F74BD61389774C0076722D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F74BD31389774C0076722D /* OpenAL.framework */; };
-		B9F74BD813897F040076722D /* nodeSound.caf in Resources */ = {isa = PBXBuildFile; fileRef = B9F74BD713897F040076722D /* nodeSound.caf */; };
-		B9F74BDA138982C00076722D /* crowd.caf in Resources */ = {isa = PBXBuildFile; fileRef = B9F74BD9138982C00076722D /* crowd.caf */; };
 		D8097FB61376D4140038245A /* L1Path.m in Sources */ = {isa = PBXBuildFile; fileRef = D8097FB51376D4140038245A /* L1Path.m */; };
 		D8179558135389C000E3E63B /* L1ChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8179556135389A800E3E63B /* L1ChooserViewController.m */; };
 		D8179559135389C000E3E63B /* L1ChooserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8179557135389B200E3E63B /* L1ChooserViewController.xib */; };
@@ -51,6 +43,15 @@
 		D850D5F6138991A100D67338 /* fakeUserLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = D850D5F5138991A100D67338 /* fakeUserLocation.png */; };
 		D859A950137D2BD200394419 /* icon_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D859A94F137D2BD200394419 /* icon_ipad.png */; };
 		D8675E611377129D00375431 /* MainWindow-IPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8675E601377129D00375431 /* MainWindow-IPad.xib */; };
+		D869AF0D13899B36001CE9B2 /* thunder.caf in Resources */ = {isa = PBXBuildFile; fileRef = D869AF0713899B36001CE9B2 /* thunder.caf */; };
+		D869AF0E13899B36001CE9B2 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D869AF0813899B36001CE9B2 /* SoundManager.m */; };
+		D869AF0F13899B36001CE9B2 /* nodeSound.caf in Resources */ = {isa = PBXBuildFile; fileRef = D869AF0A13899B36001CE9B2 /* nodeSound.caf */; };
+		D869AF1013899B36001CE9B2 /* dog.caf in Resources */ = {isa = PBXBuildFile; fileRef = D869AF0B13899B36001CE9B2 /* dog.caf */; };
+		D869AF1113899B36001CE9B2 /* crowd.caf in Resources */ = {isa = PBXBuildFile; fileRef = D869AF0C13899B36001CE9B2 /* crowd.caf */; };
+		D869AF1613899B7C001CE9B2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D869AF1313899B7C001CE9B2 /* AudioToolbox.framework */; };
+		D869AF1713899B7C001CE9B2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D869AF1413899B7C001CE9B2 /* AVFoundation.framework */; };
+		D869AF1813899B7C001CE9B2 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D869AF1513899B7C001CE9B2 /* OpenAL.framework */; };
+		D869AF1A13899BDA001CE9B2 /* mapIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D869AF1913899BDA001CE9B2 /* mapIcon.png */; };
 		D8750C39134A3C1100564337 /* L1Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = D8750C38134A3C1100564337 /* L1Resource.m */; };
 		D876A1641376E8F1006C6B05 /* testView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D876A1631376E8F1006C6B05 /* testView.xib */; };
 		D8778E391312F068003874F6 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = D8778E2E1312F068003874F6 /* ASIAuthenticationDialog.m */; };
@@ -104,15 +105,6 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* locations1_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = locations1_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* locations1-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "locations1-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		B9226E3813898C17008E8F62 /* dog.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dog.caf; sourceTree = "<group>"; };
-		B9226E3A13898C96008E8F62 /* thunder.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = thunder.caf; sourceTree = "<group>"; };
-		B9F74BCE1389771B0076722D /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
-		B9F74BCF1389771B0076722D /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
-		B9F74BD11389774C0076722D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		B9F74BD21389774C0076722D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		B9F74BD31389774C0076722D /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
-		B9F74BD713897F040076722D /* nodeSound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nodeSound.caf; sourceTree = "<group>"; };
-		B9F74BD9138982C00076722D /* crowd.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = crowd.caf; sourceTree = "<group>"; };
 		D8097FB41376D4140038245A /* L1Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1Path.h; sourceTree = "<group>"; };
 		D8097FB51376D4140038245A /* L1Path.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Path.m; sourceTree = "<group>"; };
 		D8179555135389A400E3E63B /* L1ChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1ChooserViewController.h; sourceTree = "<group>"; };
@@ -167,6 +159,16 @@
 		D850D5F5138991A100D67338 /* fakeUserLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fakeUserLocation.png; sourceTree = "<group>"; };
 		D859A94F137D2BD200394419 /* icon_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_ipad.png; sourceTree = "<group>"; };
 		D8675E601377129D00375431 /* MainWindow-IPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MainWindow-IPad.xib"; sourceTree = "<group>"; };
+		D869AF0713899B36001CE9B2 /* thunder.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = thunder.caf; path = Classes/thunder.caf; sourceTree = "<group>"; };
+		D869AF0813899B36001CE9B2 /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundManager.m; path = Classes/SoundManager.m; sourceTree = "<group>"; };
+		D869AF0913899B36001CE9B2 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundManager.h; path = Classes/SoundManager.h; sourceTree = "<group>"; };
+		D869AF0A13899B36001CE9B2 /* nodeSound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = nodeSound.caf; path = Classes/nodeSound.caf; sourceTree = "<group>"; };
+		D869AF0B13899B36001CE9B2 /* dog.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = dog.caf; path = Classes/dog.caf; sourceTree = "<group>"; };
+		D869AF0C13899B36001CE9B2 /* crowd.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = crowd.caf; path = Classes/crowd.caf; sourceTree = "<group>"; };
+		D869AF1313899B7C001CE9B2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D869AF1413899B7C001CE9B2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D869AF1513899B7C001CE9B2 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		D869AF1913899BDA001CE9B2 /* mapIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapIcon.png; sourceTree = "<group>"; };
 		D8750C37134A3C1000564337 /* L1Resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1Resource.h; sourceTree = "<group>"; };
 		D8750C38134A3C1100564337 /* L1Resource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Resource.m; sourceTree = "<group>"; };
 		D876A1631376E8F1006C6B05 /* testView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = testView.xib; sourceTree = "<group>"; };
@@ -242,9 +244,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9F74BD41389774C0076722D /* AudioToolbox.framework in Frameworks */,
-				B9F74BD51389774C0076722D /* AVFoundation.framework in Frameworks */,
-				B9F74BD61389774C0076722D /* OpenAL.framework in Frameworks */,
+				D869AF1613899B7C001CE9B2 /* AudioToolbox.framework in Frameworks */,
+				D869AF1713899B7C001CE9B2 /* AVFoundation.framework in Frameworks */,
+				D869AF1813899B7C001CE9B2 /* OpenAL.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -263,7 +265,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B9F74BC41389764B0076722D /* SoundManager */,
 				D850D5F11389874500D67338 /* SynthesizeSingleton.h */,
 				D850D5ED13895E7E00D67338 /* SimulatedLocationManager */,
 				D8778E431312F08C003874F6 /* LROAuth2 */,
@@ -327,6 +328,10 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				D869AF1313899B7C001CE9B2 /* AudioToolbox.framework */,
+				D869AF1413899B7C001CE9B2 /* AVFoundation.framework */,
+				D869AF1513899B7C001CE9B2 /* OpenAL.framework */,
+				D869AF1213899B41001CE9B2 /* Sound Manager */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -363,9 +368,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B9F74BD11389774C0076722D /* AudioToolbox.framework */,
-				B9F74BD21389774C0076722D /* AVFoundation.framework */,
-				B9F74BD31389774C0076722D /* OpenAL.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
@@ -379,22 +381,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B9F74BC41389764B0076722D /* SoundManager */ = {
-			isa = PBXGroup;
-			children = (
-				B9F74BD713897F040076722D /* nodeSound.caf */,
-				B9226E3813898C17008E8F62 /* dog.caf */,
-				B9226E3A13898C96008E8F62 /* thunder.caf */,
-				B9F74BD9138982C00076722D /* crowd.caf */,
-				B9F74BCE1389771B0076722D /* SoundManager.h */,
-				B9F74BCF1389771B0076722D /* SoundManager.m */,
-			);
-			name = SoundManager;
-			sourceTree = "<group>";
-		};
 		D800308E130E9BD700763C05 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D869AF1913899BDA001CE9B2 /* mapIcon.png */,
 				D8A7B0D4137C9322005FB761 /* solar-system.jpeg */,
 				D850D5F5138991A100D67338 /* fakeUserLocation.png */,
 				D8A7B0D6137C9344005FB761 /* london.jpeg */,
@@ -446,6 +436,19 @@
 				D850D5F31389886500D67338 /* SimulatedUserLocation.m */,
 			);
 			name = SimulatedLocationManager;
+			sourceTree = "<group>";
+		};
+		D869AF1213899B41001CE9B2 /* Sound Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D869AF0713899B36001CE9B2 /* thunder.caf */,
+				D869AF0813899B36001CE9B2 /* SoundManager.m */,
+				D869AF0913899B36001CE9B2 /* SoundManager.h */,
+				D869AF0A13899B36001CE9B2 /* nodeSound.caf */,
+				D869AF0B13899B36001CE9B2 /* dog.caf */,
+				D869AF0C13899B36001CE9B2 /* crowd.caf */,
+			);
+			name = "Sound Manager";
 			sourceTree = "<group>";
 		};
 		D8778E2C1312F068003874F6 /* ASIHTTPRequest */ = {
@@ -583,10 +586,11 @@
 				D8A7B0D7137C9344005FB761 /* london.jpeg in Resources */,
 				D859A950137D2BD200394419 /* icon_ipad.png in Resources */,
 				D850D5F6138991A100D67338 /* fakeUserLocation.png in Resources */,
-				B9F74BD813897F040076722D /* nodeSound.caf in Resources */,
-				B9F74BDA138982C00076722D /* crowd.caf in Resources */,
-				B9226E3913898C17008E8F62 /* dog.caf in Resources */,
-				B9226E3B13898C96008E8F62 /* thunder.caf in Resources */,
+				D869AF0D13899B36001CE9B2 /* thunder.caf in Resources */,
+				D869AF0F13899B36001CE9B2 /* nodeSound.caf in Resources */,
+				D869AF1013899B36001CE9B2 /* dog.caf in Resources */,
+				D869AF1113899B36001CE9B2 /* crowd.caf in Resources */,
+				D869AF1A13899BDA001CE9B2 /* mapIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,7 +647,7 @@
 				D8A7B0CD137C8B3E005FB761 /* L1ScenarioList.m in Sources */,
 				D850D5F013895E9F00D67338 /* SimulatedLocationManager.m in Sources */,
 				D850D5F41389886600D67338 /* SimulatedUserLocation.m in Sources */,
-				B9F74BD01389771B0076722D /* SoundManager.m in Sources */,
+				D869AF0E13899B36001CE9B2 /* SoundManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
