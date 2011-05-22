@@ -125,6 +125,25 @@
     
 }
 
+-(void) registerAmbientSound{
+//    for(NSDictionary* resource in resources){
+//        if ([metadata objectForKey:@"role"]){
+           NSArray* location = [NSArray arrayWithObjects:latitude, longitude,[NSNumber numberWithFloat:0.0], nil];
+            
+            SoundManager* soundManager=[SoundManager sharedSoundManager];
+            NSArray* soundNames = [NSArray arrayWithObjects:@"nodeSound",@"crowd",@"talk",@"dog",@"thunder", nil];
+            NSString* randonSoundName = [soundNames objectAtIndex: (rand()%[soundNames count])];
+            
+            [soundManager createSource:randonSoundName withExtnesion:@"caf" withKey:self.name gain:1.0 pitch:1.0 frequency:44100 location:location loops:YES];
+//        }
+//    }
+}
+
+-(void) playAmbientSound{
+    SoundManager* soundManager=[SoundManager sharedSoundManager];
+    [soundManager activateSourceWithKey:self.name];
+}
+
 //@synthesize coordinate;
 @synthesize delegate;
 @synthesize enabled;
