@@ -25,7 +25,9 @@
 		nodes = [[NSMutableDictionary alloc] init];
 		paths = [[NSMutableDictionary alloc] init];
 		experiences = [NSMutableDictionary dictionaryWithCapacity:0];
-		locationManager = [[CLLocationManager alloc] init];
+//		locationManager = [[CLLocationManager alloc] init];
+        locationManager = [[SimulatedLocationManager alloc] init];
+        
 		locationManager.delegate=self;
         nodesReady = NO;
         pathsReady = NO;
@@ -248,6 +250,8 @@
     [alert show];
 	
 }
+
+
 
 
 @end
