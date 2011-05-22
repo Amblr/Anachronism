@@ -258,4 +258,12 @@
 }
 
 
+-(void) locationManager:(SimulatedLocationManager*) locationManager didUpdateToLocation:(CLLocation*)toLocation fromLocation: (CLLocation*)fromLocation
+{
+    
+    SoundManager* soundManager = [SoundManager sharedSoundManager];
+    [soundManager updateListenerPosX:[NSNumber numberWithFloat:toLocation.coordinate.latitude] posY:[NSNumber numberWithFloat:toLocation.coordinate.longitude]];
+}
+
+
 @end

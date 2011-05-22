@@ -12,7 +12,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 
 #define kMaxSources 32
-#define kRefrenceDistance 0.1
+#define kRefrenceDistance 0.001
 #define kMaxDistance 200
 
 @interface SoundManager : NSObject {

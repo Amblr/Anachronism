@@ -134,14 +134,14 @@
             NSArray* soundNames = [NSArray arrayWithObjects:@"nodeSound",@"crowd",@"talk",@"dog",@"thunder", nil];
             NSString* randonSoundName = [soundNames objectAtIndex: (rand()%[soundNames count])];
             
-            [soundManager createSource:randonSoundName withExtnesion:@"caf" withKey:self.name gain:1.0 pitch:1.0 frequency:44100 location:location loops:YES];
+            [soundManager createSource:randonSoundName withExtnesion:@"caf" withKey:self.key gain:1.0 pitch:1.0 frequency:44100 location:location loops:YES];
 //        }
 //    }
 }
 
 -(void) playAmbientSound{
     SoundManager* soundManager=[SoundManager sharedSoundManager];
-    [soundManager activateSourceWithKey:self.name];
+    [soundManager activateSourceWithKey:self.key];
 }
 
 //@synthesize coordinate;
