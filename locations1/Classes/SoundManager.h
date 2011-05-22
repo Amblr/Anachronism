@@ -12,8 +12,8 @@
 #import <AudioToolbox/AudioToolbox.h>
 
 #define kMaxSources 32
-#define kRefrenceDistance 0.001
-#define kMaxDistance 200
+#define kRefrenceDistance 0.0003
+#define kMaxDistance 0.2
 
 @interface SoundManager : NSObject {
     ALCcontext *context;

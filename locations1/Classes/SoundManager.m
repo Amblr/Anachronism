@@ -39,12 +39,12 @@ static SoundManager* sharedSoundManager = nil;
                            [NSNumber numberWithFloat:0],nil] ;
     
         ALfloat pos[3];
-        pos[0]=53.908627;
-        pos[1]=-1.598354;
+        pos[0]=0;
+        pos[1]=0;
         pos[3]=0.0;
 
         
-       [self updateListenerPos];
+       //[self updateListenerPos];
         
         BOOL result = [self initOpenAL];
         if(!result) {NSLog(@"openAL initalisation worked");return nil;}
@@ -81,7 +81,7 @@ static SoundManager* sharedSoundManager = nil;
         
         alcGetEnumValue(NULL, "ALC_RENDER_CHANNEL_COUNT_STEREO");
         alcGetEnumValue(NULL, "ALC_SPATIAL_RENDERING_QUALITY_HIGH");
-        alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);
+        alDistanceModel(AL_INVERSE_DISTANCE);
       
 
 

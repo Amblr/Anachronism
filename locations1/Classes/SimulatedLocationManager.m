@@ -26,8 +26,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SimulatedLocationManager);
     self = [super init];
     if (self){
         self.pathElements = [NSMutableArray arrayWithCapacity:0];
-        self.updateInterval = 2.0;
-        self.speed = 200.0; //meters per second, I think.
+        self.updateInterval = 0.5;
+        self.speed = 100.0; //meters per second, I think.
         self.delegates = [NSMutableSet setWithCapacity:0];
         monitoredRegions = [[NSMutableArray alloc] initWithCapacity:0];
         self.lastUpdate = nil;
@@ -131,6 +131,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SimulatedLocationManager);
 -(void) checkMonitoring
 {
     for (CLRegion * region in monitoredRegions){
+        NSLog(@"Checking for hitting region:%@ vs (%f,%f)",region,self.location.coordinate.latitude,self.location.coordinate.longitude);
         if ([region containsCoordinate:self.location.coordinate]){
             SEL selector = @selector(locationManager:didEnterRegion:);
             for (id delegate in delegates){
