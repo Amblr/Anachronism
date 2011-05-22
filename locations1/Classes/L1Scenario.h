@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "L1Node.h"
+#import "SimulatedLocationManager.h"
 #import <CoreLocation/CoreLocation.h>
 //Has many nodes
 //Has many plots
@@ -20,7 +21,9 @@
 	NSMutableDictionary * nodes;
 	NSMutableDictionary * paths;
 	NSMutableDictionary * experiences;
-	CLLocationManager * locationManager;
+//	CLLocationManager * locationManager;
+    SimulatedLocationManager * locationManager;
+    
 	id delegate;
     BOOL nodesReady, pathsReady;
     NSString * pathURL;

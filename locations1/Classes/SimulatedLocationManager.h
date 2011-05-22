@@ -12,7 +12,6 @@
 @interface SimulatedLocationManager : NSObject {
     NSMutableArray * pathElements;
     NSMutableArray * monitoredRegions;
-    NSMutableArray * regionAccuracies;
     
     id delegate;
 
@@ -25,9 +24,10 @@
     
     double speed;
     double totalPathLength;
+    double updateInterval;
 }
 
-
+@property (assign) double updateInterval;
 @property (retain) NSMutableArray * pathElements;
 @property (assign) double speed;
 @property (retain) id delegate;
@@ -38,5 +38,5 @@
 @property(readonly, nonatomic) CLLocation *location;
 
 -(void) startPath;
-
+-(void) updateLocation;
 @end
