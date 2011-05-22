@@ -17,6 +17,7 @@
 
 @interface SoundManager : NSObject {
     ALCcontext *context;
+    
     ALCdevice *outputDevice;
     
     NSMutableDictionary* soundSources;

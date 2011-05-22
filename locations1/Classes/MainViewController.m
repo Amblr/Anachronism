@@ -98,7 +98,7 @@
     NSLog(@"Choosing scenario with ID %@",scenarioID);
     self.chooserViewController=nil;
     self.baseURL = @"http://warm-earth-179.heroku.com";
-    NSString * nodesURL = [NSString stringWithFormat:@"%@/nodes.json",self.baseURL];
+    NSString * nodesURL = [NSString stringWithFormat:@"%@/scenarios/%@/nodes.json",self.baseURL,scenarioID];
     NSString * pathsURL = [NSString stringWithFormat:@"%@/paths_for_scenario/%@.json",self.baseURL,scenarioID];
     NSLog(@"base = %@",self.baseURL);
     NSLog(@"nodes = %@",nodesURL);
