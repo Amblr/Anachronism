@@ -50,9 +50,9 @@
     for (int i=0;i<number_nodes;i++){
         L1Node * node = [self.nodes objectAtIndex:i];
         coordinates[i] = node.coordinate;
-        NSLog(@"   line[%d] = %f,%f",i,coordinates[i].latitude,coordinates[i].longitude);
+        NSLog(@"   line[%d] = %f,%f (%@) ",i,coordinates[i].latitude,coordinates[i].longitude,node.name);
     }
-    NSLog(@"Made polyline.  ");
+    NSLog(@"Made polyline from %d nodes",number_nodes);
     MKPolyline * polyline = [MKPolyline polylineWithCoordinates:coordinates count:number_nodes]; 
     return polyline;
 
