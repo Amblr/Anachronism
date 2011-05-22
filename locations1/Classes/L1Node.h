@@ -51,6 +51,8 @@
 
 
 @property (retain) 	NSObject<L1NodeDelegate> * delegate;
+@property (retain) NSMutableDictionary * metadata;
+@property (retain) NSMutableArray * resources;
 @property (retain) NSNumber * latitude;
 @property (retain) NSNumber * longitude;
 @property (copy) NSString * key;

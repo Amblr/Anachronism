@@ -7,10 +7,44 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SimpleURLConnection.h"
 
+@interface L1ScenarioList : NSObject<UITableViewDataSource> {
 
-@interface L1ScenarioList : NSObject {
-    
+    //JAZ - At this point it has become clear that I should just have a scenarioInfo object with one of these each.
+    NSMutableArray *thumbnails;
+    NSMutableArray *images;
+    NSMutableArray *thumbnailURLs;
+    NSMutableArray *imageURLs;
+    NSMutableArray *descriptions;
+    NSMutableArray *titles;
+    NSMutableArray *IDs;
+    NSString * url;
+    NSObject * delegate;
+    BOOL ready;
+    SimpleURLConnection * connection;
 }
+
+-(id) initWithURL:(NSString*) scenariosURL;
+-(id) initWithFakeScenario;
+
+-(void) updateScenarios;
+-(void) downloadImages;
+
+-(void) downloaded:(NSData*) data withResponse:(NSHTTPURLResponse*) response;
+-(void) failedDownloadWithError:(NSError*) error;
+
+@property (readonly) BOOL ready;
+@property (retain) NSObject *delegate;
+@property (retain) NSMutableArray *thumbnails;
+@property (retain) NSMutableArray *images;
+@property (retain) NSMutableArray *thumbnailURLs;
+@property (retain) NSMutableArray *imageURLs;
+@property (retain) NSMutableArray *descriptions;
+@property (retain) NSMutableArray *titles;
+@property (retain) NSMutableArray *IDs;
+
+@property (retain) NSString *url;
+@property (retain) SimpleURLConnection *connection;
 
 @end

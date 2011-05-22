@@ -7,7 +7,7 @@
 //
 
 #import "L1Resource.h"
-
+#import "SimpleURLConnection.h"
 
 @implementation L1Resource
 
@@ -20,19 +20,46 @@
 
 }
 
+-(void) downloadedResourceData:(NSData*)data response:(NSURLResponse*)response
+{
+    self.resourceData = [NSData dataWithData:data];
+    self.local=YES;
+}
+
+-(void) failedDownloadingResourceDataWithError:(NSError*) error
+{
+    NSLog(@"Failed download of resource.\nname:%@ \nurl: %@\nerror:%@",self.name,self.url,error);
+    
+
+}
+
+-(void) downloadResourceData
+{
+    if (!self.url){
+        NSLog(@"Cannot download data for resource %@ - no URL",self.name);
+        return;
+    }
+
+    if (![self.url isKindOfClass:[NSNull class]]   ){
+    SimpleURLConnection * connection = [[SimpleURLConnection alloc] initWithURL:self.url delegate:self passSelector:@selector(downloadedResourceData:response:) failSelector:@selector(failedDownloadingResourceDataWithError:)];
+    [connection runRequest];
+    }
+
+}
+
 -(id) initWithDictionary:(NSDictionary*) data
 {
     if ((self = [super init])){
         self.name = [data objectForKey:@"name"];
-        self.key = [data objectForKey:@"key"];
-        self.url = [NSURL URLWithString:[data objectForKey:@"url"]];
+        self.key = [data objectForKey:@"id"];
+        self.url = [data objectForKey:@"url"];
         self.type = [data objectForKey:@"type"];
         self.local = NO;
         self.metadata = [NSMutableDictionary dictionaryWithDictionary:[data objectForKey:@"metadata"]];
         self.resourceData = nil;
+        [self downloadResourceData];
     }
     return self;
-
 }
 
 

@@ -14,7 +14,7 @@
 @implementation locations1AppDelegate
 
 @synthesize window;
-@synthesize viewController;
+@synthesize mainViewController;
 
 
 #pragma mark -
@@ -27,8 +27,9 @@
 //	scenario = [[L1Scenario alloc] init];
 //	user = [[L1User alloc] init];
 	
+    NSLog(@"I have finished launched");
     // Add the view controller's view to the window and display.
-    [window addSubview:viewController.view];
+    [window addSubview:mainViewController.view];
     [window makeKeyAndVisible];
 
 	user = [[L1User alloc] init];
@@ -36,16 +37,14 @@
 	
 //	NSLog(@"Should now present login view: %@",loginViewController);
 
-    L1ChooserViewController * chooserViewController = [[L1ChooserViewController alloc] initWithNibName:@"L1ChooserViewController" bundle:[NSBundle mainBundle]];
+//    L1ChooserViewController * chooserViewController = [[L1ChooserViewController alloc] initWithNibName:@"L1ChooserViewController" bundle:[NSBundle mainBundle]];
     
-    [viewController presentModalViewController:chooserViewController animated:YES];
-    
-        
+//    [viewController presentModalViewController:chooserViewController animated:YES];
+    NSLog(@"About to present chooser.");
+    [mainViewController presentChooserView];
     
 //	[viewController presentModalViewController:loginViewController animated:YES];
 //	[user loginWithWebView:loginViewController.webView];
-	
-
 	
 	
     return YES;
@@ -54,10 +53,12 @@
 
 -(void) selectScenarioURL:(NSString*) url
 {
+    NSLog(@"Currently ignoring main scenario URL; hard-coded path and node urls.");
     NSString * baseURL = @"http://warm-earth-179.heroku.com";
-    NSString * fullURL = [baseURL stringByAppendingString:url];
-    scenario = [L1Scenario scenarioFromURL:fullURL];
-    self.viewController.scenario = scenario;
+    NSString * nodesURL = [baseURL stringByAppendingString:@"/nodes.json"];
+    NSString * pathsURL = [baseURL stringByAppendingString:@"/paths.json"];
+    scenario = [L1Scenario scenarioFromNodesURL:nodesURL pathsURL:pathsURL];
+//    self.mainViewController.scenario = scenario;
     
     
 }
@@ -112,7 +113,7 @@
 
 
 - (void)dealloc {
-    [viewController release];
+    [mainViewController release];
     [window release];
     [super dealloc];
 }

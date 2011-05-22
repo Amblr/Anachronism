@@ -17,22 +17,35 @@
 
 
 @interface L1Scenario : NSObject<NSFastEnumeration,L1NodeDelegate,CLLocationManagerDelegate> {
-	NSMutableArray * nodes;
-	NSMutableArray * plots;
+	NSMutableDictionary * nodes;
+	NSMutableDictionary * paths;
 	NSMutableDictionary * experiences;
 	CLLocationManager * locationManager;
 	id delegate;
+    BOOL nodesReady, pathsReady;
+    NSString * pathURL;
 
 }
-@property (retain) id delegate;
+@property (retain) NSMutableDictionary * paths;
+@property (retain) NSMutableDictionary * nodes;
 
+@property (retain) id delegate;
+@property (retain) NSString * pathURL;
 -(int) nodeCount;
+-(int) pathCount;
+
 -(void) downloadedNodeData:(NSData*) data withResponse:(NSHTTPURLResponse*) response;
 -(void) failedNodeDownloadWithError:(NSError*) error;
 -(void) startNodeDownload:(NSString *) url;
--(void) fakeNodes;
+
+-(void) startPathDownload:(NSString *) url;
+-(void) downloadedPathData:(NSData*) data withResponse:(NSHTTPURLResponse*) response;
+-(void) failedPathDownloadWithError:(NSError*) error;
+
 
 -(void) startMonitoringAllNodesProximity;
 -(void) startMonitoringNodeProximity:(L1Node*)node;
 +(L1Scenario*) scenarioFromURL:(NSString*) url;
++(L1Scenario*) scenarioFromNodesURL:(NSString*) nodesURL pathsURL:(NSString*) pathsURL;
++(L1Scenario*) fakeScenarioFromNodeFile:(NSString*)nodeFile pathFile:(NSString*)pathFile delegate:(id) delegate;
 @end

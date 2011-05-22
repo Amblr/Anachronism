@@ -12,7 +12,8 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
-		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		28AD733F0D9D9553002E5188 /* MainWindow-IPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow-IPhone.xib */; };
+		D8097FB61376D4140038245A /* L1Path.m in Sources */ = {isa = PBXBuildFile; fileRef = D8097FB51376D4140038245A /* L1Path.m */; };
 		D8179558135389C000E3E63B /* L1ChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8179556135389A800E3E63B /* L1ChooserViewController.m */; };
 		D8179559135389C000E3E63B /* L1ChooserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8179557135389B200E3E63B /* L1ChooserViewController.xib */; };
 		D82E000813104E8200057D16 /* ParadiseLost.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D82E000713104E8200057D16 /* ParadiseLost.jpg */; };
@@ -37,7 +38,10 @@
 		D84B82D6130B0B7D00A57BA1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84B82D5130B0B7D00A57BA1 /* MapKit.framework */; };
 		D84B82E8130B0CB900A57BA1 /* L1Node.m in Sources */ = {isa = PBXBuildFile; fileRef = D84B82E7130B0CB900A57BA1 /* L1Node.m */; };
 		D84B82ED130B0F8D00A57BA1 /* SimpleURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D84B82EC130B0F8D00A57BA1 /* SimpleURLConnection.m */; };
+		D859A950137D2BD200394419 /* icon_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D859A94F137D2BD200394419 /* icon_ipad.png */; };
+		D8675E611377129D00375431 /* MainWindow-IPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8675E601377129D00375431 /* MainWindow-IPad.xib */; };
 		D8750C39134A3C1100564337 /* L1Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = D8750C38134A3C1100564337 /* L1Resource.m */; };
+		D876A1641376E8F1006C6B05 /* testView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D876A1631376E8F1006C6B05 /* testView.xib */; };
 		D8778E391312F068003874F6 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = D8778E2E1312F068003874F6 /* ASIAuthenticationDialog.m */; };
 		D8778E3A1312F068003874F6 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D8778E301312F068003874F6 /* ASIFormDataRequest.m */; };
 		D8778E3B1312F068003874F6 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D8778E321312F068003874F6 /* ASIHTTPRequest.m */; };
@@ -58,6 +62,18 @@
 		D8778F0C1312F549003874F6 /* L1User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8778F0B1312F549003874F6 /* L1User.m */; };
 		D8778FA9131303FF003874F6 /* L1LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8778FA7131303FF003874F6 /* L1LoginViewController.m */; };
 		D8778FAA131303FF003874F6 /* L1LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8778FA8131303FF003874F6 /* L1LoginViewController.xib */; };
+		D8A7B0BB137C7194005FB761 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A7B0B9137C7194005FB761 /* MainViewController.m */; };
+		D8A7B0BC137C7194005FB761 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8A7B0BA137C7194005FB761 /* MainViewController.xib */; };
+		D8A7B0C5137C7CA1005FB761 /* L1ScenarioChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A7B0C3137C7CA1005FB761 /* L1ScenarioChooserViewController.m */; };
+		D8A7B0C6137C7CA1005FB761 /* L1ScenarioChooserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8A7B0C4137C7CA1005FB761 /* L1ScenarioChooserView.xib */; };
+		D8A7B0C8137C7DAC005FB761 /* lyras-oxford.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D8A7B0C7137C7DAC005FB761 /* lyras-oxford.jpeg */; };
+		D8A7B0CA137C7FE5005FB761 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A7B0C9137C7FE5005FB761 /* button.png */; };
+		D8A7B0CD137C8B3E005FB761 /* L1ScenarioList.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A7B0CC137C8B3E005FB761 /* L1ScenarioList.m */; };
+		D8A7B0CF137C8F67005FB761 /* solar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A7B0CE137C8F67005FB761 /* solar-icon.png */; };
+		D8A7B0D1137C8F70005FB761 /* lyra-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A7B0D0137C8F70005FB761 /* lyra-icon.png */; };
+		D8A7B0D3137C8FB0005FB761 /* london-icon.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D8A7B0D2137C8FB0005FB761 /* london-icon.jpeg */; };
+		D8A7B0D5137C9322005FB761 /* solar-system.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D8A7B0D4137C9322005FB761 /* solar-system.jpeg */; };
+		D8A7B0D7137C9344005FB761 /* london.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D8A7B0D6137C9344005FB761 /* london.jpeg */; };
 		D8B19D90131EDD1F00FB56A4 /* pentagram_high_res.png in Resources */ = {isa = PBXBuildFile; fileRef = D8B19D8F131EDD1F00FB56A4 /* pentagram_high_res.png */; };
 		D8B19DCB131F022B00FB56A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B19DCA131F022B00FB56A4 /* QuartzCore.framework */; };
 		D8B19E21131F957D00FB56A4 /* L1MapImageOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B19E20131F957C00FB56A4 /* L1MapImageOverlayView.m */; };
@@ -73,10 +89,12 @@
 		1D6058910D05DD3D006BFB54 /* locations1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = locations1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28AD733E0D9D9553002E5188 /* MainWindow-IPhone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainWindow-IPhone.xib"; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* locations1_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = locations1_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* locations1-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "locations1-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		D8097FB41376D4140038245A /* L1Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1Path.h; sourceTree = "<group>"; };
+		D8097FB51376D4140038245A /* L1Path.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Path.m; sourceTree = "<group>"; };
 		D8179555135389A400E3E63B /* L1ChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1ChooserViewController.h; sourceTree = "<group>"; };
 		D8179556135389A800E3E63B /* L1ChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1ChooserViewController.m; sourceTree = "<group>"; };
 		D8179557135389B200E3E63B /* L1ChooserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = L1ChooserViewController.xib; path = Classes/L1ChooserViewController.xib; sourceTree = "<group>"; };
@@ -121,8 +139,11 @@
 		D84B82E7130B0CB900A57BA1 /* L1Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Node.m; sourceTree = "<group>"; };
 		D84B82EB130B0F8D00A57BA1 /* SimpleURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleURLConnection.h; sourceTree = SOURCE_ROOT; };
 		D84B82EC130B0F8D00A57BA1 /* SimpleURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleURLConnection.m; sourceTree = SOURCE_ROOT; };
+		D859A94F137D2BD200394419 /* icon_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_ipad.png; sourceTree = "<group>"; };
+		D8675E601377129D00375431 /* MainWindow-IPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MainWindow-IPad.xib"; sourceTree = "<group>"; };
 		D8750C37134A3C1000564337 /* L1Resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1Resource.h; sourceTree = "<group>"; };
 		D8750C38134A3C1100564337 /* L1Resource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Resource.m; sourceTree = "<group>"; };
+		D876A1631376E8F1006C6B05 /* testView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = testView.xib; sourceTree = "<group>"; };
 		D8778E2D1312F068003874F6 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		D8778E2E1312F068003874F6 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		D8778E2F1312F068003874F6 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIFormDataRequest.h; sourceTree = "<group>"; };
@@ -165,6 +186,21 @@
 		D8778FA6131303FF003874F6 /* L1LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1LoginViewController.h; sourceTree = "<group>"; };
 		D8778FA7131303FF003874F6 /* L1LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1LoginViewController.m; sourceTree = "<group>"; };
 		D8778FA8131303FF003874F6 /* L1LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = L1LoginViewController.xib; path = Classes/L1LoginViewController.xib; sourceTree = "<group>"; };
+		D8A7B0B8137C7194005FB761 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		D8A7B0B9137C7194005FB761 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		D8A7B0BA137C7194005FB761 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		D8A7B0C2137C7CA1005FB761 /* L1ScenarioChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1ScenarioChooserViewController.h; sourceTree = "<group>"; };
+		D8A7B0C3137C7CA1005FB761 /* L1ScenarioChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1ScenarioChooserViewController.m; sourceTree = "<group>"; };
+		D8A7B0C4137C7CA1005FB761 /* L1ScenarioChooserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = L1ScenarioChooserView.xib; sourceTree = "<group>"; };
+		D8A7B0C7137C7DAC005FB761 /* lyras-oxford.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "lyras-oxford.jpeg"; sourceTree = "<group>"; };
+		D8A7B0C9137C7FE5005FB761 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
+		D8A7B0CB137C8B3E005FB761 /* L1ScenarioList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1ScenarioList.h; sourceTree = "<group>"; };
+		D8A7B0CC137C8B3E005FB761 /* L1ScenarioList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1ScenarioList.m; sourceTree = "<group>"; };
+		D8A7B0CE137C8F67005FB761 /* solar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "solar-icon.png"; sourceTree = "<group>"; };
+		D8A7B0D0137C8F70005FB761 /* lyra-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lyra-icon.png"; sourceTree = "<group>"; };
+		D8A7B0D2137C8FB0005FB761 /* london-icon.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "london-icon.jpeg"; sourceTree = "<group>"; };
+		D8A7B0D4137C9322005FB761 /* solar-system.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "solar-system.jpeg"; sourceTree = "<group>"; };
+		D8A7B0D6137C9344005FB761 /* london.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = london.jpeg; sourceTree = "<group>"; };
 		D8B19D8F131EDD1F00FB56A4 /* pentagram_high_res.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pentagram_high_res.png; path = Images/pentagram_high_res.png; sourceTree = SOURCE_ROOT; };
 		D8B19DCA131F022B00FB56A4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D8B19E1F131F957C00FB56A4 /* L1MapImageOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1MapImageOverlayView.h; sourceTree = "<group>"; };
@@ -203,9 +239,9 @@
 				D800308E130E9BD700763C05 /* Images */,
 				D8400673130B1F0F0038286A /* JSON */,
 				D84B82EB130B0F8D00A57BA1 /* SimpleURLConnection.h */,
+				D84B82EC130B0F8D00A57BA1 /* SimpleURLConnection.m */,
 				D8179555135389A400E3E63B /* L1ChooserViewController.h */,
 				D8179556135389A800E3E63B /* L1ChooserViewController.m */,
-				D84B82EC130B0F8D00A57BA1 /* SimpleURLConnection.m */,
 				1D3623240D0F684500981E51 /* locations1AppDelegate.h */,
 				1D3623250D0F684500981E51 /* locations1AppDelegate.m */,
 				D8750C37134A3C1000564337 /* L1Resource.h */,
@@ -221,19 +257,29 @@
 				D82EFEBC13103BB900057D16 /* L1Scenario.h */,
 				D82EFEBD13103BB900057D16 /* L1Scenario.m */,
 				D82EFED713103E1A00057D16 /* L1Experience.h */,
+				D82EFED813103E1A00057D16 /* L1Experience.m */,
 				D8B19E4C131F9E9500FB56A4 /* L1MapImageOverlay.h */,
 				D8B19E4D131F9E9500FB56A4 /* L1MapImageOverlay.m */,
 				D8B19E1F131F957C00FB56A4 /* L1MapImageOverlayView.h */,
 				D8B19E20131F957C00FB56A4 /* L1MapImageOverlayView.m */,
-				D82EFED813103E1A00057D16 /* L1Experience.m */,
 				D8778F0A1312F549003874F6 /* L1User.h */,
 				D8778F0B1312F549003874F6 /* L1User.m */,
+				D8097FB41376D4140038245A /* L1Path.h */,
+				D8097FB51376D4140038245A /* L1Path.m */,
 				D82EFEC113103BC700057D16 /* L1Story.h */,
 				D82EFEC213103BC700057D16 /* L1Story.m */,
 				D82EFFEF13104D4600057D16 /* L1NodeContentViewController.h */,
 				D82EFFF013104D4600057D16 /* L1NodeContentViewController.m */,
 				D8778FA6131303FF003874F6 /* L1LoginViewController.h */,
+				D8A7B0C2137C7CA1005FB761 /* L1ScenarioChooserViewController.h */,
+				D8A7B0C3137C7CA1005FB761 /* L1ScenarioChooserViewController.m */,
 				D8778FA7131303FF003874F6 /* L1LoginViewController.m */,
+				D8A7B0C4137C7CA1005FB761 /* L1ScenarioChooserView.xib */,
+				D8A7B0CB137C8B3E005FB761 /* L1ScenarioList.h */,
+				D8A7B0CC137C8B3E005FB761 /* L1ScenarioList.m */,
+				D8A7B0B8137C7194005FB761 /* MainViewController.h */,
+				D8A7B0B9137C7194005FB761 /* MainViewController.m */,
+				D8A7B0BA137C7194005FB761 /* MainViewController.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -270,11 +316,14 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D859A94F137D2BD200394419 /* icon_ipad.png */,
 				D8778FA8131303FF003874F6 /* L1LoginViewController.xib */,
 				D8179557135389B200E3E63B /* L1ChooserViewController.xib */,
 				D82EFFF113104D4600057D16 /* L1NodeContentViewController.xib */,
-				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				28AD733E0D9D9553002E5188 /* MainWindow-IPhone.xib */,
 				8D1107310486CEB800E47090 /* locations1-Info.plist */,
+				D876A1631376E8F1006C6B05 /* testView.xib */,
+				D8675E601377129D00375431 /* MainWindow-IPad.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -298,6 +347,13 @@
 		D800308E130E9BD700763C05 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D8A7B0D4137C9322005FB761 /* solar-system.jpeg */,
+				D8A7B0D6137C9344005FB761 /* london.jpeg */,
+				D8A7B0C9137C7FE5005FB761 /* button.png */,
+				D8A7B0CE137C8F67005FB761 /* solar-icon.png */,
+				D8A7B0D0137C8F70005FB761 /* lyra-icon.png */,
+				D8A7B0D2137C8FB0005FB761 /* london-icon.jpeg */,
+				D8A7B0C7137C7DAC005FB761 /* lyras-oxford.jpeg */,
 				D8B1A0381323020D00FB56A4 /* oxford_map.jpg */,
 				D82E000713104E8200057D16 /* ParadiseLost.jpg */,
 				D8B19D8F131EDD1F00FB56A4 /* pentagram_high_res.png */,
@@ -446,7 +502,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				28AD733F0D9D9553002E5188 /* MainWindow-IPhone.xib in Resources */,
 				D841B756130F0AB900AD449F /* pentagram.png in Resources */,
 				D82EFFF313104D4600057D16 /* L1NodeContentViewController.xib in Resources */,
 				D82E000813104E8200057D16 /* ParadiseLost.jpg in Resources */,
@@ -454,6 +510,18 @@
 				D8B19D90131EDD1F00FB56A4 /* pentagram_high_res.png in Resources */,
 				D8B1A0391323020D00FB56A4 /* oxford_map.jpg in Resources */,
 				D8179559135389C000E3E63B /* L1ChooserViewController.xib in Resources */,
+				D876A1641376E8F1006C6B05 /* testView.xib in Resources */,
+				D8675E611377129D00375431 /* MainWindow-IPad.xib in Resources */,
+				D8A7B0BC137C7194005FB761 /* MainViewController.xib in Resources */,
+				D8A7B0C6137C7CA1005FB761 /* L1ScenarioChooserView.xib in Resources */,
+				D8A7B0C8137C7DAC005FB761 /* lyras-oxford.jpeg in Resources */,
+				D8A7B0CA137C7FE5005FB761 /* button.png in Resources */,
+				D8A7B0CF137C8F67005FB761 /* solar-icon.png in Resources */,
+				D8A7B0D1137C8F70005FB761 /* lyra-icon.png in Resources */,
+				D8A7B0D3137C8FB0005FB761 /* london-icon.jpeg in Resources */,
+				D8A7B0D5137C9322005FB761 /* solar-system.jpeg in Resources */,
+				D8A7B0D7137C9344005FB761 /* london.jpeg in Resources */,
+				D859A950137D2BD200394419 /* icon_ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +572,10 @@
 				D8B19E4E131F9E9500FB56A4 /* L1MapImageOverlay.m in Sources */,
 				D8750C39134A3C1100564337 /* L1Resource.m in Sources */,
 				D8179558135389C000E3E63B /* L1ChooserViewController.m in Sources */,
+				D8097FB61376D4140038245A /* L1Path.m in Sources */,
+				D8A7B0BB137C7194005FB761 /* MainViewController.m in Sources */,
+				D8A7B0C5137C7CA1005FB761 /* L1ScenarioChooserViewController.m in Sources */,
+				D8A7B0CD137C8B3E005FB761 /* L1ScenarioList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +599,7 @@
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = locations1;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -544,6 +617,7 @@
 				INFOPLIST_FILE = "locations1-Info.plist";
 				PRODUCT_NAME = locations1;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -556,6 +630,8 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				NSDeallocateZombies = NO;
+				NSZombieEnabled = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;
 			};
@@ -569,6 +645,8 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				NSDeallocateZombies = NO;
+				NSZombieEnabled = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;

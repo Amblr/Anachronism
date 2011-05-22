@@ -7,10 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "L1ScenarioList.h"
 
 
-@interface L1ScenarioChooserView : L1ScenarioChooserView {
+@interface L1ScenarioChooserViewController : UIViewController<UITableViewDelegate> {
+    NSObject * delegate;
+    IBOutlet UINavigationItem *scenarioTitleBar;
+    IBOutlet UIImageView *scenarioImageView;
+    IBOutlet UITextView *scenarioText;
+    IBOutlet UITableView *chooserTable;
+    L1ScenarioList *scenarioList;
     
 }
-
+@property (retain) NSObject * delegate;
+- (IBAction)startScenario:(id)sender;
+-(void) scenarioListDidFinishedLoading:(L1ScenarioList*) completedList;
 @end

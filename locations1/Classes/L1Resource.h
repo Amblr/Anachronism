@@ -11,7 +11,7 @@
 
 @interface L1Resource : NSObject {
     NSString * name;
-    NSURL * url;
+    NSString * url;
     NSString * type;
     BOOL local;
     NSString * key;
@@ -25,7 +25,7 @@
 
 
 @property (retain) NSString * name;
-@property (retain) NSURL * url;
+@property (retain) NSString * url;
 @property (retain) NSString * type;
 @property (assign) BOOL local;
 @property (retain) NSString * key;

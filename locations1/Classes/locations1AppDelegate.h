@@ -9,15 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "L1MapViewController.h"
 #import "L1Scenario.h"
+#import "MainViewController.h"
 #import "L1User.h"
 
 //@class locations1ViewController;
 
 @interface locations1AppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
-    IBOutlet L1MapViewController *viewController;
+//    L1MapViewController *viewController;
+    IBOutlet MainViewController * mainViewController;
+    IBOutlet L1MapViewController * mapViewController;
 	L1Scenario * scenario;
-	IBOutlet UIWebView * loginView;
 	L1User * user;
 }
 
@@ -26,7 +28,7 @@
 
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet L1MapViewController *viewController;
+@property (nonatomic, retain) IBOutlet MainViewController *mainViewController;
 
 @end
 

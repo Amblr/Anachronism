@@ -17,9 +17,10 @@
     if (self) {
         scenarioList = [[NSArray arrayWithObjects: @"Pub Time!", @"Highbrow Literature.", @"Pulp Fiction" ,nil] retain];
         
-        NSArray * urls = [NSArray arrayWithObjects:@"/nodes.json",@"lit_url",@"pulp_url" ,nil];
+        NSArray * pathURLs = [NSArray arrayWithObjects:@"/paths.json",@"lit_url",@"pulp_url" ,nil];
+        NSArray * nodeURLs = [NSArray arrayWithObjects:@"/nodes.json",@"lit_url",@"pulp_url" ,nil];
 
-        scenarioURLs = [[NSDictionary dictionaryWithObjects:urls forKeys:scenarioList] retain];
+//        scenarioURLs = [[NSDictionary dictionaryWithObjects:urls forKeys:scenarioList] retain];
         numberOfScenarios = [scenarioList count];
     }
     return self;
@@ -98,9 +99,9 @@
         return;
     }
     locations1AppDelegate * appDelegate = (locations1AppDelegate*)[[UIApplication sharedApplication] delegate];
-    NSString * scenarioName = [scenarioList objectAtIndex:index];
-    NSString * url = [scenarioURLs objectForKey:scenarioName];
-    [appDelegate selectScenarioURL:url];
+//    NSString * scenarioName = [scenarioList objectAtIndex:index];
+//    NSString * url = [scenarioURLs objectForKey:scenarioName];
+    [appDelegate selectScenarioURL:@"dummy"];
     [self dismissModalViewControllerAnimated:YES];
 }
 

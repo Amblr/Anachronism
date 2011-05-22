@@ -17,6 +17,19 @@
 @synthesize radius;
 @synthesize image;
 @synthesize text;
+@synthesize metadata;
+@synthesize resources;
+
+-(id) initWithDictionary:(NSDictionary*) nodeDictionary
+{
+	self = [super init];
+	if (self){
+        self.key=[nodeDictionary objectForKey:@"id"];
+
+		[self setStateFromDictionary:nodeDictionary];
+	}
+	return self;
+}
 
 
 
@@ -32,20 +45,21 @@
 
 -(void) setStateFromDictionary:(NSDictionary*) nodeDictionary
 {
-	name = [[nodeDictionary objectForKey:@"name"] retain]; 
-	text = [[nodeDictionary objectForKey:@"description"] retain]; 
-	radius = [[nodeDictionary objectForKey:@"radius"] retain];
+	self.name = [nodeDictionary objectForKey:@"name"]; 
+	self.text = [nodeDictionary objectForKey:@"description"]; 
+    NSLog(@"desc = %@", self.text);
+	self.radius = [nodeDictionary objectForKey:@"radius"];
 	NSArray * coords = [nodeDictionary objectForKey:@"coords"];
-	latitude = [[coords objectAtIndex:0] retain];
-	longitude = [[coords objectAtIndex:1] retain];
-    metadata = [[nodeDictionary objectForKey:@"meta_data"] retain];
+	self.latitude = [coords objectAtIndex:0];
+	self.longitude = [coords objectAtIndex:1];
+    self.metadata = [nodeDictionary objectForKey:@"meta_data"];
 
     /* Resources.  Get an array of them. */
-    resources = [[NSMutableArray alloc] init];
-    NSArray * resourceDictionaryArray = [nodeDictionary objectForKey:@"resource_hooks"];
+    self.resources = [[[NSMutableArray alloc] init] autorelease];
+    NSArray * resourceDictionaryArray = [nodeDictionary objectForKey:@"resources"];
     for (NSDictionary * resourceDictionary in resourceDictionaryArray){
         L1Resource * resource = [[L1Resource alloc] initWithDictionary:resourceDictionary];
-        [resources addObject:resource];
+        [self.resources addObject:resource];
     }
 	
 }

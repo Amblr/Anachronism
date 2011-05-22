@@ -10,9 +10,10 @@
 #import "L1Node.h"
 #import "L1MapImageOverlay.h"
 #import "L1MapImageOverlayView.h"
+#import "L1Path.h"
 
 @implementation L1MapViewController
-
+@synthesize  delegate;
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -88,16 +89,30 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
+    NSLog(@"clicky");
 	NSObject<MKAnnotation> * nodeObject = view.annotation;
 	if ([nodeObject isKindOfClass:[L1Node class]]){
 		L1Node * node = (L1Node*)nodeObject;
 		NSLog(@"Selected %@",node.name);
-		
-		self.nodeContentViewController.modalTransitionStyle  = UIModalTransitionStyleCrossDissolve;
-		[self presentModalViewController:nodeContentViewController animated:YES];
-		[self.nodeContentViewController setName:node.name];
-		[self.nodeContentViewController setText:node.text];
-		[mapView deselectAnnotation:node animated:NO];
+        SEL clickedNode = @selector(didSelectNode:);
+        if ([self.delegate respondsToSelector:clickedNode]) [self.delegate performSelector:clickedNode withObject:node];
+//        [mapView deselectAnnotation:node animated:NO];
+        CLLocationCoordinate2D centerCoord = [node coordinate];
+        MKMapPoint center = MKMapPointForCoordinate(centerCoord);
+        MKMapRect region;
+        CGFloat size = 10000;
+        region.origin = center;
+        region.size.width = size;
+        region.size.height = size;
+        
+        MKMapRect region2 = MKMapRectOffset(region, -size/2, -size/2);
+        [mapView setVisibleMapRect:region2 animated:YES];
+
+//		self.nodeContentViewController.modalTransitionStyle  = UIModalTransitionStyleCrossDissolve;
+//		[self presentModalViewController:nodeContentViewController animated:YES];
+//		[self.nodeContentViewController setName:node.name];
+//		[self.nodeContentViewController setText:node.text];
+//		[mapView deselectAnnotation:node animated:NO];
 	}
 }
 
@@ -119,6 +134,7 @@
 }
 
 
+
 -(MKAnnotationView *)annotationViewFor:(MKMapView *)mapView forNode:(L1Node*)node{
 
 	
@@ -126,7 +142,6 @@
 	MKAnnotationView * annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"node"];
 	
 	if (!annotationView){
-//		annotationView = [[[MKAnnotationView alloc] initWithAnnotation:node reuseIdentifier:@"node"] autorelease];
         annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:node reuseIdentifier:@"node"] autorelease];
 	}
 
@@ -148,6 +163,7 @@
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
 
+    
 	if ([annotation isKindOfClass:[L1Node class]]){
 		return [self annotationViewFor:mapView forNode:(L1Node*)annotation];
 	}
@@ -163,6 +179,16 @@
 		polygonView.fillColor = color;	
 		return [polygonView autorelease];
 	}
+    
+    else if ([overlay isKindOfClass:[MKPolyline class]]){
+        MKPolylineView * polylineView = [[MKPolylineView alloc] initWithPolyline:(MKPolyline*) overlay];
+        NSLog(@"overlay = %@",overlay);
+        NSLog(@"poly line = %@", polylineView.polyline);
+        polylineView.strokeColor = [UIColor purpleColor];
+        polylineView.lineWidth = 4.0;
+        return [polylineView autorelease];
+    }
+    
 	else if ([overlay isKindOfClass:[L1MapImageOverlay class]]){
 		UIImage * image = [UIImage imageNamed:@"oxford_map.jpg"];
 		NSLog(@"Loaded image %@",image);
@@ -214,23 +240,42 @@
 	[primaryMapView addOverlay:overlay];
 	[overlay release];
 	NSLog(@"Added overlay");
-	
-	
 }
 
--(void) nodeSource:(id) nodeManager didReceiveNodes:(NSArray*) nodes
+-(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes
 {
-	NSLog(@"Received nodes");
-	for(L1Node * node in nodes){
+	NSLog(@"Received %d nodes", [nodes count]);
+	for(L1Node * node in [nodes allValues]){
 		[primaryMapView addAnnotation:node];
 	}
 }
 
 
+-(void) pathSource:(id) pathManager didReceivePaths:(NSDictionary*) paths
+{
+    NSLog(@"Received %d paths",[paths count]);
+    for (L1Path * path in [paths allValues]){
+        [primaryMapView addOverlay:[path polyline]];
+    }
+    
+    
+}
+
+-(void) addPath:(L1Path*)path
+{
+    NSArray * overlays = [primaryMapView overlays];
+    NSLog(@"Removing: %@",overlays);
+    [primaryMapView removeOverlays:overlays];
+    MKPolyline * newLine = [path polyline];
+    NSLog(@"Adding: %@",newLine);
+    [primaryMapView addOverlay:newLine];
+    
+}
+
 -(IBAction) testPolygon:(id) sender{
 
 	int n = [scenario nodeCount];
-	CLLocationCoordinate2D * coords = malloc(sizeof(CLLocationCoordinate2D)*n);
+	CLLocationCoordinate2D coords[n];
 	
 	int i=0;
 	for(L1Node * node in scenario){
@@ -242,6 +287,10 @@
 //	MKPolygonView * polygonView = (MKPolygonView *)[primaryMapView viewForOverlay:polygon];
 }
 
+-(L1Scenario*) scenario
+{
+    return scenario;
+}
 
 -(void) setScenario:(L1Scenario *)newScenario
 {
@@ -250,6 +299,6 @@
 	scenario.delegate=self;
 }
 
-@synthesize annotationImages, nodeContentViewController, scenario;
+@synthesize annotationImages, nodeContentViewController;
 
 @end
