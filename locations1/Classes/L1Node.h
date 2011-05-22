@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MKAnnotation.h>
 #import "L1Resource.h"
+#import "SoundManager.h"
 
 #define STANDARD_NODE_RADIUS 15.0  //meters
 
@@ -25,6 +26,7 @@
 -(void) node:(L1Node*) node didCreateExperience:(L1Experience*)experience;
 -(L1Experience*) node:(L1Node*) node requestsExperience:(L1Experience*)experience;
 -(L1Experience*) node:(L1Node*) node requestsExperienceByName:(NSString*) name;
+
 @end
 
 
@@ -81,6 +83,9 @@
 //make the node visible, depending on the user experiences.
 -(BOOL) isVisible;
 -(L1Experience*) generateVisitedExperience;
+
+-(void) registerAmbientSound;
+-(void) playAmbientSound;
 @end
 
 

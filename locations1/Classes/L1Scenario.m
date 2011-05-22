@@ -118,6 +118,9 @@
         CLLocation * nodeLocation = [[CLLocation alloc] initWithLatitude:[node.latitude doubleValue] longitude:[node.longitude doubleValue]];
         CLLocationDistance dist = [nodeLocation distanceFromLocation:locationManager.location];
         NSLog(@"Distance from %@ = %f (%@,%@)",node.name,dist,nodeLocation,locationManager.location);
+            
+            [node registerAmbientSound];
+            [node playAmbientSound];
         }
         @catch (NSException *e ) {
             NSLog(@"Bad node: %@",e);
