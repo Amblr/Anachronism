@@ -7,10 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
+#import "SimulatedLocationManager.h"
 
 
-@interface SimulatedUserLocation : NSObject {
-    
+@interface SimulatedUserLocation : NSObject<MKAnnotation> {
+    SimulatedLocationManager * locationManager;
 }
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+-(MKAnnotationView*) viewForSimulatedLocationWithIdentifier:(NSString*) identifier;
 
 @end

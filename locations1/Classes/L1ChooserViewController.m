@@ -17,8 +17,8 @@
     if (self) {
         scenarioList = [[NSArray arrayWithObjects: @"Pub Time!", @"Highbrow Literature.", @"Pulp Fiction" ,nil] retain];
         
-        NSArray * pathURLs = [NSArray arrayWithObjects:@"/paths.json",@"lit_url",@"pulp_url" ,nil];
-        NSArray * nodeURLs = [NSArray arrayWithObjects:@"/nodes.json",@"lit_url",@"pulp_url" ,nil];
+//        NSArray * pathURLs = [NSArray arrayWithObjects:@"/paths.json",@"lit_url",@"pulp_url" ,nil];
+//        NSArray * nodeURLs = [NSArray arrayWithObjects:@"/nodes.json",@"lit_url",@"pulp_url" ,nil];
 
 //        scenarioURLs = [[NSDictionary dictionaryWithObjects:urls forKeys:scenarioList] retain];
         numberOfScenarios = [scenarioList count];
@@ -80,7 +80,7 @@
     NSUInteger index = [indexPath indexAtPosition:1];
     if (index<numberOfScenarios)  cell.textLabel.text = [scenarioList objectAtIndex:index];
     NSLog(@"Generated cell %d",index);
-    return cell;
+    return [cell autorelease];
 }
 
 
@@ -96,6 +96,7 @@
     if (index>0){
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Question" message:@"Are you sure you wouldn't prefer to go the pub?" delegate:self cancelButtonTitle:@"Yes." otherButtonTitles: nil];
         [alert show];
+        [alert autorelease];
         return;
     }
     locations1AppDelegate * appDelegate = (locations1AppDelegate*)[[UIApplication sharedApplication] delegate];

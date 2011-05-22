@@ -74,6 +74,15 @@
 
 #pragma mark - Choosing Scenario
 
+- (IBAction)walkPath:(id)sender {
+    NSInteger pathIndex = [pathSelectionView selectedRowInComponent:0];
+    NSArray * paths = [scenario.paths allValues];
+    L1Path * path = [paths objectAtIndex:pathIndex];
+    [self.scenario walkPath:path];
+    
+    
+}
+
 -(void) presentChooserView
 {
     self.chooserViewController = [[L1ScenarioChooserViewController alloc] initWithNibName:@"L1ScenarioChooserView" bundle:[NSBundle mainBundle]]

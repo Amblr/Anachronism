@@ -11,6 +11,7 @@
 #import "L1MapImageOverlay.h"
 #import "L1MapImageOverlayView.h"
 #import "L1Path.h"
+#import "SimulatedUserLocation.h"
 
 @implementation L1MapViewController
 @synthesize  delegate;
@@ -51,6 +52,12 @@
     newRegion.span.longitudeDelta = 0.04;
 	
     [primaryMapView setRegion:newRegion animated:YES];
+    
+    SimulatedLocationManager * fakeManager = [SimulatedLocationManager sharedSimulatedLocationManager];
+    [fakeManager.delegates addObject:self];
+    
+    fakeUserLocation = [[SimulatedUserLocation alloc] init];
+
 	
 //    NSString * baseURL = @"";
 //    NSString * url = [NSString stringWithFormat:@"%@/nodes",baseURL];
@@ -159,9 +166,17 @@
 	return annotationView;
 }
 
+
+
+
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation{
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
+    
+    if ([annotation isKindOfClass:[SimulatedUserLocation class]]){
+        SimulatedUserLocation * sim = (SimulatedUserLocation*) annotation;
+        return [sim viewForSimulatedLocationWithIdentifier:@"SimulatedUserLocation"];
+    }
 
     
 	if ([annotation isKindOfClass:[L1Node class]]){
@@ -245,9 +260,13 @@
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes
 {
 	NSLog(@"Received %d nodes", [nodes count]);
-	for(L1Node * node in [nodes allValues]){
+    for(L1Node * node in [nodes allValues]){
 		[primaryMapView addAnnotation:node];
 	}
+    
+    NSLog(@"Adding fake location");
+    [primaryMapView addAnnotation:fakeUserLocation];
+
 }
 
 
@@ -298,6 +317,16 @@
 	scenario = newScenario;
 	scenario.delegate=self;
 }
+
+
+-(void) locationManager:(SimulatedLocationManager*) locationManager didUpdateToLocation:(CLLocation*)toLocation fromLocation: (CLLocation*)fromLocation
+{
+    [primaryMapView addAnnotation:fakeUserLocation];
+    [primaryMapView removeAnnotation:fakeUserLocation]; 
+    
+
+}
+
 
 @synthesize annotationImages, nodeContentViewController;
 

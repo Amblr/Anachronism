@@ -11,4 +11,32 @@
 
 @implementation SimulatedUserLocation
 
+-(id) init
+{
+    self = [super init];
+    if (self){
+        locationManager=[SimulatedLocationManager sharedSimulatedLocationManager];
+        [locationManager.delegates addObject:self];
+        NSLog(@"Created fake user location at %@",locationManager.location);
+    }
+    return self;
+}
+
+-(CLLocationCoordinate2D) coordinate
+{
+    return locationManager.location.coordinate;
+}
+
+-(MKAnnotationView*) viewForSimulatedLocationWithIdentifier:(NSString*) identifier
+{
+    NSLog(@"Created fake pin.");
+    MKAnnotationView * view = [[MKAnnotationView alloc] initWithAnnotation:self reuseIdentifier:identifier];
+    view.image = [UIImage imageNamed:@"fakeUserLocation.png"];
+
+//    MKAnnotationView * pin = [[MKPinAnnotationView alloc] initWithAnnotation:self reuseIdentifier:identifier];
+//    return [view autorelease];
+    return [view autorelease];
+}
+
+
 @end

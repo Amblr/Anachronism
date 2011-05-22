@@ -64,7 +64,7 @@
 -(void) scenarioListDidFinishedLoading:(L1ScenarioList*) completedList
 {
     [chooserTable reloadData];
-    NSUInteger startIndices[2] = {0,0};
+//    NSUInteger startIndices[2] = {0,0};
 //    NSIndexPath * indexPath = [NSIndexPath indexPathWithIndexes:startIndices length:2];
 }
 

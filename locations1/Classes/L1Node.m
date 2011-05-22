@@ -60,6 +60,7 @@
     for (NSDictionary * resourceDictionary in resourceDictionaryArray){
         L1Resource * resource = [[L1Resource alloc] initWithDictionary:resourceDictionary];
         [self.resources addObject:resource];
+        [resource autorelease];
     }
 	
 }
@@ -115,6 +116,13 @@
 	if ([self.delegate respondsToSelector:call]) [self.delegate performSelector:call withObject:self withObject:experience];
 	return [experience autorelease];
 	
+}
+
+-(CLLocation*) location
+{
+    CLLocation * location  = [[CLLocation alloc] initWithLatitude:[latitude doubleValue] longitude:[longitude doubleValue]];
+    return [location autorelease];
+    
 }
 
 //@synthesize coordinate;

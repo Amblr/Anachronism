@@ -10,6 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "L1NodeContentViewController.h"
 #import "L1Scenario.h"
+#import "SimulatedUserLocation.h"
 #import "L1Path.h"
 
 @interface L1MapViewController : UIViewController<MKMapViewDelegate> {
@@ -18,6 +19,7 @@
 //	IBOutlet L1NodeContentViewController * nodeContentViewController;
 	L1Scenario * scenario;
     NSObject * delegate;
+    SimulatedUserLocation * fakeUserLocation;
 	
 }
 

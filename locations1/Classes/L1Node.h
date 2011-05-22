@@ -70,6 +70,7 @@
 -(void) setStateFromDictionary:(NSDictionary*) nodeDictionary;
 
 -(CLRegion*) region;
+-(CLLocation*) location;
 
 
 // MKAnnotation protocol

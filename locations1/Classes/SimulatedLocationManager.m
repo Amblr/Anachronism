@@ -7,13 +7,18 @@
 //
 
 #import "SimulatedLocationManager.h"
+#import "SynthesizeSingleton.h"
 
 
 @implementation SimulatedLocationManager
+
+SYNTHESIZE_SINGLETON_FOR_CLASS(SimulatedLocationManager);
+
+
 @synthesize speed;
 @synthesize pathElements;
-@synthesize delegate;
 @synthesize updateInterval;
+@synthesize  delegates;
 
 -(id) init
 {
@@ -69,6 +74,7 @@
             //We have finished the journey.
             //Let's just stop here.
             currentLocation=[self.pathElements lastObject];
+            NSLog(@"Fake path reached end.");
             return;
         }
         previousElement=nextElement;
@@ -92,28 +98,39 @@
     
     CLLocationCoordinate2D currentCoordinate = MKCoordinateForMapPoint(currentPoint);
     
-    [currentLocation autorelease];
+    CLLocation * previousLocation = currentLocation;
     currentLocation = [[CLLocation alloc] initWithLatitude:currentCoordinate.latitude longitude:currentCoordinate.longitude];
             
     lastUpdate=[NSDate date];
+    NSLog(@"Fake path reached %@",currentLocation);
     
     [self checkMonitoring];
-//    [self reportLocation];
+    [self reportLocationChangedFrom:previousLocation];
+    [currentLocation autorelease];
     
 }
 
-//-(void) reportLocation
-//{
-//    SEL selector = @selector();
-//    
-//}
+-(void) reportLocationChangedFrom:(CLLocation*)previous
+{
+    
+
+    SEL selector = @selector(locationManager:didUpdateToLocation:fromLocation:);
+    for (id delegate in delegates){
+        if ([delegate respondsToSelector:selector]){
+            [delegate locationManager:self didUpdateToLocation:self.location fromLocation:previous];
+        }
+    }
+    
+}
 
 -(void) checkMonitoring
 {
     for (CLRegion * region in monitoredRegions){
         if ([region containsCoordinate:self.location.coordinate]){
             SEL selector = @selector(locationManager:didEnterRegion:);
-            if ([self.delegate respondsToSelector:selector]) [self.delegate performSelector:selector withObject:self withObject:region];
+            for (id delegate in delegates){
+                if ([delegate respondsToSelector:selector]) [delegate performSelector:selector withObject:self withObject:region];
+            }
         }
         
     }
@@ -131,5 +148,6 @@
     [monitoredRegions addObject:region];
     
 }
+
 
 @end

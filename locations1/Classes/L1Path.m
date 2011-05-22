@@ -54,7 +54,7 @@
     }
     NSLog(@"Made polyline.  ");
     MKPolyline * polyline = [MKPolyline polylineWithCoordinates:coordinates count:number_nodes]; 
-    return [polyline autorelease];
+    return polyline;
 
 }
 
@@ -86,6 +86,16 @@
     L1Node * firstNode = [self.nodes objectAtIndex:0];
     return [firstNode coordinate];
     
+}
+
+-(NSMutableArray*) locationArray
+{
+    NSMutableArray * array = [[NSMutableArray alloc] initWithCapacity:0];
+    for (L1Node * node in self.nodes)
+    {
+        [array addObject:[node location]];
+    }
+    return array;
 }
 
 @end

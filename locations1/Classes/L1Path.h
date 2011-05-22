@@ -33,4 +33,5 @@
 -(void) extractNodes:(NSArray*) nodeNames fromSource:(NSDictionary*)nodeSource;
 -(NSUInteger) length;
 -(MKPolyline*) polyline;
+-(NSMutableArray*) locationArray;
 @end

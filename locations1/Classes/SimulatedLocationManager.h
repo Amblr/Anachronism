@@ -13,7 +13,7 @@
     NSMutableArray * pathElements;
     NSMutableArray * monitoredRegions;
     
-    id delegate;
+    NSMutableSet * delegates;
 
     //Internal stuff for keeping track of location
     CLLocation * currentLocation;
@@ -27,16 +27,22 @@
     double updateInterval;
 }
 
++(SimulatedLocationManager*) sharedSimulatedLocationManager;
+
 @property (assign) double updateInterval;
 @property (retain) NSMutableArray * pathElements;
 @property (assign) double speed;
-@property (retain) id delegate;
+@property (retain) NSMutableSet * delegates;
+
+
 -(void) checkMonitoring;
 
+- (void)startMonitoringForRegion:(CLRegion *)region desiredAccuracy:(CLLocationAccuracy)accuracy;
 
 // Our fake location
 @property(readonly, nonatomic) CLLocation *location;
 
 -(void) startPath;
 -(void) updateLocation;
+-(void) reportLocationChangedFrom:(CLLocation*) previous;
 @end

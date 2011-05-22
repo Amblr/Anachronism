@@ -10,7 +10,6 @@
 #import "SimpleURLConnection.h"
 #import "JSON.h"
 #import "L1Experience.h"
-#import "L1Path.h"
 
 
 @implementation L1Scenario
@@ -18,6 +17,8 @@
 @synthesize paths;
 @synthesize delegate;
 @synthesize pathURL;
+@synthesize activeNode;
+@synthesize activePath;
 
 -(id) init{
 	self = [super init];
@@ -26,9 +27,9 @@
 		paths = [[NSMutableDictionary alloc] init];
 		experiences = [NSMutableDictionary dictionaryWithCapacity:0];
 //		locationManager = [[CLLocationManager alloc] init];
-        locationManager = [[SimulatedLocationManager alloc] init];
+        locationManager = [SimulatedLocationManager sharedSimulatedLocationManager];
         
-		locationManager.delegate=self;
+		[locationManager.delegates addObject: self];
         nodesReady = NO;
         pathsReady = NO;
         pathURL = nil;
@@ -37,14 +38,18 @@
 	return self;
 }
 
-
+-(void) walkPath:(L1Path*)path
+{
+    locationManager.pathElements = [path locationArray];
+    [locationManager startPath];
+}
 
 
 +(L1Scenario*) scenarioFromURL:(NSString*) url
 {
     L1Scenario * scenario = [[L1Scenario alloc] init];
     [scenario startNodeDownload:url];
-    return scenario;
+    return [scenario autorelease];
 }
 
 
@@ -56,7 +61,7 @@
     NSData * pathData=  [NSData dataWithContentsOfFile:pathFile];
     [scenario downloadedNodeData:nodeData withResponse:nil];
     [scenario downloadedPathData:pathData withResponse:nil];
-    return scenario;
+    return [scenario autorelease];
     
 }
 
@@ -65,7 +70,7 @@
     L1Scenario * scenario = [[L1Scenario alloc] init];
     scenario.pathURL = pathsURL;
     [scenario startNodeDownload:nodesURL];
-    return scenario;
+    return [scenario autorelease];
 }
 
 
@@ -245,10 +250,9 @@
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Pub Found!" message:text delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 //    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Pub Found" message:@"Why not visit the lovely pub that is nearby?" delegate:self cancelButtonTitle:@"OK",nil];
     [alert show];
+    [alert autorelease];
 	
 }
-
-
 
 
 @end

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "L1Node.h"
+#import "L1Path.h"
+
 #import "SimulatedLocationManager.h"
 #import <CoreLocation/CoreLocation.h>
 //Has many nodes
@@ -24,6 +26,9 @@
 //	CLLocationManager * locationManager;
     SimulatedLocationManager * locationManager;
     
+    L1Node * activeNode;
+    L1Path * activePath;
+    
 	id delegate;
     BOOL nodesReady, pathsReady;
     NSString * pathURL;
@@ -31,6 +36,8 @@
 }
 @property (retain) NSMutableDictionary * paths;
 @property (retain) NSMutableDictionary * nodes;
+@property (retain) L1Node * activeNode;
+@property (retain) L1Path * activePath;
 
 @property (retain) id delegate;
 @property (retain) NSString * pathURL;
@@ -44,6 +51,8 @@
 -(void) startPathDownload:(NSString *) url;
 -(void) downloadedPathData:(NSData*) data withResponse:(NSHTTPURLResponse*) response;
 -(void) failedPathDownloadWithError:(NSError*) error;
+
+-(void) walkPath:(L1Path*)path;
 
 
 -(void) startMonitoringAllNodesProximity;

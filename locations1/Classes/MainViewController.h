@@ -31,5 +31,6 @@
 @property (retain) L1Scenario *scenario;
 @property (retain) L1ScenarioChooserViewController *chooserViewController;
 
+- (IBAction)walkPath:(id)sender;
 -(void) presentChooserView;
 @end

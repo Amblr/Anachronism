@@ -38,6 +38,9 @@
 		D84B82D6130B0B7D00A57BA1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84B82D5130B0B7D00A57BA1 /* MapKit.framework */; };
 		D84B82E8130B0CB900A57BA1 /* L1Node.m in Sources */ = {isa = PBXBuildFile; fileRef = D84B82E7130B0CB900A57BA1 /* L1Node.m */; };
 		D84B82ED130B0F8D00A57BA1 /* SimpleURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D84B82EC130B0F8D00A57BA1 /* SimpleURLConnection.m */; };
+		D850D5F013895E9F00D67338 /* SimulatedLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D850D5EF13895E9F00D67338 /* SimulatedLocationManager.m */; };
+		D850D5F41389886600D67338 /* SimulatedUserLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D850D5F31389886500D67338 /* SimulatedUserLocation.m */; };
+		D850D5F6138991A100D67338 /* fakeUserLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = D850D5F5138991A100D67338 /* fakeUserLocation.png */; };
 		D859A950137D2BD200394419 /* icon_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D859A94F137D2BD200394419 /* icon_ipad.png */; };
 		D8675E611377129D00375431 /* MainWindow-IPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8675E601377129D00375431 /* MainWindow-IPad.xib */; };
 		D8750C39134A3C1100564337 /* L1Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = D8750C38134A3C1100564337 /* L1Resource.m */; };
@@ -139,6 +142,12 @@
 		D84B82E7130B0CB900A57BA1 /* L1Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Node.m; sourceTree = "<group>"; };
 		D84B82EB130B0F8D00A57BA1 /* SimpleURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleURLConnection.h; sourceTree = SOURCE_ROOT; };
 		D84B82EC130B0F8D00A57BA1 /* SimpleURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleURLConnection.m; sourceTree = SOURCE_ROOT; };
+		D850D5EE13895E9F00D67338 /* SimulatedLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulatedLocationManager.h; sourceTree = "<group>"; };
+		D850D5EF13895E9F00D67338 /* SimulatedLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulatedLocationManager.m; sourceTree = "<group>"; };
+		D850D5F11389874500D67338 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
+		D850D5F21389886500D67338 /* SimulatedUserLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulatedUserLocation.h; sourceTree = "<group>"; };
+		D850D5F31389886500D67338 /* SimulatedUserLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulatedUserLocation.m; sourceTree = "<group>"; };
+		D850D5F5138991A100D67338 /* fakeUserLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fakeUserLocation.png; sourceTree = "<group>"; };
 		D859A94F137D2BD200394419 /* icon_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_ipad.png; sourceTree = "<group>"; };
 		D8675E601377129D00375431 /* MainWindow-IPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MainWindow-IPad.xib"; sourceTree = "<group>"; };
 		D8750C37134A3C1000564337 /* L1Resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1Resource.h; sourceTree = "<group>"; };
@@ -234,6 +243,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D850D5F11389874500D67338 /* SynthesizeSingleton.h */,
+				D850D5ED13895E7E00D67338 /* SimulatedLocationManager */,
 				D8778E431312F08C003874F6 /* LROAuth2 */,
 				D8778E2C1312F068003874F6 /* ASIHTTPRequest */,
 				D800308E130E9BD700763C05 /* Images */,
@@ -348,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				D8A7B0D4137C9322005FB761 /* solar-system.jpeg */,
+				D850D5F5138991A100D67338 /* fakeUserLocation.png */,
 				D8A7B0D6137C9344005FB761 /* london.jpeg */,
 				D8A7B0C9137C7FE5005FB761 /* button.png */,
 				D8A7B0CE137C8F67005FB761 /* solar-icon.png */,
@@ -386,6 +398,17 @@
 				D8400686130B1F0F0038286A /* SBJsonWriter.m */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		D850D5ED13895E7E00D67338 /* SimulatedLocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				D850D5EE13895E9F00D67338 /* SimulatedLocationManager.h */,
+				D850D5EF13895E9F00D67338 /* SimulatedLocationManager.m */,
+				D850D5F21389886500D67338 /* SimulatedUserLocation.h */,
+				D850D5F31389886500D67338 /* SimulatedUserLocation.m */,
+			);
+			name = SimulatedLocationManager;
 			sourceTree = "<group>";
 		};
 		D8778E2C1312F068003874F6 /* ASIHTTPRequest */ = {
@@ -522,6 +545,7 @@
 				D8A7B0D5137C9322005FB761 /* solar-system.jpeg in Resources */,
 				D8A7B0D7137C9344005FB761 /* london.jpeg in Resources */,
 				D859A950137D2BD200394419 /* icon_ipad.png in Resources */,
+				D850D5F6138991A100D67338 /* fakeUserLocation.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,6 +600,8 @@
 				D8A7B0BB137C7194005FB761 /* MainViewController.m in Sources */,
 				D8A7B0C5137C7CA1005FB761 /* L1ScenarioChooserViewController.m in Sources */,
 				D8A7B0CD137C8B3E005FB761 /* L1ScenarioList.m in Sources */,
+				D850D5F013895E9F00D67338 /* SimulatedLocationManager.m in Sources */,
+				D850D5F41389886600D67338 /* SimulatedUserLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
