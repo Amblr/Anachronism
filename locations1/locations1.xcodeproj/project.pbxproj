@@ -672,8 +672,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Joe ZUNTZ (U7SDAV876W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joe ZUNTZ (U7SDAV876W)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Joe ZUNTZ";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joe ZUNTZ";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -687,8 +687,8 @@
 				NSZombieEnabled = NO;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = locations1;
-				PROVISIONING_PROFILE = "C42F2CD2-94E3-416A-90E8-AD14C490472D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C42F2CD2-94E3-416A-90E8-AD14C490472D";
+				PROVISIONING_PROFILE = "798B2BC5-6789-4994-BF11-AC0BEE9E2086";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "798B2BC5-6789-4994-BF11-AC0BEE9E2086";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -698,8 +698,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Joe ZUNTZ (U7SDAV876W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joe ZUNTZ (U7SDAV876W)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Joe ZUNTZ";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joe ZUNTZ";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -710,8 +710,8 @@
 				INFOPLIST_FILE = "locations1-Info.plist";
 				NSZombieEnabled = NO;
 				PRODUCT_NAME = locations1;
-				PROVISIONING_PROFILE = "C42F2CD2-94E3-416A-90E8-AD14C490472D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C42F2CD2-94E3-416A-90E8-AD14C490472D";
+				PROVISIONING_PROFILE = "798B2BC5-6789-4994-BF11-AC0BEE9E2086";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "798B2BC5-6789-4994-BF11-AC0BEE9E2086";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
