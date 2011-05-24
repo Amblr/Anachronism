@@ -117,7 +117,7 @@
 	SBJsonParser * parser = [[SBJsonParser alloc] init];
 	NSArray * nodeArray = [parser objectWithData:data];
 	[parser release];
-	
+	int i=0;
 	for(NSDictionary * nodeDictionary in nodeArray){
         @try{
 		L1Node * node = [[L1Node alloc] initWithDictionary:nodeDictionary key:[nodeDictionary objectForKey:@"id"]];
@@ -126,8 +126,12 @@
         CLLocationDistance dist = [nodeLocation distanceFromLocation:locationManager.location];
         NSLog(@"Distance from %@ = %f (%@,%@)",node.name,dist,nodeLocation,locationManager.location);
             
-            [node registerAmbientSound];
-            [node playAmbientSound];
+            if (i%4==0){
+                NSLog(@"ACTIVE NODE NAME IS %@",node.name);
+                [node registerAmbientSound];
+                [node playAmbientSound];
+            }
+            i++;
         }
         @catch (NSException *e ) {
             NSLog(@"Bad node: %@",e);

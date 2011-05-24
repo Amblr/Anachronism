@@ -27,7 +27,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SimulatedLocationManager);
     if (self){
         self.pathElements = [NSMutableArray arrayWithCapacity:0];
         self.updateInterval = 1.0;
-        self.speed = 10.0; //meters per second, I think.
+        self.speed = 25.0; //meters per second, I think.
         self.delegates = [NSMutableSet setWithCapacity:0];
         monitoredRegions = [[NSMutableArray alloc] initWithCapacity:0];
         inRegion = [[NSMutableDictionary alloc] initWithCapacity:0];
