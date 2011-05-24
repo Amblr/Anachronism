@@ -93,6 +93,7 @@
 		D8B19E4E131F9E9500FB56A4 /* L1MapImageOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B19E4D131F9E9500FB56A4 /* L1MapImageOverlay.m */; };
 		D8B1A0391323020D00FB56A4 /* oxford_map.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8B1A0381323020D00FB56A4 /* oxford_map.jpg */; };
 		D8D130DE1316EB7D00243D80 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D130DD1316EB7D00243D80 /* CoreLocation.framework */; };
+		D8DFC8AD138BB38100C801F9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8DFC8AC138BB38100C801F9 /* libz.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -240,6 +241,7 @@
 		D8B19E4D131F9E9500FB56A4 /* L1MapImageOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1MapImageOverlay.m; sourceTree = "<group>"; };
 		D8B1A0381323020D00FB56A4 /* oxford_map.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oxford_map.jpg; sourceTree = "<group>"; };
 		D8D130DD1316EB7D00243D80 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D8DFC8AC138BB38100C801F9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +249,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8DFC8AD138BB38100C801F9 /* libz.dylib in Frameworks */,
 				D869AF1613899B7C001CE9B2 /* AudioToolbox.framework in Frameworks */,
 				D869AF1713899B7C001CE9B2 /* AVFoundation.framework in Frameworks */,
 				D869AF1813899B7C001CE9B2 /* OpenAL.framework in Frameworks */,
@@ -333,6 +336,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				D8DFC8AC138BB38100C801F9 /* libz.dylib */,
 				D869AF1313899B7C001CE9B2 /* AudioToolbox.framework */,
 				D869AF1413899B7C001CE9B2 /* AVFoundation.framework */,
 				D869AF1513899B7C001CE9B2 /* OpenAL.framework */,
@@ -664,6 +668,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Joe ZUNTZ";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joe ZUNTZ";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -674,8 +680,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = locations1_Prefix.pch;
 				INFOPLIST_FILE = "locations1-Info.plist";
+				NSZombieEnabled = NO;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = locations1;
+				PROVISIONING_PROFILE = "798B2BC5-6789-4994-BF11-AC0BEE9E2086";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "798B2BC5-6789-4994-BF11-AC0BEE9E2086";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -685,6 +694,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Joe ZUNTZ";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joe ZUNTZ";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -693,7 +704,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = locations1_Prefix.pch;
 				INFOPLIST_FILE = "locations1-Info.plist";
+				NSZombieEnabled = NO;
 				PRODUCT_NAME = locations1;
+				PROVISIONING_PROFILE = "798B2BC5-6789-4994-BF11-AC0BEE9E2086";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "798B2BC5-6789-4994-BF11-AC0BEE9E2086";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
