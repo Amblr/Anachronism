@@ -19,16 +19,18 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SimulatedLocationManager);
 @synthesize pathElements;
 @synthesize updateInterval;
 @synthesize  delegates;
+@synthesize lastUpdate;
 
 -(id) init
 {
     self = [super init];
     if (self){
         self.pathElements = [NSMutableArray arrayWithCapacity:0];
-        self.updateInterval = 10.0;
-        self.speed = 5.0; //meters per second, I think.
+        self.updateInterval = 2.0;
+        self.speed = 200.0; //meters per second, I think.
+        self.delegates = [NSMutableSet setWithCapacity:0];
         monitoredRegions = [[NSMutableArray alloc] initWithCapacity:0];
-        lastUpdate = nil;
+        self.lastUpdate = nil;
         previousElement=nil;
         nextElement=nil;
         currentLocation=[[CLLocation alloc] initWithLatitude:51.5 longitude:0.0]; //Greenwich  //This leaks.
@@ -43,13 +45,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SimulatedLocationManager);
         NSLog(@"NOT starting journey - not enough elements or no path set");
         return;
     }
-    [lastUpdate release];
-    lastUpdate = [NSDate date];
+    self.lastUpdate = [NSDate date];
     segmentProgress=0.0;
     previousElement=[self.pathElements objectAtIndex:0];
     nextElement=[self.pathElements objectAtIndex:1];
     currentLocation=previousElement;
-    NSLog(@"Started moving along fake path (%d nodes) at speed %@",[self.pathElements count],self.speed);
+    NSLog(@"Began @ %@",self.lastUpdate);
+    NSLog(@"Started moving along fake path (%d nodes) at speed %f",[self.pathElements count],self.speed);
     SEL selector = @selector(updateLocationWrapper:);
     [self performSelector:selector withObject:nil afterDelay:self.updateInterval];
 }
@@ -64,7 +66,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SimulatedLocationManager);
 
 -(void) updateLocation
 {
-    NSTimeInterval deltaTime = -[lastUpdate timeIntervalSinceNow];
+    NSLog(@"Running update location %@",self);
+    NSLog(@"Last update %@",self.lastUpdate);
+    
+    NSTimeInterval deltaTime = -[self.lastUpdate timeIntervalSinceNow];
     
     segmentProgress += deltaTime*self.speed;
     CLLocationDistance currentSegmentLength = [nextElement distanceFromLocation:previousElement];
@@ -101,12 +106,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SimulatedLocationManager);
     CLLocation * previousLocation = currentLocation;
     currentLocation = [[CLLocation alloc] initWithLatitude:currentCoordinate.latitude longitude:currentCoordinate.longitude];
             
-    lastUpdate=[NSDate date];
+    self.lastUpdate=[NSDate date];
     NSLog(@"Fake path reached %@",currentLocation);
     
     [self checkMonitoring];
     [self reportLocationChangedFrom:previousLocation];
-    [currentLocation autorelease];
+//    [currentLocation autorelease];
     
 }
 

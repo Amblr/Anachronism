@@ -52,6 +52,7 @@
 		D869AF1713899B7C001CE9B2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D869AF1413899B7C001CE9B2 /* AVFoundation.framework */; };
 		D869AF1813899B7C001CE9B2 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D869AF1513899B7C001CE9B2 /* OpenAL.framework */; };
 		D869AF1A13899BDA001CE9B2 /* mapIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D869AF1913899BDA001CE9B2 /* mapIcon.png */; };
+		D869AF1D1389A637001CE9B2 /* L1Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = D869AF1C1389A637001CE9B2 /* L1Pin.m */; };
 		D8750C39134A3C1100564337 /* L1Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = D8750C38134A3C1100564337 /* L1Resource.m */; };
 		D876A1641376E8F1006C6B05 /* testView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D876A1631376E8F1006C6B05 /* testView.xib */; };
 		D8778E391312F068003874F6 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = D8778E2E1312F068003874F6 /* ASIAuthenticationDialog.m */; };
@@ -169,6 +170,8 @@
 		D869AF1413899B7C001CE9B2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D869AF1513899B7C001CE9B2 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		D869AF1913899BDA001CE9B2 /* mapIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapIcon.png; sourceTree = "<group>"; };
+		D869AF1B1389A636001CE9B2 /* L1Pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1Pin.h; sourceTree = "<group>"; };
+		D869AF1C1389A637001CE9B2 /* L1Pin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Pin.m; sourceTree = "<group>"; };
 		D8750C37134A3C1000564337 /* L1Resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1Resource.h; sourceTree = "<group>"; };
 		D8750C38134A3C1100564337 /* L1Resource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Resource.m; sourceTree = "<group>"; };
 		D876A1631376E8F1006C6B05 /* testView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = testView.xib; sourceTree = "<group>"; };
@@ -272,6 +275,8 @@
 				D800308E130E9BD700763C05 /* Images */,
 				D8400673130B1F0F0038286A /* JSON */,
 				D84B82EB130B0F8D00A57BA1 /* SimpleURLConnection.h */,
+				D869AF1B1389A636001CE9B2 /* L1Pin.h */,
+				D869AF1C1389A637001CE9B2 /* L1Pin.m */,
 				D84B82EC130B0F8D00A57BA1 /* SimpleURLConnection.m */,
 				D8179555135389A400E3E63B /* L1ChooserViewController.h */,
 				D8179556135389A800E3E63B /* L1ChooserViewController.m */,
@@ -648,6 +653,7 @@
 				D850D5F013895E9F00D67338 /* SimulatedLocationManager.m in Sources */,
 				D850D5F41389886600D67338 /* SimulatedUserLocation.m in Sources */,
 				D869AF0E13899B36001CE9B2 /* SoundManager.m in Sources */,
+				D869AF1D1389A637001CE9B2 /* L1Pin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

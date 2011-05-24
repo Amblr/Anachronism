@@ -33,7 +33,7 @@
 @property (retain) NSMutableArray * pathElements;
 @property (assign) double speed;
 @property (retain) NSMutableSet * delegates;
-
+@property (retain) NSDate * lastUpdate;
 
 -(void) checkMonitoring;
 

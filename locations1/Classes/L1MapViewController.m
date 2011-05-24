@@ -12,6 +12,8 @@
 #import "L1MapImageOverlayView.h"
 #import "L1Path.h"
 #import "SimulatedUserLocation.h"
+#import "L1Pin.h"
+
 
 @implementation L1MapViewController
 @synthesize  delegate;
@@ -173,6 +175,10 @@
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
     
+//    if ([annotation isKindOfClass:[L1Pin class]]){
+//        return [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
+//    }
+    
     if ([annotation isKindOfClass:[SimulatedUserLocation class]]){
         SimulatedUserLocation * sim = (SimulatedUserLocation*) annotation;
         return [sim viewForSimulatedLocationWithIdentifier:@"SimulatedUserLocation"];
@@ -187,7 +193,7 @@
 
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
-	NSLog(@"Getting view overlay.");
+	NSLog(@"Getting view overlay: %@",overlay);
 	if ([overlay isKindOfClass:[MKPolygon class]]){
 		MKPolygonView * polygonView = [[MKPolygonView alloc] initWithPolygon:overlay];
 		UIColor * color = [[UIColor redColor] colorWithAlphaComponent:0.25];
@@ -321,8 +327,12 @@
 
 -(void) locationManager:(SimulatedLocationManager*) locationManager didUpdateToLocation:(CLLocation*)toLocation fromLocation: (CLLocation*)fromLocation
 {
-    [primaryMapView addAnnotation:fakeUserLocation];
-    [primaryMapView removeAnnotation:fakeUserLocation]; 
+    NSLog(@"Map received update instruction to %@",toLocation);
+    
+//    L1Pin * pin = [[L1Pin alloc] initWithCoordinate:toLocation.coordinate];
+//    [primaryMapView addAnnotation:pin];
+        [primaryMapView removeAnnotation:fakeUserLocation]; 
+        [primaryMapView addAnnotation:fakeUserLocation];
     
 
 }
