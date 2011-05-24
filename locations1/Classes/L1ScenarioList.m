@@ -85,13 +85,15 @@
     self.thumbnailURLs = [NSMutableArray arrayWithCapacity:[scenarioArray count]];
     self.imageURLs= [NSMutableArray arrayWithCapacity:[scenarioArray count]];
 
-    
+
+
     //description, icon, splash_screen, title
     for (NSDictionary * scenarioDictionary in scenarioArray){
+       
         [self.titles addObject:[scenarioDictionary objectForKey:@"title"]];
         [self.descriptions addObject:[scenarioDictionary objectForKey:@"description"]];
-        [self.thumbnailURLs addObject:[scenarioDictionary objectForKey:@"icon"]];
-        [self.imageURLs addObject:[scenarioDictionary objectForKey:@"splash_screen"]];
+        [self.thumbnailURLs addObject:[scenarioDictionary objectForKey:@"icon_url"]];
+        [self.imageURLs addObject:[scenarioDictionary objectForKey:@"splash_screen_url"]];
         [self.IDs addObject:[scenarioDictionary objectForKey:@"id"]];
         NSLog(@"%@",scenarioDictionary);
         NSLog(@"Found scenario: %@ (%@)",[self.titles lastObject], [self.IDs lastObject]);
@@ -106,7 +108,7 @@
     {
         
         if (imageURLString && (![imageURLString isEqual: [NSNull null]])){
-            NSString * fullURLString = [@"http://warm-earth-179.heroku.com/images/" stringByAppendingString:imageURLString];
+            NSString * fullURLString = [@"http://warm-earth-179.heroku.com" stringByAppendingString:imageURLString];
             NSURL * imageURL = [NSURL URLWithString:fullURLString];
             NSLog(@"%@",fullURLString);
             NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
@@ -122,7 +124,7 @@
     for (NSString * imageURLString in self.thumbnailURLs)
     {
         if (imageURLString && (![imageURLString isEqual: [NSNull null]])){
-            NSString * fullURLString = [@"http://warm-earth-179.heroku.com/images/" stringByAppendingString:imageURLString];
+            NSString * fullURLString = [@"http://warm-earth-179.heroku.com" stringByAppendingString:imageURLString];
             NSURL * imageURL = [NSURL URLWithString:fullURLString];
             NSLog(@"%@",fullURLString);
             NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
