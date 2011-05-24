@@ -11,7 +11,7 @@
 #import "L1Resource.h"
 #import "SoundManager.h"
 
-#define STANDARD_NODE_RADIUS 15.0  //meters
+#define STANDARD_NODE_RADIUS 50.0  //meters
 
 
 //Nodes have state
@@ -37,6 +37,7 @@
 	NSNumber * radius;
 	NSString * text;
 	NSString * name;
+    BOOL visible;
 	UIImage  * image;
     NSMutableDictionary * metadata;
     NSMutableArray * resources;
@@ -63,6 +64,7 @@
 @property (retain) NSString * name;
 @property (retain) UIImage * image;
 @property (assign) BOOL enabled;
+@property (assign) BOOL visible;
 
 
 -(id) initWithDictionary:(NSDictionary*) nodeDictionary key:(NSString*)keyName;

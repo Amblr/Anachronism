@@ -29,7 +29,7 @@
 
 -(MKAnnotationView*) viewForSimulatedLocationWithIdentifier:(NSString*) identifier
 {
-    NSLog(@"Created fake pin.");
+//    NSLog(@"Created fake pin.");
     MKAnnotationView * view = [[MKAnnotationView alloc] initWithAnnotation:self reuseIdentifier:identifier];
     view.image = [UIImage imageNamed:@"mapIcon.png"];
 

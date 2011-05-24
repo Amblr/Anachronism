@@ -12,6 +12,7 @@
 @interface SimulatedLocationManager : NSObject {
     NSMutableArray * pathElements;
     NSMutableArray * monitoredRegions;
+    NSDictionary * inRegion;
     
     NSMutableSet * delegates;
 

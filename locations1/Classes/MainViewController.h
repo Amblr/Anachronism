@@ -33,4 +33,6 @@
 
 - (IBAction)walkPath:(id)sender;
 -(void) presentChooserView;
+-(void) didSelectNode:(L1Node*) node;
+-(void) triggeredNode:(L1Node*) node;
 @end

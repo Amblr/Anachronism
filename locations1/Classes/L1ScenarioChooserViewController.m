@@ -22,7 +22,7 @@
         scenarioList = [[L1ScenarioList alloc] initWithURL:@"http://warm-earth-179.heroku.com/scenarios.json"];
 //        scenarioList = [[L1ScenarioList alloc] initWithFakeScenario];
         scenarioList.delegate = self;
-        [self scenarioListDidFinishedLoading:scenarioList];
+//        [self scenarioListDidFinishedLoading:scenarioList];
     }
     return self;
 }
@@ -64,7 +64,13 @@
 -(void) scenarioListDidFinishedLoading:(L1ScenarioList*) completedList
 {
     [chooserTable reloadData];
-//    NSUInteger startIndices[2] = {0,0};
+    //- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+    NSUInteger paths[2] = {0,0};
+    NSIndexPath * indexPath = [NSIndexPath indexPathWithIndexes:paths length:2];
+    [chooserTable selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
+    //- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+    [self tableView:chooserTable didSelectRowAtIndexPath:indexPath];
+    //    NSUInteger startIndices[2] = {0,0};
 //    NSIndexPath * indexPath = [NSIndexPath indexPathWithIndexes:startIndices length:2];
 }
 

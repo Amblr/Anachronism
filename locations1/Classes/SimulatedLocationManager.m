@@ -26,10 +26,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SimulatedLocationManager);
     self = [super init];
     if (self){
         self.pathElements = [NSMutableArray arrayWithCapacity:0];
-        self.updateInterval = 0.5;
-        self.speed = 100.0; //meters per second, I think.
+        self.updateInterval = 1.0;
+        self.speed = 10.0; //meters per second, I think.
         self.delegates = [NSMutableSet setWithCapacity:0];
         monitoredRegions = [[NSMutableArray alloc] initWithCapacity:0];
+        inRegion = [[NSMutableDictionary alloc] initWithCapacity:0];
         self.lastUpdate = nil;
         previousElement=nil;
         nextElement=nil;
@@ -66,8 +67,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SimulatedLocationManager);
 
 -(void) updateLocation
 {
-    NSLog(@"Running update location %@",self);
-    NSLog(@"Last update %@",self.lastUpdate);
+//    NSLog(@"Running update location %@",self);
+//    NSLog(@"Last update %@",self.lastUpdate);
     
     NSTimeInterval deltaTime = -[self.lastUpdate timeIntervalSinceNow];
     
@@ -107,7 +108,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SimulatedLocationManager);
     currentLocation = [[CLLocation alloc] initWithLatitude:currentCoordinate.latitude longitude:currentCoordinate.longitude];
             
     self.lastUpdate=[NSDate date];
-    NSLog(@"Fake path reached %@",currentLocation);
+//    NSLog(@"Fake path reached %@",currentLocation);
     
     [self checkMonitoring];
     [self reportLocationChangedFrom:previousLocation];
@@ -131,12 +132,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SimulatedLocationManager);
 -(void) checkMonitoring
 {
     for (CLRegion * region in monitoredRegions){
-        NSLog(@"Checking for hitting region:%@ vs (%f,%f)",region,self.location.coordinate.latitude,self.location.coordinate.longitude);
         if ([region containsCoordinate:self.location.coordinate]){
-            SEL selector = @selector(locationManager:didEnterRegion:);
-            for (id delegate in delegates){
-                if ([delegate respondsToSelector:selector]) [delegate performSelector:selector withObject:self withObject:region];
+            NSNumber * alreadyIn = [inRegion objectForKey:region.identifier];
+            
+            // If we are not already in the area send a message.
+            if (![alreadyIn boolValue]){
+                SEL selector = @selector(locationManager:didEnterRegion:);
+                for (id delegate in delegates){
+                    if ([delegate respondsToSelector:selector]) [delegate performSelector:selector withObject:self withObject:region];
+                    [inRegion setValue:[NSNumber numberWithBool:YES] forKey:region.identifier];
             }
+            }
+        }
+        else{ //not in region
+            [inRegion setValue:[NSNumber numberWithBool:NO] forKey:region.identifier];
+
         }
         
     }
@@ -152,6 +162,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SimulatedLocationManager);
 - (void)startMonitoringForRegion:(CLRegion *)region desiredAccuracy:(CLLocationAccuracy)accuracy
 {
     [monitoredRegions addObject:region];
+    BOOL inNow = [region containsCoordinate:self.location.coordinate];
+    NSNumber * inNowNumber = [NSNumber numberWithBool:inNow];
+    [inRegion setValue:inNowNumber forKey:region.identifier];
     
 }
 

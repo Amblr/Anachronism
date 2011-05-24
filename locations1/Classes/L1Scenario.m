@@ -229,7 +229,7 @@
 -(void) startMonitoringNodeProximity:(L1Node*)node
 {
     NSLog(@"Region from %@",[node class]);
-    CLRegion * region = [node region];
+//    CLRegion * region = [node region];
 	[locationManager startMonitoringForRegion:[node region] desiredAccuracy:0.0];
 //    if ([region containsCoordinate:locationManager.location.coordinate]){
 //        NSLog(@"Started inside region");
@@ -248,13 +248,21 @@
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
-	NSLog(@"Approached the region for a node: %@",region);
+//	NSLog(@"Approached the region for a node: %@",region);
 //    NSString * text = [NSString stringWithFormat:@"You are near the %@",region.identifier];
 //    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Pub Found!" message:text delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 //    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Pub Found" message:@"Why not visit the lovely pub that is nearby?" delegate:self cancelButtonTitle:@"OK",nil];
 //    [alert show];
 //    [alert autorelease];
-	
+    NSString * identifier = region.identifier;
+    L1Node * node = [nodes objectForKey:identifier];
+    if (node){
+        SEL selector = @selector(triggeredNode:);
+        if ([delegate respondsToSelector:selector]){
+            [delegate performSelector:selector withObject:node];
+        }
+    }
+//	
 }
 
 

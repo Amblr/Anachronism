@@ -34,6 +34,7 @@
 //-(IBAction) overlayImage:(id) sender;
 -(void) addPath:(L1Path*)path;
 
+-(void) zoomToNode:(L1Node*) node;
 
 -(void) mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view;
 -(void) mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray*) annotationViews;

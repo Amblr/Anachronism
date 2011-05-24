@@ -52,7 +52,7 @@
     if ((self = [super init])){
         self.name = [data objectForKey:@"name"];
         self.key = [data objectForKey:@"id"];
-        self.url = [data objectForKey:@"url"];
+        self.url = [data objectForKey:@"path"];
         self.type = [data objectForKey:@"type"];
         self.local = NO;
         self.metadata = [NSMutableDictionary dictionaryWithDictionary:[data objectForKey:@"metadata"]];

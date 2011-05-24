@@ -95,6 +95,15 @@
 //    [super dealloc];
 //}
 
+-(void) zoomToNode:(L1Node*) node
+{
+    CLLocationCoordinate2D centerCoord = [node coordinate];
+    MKMapRect rect = [primaryMapView visibleMapRect];
+    rect.origin = MKMapPointForCoordinate(centerCoord);
+        
+    [primaryMapView setVisibleMapRect:MKMapRectOffset(rect, -rect.size.width/2, -rect.size.height/2) animated:YES];
+
+}
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
@@ -105,17 +114,9 @@
 		NSLog(@"Selected %@",node.name);
         SEL clickedNode = @selector(didSelectNode:);
         if ([self.delegate respondsToSelector:clickedNode]) [self.delegate performSelector:clickedNode withObject:node];
-//        [mapView deselectAnnotation:node animated:NO];
-        CLLocationCoordinate2D centerCoord = [node coordinate];
-        MKMapPoint center = MKMapPointForCoordinate(centerCoord);
-        MKMapRect region;
-        CGFloat size = 10000;
-        region.origin = center;
-        region.size.width = size;
-        region.size.height = size;
+        [self zoomToNode:node];
         
-        MKMapRect region2 = MKMapRectOffset(region, -size/2, -size/2);
-        [mapView setVisibleMapRect:region2 animated:YES];
+        //        [mapView deselectAnnotation:node animated:NO];
 
 //		self.nodeContentViewController.modalTransitionStyle  = UIModalTransitionStyleCrossDissolve;
 //		[self presentModalViewController:nodeContentViewController animated:YES];
@@ -147,7 +148,10 @@
 -(MKAnnotationView *)annotationViewFor:(MKMapView *)mapView forNode:(L1Node*)node{
 
 	
-	
+	if (!node.visible){
+        NSLog(@"Inivisible node: %@",node.name);
+        return nil;   
+    }
 	MKAnnotationView * annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"node"];
 	
 	if (!annotationView){
@@ -155,7 +159,7 @@
 	}
 
 //	annotationView.image = [self.annotationImages objectForKey:@"node"];
-	annotationView.enabled = [node isVisible];
+	annotationView.enabled = node.visible;
 	annotationView.canShowCallout = NO;
 	
 	UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -267,12 +271,19 @@
 {
 	NSLog(@"Received %d nodes", [nodes count]);
     for(L1Node * node in [nodes allValues]){
-		[primaryMapView addAnnotation:node];
+		if (node.visible) [primaryMapView addAnnotation:node];
 	}
     
     NSLog(@"Adding fake location");
     [primaryMapView addAnnotation:fakeUserLocation];
 
+    if ([nodes count]){
+        L1Node * firstNode = [[nodes allValues] objectAtIndex:0];
+        CLLocationCoordinate2D centerCoordinate = firstNode.coordinate;
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(centerCoordinate, 1000., 1000.);
+        [primaryMapView setRegion:region animated:YES];
+     }
+    
 }
 
 
@@ -327,7 +338,7 @@
 
 -(void) locationManager:(SimulatedLocationManager*) locationManager didUpdateToLocation:(CLLocation*)toLocation fromLocation: (CLLocation*)fromLocation
 {
-    NSLog(@"Map received update instruction to %@",toLocation);
+//    NSLog(@"Map received update instruction to %@",toLocation);
     
 //    L1Pin * pin = [[L1Pin alloc] initWithCoordinate:toLocation.coordinate];
 //    [primaryMapView addAnnotation:pin];

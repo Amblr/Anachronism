@@ -19,6 +19,7 @@
 @synthesize text;
 @synthesize metadata;
 @synthesize resources;
+@synthesize visible;
 
 -(id) initWithDictionary:(NSDictionary*) nodeDictionary
 {
@@ -53,6 +54,8 @@
 	self.latitude = [coords objectAtIndex:0];
 	self.longitude = [coords objectAtIndex:1];
     self.metadata = [nodeDictionary objectForKey:@"meta_data"];
+    NSNumber * visibliityNumber = [nodeDictionary objectForKey:@"visible"];
+    self.visible = [visibliityNumber boolValue];
 
     /* Resources.  Get an array of them. */
     self.resources = [[[NSMutableArray alloc] init] autorelease];
@@ -103,7 +106,7 @@
 	r=STANDARD_NODE_RADIUS;
 #warning Ignoring node radii 
     
-	return [[[CLRegion alloc] initCircularRegionWithCenter:self.coordinate radius:r identifier:self.name] autorelease];
+	return [[[CLRegion alloc] initCircularRegionWithCenter:self.coordinate radius:r identifier:self.key] autorelease];
 	
 }
 

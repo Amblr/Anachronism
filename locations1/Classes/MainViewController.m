@@ -163,7 +163,13 @@
     [mapViewController addPath:path];
 }
 
-
+-(void) triggeredNode:(L1Node*) node
+{
+    NSLog(@"Triggered Node %@",node.name);
+    [mapViewController zoomToNode:node];
+    [self didSelectNode:node];
+    
+}
 
 -(void) didSelectNode:(L1Node*) node
 {
@@ -173,12 +179,13 @@
     if ([node.resources count]){
         
         L1Resource * resource = [node.resources objectAtIndex:0];
-        NSString * urlString = resource.url;
-        NSLog(@"Loading url: %@",urlString);
-        NSURL * url = [NSURL URLWithString:urlString];
-        NSURLRequest * request = [NSURLRequest requestWithURL:url];
-        [mediaView loadRequest:request];
-        
+        NSString * urlString = [NSString stringWithFormat:@"%@%@",@"http://warm-earth-179.heroku.com",resource.url];
+        if (![urlString isKindOfClass:[NSNull class]]){
+            NSLog(@"Loading url: %@",urlString);
+            NSURL * url = [NSURL URLWithString:urlString];
+            NSURLRequest * request = [NSURLRequest requestWithURL:url];
+            [mediaView loadRequest:request];
+        }
     }
 }
 

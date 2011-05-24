@@ -59,6 +59,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBMKMapType">2</int>
 						<bool key="IBMKShowsUserLocation">YES</bool>
 					</object>
 					<object class="IBUINavigationBar" id="489519681">
@@ -91,10 +92,9 @@
 					<object class="IBUIWebView" id="598767301">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{716, 439}, {288, 309}}</string>
+						<string key="NSFrame">{{716, 528}, {288, 220}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="310911487">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -106,7 +106,7 @@
 					<object class="IBUITextView" id="960004459">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{716, 263}, {283, 54}}</string>
+						<string key="NSFrame">{{721, 308}, {283, 54}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="828863089"/>
@@ -129,7 +129,7 @@
 					<object class="IBUITextView" id="113303012">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{716, 316}, {283, 107}}</string>
+						<string key="NSFrame">{{716, 386}, {283, 134}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="598767301"/>
@@ -148,7 +148,7 @@
 					<object class="IBUIButton" id="828863089">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{716, 263}, {97, 37}}</string>
+						<string key="NSFrame">{{814, 268}, {97, 37}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="113303012"/>
@@ -331,10 +331,10 @@
 							<reference ref="505358365"/>
 							<reference ref="580669953"/>
 							<reference ref="598767301"/>
-							<reference ref="960004459"/>
-							<reference ref="489519681"/>
 							<reference ref="113303012"/>
+							<reference ref="960004459"/>
 							<reference ref="828863089"/>
+							<reference ref="489519681"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
