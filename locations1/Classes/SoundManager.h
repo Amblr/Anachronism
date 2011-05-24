@@ -23,6 +23,7 @@
     NSMutableDictionary* soundSources;
     NSMutableArray* soundList;
     NSMutableArray* listenerPosition;
+    NSMutableDictionary* cachedSounds;
     
 }
 
@@ -41,5 +42,7 @@
 
 @property (retain) NSMutableArray* listenerPosition;
 @property (retain) NSMutableDictionary* soundSources;
+@property (retain) NSMutableDictionary* cachedSounds;
+
 @property (retain) NSMutableArray* soundList;
 @end

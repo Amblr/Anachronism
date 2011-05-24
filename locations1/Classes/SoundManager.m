@@ -13,6 +13,8 @@
 
 @synthesize  listenerPosition;
 @synthesize soundSources;
+@synthesize cachedSounds;
+
 @synthesize soundList;
 
 static SoundManager* sharedSoundManager = nil;
@@ -37,7 +39,7 @@ static SoundManager* sharedSoundManager = nil;
         self.listenerPosition =[NSMutableArray arrayWithObjects:[NSNumber numberWithFloat:0],
             [NSNumber numberWithFloat:0],
                            [NSNumber numberWithFloat:0],nil] ;
-    
+        self.cachedSounds = [NSMutableDictionary dictionaryWithCapacity:0];
         ALfloat pos[3];
         pos[0]=53.908627;
         pos[1]=-1.598354;
@@ -112,41 +114,54 @@ static SoundManager* sharedSoundManager = nil;
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:filename ofType:extension];
     NSLog(@"opening audio file");
-    
-    AudioFileID fileId = [self openAudioFile:filePath];
-    
-    UInt32 fileSize = [self audioFileSize:fileId];
-    
-    unsigned char* data= malloc(fileSize);
-    
-    OSStatus result = noErr;
-    NSLog(@"loading in to buffer");
-    result = AudioFileReadBytes(fileId, FALSE, 0, &fileSize,data);
-    AudioFileClose(fileId);
-    NSLog(@"done and closed file");
-    
-    if(result != 0){
-        NSLog(@"something went wrong loading the sound file %@ ",filename);
-        return;
+    NSUInteger bufferId=NULL;
+    unsigned char* data=NULL;
+
+    if ([cachedSounds objectForKey:filename]){
+        NSLog(@"getting cached sound ");
+        bufferId=[[cachedSounds objectForKey:filename] unsignedIntValue];
     }
     
-    ALenum error = alGetError();
     
-    NSUInteger bufferId;
-    alGenBuffers(1, &bufferId);
-    alBufferData(bufferId, AL_FORMAT_MONO16, data, fileSize, frequency);
-    
-    error = alGetError();
+    if(bufferId==NULL){
+        AudioFileID fileId = [self openAudioFile:filePath];
+        
+        UInt32 fileSize = [self audioFileSize:fileId];
+        
+        data= malloc(fileSize);
+        
+        OSStatus result = noErr;
+        NSLog(@"loading in to buffer");
+        result = AudioFileReadBytes(fileId, FALSE, 0, &fileSize,data);
+        AudioFileClose(fileId);
+        NSLog(@"done and closed file");
+        
+        if(result != 0){
+            NSLog(@"something went wrong loading the sound file %@ ",filename);
+            return;
+        }
+        
+        ALenum error = alGetError();
+        
+        alGenBuffers(1, &bufferId);
+        alBufferData(bufferId, AL_FORMAT_MONO16, data, fileSize, frequency);
+        
+        error = alGetError();
 
-    if(error !=0){
-        NSLog(@"failed while allocating buffer");
-        return 0;
+        if(error !=0){
+            NSLog(@"failed while allocating buffer");
+            return 0;
+        }
+        NSLog(@"caching buffer");
+        [cachedSounds setObject:[NSNumber numberWithUnsignedInt:bufferId] forKey:filename];
+
     }
     
     NSMutableDictionary* properties= [NSMutableDictionary dictionaryWithCapacity:0];
     [properties setObject:[NSNumber numberWithFloat:gain] forKey:@"gain"];
     [properties setObject:[NSNumber numberWithFloat:pitch]  forKey:@"pitch"];
     [properties setObject:[NSNumber numberWithFloat:frequency]  forKey:@"frequency"];
+
 
     [properties setObject:[NSNumber numberWithBool:loops] forKey:@"loops"];
     [properties setObject:loc forKey:@"location"];
@@ -182,6 +197,7 @@ static SoundManager* sharedSoundManager = nil;
 
 
 -(NSUInteger) activateSourceWithKey:(NSString*) key{
+    NSLog(@"%@",soundSources);
     NSLog(@"trying to play sound for key %@",key);
     ALenum error = alGetError(); // clears the error
     
