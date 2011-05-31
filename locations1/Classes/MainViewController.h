@@ -11,19 +11,21 @@
 #import "L1MapViewController.h"
 #import "L1Scenario.h"
 #import "L1ScenarioChooserViewController.h"
-
+#import "MediaListViewController.h"
 
 @interface MainViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate> {
     
     IBOutlet MKMapView *primaryMapView;
-    IBOutlet UIPickerView *pathSelectionView;
+//    IBOutlet UIPickerView *pathSelectionView;
     IBOutlet UIWebView *mediaView;
+    IBOutlet UIWebView *streetView;
+    IBOutlet UITableView *mediaSelectionView;
     IBOutlet L1MapViewController *mapViewController;
+    IBOutlet MediaListViewController * mediaListViewController;
+
     L1ScenarioChooserViewController *chooserViewController;
     L1Scenario *scenario;
     NSString * baseURL;
-    IBOutlet UITextView *titleText;
-    IBOutlet UITextView *descriptionText;
     
 }
 
@@ -35,4 +37,5 @@
 -(void) presentChooserView;
 -(void) didSelectNode:(L1Node*) node;
 -(void) triggeredNode:(L1Node*) node;
+-(void) setStreetViewLocationLat:(CLLocationDegrees) lat lon:(CLLocationDegrees) lon;
 @end

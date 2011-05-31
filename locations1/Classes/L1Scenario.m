@@ -152,7 +152,6 @@
 {
     NSLog(@"Paths data downloaded");
     NSString * str = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-    NSLog(@"%@",str);
 	SBJsonParser * parser = [[SBJsonParser alloc] init];
 	NSArray * pathArray = [parser objectWithData:data];
 	[parser release];

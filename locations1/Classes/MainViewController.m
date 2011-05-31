@@ -28,10 +28,7 @@
 - (void)dealloc
 {
     [primaryMapView release];
-    [pathSelectionView release];
     [mediaView release];
-    [titleText release];
-    [descriptionText release];
     [super dealloc];
 }
 
@@ -53,14 +50,8 @@
 
 - (void)viewDidUnload
 {
-    [pathSelectionView release];
-    pathSelectionView = nil;
     [mediaView release];
     mediaView = nil;
-    [titleText release];
-    titleText = nil;
-    [descriptionText release];
-    descriptionText = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -73,15 +64,6 @@
 }
 
 #pragma mark - Choosing Scenario
-
-- (IBAction)walkPath:(id)sender {
-    NSInteger pathIndex = [pathSelectionView selectedRowInComponent:0];
-    NSArray * paths = [scenario.paths allValues];
-    L1Path * path = [paths objectAtIndex:pathIndex];
-    [self.scenario walkPath:path];
-    
-    
-}
 
 -(void) presentChooserView
 {
@@ -112,7 +94,16 @@
 //    self.scenario = [L1Scenario fakeScenarioFromNodeFile:nodesFile pathFile:pathsFile delegate:self];
 //    mapViewController.scenario=self.scenario;
     self.scenario.delegate = self;
-    [pathSelectionView reloadAllComponents];
+    NSError * error = nil;
+    NSString * path = [[NSBundle mainBundle] pathForResource:@"streetview" ofType:@"html"];
+    NSString * streetViewHtml = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+    if (error==nil){
+        [streetView loadHTMLString:streetViewHtml baseURL:[NSURL URLWithString:@""]];        
+    }
+    else{
+        NSLog(@"Failed to load HTML from %@");
+    }
+    
 
 }
 
@@ -130,7 +121,6 @@
 {
     
     NSLog(@"MainViewController Received %d paths", [paths count]);
-    [pathSelectionView reloadAllComponents];
     [mapViewController performSelector:@selector(pathSource:didReceivePaths:) withObject:pathManager withObject:paths];
 
 }
@@ -174,20 +164,56 @@
 -(void) didSelectNode:(L1Node*) node
 {
     
-    titleText.text = node.name;
-    descriptionText.text = node.text;
-    if ([node.resources count]){
-        
-        L1Resource * resource = [node.resources objectAtIndex:0];
-        NSString * urlString = [NSString stringWithFormat:@"%@%@",@"http://warm-earth-179.heroku.com",resource.url];
-        if (![urlString isKindOfClass:[NSNull class]]){
-            NSLog(@"Loading url: %@",urlString);
-            NSURL * url = [NSURL URLWithString:urlString];
-            NSURLRequest * request = [NSURLRequest requestWithURL:url];
-            [mediaView loadRequest:request];
+//    if ([node.resources count]){
+//        
+//        L1Resource * resource = [node.resources objectAtIndex:0];
+//        NSString * urlString = [NSString stringWithFormat:@"%@%@",@"http://warm-earth-179.heroku.com",resource.url];
+//        if (![urlString isKindOfClass:[NSNull class]]){
+//            NSLog(@"Loading url: %@",urlString);
+//            NSURL * url = [NSURL URLWithString:urlString];
+//            NSURLRequest * request = [NSURLRequest requestWithURL:url];
+//            [mediaView loadRequest:request];
+//        }
+//    }
+
+    mediaListViewController.node = node;
+    [mediaSelectionView reloadData];
+
+    [self setStreetViewLocationLat:[node.latitude doubleValue] lon:[node.longitude doubleValue]];
+
+}
+
+-(void) setStreetViewLocationLat:(CLLocationDegrees) lat lon:(CLLocationDegrees) lon
+{
+    NSString * command = [NSString stringWithFormat:@"setMyLatLng(%lf,%lf);",lat,lon];
+    [streetView stringByEvaluatingJavaScriptFromString:command];
+    
+  
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger i = [indexPath indexAtPosition:1];
+    L1Resource * resource = [mediaListViewController.node.resources objectAtIndex:i];
+    NSString * urlString = [@"http://warm-earth-179.heroku.com" stringByAppendingString:resource.url];
+    NSURL * url = [NSURL URLWithString:urlString];
+    NSLog(@"Loading resource URL: %@",url);
+//    NSURLRequest * request = [NSURLRequest requestWithURL:url];
+//    [mediaView loadRequest:request];
+    if (resource.local){
+        NSLog(@"Local");
+        if ([resource.type isEqualToString:@"image"]){
+            NSLog(@"image");
+            NSURL * url = [NSURL URLWithString:resource.url];
+            NSData * data = resource.resourceData;
+            [mediaView loadData:data MIMEType:@"image/jpeg" textEncodingName:@"utf-8" baseURL:url];
+            
         }
     }
 }
+
+
 
 @end
 

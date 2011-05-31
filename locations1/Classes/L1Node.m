@@ -9,6 +9,9 @@
 #import "L1Node.h"
 #import "L1Experience.h"
 
+
+static NSDateFormatter * dateParser = nil;
+
 @implementation L1Node
 
 @synthesize name;
@@ -20,6 +23,7 @@
 @synthesize metadata;
 @synthesize resources;
 @synthesize visible;
+@synthesize date;
 
 -(id) initWithDictionary:(NSDictionary*) nodeDictionary
 {
@@ -56,6 +60,16 @@
     self.metadata = [nodeDictionary objectForKey:@"meta_data"];
     NSNumber * visibliityNumber = [nodeDictionary objectForKey:@"visible"];
     self.visible = [visibliityNumber boolValue];
+
+    if (dateParser==nil){
+        dateParser = [[NSDateFormatter alloc] init];
+                                  //2011-05-24T15:50:45Z
+        [dateParser setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+
+    }
+        NSString * dateString = [nodeDictionary objectForKey:@"created_at"];
+    self.date = [dateParser dateFromString:dateString];
+    NSLog(@"date = %@ (%@)",self.date,[nodeDictionary objectForKey:@"created_at"]);
 
     /* Resources.  Get an array of them. */
     self.resources = [[[NSMutableArray alloc] init] autorelease];

@@ -37,6 +37,8 @@
 	NSNumber * radius;
 	NSString * text;
 	NSString * name;
+    NSDate * date;
+    
     BOOL visible;
 	UIImage  * image;
     NSMutableDictionary * metadata;
@@ -58,6 +60,7 @@
 @property (retain) NSMutableArray * resources;
 @property (retain) NSNumber * latitude;
 @property (retain) NSNumber * longitude;
+@property (retain) NSDate * date;
 @property (copy) NSString * key;
 @property (retain) NSNumber * radius;
 @property (retain) NSString * text;

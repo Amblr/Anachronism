@@ -76,6 +76,7 @@
 		D8778F0C1312F549003874F6 /* L1User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8778F0B1312F549003874F6 /* L1User.m */; };
 		D8778FA9131303FF003874F6 /* L1LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8778FA7131303FF003874F6 /* L1LoginViewController.m */; };
 		D8778FAA131303FF003874F6 /* L1LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8778FA8131303FF003874F6 /* L1LoginViewController.xib */; };
+		D8907EB213957A7700A9FDDF /* MediaListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8907EB113957A7700A9FDDF /* MediaListViewController.m */; };
 		D8A7B0BB137C7194005FB761 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A7B0B9137C7194005FB761 /* MainViewController.m */; };
 		D8A7B0BC137C7194005FB761 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8A7B0BA137C7194005FB761 /* MainViewController.xib */; };
 		D8A7B0C5137C7CA1005FB761 /* L1ScenarioChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A7B0C3137C7CA1005FB761 /* L1ScenarioChooserViewController.m */; };
@@ -94,6 +95,7 @@
 		D8B19E4E131F9E9500FB56A4 /* L1MapImageOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B19E4D131F9E9500FB56A4 /* L1MapImageOverlay.m */; };
 		D8B1A0391323020D00FB56A4 /* oxford_map.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8B1A0381323020D00FB56A4 /* oxford_map.jpg */; };
 		D8D130DE1316EB7D00243D80 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D130DD1316EB7D00243D80 /* CoreLocation.framework */; };
+		D8DF6459139595910019F3D3 /* streetview.html in Resources */ = {isa = PBXBuildFile; fileRef = D8DF6458139595910019F3D3 /* streetview.html */; };
 		D8DFC8AD138BB38100C801F9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8DFC8AC138BB38100C801F9 /* libz.dylib */; };
 /* End PBXBuildFile section */
 
@@ -220,6 +222,8 @@
 		D8778FA6131303FF003874F6 /* L1LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1LoginViewController.h; sourceTree = "<group>"; };
 		D8778FA7131303FF003874F6 /* L1LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1LoginViewController.m; sourceTree = "<group>"; };
 		D8778FA8131303FF003874F6 /* L1LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = L1LoginViewController.xib; path = Classes/L1LoginViewController.xib; sourceTree = "<group>"; };
+		D8907EB013957A7700A9FDDF /* MediaListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaListViewController.h; sourceTree = "<group>"; };
+		D8907EB113957A7700A9FDDF /* MediaListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaListViewController.m; sourceTree = "<group>"; };
 		D8A7B0B8137C7194005FB761 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		D8A7B0B9137C7194005FB761 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		D8A7B0BA137C7194005FB761 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
@@ -243,6 +247,7 @@
 		D8B19E4D131F9E9500FB56A4 /* L1MapImageOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1MapImageOverlay.m; sourceTree = "<group>"; };
 		D8B1A0381323020D00FB56A4 /* oxford_map.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oxford_map.jpg; sourceTree = "<group>"; };
 		D8D130DD1316EB7D00243D80 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D8DF6458139595910019F3D3 /* streetview.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = streetview.html; path = Classes/streetview.html; sourceTree = "<group>"; };
 		D8DFC8AC138BB38100C801F9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -323,6 +328,8 @@
 				D8A7B0B8137C7194005FB761 /* MainViewController.h */,
 				D8A7B0B9137C7194005FB761 /* MainViewController.m */,
 				D8A7B0BA137C7194005FB761 /* MainViewController.xib */,
+				D8907EB013957A7700A9FDDF /* MediaListViewController.h */,
+				D8907EB113957A7700A9FDDF /* MediaListViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -339,6 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				D8DFC8AC138BB38100C801F9 /* libz.dylib */,
+				D8DF6458139595910019F3D3 /* streetview.html */,
 				D869AF1313899B7C001CE9B2 /* AudioToolbox.framework */,
 				D869AF1413899B7C001CE9B2 /* AVFoundation.framework */,
 				D869AF1513899B7C001CE9B2 /* OpenAL.framework */,
@@ -604,6 +612,7 @@
 				D869AF1113899B36001CE9B2 /* crowd.caf in Resources */,
 				D869AF1A13899BDA001CE9B2 /* mapIcon.png in Resources */,
 				D81325F51395726200A7495C /* loading.png in Resources */,
+				D8DF6459139595910019F3D3 /* streetview.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,6 +671,7 @@
 				D850D5F41389886600D67338 /* SimulatedUserLocation.m in Sources */,
 				D869AF0E13899B36001CE9B2 /* SoundManager.m in Sources */,
 				D869AF1D1389A637001CE9B2 /* L1Pin.m in Sources */,
+				D8907EB213957A7700A9FDDF /* MediaListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
