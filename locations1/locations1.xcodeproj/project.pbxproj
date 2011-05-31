@@ -14,6 +14,7 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow-IPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow-IPhone.xib */; };
 		D8097FB61376D4140038245A /* L1Path.m in Sources */ = {isa = PBXBuildFile; fileRef = D8097FB51376D4140038245A /* L1Path.m */; };
+		D81325F51395726200A7495C /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = D81325F41395726200A7495C /* loading.png */; };
 		D8179558135389C000E3E63B /* L1ChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8179556135389A800E3E63B /* L1ChooserViewController.m */; };
 		D8179559135389C000E3E63B /* L1ChooserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8179557135389B200E3E63B /* L1ChooserViewController.xib */; };
 		D82E000813104E8200057D16 /* ParadiseLost.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D82E000713104E8200057D16 /* ParadiseLost.jpg */; };
@@ -35,7 +36,6 @@
 		D8400740130BD1660038286A /* L1MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D840073E130BD1660038286A /* L1MapViewController.m */; };
 		D841B756130F0AB900AD449F /* pentagram.png in Resources */ = {isa = PBXBuildFile; fileRef = D841B755130F0AB900AD449F /* pentagram.png */; };
 		D844F8E413130C7B00E4AE13 /* L1ResponsiveNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D844F8E313130C7B00E4AE13 /* L1ResponsiveNode.m */; };
-		D848E397138C21380080F15C /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = D848E396138C21380080F15C /* loading.png */; };
 		D84B82D6130B0B7D00A57BA1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84B82D5130B0B7D00A57BA1 /* MapKit.framework */; };
 		D84B82E8130B0CB900A57BA1 /* L1Node.m in Sources */ = {isa = PBXBuildFile; fileRef = D84B82E7130B0CB900A57BA1 /* L1Node.m */; };
 		D84B82ED130B0F8D00A57BA1 /* SimpleURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D84B82EC130B0F8D00A57BA1 /* SimpleURLConnection.m */; };
@@ -110,6 +110,7 @@
 		8D1107310486CEB800E47090 /* locations1-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "locations1-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		D8097FB41376D4140038245A /* L1Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1Path.h; sourceTree = "<group>"; };
 		D8097FB51376D4140038245A /* L1Path.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Path.m; sourceTree = "<group>"; };
+		D81325F41395726200A7495C /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 		D8179555135389A400E3E63B /* L1ChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1ChooserViewController.h; sourceTree = "<group>"; };
 		D8179556135389A800E3E63B /* L1ChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1ChooserViewController.m; sourceTree = "<group>"; };
 		D8179557135389B200E3E63B /* L1ChooserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = L1ChooserViewController.xib; path = Classes/L1ChooserViewController.xib; sourceTree = "<group>"; };
@@ -149,7 +150,6 @@
 		D841B755130F0AB900AD449F /* pentagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pentagram.png; path = Images/pentagram.png; sourceTree = SOURCE_ROOT; };
 		D844F8E213130C7B00E4AE13 /* L1ResponsiveNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1ResponsiveNode.h; sourceTree = "<group>"; };
 		D844F8E313130C7B00E4AE13 /* L1ResponsiveNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1ResponsiveNode.m; sourceTree = "<group>"; };
-		D848E396138C21380080F15C /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loading.png; path = ../../../../../../../Desktop/loading.png; sourceTree = "<group>"; };
 		D84B82D5130B0B7D00A57BA1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D84B82E6130B0CB900A57BA1 /* L1Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1Node.h; sourceTree = "<group>"; };
 		D84B82E7130B0CB900A57BA1 /* L1Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Node.m; sourceTree = "<group>"; };
@@ -395,7 +395,7 @@
 		D800308E130E9BD700763C05 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				D848E396138C21380080F15C /* loading.png */,
+				D81325F41395726200A7495C /* loading.png */,
 				D869AF1913899BDA001CE9B2 /* mapIcon.png */,
 				D8A7B0D4137C9322005FB761 /* solar-system.jpeg */,
 				D850D5F5138991A100D67338 /* fakeUserLocation.png */,
@@ -603,7 +603,7 @@
 				D869AF1013899B36001CE9B2 /* dog.caf in Resources */,
 				D869AF1113899B36001CE9B2 /* crowd.caf in Resources */,
 				D869AF1A13899BDA001CE9B2 /* mapIcon.png in Resources */,
-				D848E397138C21380080F15C /* loading.png in Resources */,
+				D81325F51395726200A7495C /* loading.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
