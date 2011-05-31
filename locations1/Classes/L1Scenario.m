@@ -278,4 +278,20 @@
 }
 
 
+-(NSMutableDictionary*) nodesBetweenDates:(NSDate*) startDate and:(NSDate*) endDate
+{
+    NSMutableDictionary * outputNodes = [NSMutableDictionary dictionaryWithCapacity:0];
+    
+    for (NSString * key in self.nodes){
+        L1Node * node = [self.nodes objectForKey:key];
+        NSDate * date = [node.metadata objectForKey:@"date"];
+        if (!date) continue;
+        if ([date compare:startDate]==NSOrderedAscending) continue;
+        if ([date compare:endDate]==NSOrderedDescending) continue;
+        [outputNodes setObject:nodes forKey:key];
+    }
+    return outputNodes;
+    
+}
+
 @end
