@@ -61,7 +61,7 @@
 	CGImageRef subImage = CGImageCreateWithImageInRect(mapImage, subRect);
 	NSLog(@"map region origin = (%f,%f)",updatedMapRect.origin.x-overlayImageMapRect.origin.x,updatedMapRect.origin.y-overlayImageMapRect.origin.y);
 	NSLog(@"map region size = (%f,%f)",updatedMapRect.size.width,updatedMapRect.size.height);
-	NSLog(@"sub-image size = (%d,%d)",CGImageGetWidth(subImage),CGImageGetHeight(subImage));
+	NSLog(@"sub-image size = (%ld,%ld)",CGImageGetWidth(subImage),CGImageGetHeight(subImage));
 
 	
 	CGRect viewRect = [self rectForMapRect:updatedMapRect];

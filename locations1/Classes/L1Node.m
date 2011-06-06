@@ -67,7 +67,7 @@ static NSDateFormatter * dateParser = nil;
         [dateParser setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
 
     }
-        NSString * dateString = [nodeDictionary objectForKey:@"created_at"];
+        NSString * dateString = [self.metadata objectForKey:@"date"];
     self.date = [dateParser dateFromString:dateString];
     NSLog(@"date = %@ (%@)",self.date,[nodeDictionary objectForKey:@"created_at"]);
 

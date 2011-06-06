@@ -17,6 +17,25 @@
 		D81325F51395726200A7495C /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = D81325F41395726200A7495C /* loading.png */; };
 		D8179558135389C000E3E63B /* L1ChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8179556135389A800E3E63B /* L1ChooserViewController.m */; };
 		D8179559135389C000E3E63B /* L1ChooserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8179557135389B200E3E63B /* L1ChooserViewController.xib */; };
+		D827AF99139D6D0900746161 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		D827AF9A139D6D0900746161 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		D827AF9B139D6D0900746161 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		D827AFA1139D6D0900746161 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D827AF9F139D6D0900746161 /* InfoPlist.strings */; };
+		D827AFA4139D6D0900746161 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D827AFA3139D6D0900746161 /* main.m */; };
+		D827AFA7139D6D0900746161 /* OspreyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D827AFA6139D6D0900746161 /* OspreyAppDelegate.m */; };
+		D827AFAA139D6D0900746161 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D827AFA8139D6D0900746161 /* MainWindow.xib */; };
+		D827AFAD139D6D0900746161 /* OspreyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D827AFAC139D6D0900746161 /* OspreyViewController.m */; };
+		D827AFB0139D6D0900746161 /* OspreyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D827AFAE139D6D0900746161 /* OspreyViewController.xib */; };
+		D827AFB7139D6D0900746161 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		D827AFB8139D6D0900746161 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		D827AFB9139D6D0900746161 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		D827AFC1139D6D0900746161 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D827AFBF139D6D0900746161 /* InfoPlist.strings */; };
+		D827AFC4139D6D0900746161 /* OspreyTests.h in Resources */ = {isa = PBXBuildFile; fileRef = D827AFC3139D6D0900746161 /* OspreyTests.h */; };
+		D827AFC6139D6D0900746161 /* OspreyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D827AFC5139D6D0900746161 /* OspreyTests.m */; };
+		D827AFCF139D6D5800746161 /* L1Overlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D827AFCE139D6D5800746161 /* L1Overlay.m */; };
+		D827AFD0139D6D5800746161 /* L1Overlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D827AFCE139D6D5800746161 /* L1Overlay.m */; };
+		D827AFD1139D6D5800746161 /* L1Overlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D827AFCE139D6D5800746161 /* L1Overlay.m */; };
+		D827AFD4139D71EB00746161 /* L1OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D827AFD3139D71EB00746161 /* L1OverlayView.m */; };
 		D82E000813104E8200057D16 /* ParadiseLost.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D82E000713104E8200057D16 /* ParadiseLost.jpg */; };
 		D82E005D1311893600057D16 /* L1MultiNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D82E005C1311893600057D16 /* L1MultiNode.m */; };
 		D82EFEBE13103BB900057D16 /* L1Scenario.m in Sources */ = {isa = PBXBuildFile; fileRef = D82EFEBD13103BB900057D16 /* L1Scenario.m */; };
@@ -95,9 +114,21 @@
 		D8B19E4E131F9E9500FB56A4 /* L1MapImageOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B19E4D131F9E9500FB56A4 /* L1MapImageOverlay.m */; };
 		D8B1A0391323020D00FB56A4 /* oxford_map.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8B1A0381323020D00FB56A4 /* oxford_map.jpg */; };
 		D8D130DE1316EB7D00243D80 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D130DD1316EB7D00243D80 /* CoreLocation.framework */; };
+		D8D5CDEF1396DA6E008112ED /* textfade.html in Sources */ = {isa = PBXBuildFile; fileRef = D8D5CDEE1396DA6E008112ED /* textfade.html */; };
+		D8D5CDF01396DCCB008112ED /* textfade.html in Resources */ = {isa = PBXBuildFile; fileRef = D8D5CDEE1396DA6E008112ED /* textfade.html */; };
 		D8DF6459139595910019F3D3 /* streetview.html in Resources */ = {isa = PBXBuildFile; fileRef = D8DF6458139595910019F3D3 /* streetview.html */; };
 		D8DFC8AD138BB38100C801F9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8DFC8AC138BB38100C801F9 /* libz.dylib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D827AFBA139D6D0900746161 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D827AF96139D6D0900746161;
+			remoteInfo = Osprey;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -116,6 +147,27 @@
 		D8179555135389A400E3E63B /* L1ChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1ChooserViewController.h; sourceTree = "<group>"; };
 		D8179556135389A800E3E63B /* L1ChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1ChooserViewController.m; sourceTree = "<group>"; };
 		D8179557135389B200E3E63B /* L1ChooserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = L1ChooserViewController.xib; path = Classes/L1ChooserViewController.xib; sourceTree = "<group>"; };
+		D827AF97139D6D0900746161 /* Osprey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Osprey.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D827AF9E139D6D0900746161 /* Osprey-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Osprey-Info.plist"; sourceTree = "<group>"; };
+		D827AFA0139D6D0900746161 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D827AFA2139D6D0900746161 /* Osprey-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Osprey-Prefix.pch"; sourceTree = "<group>"; };
+		D827AFA3139D6D0900746161 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D827AFA5139D6D0900746161 /* OspreyAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OspreyAppDelegate.h; sourceTree = "<group>"; };
+		D827AFA6139D6D0900746161 /* OspreyAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OspreyAppDelegate.m; sourceTree = "<group>"; };
+		D827AFA9139D6D0900746161 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		D827AFAB139D6D0900746161 /* OspreyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OspreyViewController.h; sourceTree = "<group>"; };
+		D827AFAC139D6D0900746161 /* OspreyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OspreyViewController.m; sourceTree = "<group>"; };
+		D827AFAF139D6D0900746161 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OspreyViewController.xib; sourceTree = "<group>"; };
+		D827AFB6139D6D0900746161 /* OspreyTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OspreyTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D827AFBE139D6D0900746161 /* OspreyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OspreyTests-Info.plist"; sourceTree = "<group>"; };
+		D827AFC0139D6D0900746161 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D827AFC2139D6D0900746161 /* OspreyTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OspreyTests-Prefix.pch"; sourceTree = "<group>"; };
+		D827AFC3139D6D0900746161 /* OspreyTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OspreyTests.h; sourceTree = "<group>"; };
+		D827AFC5139D6D0900746161 /* OspreyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OspreyTests.m; sourceTree = "<group>"; };
+		D827AFCD139D6D5800746161 /* L1Overlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1Overlay.h; sourceTree = "<group>"; };
+		D827AFCE139D6D5800746161 /* L1Overlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Overlay.m; sourceTree = "<group>"; };
+		D827AFD2139D71EB00746161 /* L1OverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1OverlayView.h; sourceTree = "<group>"; };
+		D827AFD3139D71EB00746161 /* L1OverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1OverlayView.m; sourceTree = "<group>"; };
 		D82E000713104E8200057D16 /* ParadiseLost.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ParadiseLost.jpg; sourceTree = "<group>"; };
 		D82E005B1311893600057D16 /* L1MultiNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1MultiNode.h; sourceTree = "<group>"; };
 		D82E005C1311893600057D16 /* L1MultiNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1MultiNode.m; sourceTree = "<group>"; };
@@ -247,6 +299,7 @@
 		D8B19E4D131F9E9500FB56A4 /* L1MapImageOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1MapImageOverlay.m; sourceTree = "<group>"; };
 		D8B1A0381323020D00FB56A4 /* oxford_map.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oxford_map.jpg; sourceTree = "<group>"; };
 		D8D130DD1316EB7D00243D80 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D8D5CDEE1396DA6E008112ED /* textfade.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = textfade.html; sourceTree = "<group>"; };
 		D8DF6458139595910019F3D3 /* streetview.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = streetview.html; path = Classes/streetview.html; sourceTree = "<group>"; };
 		D8DFC8AC138BB38100C801F9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -272,6 +325,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D827AF94139D6D0900746161 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D827AF99139D6D0900746161 /* UIKit.framework in Frameworks */,
+				D827AF9A139D6D0900746161 /* Foundation.framework in Frameworks */,
+				D827AF9B139D6D0900746161 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D827AFB2139D6D0900746161 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D827AFB7139D6D0900746161 /* UIKit.framework in Frameworks */,
+				D827AFB8139D6D0900746161 /* Foundation.framework in Frameworks */,
+				D827AFB9139D6D0900746161 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -292,6 +365,10 @@
 				D8179556135389A800E3E63B /* L1ChooserViewController.m */,
 				1D3623240D0F684500981E51 /* locations1AppDelegate.h */,
 				1D3623250D0F684500981E51 /* locations1AppDelegate.m */,
+				D827AFCD139D6D5800746161 /* L1Overlay.h */,
+				D827AFCE139D6D5800746161 /* L1Overlay.m */,
+				D827AFD2139D71EB00746161 /* L1OverlayView.h */,
+				D827AFD3139D71EB00746161 /* L1OverlayView.m */,
 				D8750C37134A3C1000564337 /* L1Resource.h */,
 				D8750C38134A3C1100564337 /* L1Resource.m */,
 				D84B82E6130B0CB900A57BA1 /* L1Node.h */,
@@ -338,6 +415,8 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* locations1.app */,
+				D827AF97139D6D0900746161 /* Osprey.app */,
+				D827AFB6139D6D0900746161 /* OspreyTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -354,6 +433,8 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				D827AF9C139D6D0900746161 /* Osprey */,
+				D827AFBC139D6D0900746161 /* OspreyTests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -372,6 +453,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D8D5CDEE1396DA6E008112ED /* textfade.html */,
 				D859A94F137D2BD200394419 /* icon_ipad.png */,
 				D8778FA8131303FF003874F6 /* L1LoginViewController.xib */,
 				D8179557135389B200E3E63B /* L1ChooserViewController.xib */,
@@ -419,6 +501,51 @@
 				D841B755130F0AB900AD449F /* pentagram.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		D827AF9C139D6D0900746161 /* Osprey */ = {
+			isa = PBXGroup;
+			children = (
+				D827AFA5139D6D0900746161 /* OspreyAppDelegate.h */,
+				D827AFA6139D6D0900746161 /* OspreyAppDelegate.m */,
+				D827AFA8139D6D0900746161 /* MainWindow.xib */,
+				D827AFAB139D6D0900746161 /* OspreyViewController.h */,
+				D827AFAC139D6D0900746161 /* OspreyViewController.m */,
+				D827AFAE139D6D0900746161 /* OspreyViewController.xib */,
+				D827AF9D139D6D0900746161 /* Supporting Files */,
+			);
+			path = Osprey;
+			sourceTree = "<group>";
+		};
+		D827AF9D139D6D0900746161 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D827AF9E139D6D0900746161 /* Osprey-Info.plist */,
+				D827AF9F139D6D0900746161 /* InfoPlist.strings */,
+				D827AFA2139D6D0900746161 /* Osprey-Prefix.pch */,
+				D827AFA3139D6D0900746161 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D827AFBC139D6D0900746161 /* OspreyTests */ = {
+			isa = PBXGroup;
+			children = (
+				D827AFC3139D6D0900746161 /* OspreyTests.h */,
+				D827AFC5139D6D0900746161 /* OspreyTests.m */,
+				D827AFBD139D6D0900746161 /* Supporting Files */,
+			);
+			path = OspreyTests;
+			sourceTree = "<group>";
+		};
+		D827AFBD139D6D0900746161 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D827AFBE139D6D0900746161 /* OspreyTests-Info.plist */,
+				D827AFBF139D6D0900746161 /* InfoPlist.strings */,
+				D827AFC2139D6D0900746161 /* OspreyTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		D8400673130B1F0F0038286A /* JSON */ = {
@@ -556,6 +683,42 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* locations1.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D827AF96139D6D0900746161 /* Osprey */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D827AFCB139D6D0900746161 /* Build configuration list for PBXNativeTarget "Osprey" */;
+			buildPhases = (
+				D827AF93139D6D0900746161 /* Sources */,
+				D827AF94139D6D0900746161 /* Frameworks */,
+				D827AF95139D6D0900746161 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Osprey;
+			productName = Osprey;
+			productReference = D827AF97139D6D0900746161 /* Osprey.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D827AFB5139D6D0900746161 /* OspreyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D827AFCC139D6D0900746161 /* Build configuration list for PBXNativeTarget "OspreyTests" */;
+			buildPhases = (
+				D827AFB1139D6D0900746161 /* Sources */,
+				D827AFB2139D6D0900746161 /* Frameworks */,
+				D827AFB3139D6D0900746161 /* Resources */,
+				D827AFB4139D6D0900746161 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D827AFBB139D6D0900746161 /* PBXTargetDependency */,
+			);
+			name = OspreyTests;
+			productName = OspreyTests;
+			productReference = D827AFB6139D6D0900746161 /* OspreyTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -570,12 +733,15 @@
 				Japanese,
 				French,
 				German,
+				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* locations1 */,
+				D827AF96139D6D0900746161 /* Osprey */,
+				D827AFB5139D6D0900746161 /* OspreyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -607,6 +773,7 @@
 				D859A950137D2BD200394419 /* icon_ipad.png in Resources */,
 				D850D5F6138991A100D67338 /* fakeUserLocation.png in Resources */,
 				D869AF0D13899B36001CE9B2 /* thunder.caf in Resources */,
+				D8D5CDF01396DCCB008112ED /* textfade.html in Resources */,
 				D869AF0F13899B36001CE9B2 /* nodeSound.caf in Resources */,
 				D869AF1013899B36001CE9B2 /* dog.caf in Resources */,
 				D869AF1113899B36001CE9B2 /* crowd.caf in Resources */,
@@ -616,7 +783,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D827AF95139D6D0900746161 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D827AFA1139D6D0900746161 /* InfoPlist.strings in Resources */,
+				D827AFAA139D6D0900746161 /* MainWindow.xib in Resources */,
+				D827AFB0139D6D0900746161 /* OspreyViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D827AFB3139D6D0900746161 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D827AFC1139D6D0900746161 /* InfoPlist.strings in Resources */,
+				D827AFC4139D6D0900746161 /* OspreyTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D827AFB4139D6D0900746161 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -672,10 +874,76 @@
 				D869AF0E13899B36001CE9B2 /* SoundManager.m in Sources */,
 				D869AF1D1389A637001CE9B2 /* L1Pin.m in Sources */,
 				D8907EB213957A7700A9FDDF /* MediaListViewController.m in Sources */,
+				D8D5CDEF1396DA6E008112ED /* textfade.html in Sources */,
+				D827AFCF139D6D5800746161 /* L1Overlay.m in Sources */,
+				D827AFD4139D71EB00746161 /* L1OverlayView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D827AF93139D6D0900746161 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D827AFA4139D6D0900746161 /* main.m in Sources */,
+				D827AFA7139D6D0900746161 /* OspreyAppDelegate.m in Sources */,
+				D827AFAD139D6D0900746161 /* OspreyViewController.m in Sources */,
+				D827AFD0139D6D5800746161 /* L1Overlay.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D827AFB1139D6D0900746161 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D827AFC6139D6D0900746161 /* OspreyTests.m in Sources */,
+				D827AFD1139D6D5800746161 /* L1Overlay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D827AFBB139D6D0900746161 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D827AF96139D6D0900746161 /* Osprey */;
+			targetProxy = D827AFBA139D6D0900746161 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D827AF9F139D6D0900746161 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D827AFA0139D6D0900746161 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D827AFA8139D6D0900746161 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D827AFA9139D6D0900746161 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		D827AFAE139D6D0900746161 /* OspreyViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D827AFAF139D6D0900746161 /* en */,
+			);
+			name = OspreyViewController.xib;
+			sourceTree = "<group>";
+		};
+		D827AFBF139D6D0900746161 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D827AFC0139D6D0900746161 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -759,6 +1027,106 @@
 			};
 			name = Release;
 		};
+		D827AFC7139D6D0900746161 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Osprey/Osprey-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "Osprey/Osprey-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D827AFC8139D6D0900746161 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Osprey/Osprey-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "Osprey/Osprey-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D827AFC9139D6D0900746161 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Osprey.app/Osprey";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OspreyTests/OspreyTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "OspreyTests/OspreyTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		D827AFCA139D6D0900746161 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Osprey.app/Osprey";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OspreyTests/OspreyTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "OspreyTests/OspreyTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -779,6 +1147,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D827AFCB139D6D0900746161 /* Build configuration list for PBXNativeTarget "Osprey" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D827AFC7139D6D0900746161 /* Debug */,
+				D827AFC8139D6D0900746161 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D827AFCC139D6D0900746161 /* Build configuration list for PBXNativeTarget "OspreyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D827AFC9139D6D0900746161 /* Debug */,
+				D827AFCA139D6D0900746161 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

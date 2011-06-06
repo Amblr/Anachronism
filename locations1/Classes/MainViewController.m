@@ -13,6 +13,8 @@
 
 @synthesize scenario, baseURL;
 @synthesize chooserViewController;
+@synthesize activeNode;
+@synthesize activePath;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,6 +48,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    bottomLeftRect = primaryMapView.frame;
+    rightRect = mediaView.frame;
+    
 }
 
 - (void)viewDidUnload
@@ -114,6 +119,7 @@
 {
 	NSLog(@"MainViewController Received %d nodes", [nodes count]);
 	[mapViewController performSelector:@selector(nodeSource:didReceiveNodes:) withObject:nodeManager withObject:nodes];
+    self.activeNode=nil;
 }
 
 
@@ -122,6 +128,9 @@
     
     NSLog(@"MainViewController Received %d paths", [paths count]);
     [mapViewController performSelector:@selector(pathSource:didReceivePaths:) withObject:pathManager withObject:paths];
+    if ([paths count]){
+        self.activePath=[[paths allValues] objectAtIndex:0];
+    }
 
 }
 
@@ -155,9 +164,28 @@
 
 -(void) triggeredNode:(L1Node*) node
 {
-    NSLog(@"Triggered Node %@",node.name);
-    [mapViewController zoomToNode:node];
     [self didSelectNode:node];
+    
+}
+
+-(void) previousButton
+{
+    if (!self.activeNode) return;
+    if (!self.activePath) return;
+    NSInteger currentIndex = [self.activePath.nodes indexOfObject:self.activeNode];
+    if (currentIndex==0) return;
+    if (currentIndex==NSNotFound) return;
+    [self didSelectNode:[self.activePath.nodes objectAtIndex:currentIndex-1]];
+}
+
+-(void) nextButton
+{
+    if (!self.activeNode) return;
+    if (!self.activePath) return;
+    NSInteger currentIndex = [self.activePath.nodes indexOfObject:self.activeNode];
+    if (currentIndex==[self.activePath.nodes count]-1) return;
+    if (currentIndex==NSNotFound) return;
+    [self didSelectNode:[self.activePath.nodes objectAtIndex:currentIndex+1]];
     
 }
 
@@ -175,11 +203,17 @@
 //            [mediaView loadRequest:request];
 //        }
 //    }
-
+    [mapViewController zoomToNode:node];
     mediaListViewController.node = node;
     [mediaSelectionView reloadData];
+    self.activeNode=node;
 
     [self setStreetViewLocationLat:[node.latitude doubleValue] lon:[node.longitude doubleValue]];
+    NSUInteger paths[2]={0,0};
+    NSIndexPath * firstPath = [NSIndexPath indexPathWithIndexes:paths length:2];
+    [mediaSelectionView selectRowAtIndexPath:firstPath animated:NO scrollPosition:UITableViewScrollPositionTop];
+    [self tableView:mediaSelectionView didSelectRowAtIndexPath:firstPath];
+
 
 }
 
@@ -191,26 +225,67 @@
   
 }
 
+-(IBAction) swapViews
+{
+    
+    BOOL mapCurrentlyBottomLeft = CGRectEqualToRect(primaryMapView.frame, bottomLeftRect);
+    
+    if (mapCurrentlyBottomLeft){
+        [UIView beginAnimations:@"bottomView" context:NULL];
+		[UIView setAnimationDuration:0.4];
+		primaryMapView.frame = rightRect;
+        mediaView.frame = bottomLeftRect;
+		[UIView commitAnimations];
+
+    }
+    else{
+        [UIView beginAnimations:@"bottomView" context:NULL];
+		[UIView setAnimationDuration:0.4];
+		primaryMapView.frame = bottomLeftRect;
+        mediaView.frame = rightRect;
+		[UIView commitAnimations];
+        
+    }
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger i = [indexPath indexAtPosition:1];
-    L1Resource * resource = [mediaListViewController.node.resources objectAtIndex:i];
-    NSString * urlString = [@"http://warm-earth-179.heroku.com" stringByAppendingString:resource.url];
-    NSURL * url = [NSURL URLWithString:urlString];
-    NSLog(@"Loading resource URL: %@",url);
-//    NSURLRequest * request = [NSURLRequest requestWithURL:url];
-//    [mediaView loadRequest:request];
-    if (resource.local){
-        NSLog(@"Local");
-        if ([resource.type isEqualToString:@"image"]){
-            NSLog(@"image");
-            NSURL * url = [NSURL URLWithString:resource.url];
-            NSData * data = resource.resourceData;
-            [mediaView loadData:data MIMEType:@"image/jpeg" textEncodingName:@"utf-8" baseURL:url];
-            
+    if (i==0){
+        NSString * filename = [[NSBundle mainBundle] pathForResource:@"textfade" ofType:@"html"];
+        NSError * error=nil;
+        NSString * html_template = [NSString stringWithContentsOfFile:filename encoding:NSASCIIStringEncoding error:&error];
+        if (error){
+            NSLog(@"Error loading html from %@: %@",filename,error);
+            return;
+        }
+        NSString * html = [NSString stringWithFormat:html_template,mediaListViewController.node.name,mediaListViewController.node.text];
+        [mediaView loadHTMLString:html baseURL:[NSURL URLWithString:@""]];
+
+    }
+    else{
+        L1Resource * resource = [mediaListViewController.node.resources objectAtIndex:i-1];
+        NSString * urlString = [@"http://warm-earth-179.heroku.com" stringByAppendingString:resource.url];
+        NSURL * url = [NSURL URLWithString:urlString];
+        NSLog(@"Loading resource URL: %@",url);
+        if (resource.local){
+            NSLog(@"Local");
+            if ([resource.type isEqualToString:@"image"]){
+                NSLog(@"image");
+                NSURL * url = [NSURL URLWithString:resource.url];
+                NSData * data = resource.resourceData;
+                [mediaView loadData:data MIMEType:@"image/jpeg" textEncodingName:@"utf-8" baseURL:url];
+                
+            }
         }
     }
+}
+
+-(IBAction) overlay
+{
+    [mapViewController overlayImage];
+    
 }
 
 

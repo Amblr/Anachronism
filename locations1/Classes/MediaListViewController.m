@@ -18,7 +18,7 @@ NSString * resourceNodeStringIdentifier = @"resourceNode";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (!node) return 0;
-    return [node.resources count];
+    return [node.resources count]+1;
 }
 
 
@@ -31,10 +31,14 @@ NSString * resourceNodeStringIdentifier = @"resourceNode";
     }
     
     NSInteger i = [indexPath indexAtPosition:1];
-    
-    L1Resource * resource = [node.resources objectAtIndex:i];
-    cell.textLabel.text = resource.name;
-    cell.detailTextLabel.text = resource.url;
+    if (i==0){
+            cell.textLabel.text=@"Description";
+    }
+    else{
+        L1Resource * resource = [node.resources objectAtIndex:i-1];
+        cell.textLabel.text = resource.name;
+        cell.detailTextLabel.text = resource.url;
+    }
     return cell;
 }
 

@@ -31,7 +31,7 @@
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes;
 -(void) pathSource:(id) pathManager didReceivePaths:(NSDictionary*) paths;
 //-(IBAction) fakeNodeTest:(id) sender;
-//-(IBAction) overlayImage:(id) sender;
+-(IBAction) overlayImage;
 -(void) addPath:(L1Path*)path;
 
 -(void) zoomToNode:(L1Node*) node;

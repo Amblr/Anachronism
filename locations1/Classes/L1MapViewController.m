@@ -13,6 +13,8 @@
 #import "L1Path.h"
 #import "SimulatedUserLocation.h"
 #import "L1Pin.h"
+#import "L1Overlay.h"
+#import "L1OverlayView.h"
 
 
 @implementation L1MapViewController
@@ -226,45 +228,63 @@
 //		L1MapImageOverlayView * overlayView = [[L1MapImageOverlayView alloc] initWithOverlay:overlay image:image.CGImage topLeft:topLeft bottomRight:bottomRight];
 		return [overlayView autorelease];
 	}
+    else if ([overlay isKindOfClass:[L1Overlay class]]){
+        L1OverlayView * overlayView = [[L1OverlayView alloc]initWithOverlay:overlay];
+        return [overlayView autorelease];
+    }
 	
 	return nil;
 }
 
--(IBAction) overlayImage:(id) sender
+//-(IBAction) overlayImage
+//{
+//	MKMapRect currentArea = [primaryMapView visibleMapRect];
+//	NSLog(@"current area origin = (%e,%e)  size = (%e,%e)",currentArea.origin.x,currentArea.origin.y,currentArea.size.width,currentArea.size.height);
+//	L1MapImageOverlay * overlay = 	[[L1MapImageOverlay alloc] init];
+//	CLLocationCoordinate2D coord;
+//
+//	float r = 0.8312997348;
+//	
+//	CLLocationCoordinate2D originCoord;
+//	CLLocationCoordinate2D endCoord;
+//
+//	endCoord.latitude=54.0;
+//	endCoord.longitude=5.0;
+//	
+//	originCoord.latitude=58.15;
+//	originCoord.longitude=0.0;
+//	
+//	coord.latitude=endCoord.latitude+r/2;
+//	coord.longitude=0.5;
+//	
+//		
+//	MKMapPoint originPoint = MKMapPointForCoordinate(originCoord);
+//	MKMapPoint endPoint = MKMapPointForCoordinate(endCoord);
+//	
+//	MKMapRect rect = MKMapRectMake(originPoint.x, originPoint.y, endPoint.x-originPoint.x, endPoint.y-originPoint.y);
+//
+//	
+//	NSLog(@"overlay area origin = (%e,%e)  size = (%e,%e)",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
+//
+//	[overlay setCoordinate:coord];
+//	[overlay setMapRect:rect];
+//	[primaryMapView addOverlay:overlay];
+//	[overlay release];
+//	NSLog(@"Added overlay");
+//}
+
+
+-(IBAction) overlayImage
 {
-	MKMapRect currentArea = [primaryMapView visibleMapRect];
-	NSLog(@"current area origin = (%e,%e)  size = (%e,%e)",currentArea.origin.x,currentArea.origin.y,currentArea.size.width,currentArea.size.height);
-	L1MapImageOverlay * overlay = 	[[L1MapImageOverlay alloc] init];
-	CLLocationCoordinate2D coord;
-
-	float r = 0.8312997348;
-	
-	CLLocationCoordinate2D originCoord;
-	CLLocationCoordinate2D endCoord;
-
-	endCoord.latitude=54.0;
-	endCoord.longitude=1.0;
-	
-	originCoord.latitude=54.8312997348;
-	originCoord.longitude=0.0;
-	
-	coord.latitude=endCoord.latitude+r/2;
-	coord.longitude=0.5;
-	
-		
-	MKMapPoint originPoint = MKMapPointForCoordinate(originCoord);
-	MKMapPoint endPoint = MKMapPointForCoordinate(endCoord);
-	
-	MKMapRect rect = MKMapRectMake(originPoint.x, originPoint.y, endPoint.x-originPoint.x, endPoint.y-originPoint.y);
-
-	
-	NSLog(@"overlay area origin = (%e,%e)  size = (%e,%e)",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
-
-	[overlay setCoordinate:coord];
-	[overlay setMapRect:rect];
-	[primaryMapView addOverlay:overlay];
-	[overlay release];
-	NSLog(@"Added overlay");
+    
+    UIImage * image = [UIImage imageNamed:@"oxford_map.jpg"];
+    CLLocationCoordinate2D bottomLeft = CLLocationCoordinate2DMake(54.0, 0.0);
+    CLLocationCoordinate2D topRight = CLLocationCoordinate2DMake(59.0, 10.0);
+    
+    L1Overlay * overlay = [[L1Overlay alloc] initWithImage:image withLowerLeftCoordinate:bottomLeft withUpperRightCoordinate:topRight];
+    [primaryMapView addOverlay:overlay];
+    [overlay release];
+    
 }
 
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes
