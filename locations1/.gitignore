@@ -9,3 +9,6 @@ build/*
 # osx noise
 .DS_Store
 profile
+
+project.xcworkspace/xcuserdata/joe.xcuserdatad
+locations1.xcodeproj/project.xcworkspace/xcuserdata/joe.xcuserdatad/UserInterfaceState.xcuserstate
