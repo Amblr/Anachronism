@@ -12,33 +12,39 @@
 #import "L1Scenario.h"
 #import "SimulatedUserLocation.h"
 #import "L1Path.h"
+#import "L1Overlay.h"
+#import "L1OverlayView.h"
 
 @interface L1MapViewController : UIViewController<MKMapViewDelegate> {
-	NSMutableDictionary * annotationImages;
-	IBOutlet MKMapView * primaryMapView;
-//	IBOutlet L1NodeContentViewController * nodeContentViewController;
 	L1Scenario * scenario;
+	IBOutlet MKMapView * primaryMapView;
     NSObject * delegate;
     SimulatedUserLocation * fakeUserLocation;
+    L1OverlayView * singleOverlayView;
 	
 }
 
+@property (retain) L1OverlayView * singleOverlayView;
 @property (retain) NSObject * delegate;
 @property (retain) L1Scenario * scenario;
 @property (retain) L1NodeContentViewController * nodeContentViewController;
-//-(IBAction) testPolygon:(id) sender;
--(void) testMap:(id) sender;
+
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes;
 -(void) pathSource:(id) pathManager didReceivePaths:(NSDictionary*) paths;
-//-(IBAction) fakeNodeTest:(id) sender;
+
 -(IBAction) overlayImage;
--(void) addPath:(L1Path*)path;
+-(void) removeOverlay;
 
 -(void) zoomToNode:(L1Node*) node;
+-(void) zoomToCoordinate:(CLLocationCoordinate2D) coordinate;
+-(void) zoomInToNode:(L1Node*) node;
 
 -(void) mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view;
 -(void) mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray*) annotationViews;
 
-@property (retain) NSMutableDictionary * annotationImages;
 
+-(L1Overlay*) addOverlayImage:(UIImage*)image bottomLeft:(CLLocationCoordinate2D)bottomLeft topRight:(CLLocationCoordinate2D) topRight;
+-(void) addPath:(L1Path*)path;
+-(void) addNode:(L1Node*) node;
+-(void) addOverlay:(L1Overlay*) overlay;
 @end

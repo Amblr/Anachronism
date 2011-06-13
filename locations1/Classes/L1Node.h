@@ -29,7 +29,13 @@
 
 @end
 
-
+typedef enum L1NodeMode {
+    L1NodeActive,  //Node is standard and in current path
+    L1NodeInActive, //Node is standard but not in current path
+    L1NodeWaypoint, //Node is in current path but is a waypoint
+    L1NodeAmbient, //Node is ambient sound
+    L1NodePointOfInterest //Node is point-of-interest
+} L1NodeMode;
 
 @interface L1Node : NSObject<MKAnnotation> {
 	NSNumber * latitude;
@@ -38,6 +44,9 @@
 	NSString * text;
 	NSString * name;
     NSDate * date;
+    
+    L1NodeMode mode;
+    
     
     BOOL visible;
 	UIImage  * image;
@@ -54,7 +63,7 @@
 	BOOL enabled;
 }
 
-
+@property (assign) L1NodeMode mode;
 @property (retain) 	NSObject<L1NodeDelegate> * delegate;
 @property (retain) NSMutableDictionary * metadata;
 @property (retain) NSMutableArray * resources;

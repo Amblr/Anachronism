@@ -18,18 +18,15 @@
         return;   
     }
     
-    MKMapRect overlayMapRect = l1Overlay.boundingMapRect;
     
-//    BOOL anyOverlap = MKMapRectIntersectsRect(mapRect, overlayMapRect);
-//    if (!anyOverlap) return;
+    MKMapRect overlayMapRect = l1Overlay.boundingMapRect;
+    if (!MKMapRectIntersectsRect(overlayMapRect, mapRect)) return;
     
     CGRect overlayRect = [self rectForMapRect:overlayMapRect];
-    CGImageRef image = l1Overlay.overlayImage.CGImage;
-    CGContextScaleCTM(context, 1.0, -1.0);
-    CGContextSaveGState(context);
-    CGContextSetAlpha(context, l1Overlay.alpha);
-    CGContextDrawImage(context, overlayRect, image);
-    CGContextRestoreGState(context);
+    UIGraphicsPushContext(context);
+    [l1Overlay.overlayImage drawInRect:overlayRect blendMode:kCGBlendModeNormal alpha:self.alpha];
+    UIGraphicsPopContext();
+    
 
     
 }

@@ -44,7 +44,7 @@ NSString * resourceNodeStringIdentifier = @"resourceNode";
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"Node Resources";
+    return @"Media";
 }
 
 

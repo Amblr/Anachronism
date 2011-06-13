@@ -7,11 +7,14 @@
 //
 
 #import "OspreyViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
 @implementation OspreyViewController
 
 - (void)dealloc
 {
+    [alphaSlider release];
+    [mapViewController release];
     [super dealloc];
 }
 
@@ -35,15 +38,33 @@
 
 - (void)viewDidUnload
 {
+    [alphaSlider release];
+    alphaSlider = nil;
+    [mapViewController release];
+    mapViewController = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
+
+-(void)startDisplay{
+    CLLocationDegrees londonLatitude = 51.507222;
+    CLLocationDegrees londonLongitude = -0.1275;
+    CLLocationCoordinate2D londonCoordinate = CLLocationCoordinate2DMake(londonLatitude, londonLongitude);
+    overlays = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    [mapViewController zoomToCoordinate:londonCoordinate];
+}
+
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return YES;
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
+- (IBAction)alphaSliderValueChanged {
+    float alpha = alphaSlider.value;
+}
 @end

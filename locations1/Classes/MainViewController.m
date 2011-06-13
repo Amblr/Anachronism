@@ -27,10 +27,42 @@
     return self;
 }
 
+-(void) setupPopover
+{
+    CLLocationCoordinate2D fake = CLLocationCoordinate2DMake(0.0, 0.0);
+    
+    CLLocationDegrees lat1 =  51.496416 ;
+    CLLocationDegrees lon1 =  -0.15795 ;
+    CLLocationDegrees lat2 =  51.5147586612 ;
+    CLLocationDegrees lon2 =  -0.120364890805 ;
+
+    
+    CLLocationCoordinate2D bottomLeft = CLLocationCoordinate2DMake(lat1,lon1);
+    CLLocationCoordinate2D topRight = CLLocationCoordinate2DMake(lat2,lon2);
+    
+    L1Overlay * overlay0 = [[L1Overlay alloc] initWithImage:nil withLowerLeftCoordinate:fake withUpperRightCoordinate:fake];
+    overlay0.name=@"None";
+    L1Overlay * overlay1 = [[L1Overlay alloc] initWithImage:[UIImage imageNamed:@"collected_map4.png"] 
+                                    withLowerLeftCoordinate:bottomLeft 
+                                   withUpperRightCoordinate:topRight];
+    overlay1.name=@"Pocket London";
+
+    
+    NSArray * overlays = [NSArray arrayWithObjects:overlay0,overlay1,nil];
+    overlayList = [[L1OverlayListViewController alloc] initWithStyle:UITableViewStylePlain overlays:overlays];
+    overlayList.delegate=self;
+    overlayPopover = [[UIPopoverController alloc] initWithContentViewController:overlayList];
+    CGSize size = CGSizeMake(500, 600);
+    overlayPopover.popoverContentSize = size;
+
+}
+
 - (void)dealloc
 {
     [primaryMapView release];
     [mediaView release];
+    [overlayButton release];
+    [alphaSlider release];
     [super dealloc];
 }
 
@@ -50,6 +82,9 @@
     // Do any additional setup after loading the view from its nib.
     bottomLeftRect = primaryMapView.frame;
     rightRect = mediaView.frame;
+    [self setupPopover];
+    [mediaView loadHTMLString:@"<HTML><HEAD></HEAD><BODY BGCOLOR=\"#FFFFE1\"></BODY></HTML> " baseURL:[NSURL URLWithString:@""]];
+
     
 }
 
@@ -57,6 +92,10 @@
 {
     [mediaView release];
     mediaView = nil;
+    [overlayButton release];
+    overlayButton = nil;
+    [alphaSlider release];
+    alphaSlider = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -96,8 +135,6 @@
     
     self.scenario = [L1Scenario scenarioFromNodesURL:nodesURL pathsURL:pathsURL];
     mapViewController.delegate=self;
-//    self.scenario = [L1Scenario fakeScenarioFromNodeFile:nodesFile pathFile:pathsFile delegate:self];
-//    mapViewController.scenario=self.scenario;
     self.scenario.delegate = self;
     NSError * error = nil;
     NSString * path = [[NSBundle mainBundle] pathForResource:@"streetview" ofType:@"html"];
@@ -117,8 +154,8 @@
 
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes
 {
-	NSLog(@"MainViewController Received %d nodes", [nodes count]);
-	[mapViewController performSelector:@selector(nodeSource:didReceiveNodes:) withObject:nodeManager withObject:nodes];
+//	NSLog(@"MainViewController Received %d nodes", [nodes count]);
+//	[mapViewController performSelector:@selector(nodeSource:didReceiveNodes:) withObject:nodeManager withObject:nodes];
     self.activeNode=nil;
 }
 
@@ -127,11 +164,16 @@
 {
     
     NSLog(@"MainViewController Received %d paths", [paths count]);
-    [mapViewController performSelector:@selector(pathSource:didReceivePaths:) withObject:pathManager withObject:paths];
+//    [mapViewController performSelector:@selector(pathSource:didReceivePaths:) withObject:pathManager withObject:paths];
     if ([paths count]){
         self.activePath=[[paths allValues] objectAtIndex:0];
+        [mapViewController addPath:self.activePath];
     }
-
+    for (L1Node * node in [self.scenario.nodes allValues]){
+        [mapViewController addNode:node];
+    }
+    if ([self.scenario.nodes count]) [mapViewController zoomInToNode:[[self.scenario.nodes allValues] objectAtIndex:0]];
+    
 }
 
 
@@ -225,6 +267,11 @@
   
 }
 
+- (IBAction)clickOverlayButton:(id)sender {
+    NSLog(@"Click %@",overlayPopover);
+    [overlayPopover presentPopoverFromBarButtonItem:overlayButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
 -(IBAction) swapViews
 {
     
@@ -236,6 +283,7 @@
 		primaryMapView.frame = rightRect;
         mediaView.frame = bottomLeftRect;
 		[UIView commitAnimations];
+        [mediaView reload];
 
     }
     else{
@@ -244,7 +292,8 @@
 		primaryMapView.frame = bottomLeftRect;
         mediaView.frame = rightRect;
 		[UIView commitAnimations];
-        
+        [mediaView reload];
+
     }
 }
 
@@ -266,8 +315,8 @@
     }
     else{
         L1Resource * resource = [mediaListViewController.node.resources objectAtIndex:i-1];
-        NSString * urlString = [@"http://warm-earth-179.heroku.com" stringByAppendingString:resource.url];
-        NSURL * url = [NSURL URLWithString:urlString];
+//        NSString * urlString = [@"http://warm-earth-179.heroku.com" stringByAppendingString:resource.url];
+        NSURL * url = [NSURL URLWithString:resource.url];
         NSLog(@"Loading resource URL: %@",url);
         if (resource.local){
             NSLog(@"Local");
@@ -282,13 +331,23 @@
     }
 }
 
--(IBAction) overlay
+
+-(void) selectedOverlay:(L1Overlay*) overlay
 {
-    [mapViewController overlayImage];
-    
+    [overlayPopover dismissPopoverAnimated:YES];
+    [mapViewController removeOverlay];
+    if (![overlay.name isEqualToString:@"None"]){
+        [mapViewController addOverlay:overlay];
+    }
 }
 
-
+- (IBAction)changedAlpha {
+    CGFloat alpha = alphaSlider.value;
+    NSLog(@"alpha = %f",alpha);
+    [mapViewController.singleOverlayView setAlpha:alpha];
+//    [mapViewController.singleOverlayView setNeedsDisplay];
+    
+}
 
 @end
 

@@ -108,9 +108,9 @@
     {
         
         if (imageURLString && (![imageURLString isEqual: [NSNull null]])){
-            NSString * fullURLString = [@"http://warm-earth-179.heroku.com" stringByAppendingString:imageURLString];
-            NSURL * imageURL = [NSURL URLWithString:fullURLString];
-            NSLog(@"%@",fullURLString);
+//            NSString * fullURLString = [@"http://warm-earth-179.heroku.com" stringByAppendingString:imageURLString];
+            NSURL * imageURL = [NSURL URLWithString:imageURLString];
+            NSLog(@"%@",imageURLString);
             NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
             UIImage * image = [UIImage imageWithData:imageData];
             [self.images addObject:image];
@@ -124,9 +124,9 @@
     for (NSString * imageURLString in self.thumbnailURLs)
     {
         if (imageURLString && (![imageURLString isEqual: [NSNull null]])){
-            NSString * fullURLString = [@"http://warm-earth-179.heroku.com" stringByAppendingString:imageURLString];
-            NSURL * imageURL = [NSURL URLWithString:fullURLString];
-            NSLog(@"%@",fullURLString);
+//            NSString * fullURLString = [@"http://warm-earth-179.heroku.com" stringByAppendingString:imageURLString];
+            NSURL * imageURL = [NSURL URLWithString:imageURLString];
+            NSLog(@"%@",imageURLString);
             NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
             UIImage * image = [UIImage imageWithData:imageData];
             [self.thumbnails addObject:image];

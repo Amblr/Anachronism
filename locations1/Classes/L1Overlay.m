@@ -27,7 +27,8 @@
         
         //map rect "origin" is top-left, it seems.
         coordinate = MKCoordinateForMapPoint(MKMapPointMake((lowerLeft.x+upperRight.x)/2., (lowerLeft.y+upperRight.y)/2.));
-        self.overlayImage=image;
+        //The inunderlying CGImage is the same.
+        self.overlayImage= [UIImage imageWithCGImage:image.CGImage scale:1.0 orientation: UIImageOrientationUp];
         self.alpha=1.0;
     }
     return self;
@@ -55,5 +56,7 @@
 //    CGImageRef chunk =  CGImageCreateWithImageInRect (self.overlayImage.CGImage,rect);
 //    return chunk;
 //}
+
+@synthesize name;
 
 @end

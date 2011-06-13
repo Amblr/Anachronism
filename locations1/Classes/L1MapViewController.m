@@ -8,8 +8,8 @@
 
 #import "L1MapViewController.h"
 #import "L1Node.h"
-#import "L1MapImageOverlay.h"
-#import "L1MapImageOverlayView.h"
+//#import "L1MapImageOverlay.h"
+//#import "L1MapImageOverlayView.h"
 #import "L1Path.h"
 #import "SimulatedUserLocation.h"
 #import "L1Pin.h"
@@ -33,9 +33,7 @@
 -(void) awakeFromNib
 {
 	[super awakeFromNib];
-	self.annotationImages = [NSMutableDictionary dictionary];
-	UIImage * image = [UIImage imageNamed:@"pentagram"];
-	if(image) [self.annotationImages setObject:image forKey:@"node"];
+    self.singleOverlayView=nil;
 	
 	
 }
@@ -47,8 +45,6 @@
     [super viewDidLoad];
 	primaryMapView.delegate=self;
     
-   // 51°45′7″N 1°15′28″W
-	// start off by default in San Francisco
     MKCoordinateRegion newRegion;
     newRegion.center.latitude = 51.75;
     newRegion.center.longitude = -1.25;
@@ -62,12 +58,6 @@
     
     fakeUserLocation = [[SimulatedUserLocation alloc] init];
 
-	
-//    NSString * baseURL = @"";
-//    NSString * url = [NSString stringWithFormat:@"%@/nodes",baseURL];
-//    self.scenario = [L1Scenario scenarioFromURL:url];
-
-	
 }
 
 
@@ -97,34 +87,39 @@
 //    [super dealloc];
 //}
 
--(void) zoomToNode:(L1Node*) node
+-(void) zoomToCoordinate:(CLLocationCoordinate2D) coordinate
 {
-    CLLocationCoordinate2D centerCoord = [node coordinate];
     MKMapRect rect = [primaryMapView visibleMapRect];
-    rect.origin = MKMapPointForCoordinate(centerCoord);
-        
+    rect.origin = MKMapPointForCoordinate(coordinate);
     [primaryMapView setVisibleMapRect:MKMapRectOffset(rect, -rect.size.width/2, -rect.size.height/2) animated:YES];
 
 }
 
+-(void) zoomToNode:(L1Node*) node
+{
+    CLLocationCoordinate2D centerCoord = [node coordinate];
+    [self zoomToCoordinate:centerCoord];
+
+}
+
+
+-(void) zoomInToNode:(L1Node*) node
+{
+    CLLocationCoordinate2D centerCoordinate = node.coordinate;
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(centerCoordinate, 1000., 1000.);
+    [primaryMapView setRegion:region animated:YES];
+
+}
+
+
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    NSLog(@"clicky");
 	NSObject<MKAnnotation> * nodeObject = view.annotation;
 	if ([nodeObject isKindOfClass:[L1Node class]]){
 		L1Node * node = (L1Node*)nodeObject;
-		NSLog(@"Selected %@",node.name);
         SEL clickedNode = @selector(didSelectNode:);
         if ([self.delegate respondsToSelector:clickedNode]) [self.delegate performSelector:clickedNode withObject:node];
         [self zoomToNode:node];
-        
-        //        [mapView deselectAnnotation:node animated:NO];
-
-//		self.nodeContentViewController.modalTransitionStyle  = UIModalTransitionStyleCrossDissolve;
-//		[self presentModalViewController:nodeContentViewController animated:YES];
-//		[self.nodeContentViewController setName:node.name];
-//		[self.nodeContentViewController setText:node.text];
-//		[mapView deselectAnnotation:node animated:NO];
 	}
 }
 
@@ -134,40 +129,49 @@
 }
 
 
-
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
-{
-	id<MKAnnotation> annotation = view.annotation;
-	if (![annotation isKindOfClass:[L1Node class]]) return;
-	L1Node * node = (L1Node*)annotation;
-	[self.navigationController pushViewController:self.nodeContentViewController animated:YES];
-	[self.nodeContentViewController setName:node.name];
-	[self.nodeContentViewController setText:node.text];
-}
+//
+//- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+//{
+//	id<MKAnnotation> annotation = view.annotation;
+//	if (![annotation isKindOfClass:[L1Node class]]) return;
+//	L1Node * node = (L1Node*)annotation;
+//	[self.navigationController pushViewController:self.nodeContentViewController animated:YES];
+//	[self.nodeContentViewController setName:node.name];
+//	[self.nodeContentViewController setText:node.text];
+//}
 
 
 
 -(MKAnnotationView *)annotationViewFor:(MKMapView *)mapView forNode:(L1Node*)node{
 
 	
-	if (!node.visible){
-        NSLog(@"Inivisible node: %@",node.name);
-        return nil;   
+//	if (!node.visible){
+//        NSLog(@"Inivisible node: %@",node.name);
+//        return nil;   
+//    }
+    if ((!node.visible) || node.mode==L1NodeWaypoint) {
+        MKAnnotationView * nonView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"InvisibleNode"];
+        if (!nonView){
+            nonView = [[[MKAnnotationView alloc] initWithAnnotation:node reuseIdentifier:@"InvisibleNode"] autorelease];
+        }
+        return nonView;
     }
+    
 	MKAnnotationView * annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"node"];
 	
 	if (!annotationView){
         annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:node reuseIdentifier:@"node"] autorelease];
 	}
-
-//	annotationView.image = [self.annotationImages objectForKey:@"node"];
+    MKPinAnnotationView * pinView = (MKPinAnnotationView*) annotationView;
 	annotationView.enabled = node.visible;
 	annotationView.canShowCallout = NO;
+    if (node.mode==L1NodeActive) pinView.pinColor = MKPinAnnotationColorGreen;
+    if (node.mode==L1NodeInActive) pinView.pinColor = MKPinAnnotationColorPurple;
+    if (node.mode==L1NodePointOfInterest) pinView.pinColor = MKPinAnnotationColorPurple;
+    if (node.mode==L1NodeWaypoint) pinView.enabled=NO;
+    
 	
 	UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-//	[rightButton addTarget:self
-//					action:@selector(showDetails:)
-//		  forControlEvents:UIControlEventTouchUpInside];
 	annotationView.leftCalloutAccessoryView = rightButton;
 	
 		
@@ -180,11 +184,7 @@
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation{
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
-    
-//    if ([annotation isKindOfClass:[L1Pin class]]){
-//        return [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
-//    }
-    
+        
     if ([annotation isKindOfClass:[SimulatedUserLocation class]]){
         SimulatedUserLocation * sim = (SimulatedUserLocation*) annotation;
         return [sim viewForSimulatedLocationWithIdentifier:@"SimulatedUserLocation"];
@@ -216,74 +216,39 @@
         return [polylineView autorelease];
     }
     
-	else if ([overlay isKindOfClass:[L1MapImageOverlay class]]){
-		UIImage * image = [UIImage imageNamed:@"oxford_map.jpg"];
-		NSLog(@"Loaded image %@",image);
-
-
-		
-		
-		
-		L1MapImageOverlayView * overlayView = [[L1MapImageOverlayView alloc] initWithOverlay:overlay image:image.CGImage];
-//		L1MapImageOverlayView * overlayView = [[L1MapImageOverlayView alloc] initWithOverlay:overlay image:image.CGImage topLeft:topLeft bottomRight:bottomRight];
-		return [overlayView autorelease];
-	}
     else if ([overlay isKindOfClass:[L1Overlay class]]){
         L1OverlayView * overlayView = [[L1OverlayView alloc]initWithOverlay:overlay];
+        self.singleOverlayView=overlayView;
         return [overlayView autorelease];
     }
 	
 	return nil;
 }
 
-//-(IBAction) overlayImage
-//{
-//	MKMapRect currentArea = [primaryMapView visibleMapRect];
-//	NSLog(@"current area origin = (%e,%e)  size = (%e,%e)",currentArea.origin.x,currentArea.origin.y,currentArea.size.width,currentArea.size.height);
-//	L1MapImageOverlay * overlay = 	[[L1MapImageOverlay alloc] init];
-//	CLLocationCoordinate2D coord;
-//
-//	float r = 0.8312997348;
-//	
-//	CLLocationCoordinate2D originCoord;
-//	CLLocationCoordinate2D endCoord;
-//
-//	endCoord.latitude=54.0;
-//	endCoord.longitude=5.0;
-//	
-//	originCoord.latitude=58.15;
-//	originCoord.longitude=0.0;
-//	
-//	coord.latitude=endCoord.latitude+r/2;
-//	coord.longitude=0.5;
-//	
-//		
-//	MKMapPoint originPoint = MKMapPointForCoordinate(originCoord);
-//	MKMapPoint endPoint = MKMapPointForCoordinate(endCoord);
-//	
-//	MKMapRect rect = MKMapRectMake(originPoint.x, originPoint.y, endPoint.x-originPoint.x, endPoint.y-originPoint.y);
-//
-//	
-//	NSLog(@"overlay area origin = (%e,%e)  size = (%e,%e)",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
-//
-//	[overlay setCoordinate:coord];
-//	[overlay setMapRect:rect];
-//	[primaryMapView addOverlay:overlay];
-//	[overlay release];
-//	NSLog(@"Added overlay");
-//}
+-(void) addOverlay:(L1Overlay*) overlay
+{
+    [primaryMapView addOverlay:overlay];
 
+}
 
--(IBAction) overlayImage
+-(L1Overlay*) addOverlayImage:(UIImage*)image bottomLeft:(CLLocationCoordinate2D)bottomLeft topRight:(CLLocationCoordinate2D) topRight
 {
     
-    UIImage * image = [UIImage imageNamed:@"oxford_map.jpg"];
-    CLLocationCoordinate2D bottomLeft = CLLocationCoordinate2DMake(54.0, 0.0);
-    CLLocationCoordinate2D topRight = CLLocationCoordinate2DMake(59.0, 10.0);
-    
-    L1Overlay * overlay = [[L1Overlay alloc] initWithImage:image withLowerLeftCoordinate:bottomLeft withUpperRightCoordinate:topRight];
+    L1Overlay * overlay = [[L1Overlay alloc] initWithImage:image 
+                                withLowerLeftCoordinate:bottomLeft 
+                                withUpperRightCoordinate:topRight];
     [primaryMapView addOverlay:overlay];
-    [overlay release];
+    return [overlay autorelease];
+
+}
+
+
+//Add a stand-alone node.
+-(void) addNode:(L1Node*) node
+{
+    if ([primaryMapView.annotations containsObject:node]) return;
+    node.mode = L1NodeInActive;
+    [primaryMapView addAnnotation:node];
     
 }
 
@@ -317,30 +282,35 @@
     
 }
 
--(void) addPath:(L1Path*)path
+-(void) removeOverlay
 {
-    NSArray * overlays = [primaryMapView overlays];
-    NSLog(@"Removing: %@",overlays);
-    [primaryMapView removeOverlays:overlays];
-    MKPolyline * newLine = [path polyline];
-    NSLog(@"Adding: %@",newLine);
-    [primaryMapView addOverlay:newLine];
+    L1Overlay * overlay = singleOverlayView.overlay;
+    [primaryMapView removeOverlay:overlay];
+    self.singleOverlayView=nil;
     
 }
 
--(IBAction) testPolygon:(id) sender{
+-(void)removePaths
+{
+    NSArray * overlays = [primaryMapView overlays];
+    for (NSObject<MKOverlay> * overlay in overlays){
+        if ([overlay isKindOfClass:[MKPolyline class]]) [primaryMapView removeOverlay:overlay];
+    }
+}
 
-	int n = [scenario nodeCount];
-	CLLocationCoordinate2D coords[n];
-	
-	int i=0;
-	for(L1Node * node in scenario){
-		assert ([node isKindOfClass:[L1Node class]]);
-		coords[i++] = node.coordinate;
-	}
-	MKPolygon * polygon = [MKPolygon polygonWithCoordinates:coords count:n];
-	[primaryMapView addOverlay:polygon];
-//	MKPolygonView * polygonView = (MKPolygonView *)[primaryMapView viewForOverlay:polygon];
+
+-(void) addPath:(L1Path*)path
+{
+    MKPolyline * newLine = [path polyline];
+    for (L1Node * node in path.nodes){
+        if (node.visible) node.mode=L1NodeActive;
+        else node.mode=L1NodeWaypoint;
+        if (![primaryMapView.annotations containsObject:node]){
+            [primaryMapView addAnnotation:node];
+        }
+    }
+    [primaryMapView addOverlay:newLine];
+    
 }
 
 -(L1Scenario*) scenario
@@ -358,17 +328,12 @@
 
 -(void) locationManager:(SimulatedLocationManager*) locationManager didUpdateToLocation:(CLLocation*)toLocation fromLocation: (CLLocation*)fromLocation
 {
-//    NSLog(@"Map received update instruction to %@",toLocation);
-    
-//    L1Pin * pin = [[L1Pin alloc] initWithCoordinate:toLocation.coordinate];
-//    [primaryMapView addAnnotation:pin];
         [primaryMapView removeAnnotation:fakeUserLocation]; 
         [primaryMapView addAnnotation:fakeUserLocation];
     
 
 }
 
-
-@synthesize annotationImages, nodeContentViewController;
-
+@synthesize nodeContentViewController;
+@synthesize singleOverlayView;
 @end

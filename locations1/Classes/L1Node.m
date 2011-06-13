@@ -166,4 +166,5 @@ static NSDateFormatter * dateParser = nil;
 @synthesize delegate;
 @synthesize enabled;
 @synthesize key;
+@synthesize mode;
 @end
