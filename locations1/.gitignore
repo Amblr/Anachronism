@@ -6,6 +6,8 @@ build/*
 # old skool
 .svn
 
+xcuserdata
+
 # osx noise
 .DS_Store
 profile
