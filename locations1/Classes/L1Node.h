@@ -101,6 +101,8 @@ typedef enum L1NodeMode {
 
 -(void) registerAmbientSound;
 -(void) playAmbientSound;
+-(void) stopAmbientSound;
+
 @end
 
 

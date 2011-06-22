@@ -32,7 +32,6 @@
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes;
 -(void) pathSource:(id) pathManager didReceivePaths:(NSDictionary*) paths;
 
--(IBAction) overlayImage;
 -(void) removeOverlay;
 
 -(void) zoomToNode:(L1Node*) node;

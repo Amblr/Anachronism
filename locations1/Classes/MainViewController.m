@@ -21,7 +21,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.scenario = nil;
-        self.baseURL = @"http://warm-earth-179.heroku.com";
+        self.baseURL = @"http://amblr.heroku.com";
         // Custom initialization
     }
     return self;
@@ -31,14 +31,15 @@
 {
     CLLocationCoordinate2D fake = CLLocationCoordinate2DMake(0.0, 0.0);
     
-    CLLocationDegrees lat1 =  51.496416 ;
-    CLLocationDegrees lon1 =  -0.15795 ;
-    CLLocationDegrees lat2 =  51.5147586612 ;
-    CLLocationDegrees lon2 =  -0.120364890805 ;
+    CLLocationDegrees bottom =  51.4906416 ;
+    CLLocationDegrees top =  51.5147586612 ;
+
+    CLLocationDegrees left =  -0.13795 ;
+    CLLocationDegrees right =  -0.120364890805 ;
 
     
-    CLLocationCoordinate2D bottomLeft = CLLocationCoordinate2DMake(lat1,lon1);
-    CLLocationCoordinate2D topRight = CLLocationCoordinate2DMake(lat2,lon2);
+    CLLocationCoordinate2D bottomLeft = CLLocationCoordinate2DMake(bottom,left);
+    CLLocationCoordinate2D topRight = CLLocationCoordinate2DMake(top,right);
     
     L1Overlay * overlay0 = [[L1Overlay alloc] initWithImage:nil withLowerLeftCoordinate:fake withUpperRightCoordinate:fake];
     overlay0.name=@"None";
@@ -80,8 +81,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    bottomLeftRect = primaryMapView.frame;
-    rightRect = mediaView.frame;
+    bottomLeftRect = mediaView.frame;
+    rightRect = primaryMapView.frame;
     [self setupPopover];
     [mediaView loadHTMLString:@"<HTML><HEAD></HEAD><BODY BGCOLOR=\"#FFFFE1\"></BODY></HTML> " baseURL:[NSURL URLWithString:@""]];
 
@@ -123,7 +124,7 @@
 {
     NSLog(@"Choosing scenario with ID %@",scenarioID);
     self.chooserViewController=nil;
-    self.baseURL = @"http://warm-earth-179.heroku.com";
+    self.baseURL = @"http://amblr.heroku.com";
     NSString * nodesURL = [NSString stringWithFormat:@"%@/scenarios/%@/nodes.json",self.baseURL,scenarioID];
     NSString * pathsURL = [NSString stringWithFormat:@"%@/paths_for_scenario/%@.json",self.baseURL,scenarioID];
     NSLog(@"base = %@",self.baseURL);
@@ -143,7 +144,7 @@
         [streetView loadHTMLString:streetViewHtml baseURL:[NSURL URLWithString:@""]];        
     }
     else{
-        NSLog(@"Failed to load HTML from %@");
+        NSLog(@"Failed to load HTML from %@",path);
     }
     
 
@@ -233,20 +234,11 @@
 
 -(void) didSelectNode:(L1Node*) node
 {
-    
-//    if ([node.resources count]){
-//        
-//        L1Resource * resource = [node.resources objectAtIndex:0];
-//        NSString * urlString = [NSString stringWithFormat:@"%@%@",@"http://warm-earth-179.heroku.com",resource.url];
-//        if (![urlString isKindOfClass:[NSNull class]]){
-//            NSLog(@"Loading url: %@",urlString);
-//            NSURL * url = [NSURL URLWithString:urlString];
-//            NSURLRequest * request = [NSURLRequest requestWithURL:url];
-//            [mediaView loadRequest:request];
-//        }
-//    }
+    [ self.activeNode stopAmbientSound];
+
     [mapViewController zoomToNode:node];
     mediaListViewController.node = node;
+    
     [mediaSelectionView reloadData];
     self.activeNode=node;
 
@@ -255,6 +247,9 @@
     NSIndexPath * firstPath = [NSIndexPath indexPathWithIndexes:paths length:2];
     [mediaSelectionView selectRowAtIndexPath:firstPath animated:NO scrollPosition:UITableViewScrollPositionTop];
     [self tableView:mediaSelectionView didSelectRowAtIndexPath:firstPath];
+    
+    
+    [node playAmbientSound];
 
 
 }
@@ -315,7 +310,6 @@
     }
     else{
         L1Resource * resource = [mediaListViewController.node.resources objectAtIndex:i-1];
-//        NSString * urlString = [@"http://warm-earth-179.heroku.com" stringByAppendingString:resource.url];
         NSURL * url = [NSURL URLWithString:resource.url];
         NSLog(@"Loading resource URL: %@",url);
         if (resource.local){
@@ -338,6 +332,10 @@
     [mapViewController removeOverlay];
     if (![overlay.name isEqualToString:@"None"]){
         [mapViewController addOverlay:overlay];
+        alphaSlider.hidden=NO;
+    }
+    else{
+        alphaSlider.hidden=YES;
     }
 }
 

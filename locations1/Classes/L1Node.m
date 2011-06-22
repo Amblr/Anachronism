@@ -117,9 +117,6 @@ static NSDateFormatter * dateParser = nil;
 -(CLRegion*) region
 {
 	CLLocationDistance r = [self.radius doubleValue];
-	r=STANDARD_NODE_RADIUS;
-#warning Ignoring node radii 
-    
 	return [[[CLRegion alloc] initCircularRegionWithCenter:self.coordinate radius:r identifier:self.key] autorelease];
 	
 }
@@ -149,10 +146,10 @@ static NSDateFormatter * dateParser = nil;
             
             SoundManager* soundManager=[SoundManager sharedSoundManager];
             NSArray* soundNames = [NSArray arrayWithObjects:@"nodeSound",@"crowd",@"dog",@"thunder", nil];
-            NSString* randonSoundName = [soundNames objectAtIndex: (rand()%4)];
-            NSLog(@"assigning %@",randonSoundName);
+            NSString* randomSoundName = [soundNames objectAtIndex: (rand()%4)];
+            NSLog(@"assigning %@",randomSoundName);
             
-            [soundManager createSource:randonSoundName withExtnesion:@"caf" withKey:self.key gain:1.0 pitch:1.0 frequency:44100 location:location loops:YES];
+            [soundManager createSource:randomSoundName withExtnesion:@"caf" withKey:self.key gain:1.0 pitch:1.0 frequency:44100 location:location loops:YES];
 //        }
 //    }
 }
@@ -161,6 +158,12 @@ static NSDateFormatter * dateParser = nil;
     SoundManager* soundManager=[SoundManager sharedSoundManager];
     [soundManager activateSourceWithKey:self.key];
 }
+
+-(void) stopAmbientSound{
+    SoundManager* soundManager=[SoundManager sharedSoundManager];
+    [soundManager stopSourceWithKey:self.key ];
+}
+
 
 //@synthesize coordinate;
 @synthesize delegate;

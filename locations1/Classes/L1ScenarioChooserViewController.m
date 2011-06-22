@@ -19,7 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        scenarioList = [[L1ScenarioList alloc] initWithURL:@"http://warm-earth-179.heroku.com/scenarios.json"];
+        scenarioList = [[L1ScenarioList alloc] initWithString:@"http://amblr.heroku.com/scenarios.json"];
 //        scenarioList = [[L1ScenarioList alloc] initWithFakeScenario];
         scenarioList.delegate = self;
 //        [self scenarioListDidFinishedLoading:scenarioList];
@@ -33,6 +33,7 @@
     [scenarioImageView release];
     [chooserTable release];
     [scenarioTitleBar release];
+    [goButton release];
     [super dealloc];
 }
 
@@ -51,6 +52,8 @@
     [super viewDidLoad];
     chooserTable.delegate = self;
     chooserTable.dataSource = scenarioList;
+    chooserTable.hidden=YES;
+    goButton.hidden=YES;
     
     //Set initially chosen item.
 //    [chooserTable selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
@@ -63,6 +66,8 @@
 
 -(void) scenarioListDidFinishedLoading:(L1ScenarioList*) completedList
 {
+    chooserTable.hidden=NO;
+    goButton.hidden=NO;
     [chooserTable reloadData];
     //- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     NSUInteger paths[2] = {0,0};
@@ -83,6 +88,8 @@
     chooserTable = nil;
     [scenarioTitleBar release];
     scenarioTitleBar = nil;
+    [goButton release];
+    goButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
