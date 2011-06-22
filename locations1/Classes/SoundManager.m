@@ -32,7 +32,7 @@ static SoundManager* sharedSoundManager = nil;
 
 -(id) init{
     NSLog(@"running init");
-    if(self =[super init]){
+    if((self =[super init])){
         NSLog(@"super worked");
         self.soundList = [NSMutableArray arrayWithCapacity:0];
         self.soundSources = [NSMutableDictionary dictionaryWithCapacity:0];
@@ -114,7 +114,7 @@ static SoundManager* sharedSoundManager = nil;
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:filename ofType:extension];
     NSLog(@"opening audio file");
-    NSUInteger bufferId=NULL;
+    NSUInteger bufferId=0;
     unsigned char* data=NULL;
 
     if ([cachedSounds objectForKey:filename]){
@@ -123,7 +123,7 @@ static SoundManager* sharedSoundManager = nil;
     }
     
     
-    if(bufferId==NULL){
+    if(bufferId==0){
         AudioFileID fileId = [self openAudioFile:filePath];
         
         UInt32 fileSize = [self audioFileSize:fileId];
@@ -229,12 +229,12 @@ static SoundManager* sharedSoundManager = nil;
     alSourcei(sourceId, AL_BUFFER,0);
     alSourcef(sourceId, AL_PITCH, pitch);
     alSourcef(sourceId, AL_GAIN, gain);
-    alSource3f(sourceId, AL_POSITION, 
+  /*  alSource3f(sourceId, AL_POSITION, 
                [[location objectAtIndex:0] floatValue],
                [[location objectAtIndex:1] floatValue],
                [[location objectAtIndex:2] floatValue]);
     alSourcef(sourceId, AL_REFERENCE_DISTANCE, kRefrenceDistance);
-    alSourcef(sourceId, AL_MAX_DISTANCE, kMaxDistance);
+    alSourcef(sourceId, AL_MAX_DISTANCE, kMaxDistance);*/
     
     alSourcei(sourceId, AL_BUFFER, bufferId);
     
@@ -253,6 +253,10 @@ static SoundManager* sharedSoundManager = nil;
 }
      
 -(void) stopSourceWithKey:(NSString *)key{
+    NSLog(@"stopping source iwth key %@",key);
+    NSNumber* sourceId=[self getSourceForKey:key];
+    alSourceStop([sourceId unsignedIntValue]);
+
 }
 
 -(NSUInteger) nextAvaliableSource{

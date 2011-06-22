@@ -9,7 +9,7 @@
 #import "locations1AppDelegate.h"
 //#import "locations1ViewController.h"
 #import "L1LoginViewController.h"
-#import "L1ChooserViewController.h"
+//#import "L1ChooserViewController.h"
 
 @implementation locations1AppDelegate
 
@@ -50,19 +50,18 @@
 	
     return YES;
 }
-
-
--(void) selectScenarioURL:(NSString*) url
-{
-    NSLog(@"Currently ignoring main scenario URL; hard-coded path and node urls.");
-    NSString * baseURL = @"http://warm-earth-179.heroku.com";
-    NSString * nodesURL = [baseURL stringByAppendingString:@"/nodes.json"];
-    NSString * pathsURL = [baseURL stringByAppendingString:@"/paths.json"];
-    scenario = [L1Scenario scenarioFromNodesURL:nodesURL pathsURL:pathsURL];
-//    self.mainViewController.scenario = scenario;
-    
-    
-}
+//
+//
+//-(void) selectScenarioURL:(NSString*) url
+//{
+//    NSLog(@"Currently ignoring main scenario URL; hard-coded path and node urls.");
+//    NSString * nodesURL = [baseURL stringByAppendingString:@"/nodes.json"];
+//    NSString * pathsURL = [baseURL stringByAppendingString:@"/paths.json"];
+//    scenario = [L1Scenario scenarioFromNodesURL:nodesURL pathsURL:pathsURL];
+////    self.mainViewController.scenario = scenario;
+//    
+//    
+//}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

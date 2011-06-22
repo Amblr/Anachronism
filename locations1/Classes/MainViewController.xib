@@ -53,14 +53,13 @@
 					<object class="IBMKMapView" id="505358365">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{7, 428}, {300, 300}}</string>
+						<string key="NSFrame">{{327, 67}, {677, 511}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="598767301"/>
+						<reference key="NSNextKeyView" ref="66830939"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<int key="IBMKMapType">2</int>
 						<bool key="IBMKShowsUserLocation">YES</bool>
 					</object>
 					<object class="IBUINavigationBar" id="489519681">
@@ -105,13 +104,14 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="810039207"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<object class="NSMutableArray" key="IBUIItems">
+						<object class="NSArray" key="IBUIItems">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUINavigationItem" id="448420255">
 								<reference key="IBUINavigationBar" ref="489519681"/>
 								<string key="IBUITitle">Amblr</string>
 								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="624519126">
 									<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+									<int key="IBUIStyle">1</int>
 									<reference key="IBUICustomView" ref="810039207"/>
 									<reference key="IBUINavigationItem" ref="448420255"/>
 								</object>
@@ -122,14 +122,15 @@
 					<object class="IBUIWebView" id="598767301">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{315, 67}, {692, 396}}</string>
+						<string key="NSFrame">{{7, 426}, {300, 312}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="66830939"/>
+						<reference key="NSNextKeyView" ref="505358365"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">2</int>
 							<bytes key="NSRGB">MSAxIDAuOTA1ODgyNDE4MgA</bytes>
 						</object>
+						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIDataDetectorTypes">1</int>
 						<bool key="IBUIDetectsPhoneNumbers">YES</bool>
@@ -150,7 +151,7 @@
 					<object class="IBUITableView" id="66830939">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{315, 481}, {692, 247}}</string>
+						<string key="NSFrame">{{315, 586}, {692, 152}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -216,7 +217,7 @@
 						<string key="NSFrame">{{243, 375}, {64, 37}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="505358365"/>
+						<reference key="NSNextKeyView" ref="598767301"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -233,7 +234,7 @@
 					</object>
 					<object class="IBUISlider" id="760013675">
 						<reference key="NSNextResponder" ref="766721923"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{82, 383}, {155, 23}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
@@ -250,8 +251,8 @@
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="489519681"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MC4zNjg2MTMxMzg3IDAgMAA</bytes>
+					<int key="NSColorSpace">2</int>
+					<bytes key="NSRGB">MSAxIDAuOTA1ODgyNDE4MgA</bytes>
 				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
@@ -465,14 +466,14 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="489519681"/>
-							<reference ref="598767301"/>
 							<reference ref="404031151"/>
-							<reference ref="66830939"/>
-							<reference ref="505358365"/>
 							<reference ref="579676783"/>
 							<reference ref="1018674013"/>
 							<reference ref="238331221"/>
 							<reference ref="760013675"/>
+							<reference ref="505358365"/>
+							<reference ref="598767301"/>
+							<reference ref="66830939"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -627,17 +628,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">L1MapViewController</string>
 					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">overlayImage</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">overlayImage</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">overlayImage</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">primaryMapView</string>
 						<string key="NS.object.0">MKMapView</string>
@@ -666,11 +656,9 @@
 							<string>nextButton</string>
 							<string>previousButton</string>
 							<string>swapViews</string>
-							<string>walkPath:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -687,7 +675,6 @@
 							<string>nextButton</string>
 							<string>previousButton</string>
 							<string>swapViews</string>
-							<string>walkPath:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -709,10 +696,6 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">swapViews</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">walkPath:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 						</object>

@@ -41,7 +41,6 @@
     }
 
     if (![self.url isKindOfClass:[NSNull class]]   ){
-//        NSString * fullURL = [@"http://warm-earth-179.heroku.com" stringByAppendingString:self.url];
     SimpleURLConnection * connection = [[SimpleURLConnection alloc] initWithURL:self.url delegate:self passSelector:@selector(downloadedResourceData:response:) failSelector:@selector(failedDownloadingResourceDataWithError:)];
     [connection runRequest];
     }

@@ -33,7 +33,6 @@
         nodesReady = NO;
         pathsReady = NO;
         pathURL = nil;
-#warning NEED TO CHECK IF USER HAS ENABLED LOCATION SERVICES
 	}
 	return self;
 }
@@ -129,7 +128,7 @@
             if (i%4==0){
                 NSLog(@"ACTIVE NODE NAME IS %@",node.name);
                 [node registerAmbientSound];
-                [node playAmbientSound];
+                //[node playAmbientSound];
             }
             i++;
         }
@@ -151,7 +150,6 @@
 -(void) downloadedPathData:(NSData*) data withResponse:(NSHTTPURLResponse*) response
 {
     NSLog(@"Paths data downloaded");
-    NSString * str = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 	SBJsonParser * parser = [[SBJsonParser alloc] init];
 	NSArray * pathArray = [parser objectWithData:data];
 	[parser release];
