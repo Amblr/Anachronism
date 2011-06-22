@@ -14,25 +14,6 @@
 @synthesize thumbnails, images, descriptions, titles, url, thumbnailURLs, imageURLs, connection, IDs, ready, delegate;
 
 
-//-(id) init
-//{
-//    self = [super init];
-//    if (self){
-//        self.
-//        self.thumbnails = [NSMutableArray arrayWithObjects:[UIImage imageNamed:@"lyra-icon.png"], [UIImage imageNamed:@"solar-icon.png"], [UIImage imageNamed:@"london-icon.jpeg"], nil];
-//
-//        self.descriptions = [NSMutableArray arrayWithObjects:@"A new short story from master storyteller, Philip Pullman, set in the Oxford of Lyra's world in His Dark Materials trilogy, bound with a beautifully illustrated map.", @"Our solar neighborhood is an exciting place. The Solar System is full of planets, moons, asteroids, comets, minor planets, and many other exciting objects. Learn about Io, the explosive moon that orbits the planet Jupiter, or explore the gigantic canyons and deserts on Mars.",@"London has a recorded history that goes back over 2,000 years. During this time, it has grown to become one of the most significant financial and cultural capitals of the world. It has experienced plague, devastating fire, civil war, aerial bombardment and terrorist attacks.", nil];
-//
-//        self.images = [NSMutableArray arrayWithObjects:[UIImage imageNamed:@"lyras-oxford.jpeg"], [UIImage imageNamed:@"solar-system.jpeg"], [UIImage imageNamed:@"london.jpeg"], nil];
-//
-//        self.titles = [NSMutableArray arrayWithObjects:@"Lyra's Oxford", @"Walk The Solar System",@"The History Of London", nil];
-//        
-//        
-//    }
-//    return self;
-//    
-//}
-
 -(id) initWithFakeScenario
 {
     self = [super init];
@@ -48,7 +29,7 @@
     return self;
 }
 
--(id) initWithURL:(NSString*) scenariosURL
+-(id) initWithString:(NSString*) scenariosURL
 {
     self = [super init];
     if (self){
@@ -108,7 +89,6 @@
     {
         
         if (imageURLString && (![imageURLString isEqual: [NSNull null]])){
-//            NSString * fullURLString = [@"http://warm-earth-179.heroku.com" stringByAppendingString:imageURLString];
             NSURL * imageURL = [NSURL URLWithString:imageURLString];
             NSLog(@"%@",imageURLString);
             NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
@@ -124,7 +104,6 @@
     for (NSString * imageURLString in self.thumbnailURLs)
     {
         if (imageURLString && (![imageURLString isEqual: [NSNull null]])){
-//            NSString * fullURLString = [@"http://warm-earth-179.heroku.com" stringByAppendingString:imageURLString];
             NSURL * imageURL = [NSURL URLWithString:imageURLString];
             NSLog(@"%@",imageURLString);
             NSData * imageData = [NSData dataWithContentsOfURL:imageURL];

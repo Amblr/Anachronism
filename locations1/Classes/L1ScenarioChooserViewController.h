@@ -17,6 +17,7 @@
     IBOutlet UITextView *scenarioText;
     IBOutlet UITableView *chooserTable;
     L1ScenarioList *scenarioList;
+    IBOutlet UIButton *goButton;
     
 }
 @property (retain) NSObject * delegate;

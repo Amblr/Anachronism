@@ -12,7 +12,7 @@
 //#import "L1MapImageOverlayView.h"
 #import "L1Path.h"
 #import "SimulatedUserLocation.h"
-#import "L1Pin.h"
+//#import "L1Pin.h"
 #import "L1Overlay.h"
 #import "L1OverlayView.h"
 
@@ -169,6 +169,7 @@
     if (node.mode==L1NodeInActive) pinView.pinColor = MKPinAnnotationColorPurple;
     if (node.mode==L1NodePointOfInterest) pinView.pinColor = MKPinAnnotationColorPurple;
     if (node.mode==L1NodeWaypoint) pinView.enabled=NO;
+
     
 	
 	UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];

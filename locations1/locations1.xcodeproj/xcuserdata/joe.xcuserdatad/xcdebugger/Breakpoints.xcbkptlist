@@ -37,11 +37,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Classes/MainViewController.m"
-         timestampString = "329668050.168021"
+         timestampString = "329772242.941047"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "345"
-         endingLineNumber = "345"
+         startingLineNumber = "344"
+         endingLineNumber = "344"
          landmarkName = "-changedAlpha"
          landmarkType = "5">
       </FileBreakpoint>

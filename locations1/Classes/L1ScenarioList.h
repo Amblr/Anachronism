@@ -25,7 +25,7 @@
     SimpleURLConnection * connection;
 }
 
--(id) initWithURL:(NSString*) scenariosURL;
+-(id) initWithString:(NSString*) scenariosURL;
 -(id) initWithFakeScenario;
 
 -(void) updateScenarios;
