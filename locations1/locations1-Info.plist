@@ -32,5 +32,9 @@
 	<string>MainWindow-IPhone</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 </dict>
 </plist>

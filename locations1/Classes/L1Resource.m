@@ -8,6 +8,7 @@
 
 #import "L1Resource.h"
 #import "SimpleURLConnection.h"
+#import "L1Utils.h"
 
 @implementation L1Resource
 
@@ -15,6 +16,8 @@
 {
     if ((self = [super init])){
         self.key = resourceKey;
+        self.saveLocal = YES;
+        self.local = NO;
     } 
     return self;
 
@@ -24,13 +27,27 @@
 {
     self.resourceData = [NSData dataWithData:data];
     self.local=YES;
+    if (self.saveLocal){
+        [[NSFileManager defaultManager] createFileAtPath:[self localFileName] contents:self.resourceData attributes:nil];
+        self.resourceData = nil;
+    }
+    
 }
 
 -(void) failedDownloadingResourceDataWithError:(NSError*) error
 {
     NSLog(@"Failed download of resource.\nname:%@ \nurl: %@\nerror:%@",self.name,self.url,error);
-    
 
+    if ([self.type isEqualToString:@"sound"]){
+#warning TEST CODE
+        NSArray* soundNames = [NSArray arrayWithObjects:@"momentum",@"major",@"dying",@"jonathan",@"youll",@"rock",@"worth", nil];
+        NSString* randomSoundName = [soundNames objectAtIndex: (rand()%[soundNames count])];
+        NSLog(@"Faking sound resource");
+        NSString * filename = [[NSBundle mainBundle] pathForResource:randomSoundName ofType:@"mp3"];
+        NSData * data = [NSData dataWithContentsOfFile:filename];
+        [self downloadedResourceData:data response:nil];
+    }
+        
 }
 
 -(void) downloadResourceData
@@ -54,6 +71,8 @@
         self.key = [data objectForKey:@"id"];
         self.url = [data objectForKey:@"path"];
         self.type = [data objectForKey:@"type"];
+        NSLog(@"Resource type: %@",self.type);
+        self.saveLocal = YES;
         self.local = NO;
         self.metadata = [NSMutableDictionary dictionaryWithDictionary:[data objectForKey:@"metadata"]];
         self.resourceData = nil;
@@ -62,6 +81,12 @@
     return self;
 }
 
+-(NSString*) localFileName
+{
+    NSString * resourceDir = [L1Utils resourceDirectory];
+    return [[NSString pathWithComponents:[NSArray arrayWithObjects:resourceDir,self.key,nil]] stringByAppendingString:@".mp3"];
+}
 
-@synthesize name, url, type, local, key, metadata, resourceData;
+
+@synthesize name, url, type, local, key, metadata, resourceData, saveLocal;
 @end

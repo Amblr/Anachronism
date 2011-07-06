@@ -122,12 +122,12 @@
 		L1Node * node = [[L1Node alloc] initWithDictionary:nodeDictionary key:[nodeDictionary objectForKey:@"id"]];
 		[nodes setObject:[node autorelease] forKey:node.key];
         CLLocation * nodeLocation = [[CLLocation alloc] initWithLatitude:[node.latitude doubleValue] longitude:[node.longitude doubleValue]];
-        CLLocationDistance dist = [nodeLocation distanceFromLocation:locationManager.location];
-        NSLog(@"Distance from %@ = %f (%@,%@)",node.name,dist,nodeLocation,locationManager.location);
+//        CLLocationDistance dist = [nodeLocation distanceFromLocation:locationManager.location];
+        //NSLog(@"Distance from %@ = %f (%@,%@)",node.name,dist,nodeLocation,locationManager.location);
             
             if (i%4==0){
-                NSLog(@"ACTIVE NODE NAME IS %@",node.name);
-                [node registerAmbientSound];
+                //NSLog(@"ACTIVE NODE NAME IS %@",node.name);
+                //[node registerAmbientSound];
                 //[node playAmbientSound];
             }
             i++;
@@ -175,7 +175,7 @@
         NSLog(@"Could not parse path data as JSON");
     }
 	
-	[self startMonitoringAllNodesProximity];
+	//[self startMonitoringAllNodesProximity];
 
 }
 

@@ -13,4 +13,6 @@
     
 }
 
+//+(NSArray*) serializedFieldNames;
+
 @end

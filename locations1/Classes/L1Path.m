@@ -22,7 +22,7 @@
         self.key = [pathDictionary objectForKey:@"id"]; 
 		[self setStateFromDictionary:pathDictionary];
         NSArray * nodeNames = [pathDictionary objectForKey:@"path_nodes"];
-        NSLog(@"nodes = %@",nodeNames);
+//        NSLog(@"nodes = %@",nodeNames);
         [self extractNodes:nodeNames fromSource:nodeSource];
 	}
 	return self;

@@ -41,9 +41,11 @@
 -(void) mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view;
 -(void) mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray*) annotationViews;
 
+-(void) addManualUserLocationAt:(CLLocationCoordinate2D)coordinate;
 
 -(L1Overlay*) addOverlayImage:(UIImage*)image bottomLeft:(CLLocationCoordinate2D)bottomLeft topRight:(CLLocationCoordinate2D) topRight;
 -(void) addPath:(L1Path*)path;
 -(void) addNode:(L1Node*) node;
--(void) addOverlay:(L1Overlay*) overlay;
+-(void) addImageOverlay:(L1Overlay*) overlay;
+-(void) addOverlay:(id<MKOverlay>) overlay;
 @end

@@ -15,7 +15,7 @@
 //#import "L1Pin.h"
 #import "L1Overlay.h"
 #import "L1OverlayView.h"
-
+#import "ManualUserLocation.h"
 
 @implementation L1MapViewController
 @synthesize  delegate;
@@ -179,7 +179,12 @@
 	return annotationView;
 }
 
-
+-(void) addManualUserLocationAt:(CLLocationCoordinate2D)coordinate
+{
+    ManualUserLocation * manualLocation = [[ManualUserLocation alloc] initWithCoordinate:coordinate];
+    [primaryMapView addAnnotation:manualLocation];
+    
+}
 
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation{
@@ -195,12 +200,20 @@
 	if ([annotation isKindOfClass:[L1Node class]]){
 		return [self annotationViewFor:mapView forNode:(L1Node*)annotation];
 	}
+    
+    if ([annotation isKindOfClass:[ManualUserLocation class]]){
+        MKPinAnnotationView * pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"ManualUserLocation"];
+        pin.draggable = YES;
+        pin.pinColor = MKPinAnnotationColorRed;
+        return [pin autorelease];
+    }
+    
 	return nil;
 }
 
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
-	NSLog(@"Getting view overlay: %@",overlay);
+//	NSLog(@"Getting view overlay: %@",overlay);
 	if ([overlay isKindOfClass:[MKPolygon class]]){
 		MKPolygonView * polygonView = [[MKPolygonView alloc] initWithPolygon:overlay];
 		UIColor * color = [[UIColor redColor] colorWithAlphaComponent:0.25];
@@ -210,8 +223,8 @@
     
     else if ([overlay isKindOfClass:[MKPolyline class]]){
         MKPolylineView * polylineView = [[MKPolylineView alloc] initWithPolyline:(MKPolyline*) overlay];
-        NSLog(@"overlay = %@",overlay);
-        NSLog(@"poly line = %@", polylineView.polyline);
+//        NSLog(@"overlay = %@",overlay);
+//        NSLog(@"poly line = %@", polylineView.polyline);
         polylineView.strokeColor = [UIColor purpleColor];
         polylineView.lineWidth = 4.0;
         return [polylineView autorelease];
@@ -222,11 +235,18 @@
         self.singleOverlayView=overlayView;
         return [overlayView autorelease];
     }
+    
+    else if ([overlay isKindOfClass:[MKCircle class]]){
+        MKCircleView *circleView = [[MKCircleView alloc] initWithCircle:(MKCircle*)overlay];
+        circleView.alpha = 0.33;
+        circleView.fillColor = [UIColor greenColor];
+        return [circleView autorelease];
+    }
 	
 	return nil;
 }
 
--(void) addOverlay:(L1Overlay*) overlay
+-(void) addImageOverlay:(L1Overlay*) overlay
 {
     [primaryMapView addOverlay:overlay];
 
@@ -331,9 +351,34 @@
 {
         [primaryMapView removeAnnotation:fakeUserLocation]; 
         [primaryMapView addAnnotation:fakeUserLocation];
-    
 
 }
+
+-(void) addOverlay:(id<MKOverlay>) overlay
+{
+    [primaryMapView addOverlay:overlay];
+
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)annotationView didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState
+{
+    //The user just dragged our manual location to a new position.
+    //This means we want to fake having moved.
+    if ([annotationView.annotation isKindOfClass:[ManualUserLocation class]]){
+        if (newState==MKAnnotationViewDragStateEnding && oldState==MKAnnotationViewDragStateDragging){
+            ManualUserLocation * manualLocation = (ManualUserLocation *) annotationView.annotation;
+            CLLocationCoordinate2D coordinates = manualLocation.coordinate;
+            SEL selector = @selector(manualLocationUpdate:);
+            if ([self.delegate respondsToSelector:selector]){
+                CLLocation * newLocation = [[CLLocation alloc] initWithLatitude:coordinates.latitude longitude:coordinates.longitude];
+                [self.delegate performSelector:selector withObject:newLocation];
+                [newLocation autorelease];
+            }
+            
+        }
+    }
+}
+
 
 @synthesize nodeContentViewController;
 @synthesize singleOverlayView;

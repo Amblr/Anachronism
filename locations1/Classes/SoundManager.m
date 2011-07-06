@@ -33,23 +33,23 @@ static SoundManager* sharedSoundManager = nil;
 -(id) init{
     NSLog(@"running init");
     if((self =[super init])){
-        NSLog(@"super worked");
-        self.soundList = [NSMutableArray arrayWithCapacity:0];
-        self.soundSources = [NSMutableDictionary dictionaryWithCapacity:0];
-        self.listenerPosition =[NSMutableArray arrayWithObjects:[NSNumber numberWithFloat:0],
-            [NSNumber numberWithFloat:0],
-                           [NSNumber numberWithFloat:0],nil] ;
-        self.cachedSounds = [NSMutableDictionary dictionaryWithCapacity:0];
-        ALfloat pos[3];
-        pos[0]=0;
-        pos[1]=0;
-        pos[3]=0.0;
-
-        
-       //[self updateListenerPos];
-        
-        BOOL result = [self initOpenAL];
-        if(!result) {NSLog(@"openAL initalisation worked");return nil;}
+//        NSLog(@"super worked");
+//        self.soundList = [NSMutableArray arrayWithCapacity:0];
+//        self.soundSources = [NSMutableDictionary dictionaryWithCapacity:0];
+//        self.listenerPosition =[NSMutableArray arrayWithObjects:[NSNumber numberWithFloat:0],
+//            [NSNumber numberWithFloat:0],
+//                           [NSNumber numberWithFloat:0],nil] ;
+//        self.cachedSounds = [NSMutableDictionary dictionaryWithCapacity:0];
+//        ALfloat pos[3];
+//        pos[0]=0;
+//        pos[1]=0;
+//        pos[3]=0.0;
+//
+//        
+//       //[self updateListenerPos];
+//        
+//        BOOL result = [self initOpenAL];
+//        if(!result) {NSLog(@"openAL initalisation worked");return nil;}
         return self;
     }
     NSLog(@"failed to initaise openAL with error");

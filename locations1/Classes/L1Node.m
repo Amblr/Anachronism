@@ -76,6 +76,7 @@ static NSDateFormatter * dateParser = nil;
     NSArray * resourceDictionaryArray = [nodeDictionary objectForKey:@"resources"];
     for (NSDictionary * resourceDictionary in resourceDictionaryArray){
         L1Resource * resource = [[L1Resource alloc] initWithDictionary:resourceDictionary];
+        resource.saveLocal = YES;
         [self.resources addObject:resource];
         [resource autorelease];
     }
@@ -118,7 +119,6 @@ static NSDateFormatter * dateParser = nil;
 {
 	CLLocationDistance r = [self.radius doubleValue];
 	return [[[CLRegion alloc] initCircularRegionWithCenter:self.coordinate radius:r identifier:self.key] autorelease];
-	
 }
 
 -(L1Experience*) generateVisitedExperience

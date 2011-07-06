@@ -331,7 +331,7 @@
     [overlayPopover dismissPopoverAnimated:YES];
     [mapViewController removeOverlay];
     if (![overlay.name isEqualToString:@"None"]){
-        [mapViewController addOverlay:overlay];
+        [mapViewController addImageOverlay:overlay];
         alphaSlider.hidden=NO;
     }
     else{
