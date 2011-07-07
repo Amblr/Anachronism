@@ -73,8 +73,9 @@ static NSDateFormatter * dateParser = nil;
 
     /* Resources.  Get an array of them. */
     self.resources = [[[NSMutableArray alloc] init] autorelease];
-    NSArray * resourceDictionaryArray = [nodeDictionary objectForKey:@"resources"];
-    for (NSDictionary * resourceDictionary in resourceDictionaryArray){
+    NSArray * resourceDictionaryArray = [nodeDictionary objectForKey:@"resource_hooks"];
+    for (NSDictionary * resourceHookDictionary in resourceDictionaryArray){
+        NSDictionary * resourceDictionary = [resourceHookDictionary objectForKey:@"resource"];
         L1Resource * resource = [[L1Resource alloc] initWithDictionary:resourceDictionary];
         resource.saveLocal = YES;
         [self.resources addObject:resource];

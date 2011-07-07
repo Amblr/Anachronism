@@ -43,13 +43,61 @@
     [locationManager startPath];
 }
 
+-(void) startStoryDownload:(NSString*)urlString
+{
+    SimpleURLConnection * connection = [[SimpleURLConnection alloc] initWithURL:urlString
+                                                                       delegate:self 
+                                                                   passSelector:@selector(downloadedStoryData:withResponse:) 
+                                                                   failSelector:@selector(failedStoryDownloadWithError:) ];
+	
+	
+	[connection.request addValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+	[connection runRequest];
+
+}
+
+-(void) failedStoryDownloadWithError:(NSError*) error
+{
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"A problem" message:@"Sorry - there was a problem with the app.  Please inform the Amblr Tream" delegate:nil cancelButtonTitle:@"*Sigh*" otherButtonTitles: nil];
+    [alert show];
+    
+    
+}
+
+-(void) downloadedStoryData:(NSData*) data withResponse:(NSHTTPURLResponse*) response
+{
+    NSLog(@"Node data downloaded");
+	SBJsonParser * parser = [[SBJsonParser alloc] init];
+	NSDictionary * storyDictionary = [parser objectWithData:data];
+    NSArray * nodeArray = [storyDictionary objectForKey:@"nodes"];
+	[parser release];
+	for(NSDictionary * nodeDictionary in nodeArray){
+        @try{
+            L1Node * node = [[L1Node alloc] initWithDictionary:nodeDictionary key:[nodeDictionary objectForKey:@"id"]];
+            [nodes setObject:[node autorelease] forKey:node.key];
+        }
+        @catch (NSException *e ) {
+            NSLog(@"Bad node: %@",e);
+        }
+	}
+	
+	[delegate performSelector:@selector(nodeSource:didReceiveNodes:) withObject:self withObject:nodes];
+    //Should now handle paths too but no time now!
+    
+}
+
+
+
 
 +(L1Scenario*) scenarioFromURL:(NSString*) url
 {
     L1Scenario * scenario = [[L1Scenario alloc] init];
-    [scenario startNodeDownload:url];
+    [scenario startStoryDownload:url];
     return [scenario autorelease];
 }
+
+
+
 
 
 +(L1Scenario*) fakeScenarioFromNodeFile:(NSString*)nodeFile pathFile:(NSString*)pathFile delegate:(id) delegate

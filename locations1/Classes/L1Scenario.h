@@ -54,6 +54,7 @@
 
 -(void) walkPath:(L1Path*)path;
 
+-(void) downloadedStoryData:(NSData*) data withResponse:(NSHTTPURLResponse*) response;
 
 -(void) startMonitoringAllNodesProximity;
 -(void) startMonitoringNodeProximity:(L1Node*)node;
