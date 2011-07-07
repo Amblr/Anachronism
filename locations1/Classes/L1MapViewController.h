@@ -48,4 +48,5 @@
 -(void) addNode:(L1Node*) node;
 -(void) addImageOverlay:(L1Overlay*) overlay;
 -(void) addOverlay:(id<MKOverlay>) overlay;
+-(void) setColor:(UIColor*)color forCircle:(MKCircle*) circle;
 @end

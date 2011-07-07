@@ -10,6 +10,8 @@
 #import "SimpleURLConnection.h"
 #import "L1Utils.h"
 
+int currentIndex = 0;
+
 @implementation L1Resource
 
 -(id) initWithKey:(NSString *)resourceKey
@@ -38,15 +40,15 @@
 {
     NSLog(@"Failed download of resource.\nname:%@ \nurl: %@\nerror:%@",self.name,self.url,error);
 
-    if ([self.type isEqualToString:@"sound"]){
-#warning TEST CODE
-        NSArray* soundNames = [NSArray arrayWithObjects:@"momentum",@"major",@"dying",@"jonathan",@"youll",@"rock",@"worth", nil];
-        NSString* randomSoundName = [soundNames objectAtIndex: (rand()%[soundNames count])];
-        NSLog(@"Faking sound resource");
-        NSString * filename = [[NSBundle mainBundle] pathForResource:randomSoundName ofType:@"mp3"];
-        NSData * data = [NSData dataWithContentsOfFile:filename];
-        [self downloadedResourceData:data response:nil];
-    }
+//    if ([self.type isEqualToString:@"sound"]){
+//#warning TEST CODE
+//        NSArray* soundNames = [NSArray arrayWithObjects:@"momentum",@"major",@"dying",@"jonathan",@"youll",@"rock",@"worth", nil];
+//        NSString* randomSoundName = [soundNames objectAtIndex: (currentIndex++)%[soundNames count]];
+//        NSLog(@"Faking sound resource: %@",randomSoundName);
+//        NSString * filename = [[NSBundle mainBundle] pathForResource:randomSoundName ofType:@"mp3"];
+//        NSData * data = [NSData dataWithContentsOfFile:filename];
+//        [self downloadedResourceData:data response:nil];
+//    }
         
 }
 
@@ -84,7 +86,11 @@
 -(NSString*) localFileName
 {
     NSString * resourceDir = [L1Utils resourceDirectory];
+    if ([self.type isEqualToString:@"sound"]){
     return [[NSString pathWithComponents:[NSArray arrayWithObjects:resourceDir,self.key,nil]] stringByAppendingString:@".mp3"];
+    }
+    return [NSString pathWithComponents:[NSArray arrayWithObjects:resourceDir,self.key,nil]];
+            
 }
 
 

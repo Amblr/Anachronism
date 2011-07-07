@@ -380,6 +380,18 @@
 }
 
 
+-(void) setColor:(UIColor*)color forCircle:(MKCircle*) circle
+{
+    MKOverlayView * overlayView = [primaryMapView viewForOverlay:circle];
+    if (!overlayView) return;
+    if (![overlayView isKindOfClass:[MKCircleView class]]){
+        NSLog(@"WEIRD.  Circle does not have circle view.");
+        return;
+    }
+    MKCircleView * circleView = (MKCircleView*) overlayView;
+    circleView.fillColor = color;
+}
+
 @synthesize nodeContentViewController;
 @synthesize singleOverlayView;
 @end

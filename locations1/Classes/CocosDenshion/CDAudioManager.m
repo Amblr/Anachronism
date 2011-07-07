@@ -617,6 +617,7 @@ static BOOL configured = FALSE;
 }	
 
 - (void) applicationWillResignActive {
+    return;
 	self->_resigned = YES;
 	
 	//Set the audio sesssion to one that allows sharing so that other audio won't be clobbered on resume

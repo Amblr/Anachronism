@@ -16,6 +16,7 @@
 
 - (void)dealloc
 {
+    [realGPSControl release];
     [super dealloc];
 }
 
@@ -34,12 +35,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    audioEngine = [[SimpleAudioEngine alloc] init];
-    audioUnits = [[NSMutableDictionary alloc] init];
+//    audioEngine = [[SimpleAudioEngine alloc] init];
+    audioSamples = [[NSMutableDictionary alloc] init];
     BOOL ok = [L1Utils initializeDirs];
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     NSAssert(ok, @"Unable to ini dirs.");
+    circles = [[NSMutableDictionary alloc] initWithCapacity:0];
+    
 }
 
 
@@ -52,6 +55,8 @@
 
 - (void)viewDidUnload
 {
+    [realGPSControl release];
+    realGPSControl = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -67,10 +72,23 @@
 #pragma mark -
 #pragma mark Story Elements
 -(void) setupScenario {
+    
+    // Use Dickens
     NSString * nodesURL = @"http://amblr.heroku.com/scenarios/4ddbbf01875dcc0001000015/nodes.json";
     NSString * pathsURL = @"http://amblr.heroku.com/paths_for_scenario/4ddbbf01875dcc0001000015.json";
-    //Hackney Hear: 4e136bf3ece479000100001a
-    //Dickens: 4ddbbf01875dcc0001000015
+
+    //Use Hackney Hear
+//    NSString * nodesURL = @"http://amblr.heroku.com/scenarios/4e136bf3ece479000100001a/nodes.json";
+//    NSString * pathsURL = @"http://amblr.heroku.com/paths_for_scenario/4e136bf3ece479000100001a.json";
+
+    
+    //Use bundled nodes and paths.
+//    NSURL * nodesURLReal = [NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:@"nodes" ofType:@"json"]];
+//    NSURL * pathsURLReal = [NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:@"paths" ofType:@"json"]];
+//    NSString * nodesURL = [nodesURLReal absoluteString];
+//    NSString * pathsURL = [pathsURLReal absoluteString];
+    
+        
     self.scenario = [L1Scenario scenarioFromNodesURL:nodesURL pathsURL:pathsURL];
     mapViewController.delegate=self;
     self.scenario.delegate = self;
@@ -82,6 +100,7 @@
         NSLog(@"HH Found node: %@",node.name);
         //Add circle overlay
         MKCircle * circle = [MKCircle circleWithCenterCoordinate:node.coordinate radius:[node.radius doubleValue]];
+        [circles setObject:circle forKey:node.key];
         [mapViewController addOverlay:circle];
         //Add node to map.
         [mapViewController addNode:node];
@@ -106,6 +125,14 @@
     }
 }
 
+-(void) nodeDownloadFailedForScenario:(L1Scenario*) scenario
+{
+    NSString * message = @"You don't seem to have an internet connection.  Or possibly your humble developers have screwed up.  Probably the former.";
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"No Network" message:message delegate:self cancelButtonTitle:@"*Sigh*" otherButtonTitles:nil];
+    [alert show];
+    
+}
+
 
 #pragma  mark -
 #pragma mark Sound
@@ -122,29 +149,36 @@
 
 -(void) nodeSoundOn:(L1Node*) node
 {
-    NSLog(@"Mute status: %d", [audioEngine mute]);
            
-           
+    MKCircle * circle = [circles valueForKey:node.key];
+    [mapViewController setColor:[UIColor blueColor] forCircle:circle];
     NSLog(@"Node on: %@",node.name);
     NSString * filename = [self filenameForNodeSound:node];
     if (filename){
-        ALuint unit = [audioEngine playEffect:filename];
+        CDLongAudioSource * sound = [[CDLongAudioSource alloc] init];
+        [sound load:filename];
+        [sound play];
+        [audioSamples setObject:sound forKey:node.key];
+        [sound release];
+        
         NSLog(@"Playing sound %@",filename);
-        [audioUnits setObject:[NSNumber numberWithUnsignedInt:unit] forKey:filename];
-        NSLog(@"Audio unit set to %u",unit);
+        
     }
 }
 
 -(void) nodeSoundOff:(L1Node*) node
 {
     NSLog(@"Node off: %@",node.name);
+    MKCircle * circle = [circles valueForKey:node.key];
+    [mapViewController setColor:[UIColor greenColor] forCircle:circle];
     NSString * filename = [self filenameForNodeSound:node];
     if (filename){
-        NSNumber * unitNumber = [audioUnits valueForKey:filename];
-        ALuint unit = [unitNumber unsignedIntValue];
-        [audioEngine stopEffect:unit];
+        CDLongAudioSource * sound = [audioSamples objectForKey:node.key];
+        if (sound){
+            [sound stop];
+            [audioSamples removeObjectForKey:node.key];
+        }
     }
-   
 }
 
 #pragma mark -
@@ -152,12 +186,14 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    [self locationUpdate:newLocation.coordinate];
+    NSLog(@"Location update [real]");
+    if (realGPSControl.on) [self locationUpdate:newLocation.coordinate];
 }
 
 -(void) manualLocationUpdate:(CLLocation*)location
 {
-    [self locationUpdate:location.coordinate];
+    NSLog(@"Location update [fake]");
+    if (!realGPSControl.on) [self locationUpdate:location.coordinate];
 }
 
 -(void) locationUpdate:(CLLocationCoordinate2D) location

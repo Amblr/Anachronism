@@ -191,6 +191,10 @@
 -(void) failedNodeDownloadWithError:(NSError*) error
 {
 	NSLog(@"Node download failed: you are disgrace to humanity.\nError was: %@",error);
+    SEL selector = @selector(nodeDownloadFailedForScenario:);
+    if ([delegate respondsToSelector:selector]){
+        [delegate performSelector:selector withObject:self];
+    }
 }
 
 

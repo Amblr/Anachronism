@@ -271,6 +271,8 @@
 		D8B19D90131EDD1F00FB56A4 /* pentagram_high_res.png in Resources */ = {isa = PBXBuildFile; fileRef = D8B19D8F131EDD1F00FB56A4 /* pentagram_high_res.png */; };
 		D8B19DCB131F022B00FB56A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B19DCA131F022B00FB56A4 /* QuartzCore.framework */; };
 		D8B1A0391323020D00FB56A4 /* oxford_map.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8B1A0381323020D00FB56A4 /* oxford_map.jpg */; };
+		D8BB836613C5AE2D003CBDDF /* nodes.json in Resources */ = {isa = PBXBuildFile; fileRef = D8BB836413C5AE2D003CBDDF /* nodes.json */; };
+		D8BB836713C5AE2D003CBDDF /* paths.json in Resources */ = {isa = PBXBuildFile; fileRef = D8BB836513C5AE2D003CBDDF /* paths.json */; };
 		D8D130DE1316EB7D00243D80 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D130DD1316EB7D00243D80 /* CoreLocation.framework */; };
 		D8D5CDF01396DCCB008112ED /* textfade.html in Resources */ = {isa = PBXBuildFile; fileRef = D8D5CDEE1396DA6E008112ED /* textfade.html */; };
 		D8DF6459139595910019F3D3 /* streetview.html in Resources */ = {isa = PBXBuildFile; fileRef = D8DF6458139595910019F3D3 /* streetview.html */; };
@@ -492,6 +494,8 @@
 		D8B19D8F131EDD1F00FB56A4 /* pentagram_high_res.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pentagram_high_res.png; path = Images/pentagram_high_res.png; sourceTree = SOURCE_ROOT; };
 		D8B19DCA131F022B00FB56A4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D8B1A0381323020D00FB56A4 /* oxford_map.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oxford_map.jpg; sourceTree = "<group>"; };
+		D8BB836413C5AE2D003CBDDF /* nodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nodes.json; sourceTree = "<group>"; };
+		D8BB836513C5AE2D003CBDDF /* paths.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paths.json; sourceTree = "<group>"; };
 		D8D130DD1316EB7D00243D80 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D8D5CDEE1396DA6E008112ED /* textfade.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = textfade.html; sourceTree = "<group>"; };
 		D8DF6458139595910019F3D3 /* streetview.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = streetview.html; path = Classes/streetview.html; sourceTree = "<group>"; };
@@ -708,6 +712,8 @@
 		D82BC9B413C3A118003D86B4 /* Hackney Hear  */ = {
 			isa = PBXGroup;
 			children = (
+				D8BB836413C5AE2D003CBDDF /* nodes.json */,
+				D8BB836513C5AE2D003CBDDF /* paths.json */,
 				D8385E5313C4D1A40016EF07 /* HH_logo_57.jpg */,
 				D8385E5413C4D1A40016EF07 /* HH_logo_114.jpg */,
 				D82BC9BD13C3A118003D86B4 /* Hackney_Hear_AppDelegate.h */,
@@ -1159,6 +1165,8 @@
 				D8385E4813C4C6FC0016EF07 /* youll.mp3 in Resources */,
 				D8385E4A13C4C6FC0016EF07 /* rock.mp3 in Resources */,
 				D8385E4C13C4C6FC0016EF07 /* worth.mp3 in Resources */,
+				D8BB836613C5AE2D003CBDDF /* nodes.json in Resources */,
+				D8BB836713C5AE2D003CBDDF /* paths.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

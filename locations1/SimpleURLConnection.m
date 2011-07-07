@@ -65,25 +65,29 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
 	NSLog(@"Response received.");
-	httpResponse =(NSHTTPURLResponse*) response;
-	[httpResponse retain];
-	int returnCode = [httpResponse statusCode];
+	int returnCode;
+    if ([response isKindOfClass:[NSHTTPURLResponse class]]){
+        
+        
+        httpResponse =(NSHTTPURLResponse*) response;
+        [httpResponse retain];
+        returnCode = [httpResponse statusCode];
 	
-	
-	if (returnCode/100!=2){
-		
-        if (returnCode==401){
-			NSError* error=[self generateError:@"Failed With unauthorised" httpReturnCode:httpResponse errorNo:2];
-			[returnDelegate performSelector:failSelector withObject:error];
-		}
-        else{
-			NSError* error=[self generateError:@"Failed to establishConnection" httpReturnCode:httpResponse errorNo:3];
-			NSLog(@"return code is %d",returnCode);
-			[returnDelegate performSelector:failSelector withObject:error];
+        if (returnCode/100!=2){
+            
+            if (returnCode==401){
+                NSError* error=[self generateError:@"Failed With unauthorised" httpReturnCode:httpResponse errorNo:2];
+                [returnDelegate performSelector:failSelector withObject:error];
+            }
+            else{
+                NSError* error=[self generateError:@"Failed to establishConnection" httpReturnCode:httpResponse errorNo:3];
+                NSLog(@"return code is %d",returnCode);
+                [returnDelegate performSelector:failSelector withObject:error];
+            }
+            [connection cancel];
+            [connection release];
+            return;
         }
-        [connection cancel];
-        [connection release];
-        return;
     }
 	
 	resultData=[[NSMutableData alloc] initWithCapacity:0];

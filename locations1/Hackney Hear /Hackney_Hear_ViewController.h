@@ -17,8 +17,10 @@
     L1Scenario * scenario;
     IBOutlet L1MapViewController * mapViewController;
     SimpleAudioEngine *audioEngine;
-    NSMutableDictionary *audioUnits;
+    NSMutableDictionary *audioSamples;
     CLLocationManager *locationManager;
+    NSMutableDictionary *circles;
+    IBOutlet UISwitch *realGPSControl;
 }
 @property (retain) L1Scenario * scenario;
 
@@ -31,7 +33,7 @@
 -(void) setupScenario;
 -(void) pathSource:(id) pathManager didReceivePaths:(NSDictionary*) paths;
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes;
-
+-(void) nodeDownloadFailedForScenario:(L1Scenario*) scenario;
 // Sound
 -(NSString*) filenameForNodeSound:(L1Node*) node;
 -(void) nodeSoundOff:(L1Node*) node;
