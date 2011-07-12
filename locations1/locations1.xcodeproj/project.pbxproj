@@ -108,19 +108,12 @@
 		D82EFED913103E1A00057D16 /* L1Experience.m in Sources */ = {isa = PBXBuildFile; fileRef = D82EFED813103E1A00057D16 /* L1Experience.m */; };
 		D82EFFF213104D4600057D16 /* L1NodeContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D82EFFF013104D4600057D16 /* L1NodeContentViewController.m */; };
 		D8385E3F13C4C6FC0016EF07 /* momentum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8385E3813C4C6FC0016EF07 /* momentum.mp3 */; };
-		D8385E4013C4C6FC0016EF07 /* momentum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8385E3813C4C6FC0016EF07 /* momentum.mp3 */; };
 		D8385E4113C4C6FC0016EF07 /* major.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8385E3913C4C6FC0016EF07 /* major.mp3 */; };
-		D8385E4213C4C6FC0016EF07 /* major.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8385E3913C4C6FC0016EF07 /* major.mp3 */; };
 		D8385E4313C4C6FC0016EF07 /* dying.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8385E3A13C4C6FC0016EF07 /* dying.mp3 */; };
-		D8385E4413C4C6FC0016EF07 /* dying.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8385E3A13C4C6FC0016EF07 /* dying.mp3 */; };
 		D8385E4513C4C6FC0016EF07 /* jonathan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8385E3B13C4C6FC0016EF07 /* jonathan.mp3 */; };
-		D8385E4613C4C6FC0016EF07 /* jonathan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8385E3B13C4C6FC0016EF07 /* jonathan.mp3 */; };
 		D8385E4713C4C6FC0016EF07 /* youll.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8385E3C13C4C6FC0016EF07 /* youll.mp3 */; };
-		D8385E4813C4C6FC0016EF07 /* youll.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8385E3C13C4C6FC0016EF07 /* youll.mp3 */; };
 		D8385E4913C4C6FC0016EF07 /* rock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8385E3D13C4C6FC0016EF07 /* rock.mp3 */; };
-		D8385E4A13C4C6FC0016EF07 /* rock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8385E3D13C4C6FC0016EF07 /* rock.mp3 */; };
 		D8385E4B13C4C6FC0016EF07 /* worth.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8385E3E13C4C6FC0016EF07 /* worth.mp3 */; };
-		D8385E4C13C4C6FC0016EF07 /* worth.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8385E3E13C4C6FC0016EF07 /* worth.mp3 */; };
 		D8385E5513C4D1A40016EF07 /* HH_logo_57.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8385E5313C4D1A40016EF07 /* HH_logo_57.jpg */; };
 		D8385E5613C4D1A40016EF07 /* HH_logo_114.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8385E5413C4D1A40016EF07 /* HH_logo_114.jpg */; };
 		D8385E5713C4D1C50016EF07 /* HH_logo_57.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8385E5313C4D1A40016EF07 /* HH_logo_57.jpg */; };
@@ -1158,13 +1151,6 @@
 				D82BC9B913C3A118003D86B4 /* InfoPlist.strings in Resources */,
 				D82BC9C213C3A118003D86B4 /* MainWindow.xib in Resources */,
 				D82BC9C813C3A118003D86B4 /* Hackney_Hear_ViewController.xib in Resources */,
-				D8385E4013C4C6FC0016EF07 /* momentum.mp3 in Resources */,
-				D8385E4213C4C6FC0016EF07 /* major.mp3 in Resources */,
-				D8385E4413C4C6FC0016EF07 /* dying.mp3 in Resources */,
-				D8385E4613C4C6FC0016EF07 /* jonathan.mp3 in Resources */,
-				D8385E4813C4C6FC0016EF07 /* youll.mp3 in Resources */,
-				D8385E4A13C4C6FC0016EF07 /* rock.mp3 in Resources */,
-				D8385E4C13C4C6FC0016EF07 /* worth.mp3 in Resources */,
 				D8BB836613C5AE2D003CBDDF /* nodes.json in Resources */,
 				D8BB836713C5AE2D003CBDDF /* paths.json in Resources */,
 			);
@@ -1427,8 +1413,8 @@
 				NSZombieEnabled = NO;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = locations1;
-				PROVISIONING_PROFILE = "798B2BC5-6789-4994-BF11-AC0BEE9E2086";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "798B2BC5-6789-4994-BF11-AC0BEE9E2086";
+				PROVISIONING_PROFILE = "E20BE7FE-F561-4933-A320-86BF328363C2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E20BE7FE-F561-4933-A320-86BF328363C2";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1450,8 +1436,8 @@
 				INFOPLIST_FILE = "locations1-Info.plist";
 				NSZombieEnabled = NO;
 				PRODUCT_NAME = locations1;
-				PROVISIONING_PROFILE = "798B2BC5-6789-4994-BF11-AC0BEE9E2086";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "798B2BC5-6789-4994-BF11-AC0BEE9E2086";
+				PROVISIONING_PROFILE = "E20BE7FE-F561-4933-A320-86BF328363C2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E20BE7FE-F561-4933-A320-86BF328363C2";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

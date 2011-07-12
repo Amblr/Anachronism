@@ -93,6 +93,10 @@ int currentIndex = 0;
         NSLog(@"Cannot download data for resource %@ - no URL",self.name);
         return;
     }
+    if (self.saveLocal && [[NSFileManager defaultManager] fileExistsAtPath:[self localFileName]]){
+        NSLog(@"Resource data %@ already downloaded.  Using cached version.",name);
+        self.local=YES;
+    }
 
     if (![self.url isKindOfClass:[NSNull class]]   ){
     SimpleURLConnection * connection = [[SimpleURLConnection alloc] initWithURL:self.url delegate:self passSelector:@selector(downloadedResourceData:response:) failSelector:@selector(failedDownloadingResourceDataWithError:)];
