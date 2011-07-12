@@ -112,9 +112,10 @@
             NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
             UIImage * image = [UIImage imageWithData:imageData];
             if (image) [self.thumbnails addObject:image];
+            else [self.thumbnails addObject:[NSNull null]];
         }
         else{
-            [self.thumbnails addObject:nil];
+            [self.thumbnails addObject:[NSNull null]];
             
         }
     }

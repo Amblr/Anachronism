@@ -21,7 +21,7 @@
 	if (self){
         self.key = [pathDictionary objectForKey:@"id"]; 
 		[self setStateFromDictionary:pathDictionary];
-        NSArray * nodeNames = [pathDictionary objectForKey:@"path_nodes"];
+        NSArray * nodeNames = [pathDictionary objectForKey:@"node_ids"];
 //        NSLog(@"nodes = %@",nodeNames);
         [self extractNodes:nodeNames fromSource:nodeSource];
 	}
@@ -39,7 +39,9 @@
 {
     self.nodes = [NSMutableArray arrayWithCapacity:[nodeNames count]];
     for (NSString * nodeName in nodeNames){
-        [self.nodes addObject:[nodeSource objectForKey:nodeName]];
+        L1Node * node = [nodeSource objectForKey:nodeName];
+        if (node) [self.nodes addObject:node];
+        else NSLog(@"Node in path missing from source: %@",nodeName);
     }
 }
 

@@ -92,7 +92,7 @@
     
         
 //    self.scenario = [L1Scenario scenarioFromNodesURL:nodesURL pathsURL:pathsURL];
-    self.scenario = [L1Scenario scenarioFromStoryURL:storyURL];
+    self.scenario = [L1Scenario scenarioFromStoryURL:storyURL withKey:@"4e15c53add71aa000100025b"];
     mapViewController.delegate=self;
     self.scenario.delegate = self;
 }
@@ -183,6 +183,14 @@
             [sound stop];
             [audioSamples removeObjectForKey:node.key];
         }
+        for(L1Resource * resource in node.resources){
+            if ([resource.type isEqualToString:@"sound"] && resource.saveLocal && resource.local){
+                [resource flush];
+                break;
+                
+            }
+        }
+
     }
 }
 

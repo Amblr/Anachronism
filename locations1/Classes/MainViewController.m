@@ -136,7 +136,8 @@
 //    NSString * pathsFile = @"/Users/joe/src/projects/locations/paths.json";
     
 //    self.scenario = [L1Scenario scenarioFromNodesURL:nodesURL pathsURL:pathsURL];
-    self.scenario = [L1Scenario scenarioFromStoryURL:scenarioURL];
+    self.scenario = [L1Scenario scenarioFromScenarioURL:scenarioURL withKey:scenarioID];
+    
     mapViewController.delegate=self;
     self.scenario.delegate = self;
     NSError * error = nil;

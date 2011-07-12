@@ -19,6 +19,7 @@
 @synthesize pathURL;
 @synthesize activeNode;
 @synthesize activePath;
+@synthesize key;
 
 -(id) init{
 	self = [super init];
@@ -30,6 +31,7 @@
         locationManager = [SimulatedLocationManager sharedSimulatedLocationManager];
         
 		[locationManager.delegates addObject: self];
+        self.key=@"";
         nodesReady = NO;
         pathsReady = NO;
         pathURL = nil;
@@ -69,8 +71,6 @@
     NSLog(@"Node data downloaded");
 	SBJsonParser * parser = [[SBJsonParser alloc] init];
 	NSDictionary * storyDictionary = [parser objectWithData:data];
-//	NSArray * storyArray = [parser objectWithData:data];
-//    NSDictionary * storyDictionary = [storyArray objectAtIndex:0];
     NSArray * nodeArray = [storyDictionary objectForKey:@"nodes"];
 	[parser release];
 	for(NSDictionary * nodeDictionary in nodeArray){
@@ -85,15 +85,125 @@
 	
 	[delegate performSelector:@selector(nodeSource:didReceiveNodes:) withObject:self withObject:nodes];
     //Should now handle paths too but no time now!
+    NSArray * pathArray = [storyDictionary objectForKey:@"paths"];
+    NSLog(@"Scenario paths data downloaded");
+
+    
+    if ([pathArray isKindOfClass:[NSArray class]]){
+        for(NSDictionary * pathDictionary in pathArray){
+            L1Path * path = [[L1Path alloc] initWithDictionary:pathDictionary nodeSource:nodes];
+            [paths setObject:path forKey:path.key];
+        }
+        [delegate performSelector:@selector(pathSource:didReceivePaths:) withObject:self withObject:paths];
+    }
+    else{
+        NSLog(@"Non-array found from path data");   
+    }
+
+    
+}
+
++(L1Scenario*) scenarioFromScenarioURL:(NSString*) url withKey:(NSString *)scenarioKey
+{
+    L1Scenario * scenario = [[L1Scenario alloc] init];
+    scenario.key = scenarioKey;
+    [scenario startScenarioDownload:url];
+    return [scenario autorelease];
+}
+
+
+-(void) startScenarioDownload:(NSString*)urlString
+{
+    SimpleURLConnection * connection = [[SimpleURLConnection alloc] initWithURL:urlString
+                                                                       delegate:self 
+                                                                   passSelector:@selector(downloadedScenarioData:withResponse:) 
+                                                                   failSelector:@selector(failedScenarioDownloadWithError:) ];
+	
+	
+	[connection.request addValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+	[connection runRequest];
     
 }
 
 
 
+-(void) downloadedScenarioData:(NSData*) data withResponse:(NSHTTPURLResponse*) response
+{
+    
+    
+    
+    NSLog(@"Scenario story info list downloaded");
+	SBJsonParser * parser = [[SBJsonParser alloc] init];
+    NSArray * storyArray = [parser objectWithData:data];
+    if ([storyArray count]==0) return;
+    NSDictionary * storyDictionary = [storyArray objectAtIndex:0];
+    NSString * storyID = [storyDictionary objectForKey:@"id"];
+    NSString * storyFormat = @"http://amblr.heroku.com/scenarios/%@/stories/%@.json";
+    NSString * storyURL = [NSString stringWithFormat:storyFormat, self.key, storyID];
+    [self startStoryDownload:storyURL];
+    
+//    NSArray * pathArray = [storyDictionary objectForKey:@"paths"];
+//
+//    
+//    for (NSDictionary* pathDictionary in pathArray){
+//        NSArray * nodeArray = [pathDictionary objectForKey:@"nodes"];
+//        for(NSDictionary * nodeDictionary in nodeArray){
+//            NSString * nodeID = [nodeDictionary objectForKey:@"id"];
+//            if ([nodes objectForKey:nodeID]==nil){
+//                @try{
+//                    L1Node * node = [[L1Node alloc] initWithDictionary:nodeDictionary key:[nodeDictionary objectForKey:@"id"]];
+//                    [nodes setObject:[node autorelease] forKey:node.key];
+//                }
+//                @catch (NSException *e ) {
+//                    NSLog(@"Bad node: %@",e);
+//                }
+//            }
+//        }
+//	}
+//	[delegate performSelector:@selector(nodeSource:didReceiveNodes:) withObject:self withObject:nodes];
+//    //Should now handle paths too but no time now!
+//    
+//    
+//    NSLog(@"Scenario paths data downloaded");
+//
+//    
+//    if ([pathArray isKindOfClass:[NSArray class]]){
+//        for(NSDictionary * pathDictionary in pathArray){
+//            @try{
+//                L1Path * path = [[L1Path alloc] initWithDictionary:pathDictionary nodeSource:nodes];
+//                [paths setObject:path forKey:path.key];
+//            }
+//            @catch (NSException * e) {
+//                NSLog(@"Bad path: %@",e);
+//            }
+//        }
+//        [delegate performSelector:@selector(pathSource:didReceivePaths:) withObject:self withObject:paths];
+//    }
+//    else{
+//        NSLog(@"Non-array found from path data");   
+//    }
+//    
+//    [parser release];
 
-+(L1Scenario*) scenarioFromStoryURL:(NSString*) url
+    
+    
+}
+
+
+-(void) failedScenarioDownloadWithError:(NSError*) error
+{
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"A problem" message:@"Sorry - there was a problem with the app.  Please inform the Amblr Tream" delegate:nil cancelButtonTitle:@"*Sigh*" otherButtonTitles: nil];
+    [alert show];
+    
+    
+}
+
+
++(L1Scenario*) scenarioFromStoryURL:(NSString*) url withKey:(NSString *)scenarioKey
 {
     L1Scenario * scenario = [[L1Scenario alloc] init];
+    scenario.key = scenarioKey;
+
     [scenario startStoryDownload:url];
     return [scenario autorelease];
 }
@@ -115,6 +225,7 @@
 +(L1Scenario*) fakeScenarioFromNodeFile:(NSString*)nodeFile pathFile:(NSString*)pathFile delegate:(id) delegate
 {
     L1Scenario * scenario = [[L1Scenario alloc] init];
+    scenario.key = @"my_fake_scenario";
     scenario.delegate = delegate;
     NSData * nodeData=  [NSData dataWithContentsOfFile:nodeFile];
     NSData * pathData=  [NSData dataWithContentsOfFile:pathFile];
@@ -124,9 +235,11 @@
     
 }
 
-+(L1Scenario*) scenarioFromNodesURL:(NSString*) nodesURL pathsURL:(NSString*) pathsURL
++(L1Scenario*) scenarioFromNodesURL:(NSString*) nodesURL pathsURL:(NSString*) pathsURL  withKey:(NSString *)scenarioKey
 {
     L1Scenario * scenario = [[L1Scenario alloc] init];
+    scenario.key = scenarioKey;
+
     scenario.pathURL = pathsURL;
     [scenario startNodeDownload:nodesURL];
     return [scenario autorelease];
@@ -181,7 +294,7 @@
         @try{
 		L1Node * node = [[L1Node alloc] initWithDictionary:nodeDictionary key:[nodeDictionary objectForKey:@"id"]];
 		[nodes setObject:[node autorelease] forKey:node.key];
-        CLLocation * nodeLocation = [[CLLocation alloc] initWithLatitude:[node.latitude doubleValue] longitude:[node.longitude doubleValue]];
+//        CLLocation * nodeLocation = [[CLLocation alloc] initWithLatitude:[node.latitude doubleValue] longitude:[node.longitude doubleValue]];
 //        CLLocationDistance dist = [nodeLocation distanceFromLocation:locationManager.location];
         //NSLog(@"Distance from %@ = %f (%@,%@)",node.name,dist,nodeLocation,locationManager.location);
             
@@ -343,13 +456,13 @@
 {
     NSMutableDictionary * outputNodes = [NSMutableDictionary dictionaryWithCapacity:0];
     
-    for (NSString * key in self.nodes){
-        L1Node * node = [self.nodes objectForKey:key];
+    for (NSString * nodeKey in self.nodes){
+        L1Node * node = [self.nodes objectForKey:nodeKey];
         NSDate * date = [node.metadata objectForKey:@"date"];
         if (!date) continue;
         if ([date compare:startDate]==NSOrderedAscending) continue;
         if ([date compare:endDate]==NSOrderedDescending) continue;
-        [outputNodes setObject:nodes forKey:key];
+        [outputNodes setObject:nodes forKey:nodeKey];
     }
     return outputNodes;
     

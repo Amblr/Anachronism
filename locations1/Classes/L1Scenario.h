@@ -23,6 +23,7 @@
 	NSMutableDictionary * nodes;
 	NSMutableDictionary * paths;
 	NSMutableDictionary * experiences;
+    NSString * key;
 //	CLLocationManager * locationManager;
     SimulatedLocationManager * locationManager;
     
@@ -38,7 +39,7 @@
 @property (retain) NSMutableDictionary * nodes;
 @property (retain) L1Node * activeNode;
 @property (retain) L1Path * activePath;
-
+@property (retain) NSString * key;
 @property (retain) id delegate;
 @property (retain) NSString * pathURL;
 -(int) nodeCount;
@@ -52,13 +53,23 @@
 -(void) downloadedPathData:(NSData*) data withResponse:(NSHTTPURLResponse*) response;
 -(void) failedPathDownloadWithError:(NSError*) error;
 
+-(void) startScenarioDownload:(NSString*)urlString;
+-(void) downloadedScenarioData:(NSData*) data withResponse:(NSHTTPURLResponse*) response;
+-(void) failedScenarioDownloadWithError:(NSError*) error;
+
+-(void) startStoryDownload:(NSString*)urlString;
+-(void) failedStoryDownloadWithError:(NSError*) error;
+-(void) downloadedStoryData:(NSData*) data withResponse:(NSHTTPURLResponse*) response;
+
+
 -(void) walkPath:(L1Path*)path;
 
 -(void) downloadedStoryData:(NSData*) data withResponse:(NSHTTPURLResponse*) response;
 
 -(void) startMonitoringAllNodesProximity;
 -(void) startMonitoringNodeProximity:(L1Node*)node;
-+(L1Scenario*) scenarioFromStoryURL:(NSString*) url;
-+(L1Scenario*) scenarioFromNodesURL:(NSString*) nodesURL pathsURL:(NSString*) pathsURL;
++(L1Scenario*) scenarioFromStoryURL:(NSString*) url withKey:(NSString*)scenarioKey;
++(L1Scenario*) scenarioFromScenarioURL:(NSString*) url withKey:(NSString*)scenarioKey;
++(L1Scenario*) scenarioFromNodesURL:(NSString*) nodesURL pathsURL:(NSString*) pathsURL withKey:(NSString*)scenarioKey;
 +(L1Scenario*) fakeScenarioFromNodeFile:(NSString*)nodeFile pathFile:(NSString*)pathFile delegate:(id) delegate;
 @end

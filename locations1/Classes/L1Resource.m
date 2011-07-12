@@ -20,18 +20,53 @@ int currentIndex = 0;
         self.key = resourceKey;
         self.saveLocal = YES;
         self.local = NO;
+        resourceData = nil;
     } 
     return self;
 
 }
 
+-(void) setResourceData:(NSData *)data
+{
+    [resourceData autorelease];
+    resourceData = [data retain];
+}
+
+-(void) flush
+{
+    if (self.saveLocal && self.local) self.resourceData=nil; 
+}
+
+-(NSData*) resourceData
+{
+    //data not ready yet.
+    if (!self.local) return nil;
+    //data in RAM already
+    if (resourceData) return resourceData;
+    // data saved to file
+    if (self.saveLocal){
+        self.resourceData = [NSData dataWithContentsOfFile:[self localFileName]];
+        return resourceData;
+    }
+    //Data should have been here but was not for some reason.
+    //Maybe we should re-load it here?
+    NSLog(@"Data mysteriously disappeared: %@,%@",self.key,self.name);
+    return nil;
+        
+    
+}
+
 -(void) downloadedResourceData:(NSData*)data response:(NSURLResponse*)response
 {
-    self.resourceData = [NSData dataWithData:data];
     self.local=YES;
     if (self.saveLocal){
-        [[NSFileManager defaultManager] createFileAtPath:[self localFileName] contents:self.resourceData attributes:nil];
+        [[NSFileManager defaultManager] createFileAtPath:[self localFileName] contents:data attributes:nil];
         self.resourceData = nil;
+    }
+    else
+    {
+        self.resourceData = [NSData dataWithData:data];
+
     }
     
 }
@@ -94,5 +129,5 @@ int currentIndex = 0;
 }
 
 
-@synthesize name, url, type, local, key, metadata, resourceData, saveLocal;
+@synthesize name, url, type, local, key, metadata, saveLocal;
 @end

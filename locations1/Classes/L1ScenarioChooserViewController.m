@@ -121,9 +121,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger item = [indexPath indexAtPosition:1];
-    scenarioImageView.image = [scenarioList.images objectAtIndex:item];
-    scenarioText.text = [scenarioList.descriptions objectAtIndex:item];
-    scenarioTitleBar.title = [scenarioList.titles objectAtIndex:item];
+    if (![[scenarioList.images objectAtIndex:item] isEqual:[NSNull null]]) scenarioImageView.image = [scenarioList.images objectAtIndex:item];
+    if (![[scenarioList.descriptions objectAtIndex:item] isEqual:[NSNull null]]) scenarioText.text = [scenarioList.descriptions objectAtIndex:item];
+    if (![[scenarioList.titles objectAtIndex:item] isEqual:[NSNull null]]) scenarioTitleBar.title = [scenarioList.titles objectAtIndex:item];
 }
 
 @end

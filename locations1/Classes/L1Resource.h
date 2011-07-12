@@ -24,6 +24,7 @@
 -(id) initWithDictionary:(NSDictionary*) data;
 -(id) initWithKey:(NSString*) resourceKey;
 -(NSString*) localFileName;
+-(void) flush;
 
 
 @property (retain) NSString * name;
