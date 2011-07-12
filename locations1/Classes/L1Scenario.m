@@ -69,6 +69,8 @@
     NSLog(@"Node data downloaded");
 	SBJsonParser * parser = [[SBJsonParser alloc] init];
 	NSDictionary * storyDictionary = [parser objectWithData:data];
+//	NSArray * storyArray = [parser objectWithData:data];
+//    NSDictionary * storyDictionary = [storyArray objectAtIndex:0];
     NSArray * nodeArray = [storyDictionary objectForKey:@"nodes"];
 	[parser release];
 	for(NSDictionary * nodeDictionary in nodeArray){
@@ -89,15 +91,25 @@
 
 
 
-+(L1Scenario*) scenarioFromURL:(NSString*) url
++(L1Scenario*) scenarioFromStoryURL:(NSString*) url
 {
     L1Scenario * scenario = [[L1Scenario alloc] init];
     [scenario startStoryDownload:url];
     return [scenario autorelease];
 }
 
-
-
+//-(void) downloadStoryList:(NSString*) urlString
+//{
+//        
+//}
+//
+//
+//+(L1Scenario*) scenarionFromScenarioURLString:(NSString*) urlString
+//{
+//    L1Scenario * scenario = [[L1Scenario alloc] init];
+//    [scenario downloadStoryList:urlString];
+//    return  [scenario autorelease];
+//}
 
 
 +(L1Scenario*) fakeScenarioFromNodeFile:(NSString*)nodeFile pathFile:(NSString*)pathFile delegate:(id) delegate

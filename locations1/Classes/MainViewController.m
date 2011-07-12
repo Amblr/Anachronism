@@ -125,16 +125,18 @@
     NSLog(@"Choosing scenario with ID %@",scenarioID);
     self.chooserViewController=nil;
     self.baseURL = @"http://amblr.heroku.com";
-    NSString * nodesURL = [NSString stringWithFormat:@"%@/scenarios/%@/nodes.json",self.baseURL,scenarioID];
-    NSString * pathsURL = [NSString stringWithFormat:@"%@/paths_for_scenario/%@.json",self.baseURL,scenarioID];
-    NSLog(@"base = %@",self.baseURL);
-    NSLog(@"nodes = %@",nodesURL);
-    NSLog(@"paths = %@",pathsURL);
+//    NSString * nodesURL = [NSString stringWithFormat:@"%@/scenarios/%@/nodes.json",self.baseURL,scenarioID];
+//    NSString * pathsURL = [NSString stringWithFormat:@"%@/paths_for_scenario/%@.json",self.baseURL,scenarioID];
+    NSString * scenarioURL = [NSString stringWithFormat:@"%@/scenarios/%@/stories.json",self.baseURL,scenarioID];
+//    NSLog(@"base = %@",self.baseURL);
+//    NSLog(@"nodes = %@",nodesURL);
+//    NSLog(@"paths = %@",pathsURL);
     
 //    NSString * nodesFile = @"/Users/joe/src/projects/locations/nodes.json";
 //    NSString * pathsFile = @"/Users/joe/src/projects/locations/paths.json";
     
-    self.scenario = [L1Scenario scenarioFromNodesURL:nodesURL pathsURL:pathsURL];
+//    self.scenario = [L1Scenario scenarioFromNodesURL:nodesURL pathsURL:pathsURL];
+    self.scenario = [L1Scenario scenarioFromStoryURL:scenarioURL];
     mapViewController.delegate=self;
     self.scenario.delegate = self;
     NSError * error = nil;

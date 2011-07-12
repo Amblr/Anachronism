@@ -58,7 +58,7 @@
 
 -(void) startMonitoringAllNodesProximity;
 -(void) startMonitoringNodeProximity:(L1Node*)node;
-+(L1Scenario*) scenarioFromURL:(NSString*) url;
++(L1Scenario*) scenarioFromStoryURL:(NSString*) url;
 +(L1Scenario*) scenarioFromNodesURL:(NSString*) nodesURL pathsURL:(NSString*) pathsURL;
 +(L1Scenario*) fakeScenarioFromNodeFile:(NSString*)nodeFile pathFile:(NSString*)pathFile delegate:(id) delegate;
 @end

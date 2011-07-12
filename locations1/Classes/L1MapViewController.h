@@ -14,6 +14,7 @@
 #import "L1Path.h"
 #import "L1Overlay.h"
 #import "L1OverlayView.h"
+#import "ManualUserLocation.h"
 
 @interface L1MapViewController : UIViewController<MKMapViewDelegate> {
 	L1Scenario * scenario;
@@ -21,9 +22,11 @@
     NSObject * delegate;
     SimulatedUserLocation * fakeUserLocation;
     L1OverlayView * singleOverlayView;
+    ManualUserLocation * manualUserLocation;
 	
 }
 
+@property (retain) ManualUserLocation * manualUserLocation;
 @property (retain) L1OverlayView * singleOverlayView;
 @property (retain) NSObject * delegate;
 @property (retain) L1Scenario * scenario;

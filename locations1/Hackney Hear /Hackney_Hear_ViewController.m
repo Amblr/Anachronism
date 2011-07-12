@@ -92,7 +92,7 @@
     
         
 //    self.scenario = [L1Scenario scenarioFromNodesURL:nodesURL pathsURL:pathsURL];
-    self.scenario = [L1Scenario scenarioFromURL:storyURL];
+    self.scenario = [L1Scenario scenarioFromStoryURL:storyURL];
     mapViewController.delegate=self;
     self.scenario.delegate = self;
 }
@@ -118,6 +118,8 @@
         firstNodeCoord.longitude -= 5.0e-4;
         [mapViewController addManualUserLocationAt:firstNodeCoord];
     }
+    [self locationManager:locationManager didUpdateToLocation:locationManager.location fromLocation:nil];
+    
 }
 
 
@@ -197,6 +199,13 @@
 {
     NSLog(@"Location update [fake]");
     if (!realGPSControl.on) [self locationUpdate:location.coordinate];
+}
+
+- (IBAction)toggleUseTrueLocation {
+    if (!realGPSControl.on){
+        [self locationUpdate:mapViewController.manualUserLocation.coordinate];
+        
+    }
 }
 
 -(void) locationUpdate:(CLLocationCoordinate2D) location

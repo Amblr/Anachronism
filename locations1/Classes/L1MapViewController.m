@@ -15,7 +15,6 @@
 //#import "L1Pin.h"
 #import "L1Overlay.h"
 #import "L1OverlayView.h"
-#import "ManualUserLocation.h"
 
 @implementation L1MapViewController
 @synthesize  delegate;
@@ -181,9 +180,17 @@
 
 -(void) addManualUserLocationAt:(CLLocationCoordinate2D)coordinate
 {
-    ManualUserLocation * manualLocation = [[ManualUserLocation alloc] initWithCoordinate:coordinate];
-    [primaryMapView addAnnotation:manualLocation];
+    self.manualUserLocation = [[ManualUserLocation alloc] initWithCoordinate:coordinate];
+    [primaryMapView addAnnotation:self.manualUserLocation];
     
+     SEL selector = @selector(manualLocationUpdate:);
+     if ([self.delegate respondsToSelector:selector]){
+         CLLocation * newLocation = [[CLLocation alloc] 
+                                     initWithLatitude:manualUserLocation.coordinate.latitude 
+                                     longitude:manualUserLocation.coordinate.latitude];
+         [self.delegate performSelector:selector withObject:newLocation];
+         [newLocation autorelease];
+     }
 }
 
 
@@ -394,4 +401,5 @@
 
 @synthesize nodeContentViewController;
 @synthesize singleOverlayView;
+@synthesize manualUserLocation;
 @end

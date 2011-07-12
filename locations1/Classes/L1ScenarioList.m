@@ -93,10 +93,13 @@
             NSLog(@"%@",imageURLString);
             NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
             UIImage * image = [UIImage imageWithData:imageData];
-            [self.images addObject:image];
+            if (image) 
+                [self.images addObject:image];
+            else 
+                [self.images addObject:[NSNull null]];
         }
         else{
-            [self.images addObject:nil];
+            [self.images addObject:[NSNull null]];
         }
     }
 
@@ -108,7 +111,7 @@
             NSLog(@"%@",imageURLString);
             NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
             UIImage * image = [UIImage imageWithData:imageData];
-            [self.thumbnails addObject:image];
+            if (image) [self.thumbnails addObject:image];
         }
         else{
             [self.thumbnails addObject:nil];
@@ -139,7 +142,7 @@
     NSUInteger item = [indexPath indexAtPosition:1];
     NSLog(@"CELL: %@",indexPath);
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    cell.imageView.image = [self.thumbnails objectAtIndex:item];
+    if (![[self.thumbnails objectAtIndex:item] isEqual:[NSNull null]]) cell.imageView.image = [self.thumbnails objectAtIndex:item];
     cell.textLabel.text = [self.titles objectAtIndex:item];
     cell.textLabel.numberOfLines = 2;
     cell.imageView.contentMode = UIViewContentModeScaleAspectFill;

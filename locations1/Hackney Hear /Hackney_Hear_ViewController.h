@@ -28,6 +28,7 @@
 // Location awareness
 -(void) locationUpdate:(CLLocationCoordinate2D) location;
 -(void) manualLocationUpdate:(CLLocation*)location;
+- (IBAction)toggleUseTrueLocation;
 
 // Story contents
 -(void) setupScenario;
