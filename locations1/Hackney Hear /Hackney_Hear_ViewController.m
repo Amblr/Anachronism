@@ -74,25 +74,14 @@
 -(void) setupScenario {
     
     // Use Dickens
-    
+#ifdef ALEX_HEAR    
+    NSString * storyURL = @"http://amblr.heroku.com/scenarios/4e249f58d7c4b60001000023/stories/4e249fe5d7c4b600010000c1.json";
+    self.scenario = [L1Scenario scenarioFromStoryURL:storyURL withKey:@"4e249fe5d7c4b600010000c1"];
+#else
     NSString * storyURL = @"http://amblr.heroku.com/scenarios/4e15c53add71aa000100025b/stories/4e15c6be7bd01600010000c0.json";
-//    NSString * nodesURL = @"http://amblr.heroku.com/scenarios/4ddbbf01875dcc0001000015/nodes.json";
-//    NSString * pathsURL = @"http://amblr.heroku.com/paths_for_scenario/4ddbbf01875dcc0001000015.json";
-
-    //Use Hackney Hear
-//    NSString * nodesURL = @"http://amblr.heroku.com/scenarios/4e136bf3ece479000100001a/nodes.json";
-//    NSString * pathsURL = @"http://amblr.heroku.com/paths_for_scenario/4e136bf3ece479000100001a.json";
-
-    
-    //Use bundled nodes and paths.
-//    NSURL * nodesURLReal = [NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:@"nodes" ofType:@"json"]];
-//    NSURL * pathsURLReal = [NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:@"paths" ofType:@"json"]];
-//    NSString * nodesURL = [nodesURLReal absoluteString];
-//    NSString * pathsURL = [pathsURLReal absoluteString];
-    
-        
-//    self.scenario = [L1Scenario scenarioFromNodesURL:nodesURL pathsURL:pathsURL];
     self.scenario = [L1Scenario scenarioFromStoryURL:storyURL withKey:@"4e15c53add71aa000100025b"];
+#endif        
+//    self.scenario = [L1Scenario scenarioFromNodesURL:nodesURL pathsURL:pathsURL];
     mapViewController.delegate=self;
     self.scenario.delegate = self;
 }

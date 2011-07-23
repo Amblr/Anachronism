@@ -11,20 +11,24 @@
 
 @implementation L1JsonSerializedObject
 
-//
-//-(id) initWithDictionary:(NSDictionary*) propertiesDictionary
-//{
-//    self = [super init];
-//    if (self){
-//        NSArray * namedProperties;
-//        [self setValue:nil forKeyPath:@"cat"];
-//    }
-//    return self;
-//}
-//
-//
-//+(NSArray*) serializedFieldNames
-//{
-//    return [NSArray array];
-//}
+
+-(id) initWithDictionary:(NSDictionary*) propertiesDictionary
+{
+    self = [super init];
+    if (self){
+        NSDictionary * fieldNames = [[self class] serializedFieldNames];
+        for (NSString * propertyName in fieldNames){
+            NSString * propertyKey = [fieldNames objectForKey:propertyName];
+            [self setValue:[propertiesDictionary objectForKey:propertyKey] forKeyPath:propertyName];
+        }
+    }
+    return self;
+}
+
+
+//Return the mapping from property name to JSON name
++(NSDictionary*) serializedFieldNames
+{
+    return [NSDictionary dictionary];
+}
 @end

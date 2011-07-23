@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>Hackney Hear  copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>Hackney Hear .xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -43,6 +48,11 @@
 			<true/>
 		</dict>
 		<key>D82BC9AE13C3A118003D86B4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D837D84E13D4D81B006C518C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

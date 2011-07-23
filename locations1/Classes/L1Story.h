@@ -12,7 +12,17 @@
 //Does this even need to exist, or is it implicit in the definition of the nodes.
 
 @interface L1Story : NSObject {
-
+    NSMutableDictionary * nodes;
+    NSMutableDictionary * paths;
+    NSString * key;
+    NSString * name;
+    id delegate;
+    
 }
+@property (retain) id delegate;
+@property (retain) NSMutableDictionary * nodes;
+@property (retain) NSMutableDictionary * paths;
+@property (retain) NSString * key;
+@property (retain) NSString * name;
 
 @end
