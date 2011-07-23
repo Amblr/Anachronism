@@ -69,61 +69,61 @@
 			return NO; // invalid URL
 		}
 		
-		MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
-		mailViewController.mailComposeDelegate = self;
-
-		NSMutableArray *toRecipients = [NSMutableArray array];
-		NSString *defaultRecipient = [rawURLparts objectAtIndex:0];
-		if (defaultRecipient.length) {
-			[toRecipients addObject:defaultRecipient];
-		}
-		
-		if (rawURLparts.count == 2) {
-			NSString *queryString = [rawURLparts objectAtIndex:1];
-			
-			NSArray *params = [queryString componentsSeparatedByString:@"&"];
-			for (NSString *param in params) {
-				NSArray *keyValue = [param componentsSeparatedByString:@"="];
-				if (keyValue.count != 2) {
-					continue;
-				}
-				NSString *key = [[keyValue objectAtIndex:0] lowercaseString];
-				NSString *value = [keyValue objectAtIndex:1];
-				
-				value =  (NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault,
-																							 (CFStringRef)value,
-																							 CFSTR(""),
-																							 kCFStringEncodingUTF8);
-				[value autorelease];
-				
-				if ([key isEqualToString:@"subject"]) {
-					[mailViewController setSubject:value];
-				}
-				
-				if ([key isEqualToString:@"body"]) {
-					[mailViewController setMessageBody:value isHTML:NO];
-				}
-				
-				if ([key isEqualToString:@"to"]) {
-					[toRecipients addObjectsFromArray:[value componentsSeparatedByString:@","]];
-				}
-				
-				if ([key isEqualToString:@"cc"]) {
-					NSArray *recipients = [value componentsSeparatedByString:@","];
-					[mailViewController setCcRecipients:recipients];
-				}
-				
-				if ([key isEqualToString:@"bcc"]) {
-					NSArray *recipients = [value componentsSeparatedByString:@","];
-					[mailViewController setBccRecipients:recipients];
-				}
-			}
-		}
-		
-		[mailViewController setToRecipients:toRecipients];
-
-		[self presentModalViewController:mailViewController animated:YES];
-		[mailViewController release];
+//		MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+//		mailViewController.mailComposeDelegate = self;
+//
+//		NSMutableArray *toRecipients = [NSMutableArray array];
+//		NSString *defaultRecipient = [rawURLparts objectAtIndex:0];
+//		if (defaultRecipient.length) {
+//			[toRecipients addObject:defaultRecipient];
+//		}
+//		
+//		if (rawURLparts.count == 2) {
+//			NSString *queryString = [rawURLparts objectAtIndex:1];
+//			
+//			NSArray *params = [queryString componentsSeparatedByString:@"&"];
+//			for (NSString *param in params) {
+//				NSArray *keyValue = [param componentsSeparatedByString:@"="];
+//				if (keyValue.count != 2) {
+//					continue;
+//				}
+//				NSString *key = [[keyValue objectAtIndex:0] lowercaseString];
+//				NSString *value = [keyValue objectAtIndex:1];
+//				
+//				value =  (NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault,
+//																							 (CFStringRef)value,
+//																							 CFSTR(""),
+//																							 kCFStringEncodingUTF8);
+//				[value autorelease];
+//				
+//				if ([key isEqualToString:@"subject"]) {
+//					[mailViewController setSubject:value];
+//				}
+//				
+//				if ([key isEqualToString:@"body"]) {
+//					[mailViewController setMessageBody:value isHTML:NO];
+//				}
+//				
+//				if ([key isEqualToString:@"to"]) {
+//					[toRecipients addObjectsFromArray:[value componentsSeparatedByString:@","]];
+//				}
+//				
+//				if ([key isEqualToString:@"cc"]) {
+//					NSArray *recipients = [value componentsSeparatedByString:@","];
+//					[mailViewController setCcRecipients:recipients];
+//				}
+//				
+//				if ([key isEqualToString:@"bcc"]) {
+//					NSArray *recipients = [value componentsSeparatedByString:@","];
+//					[mailViewController setBccRecipients:recipients];
+//				}
+//			}
+//		}
+//		
+//		[mailViewController setToRecipients:toRecipients];
+//
+//		[self presentModalViewController:mailViewController animated:YES];
+//		[mailViewController release];
 		return NO;
 	}
 	

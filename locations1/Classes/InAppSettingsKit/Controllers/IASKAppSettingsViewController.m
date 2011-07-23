@@ -674,58 +674,58 @@ CGRect IASKCGRectSwap(CGRect rect);
 		}
     } else if ([[specifier type] isEqualToString:kIASKMailComposeSpecifier]) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        if ([MFMailComposeViewController canSendMail]) {
-            MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
-            
-            if ([specifier localizedObjectForKey:kIASKMailComposeSubject]) {
-                [mailViewController setSubject:[specifier localizedObjectForKey:kIASKMailComposeSubject]];
-            }
-            if ([[specifier specifierDict] objectForKey:kIASKMailComposeToRecipents]) {
-                [mailViewController setToRecipients:[[specifier specifierDict] objectForKey:kIASKMailComposeToRecipents]];
-            }
-            if ([[specifier specifierDict] objectForKey:kIASKMailComposeCcRecipents]) {
-                [mailViewController setCcRecipients:[[specifier specifierDict] objectForKey:kIASKMailComposeCcRecipents]];
-            }
-            if ([[specifier specifierDict] objectForKey:kIASKMailComposeBccRecipents]) {
-                [mailViewController setBccRecipients:[[specifier specifierDict] objectForKey:kIASKMailComposeBccRecipents]];
-            }
-            if ([specifier localizedObjectForKey:kIASKMailComposeBody]) {
-                BOOL isHTML = NO;
-                if ([[specifier specifierDict] objectForKey:kIASKMailComposeBodyIsHTML]) {
-                    isHTML = [[[specifier specifierDict] objectForKey:kIASKMailComposeBodyIsHTML] boolValue];
-                }
-                
-                if ([self.delegate respondsToSelector:@selector(mailComposeBody)]) {
-                    [mailViewController setMessageBody:[self.delegate mailComposeBody] isHTML:isHTML];
-                }
-                else {
-                    [mailViewController setMessageBody:[specifier localizedObjectForKey:kIASKMailComposeBody] isHTML:isHTML];
-                }
-            }
-
-            UIViewController<MFMailComposeViewControllerDelegate> *vc = nil;
-            
-            if ([self.delegate respondsToSelector:@selector(viewControllerForMailComposeView)]) {
-                vc = [self.delegate viewControllerForMailComposeView];
-            }
-            
-            if (vc == nil) {
-                vc = self;
-            }
-            
-            mailViewController.mailComposeDelegate = vc;
-            [vc presentModalViewController:mailViewController animated:YES];
-            [mailViewController release];
-        } else {
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:NSLocalizedString(@"Mail not configured", @"InAppSettingsKit")
-                                  message:NSLocalizedString(@"This device is not configured for sending Email. Please configure the Mail settings in the Settings app.", @"InAppSettingsKit")
-                                  delegate: nil
-                                  cancelButtonTitle:NSLocalizedString(@"OK", @"InAppSettingsKit")
-                                  otherButtonTitles:nil];
-            [alert show];
-            [alert release];
-        }
+//        if ([MFMailComposeViewController canSendMail]) {
+//            MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+//            
+//            if ([specifier localizedObjectForKey:kIASKMailComposeSubject]) {
+//                [mailViewController setSubject:[specifier localizedObjectForKey:kIASKMailComposeSubject]];
+//            }
+//            if ([[specifier specifierDict] objectForKey:kIASKMailComposeToRecipents]) {
+//                [mailViewController setToRecipients:[[specifier specifierDict] objectForKey:kIASKMailComposeToRecipents]];
+//            }
+//            if ([[specifier specifierDict] objectForKey:kIASKMailComposeCcRecipents]) {
+//                [mailViewController setCcRecipients:[[specifier specifierDict] objectForKey:kIASKMailComposeCcRecipents]];
+//            }
+//            if ([[specifier specifierDict] objectForKey:kIASKMailComposeBccRecipents]) {
+//                [mailViewController setBccRecipients:[[specifier specifierDict] objectForKey:kIASKMailComposeBccRecipents]];
+//            }
+//            if ([specifier localizedObjectForKey:kIASKMailComposeBody]) {
+//                BOOL isHTML = NO;
+//                if ([[specifier specifierDict] objectForKey:kIASKMailComposeBodyIsHTML]) {
+//                    isHTML = [[[specifier specifierDict] objectForKey:kIASKMailComposeBodyIsHTML] boolValue];
+//                }
+//                
+//                if ([self.delegate respondsToSelector:@selector(mailComposeBody)]) {
+//                    [mailViewController setMessageBody:[self.delegate mailComposeBody] isHTML:isHTML];
+//                }
+//                else {
+//                    [mailViewController setMessageBody:[specifier localizedObjectForKey:kIASKMailComposeBody] isHTML:isHTML];
+//                }
+//            }
+//
+//            UIViewController<MFMailComposeViewControllerDelegate> *vc = nil;
+//            
+//            if ([self.delegate respondsToSelector:@selector(viewControllerForMailComposeView)]) {
+//                vc = [self.delegate viewControllerForMailComposeView];
+//            }
+//            
+//            if (vc == nil) {
+//                vc = self;
+//            }
+//            
+//            mailViewController.mailComposeDelegate = vc;
+//            [vc presentModalViewController:mailViewController animated:YES];
+//            [mailViewController release];
+//        } else {
+//            UIAlertView *alert = [[UIAlertView alloc]
+//                                  initWithTitle:NSLocalizedString(@"Mail not configured", @"InAppSettingsKit")
+//                                  message:NSLocalizedString(@"This device is not configured for sending Email. Please configure the Mail settings in the Settings app.", @"InAppSettingsKit")
+//                                  delegate: nil
+//                                  cancelButtonTitle:NSLocalizedString(@"OK", @"InAppSettingsKit")
+//                                  otherButtonTitles:nil];
+//            [alert show];
+//            [alert release];
+//        }
 
 	} else {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
