@@ -11,6 +11,8 @@
 #import "L1Utils.h"
 
 
+#define SOUND_FADE_TIME 8.0
+
 @implementation Hackney_Hear_ViewController
 @synthesize scenario;
 
@@ -160,6 +162,21 @@
     }
 }
 
+-(void) decreaseSourceVolume:(NSString*) identifier
+{
+    CDLongAudioSource * sound = [audioSamples objectForKey:identifier];
+    sound.volume = sound.volume-1.0/(SOUND_FADE_TIME);
+    if (sound.volume<=0){
+        [sound stop];
+        [audioSamples removeObjectForKey:identifier]; 
+    }
+    else
+    {
+        SEL selector = @selector(decreaseSourceVolume:);
+        [self performSelector:selector withObject:identifier afterDelay:1.0];
+    }
+}
+
 -(void) nodeSoundOff:(L1Node*) node
 {
     NSLog(@"Node off: %@",node.name);
@@ -169,8 +186,12 @@
     if (filename){
         CDLongAudioSource * sound = [audioSamples objectForKey:node.key];
         if (sound){
-            [sound stop];
-            [audioSamples removeObjectForKey:node.key];
+            if (sound.volume==1.0){ //sound is not already fading
+                sound.volume = 1.0 - 1.0/(SOUND_FADE_TIME);
+                SEL selector = @selector(decreaseSourceVolume:);
+                [self performSelector:selector withObject:node.key afterDelay:1.0];
+            }
+            
         }
         for(L1Resource * resource in node.resources){
             if ([resource.type isEqualToString:@"sound"] && resource.saveLocal && resource.local){
