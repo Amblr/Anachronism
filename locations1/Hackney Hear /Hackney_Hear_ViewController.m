@@ -18,7 +18,6 @@
 
 - (void)dealloc
 {
-    [realGPSControl release];
     [super dealloc];
 }
 
@@ -44,21 +43,32 @@
     locationManager.delegate = self;
     NSAssert(ok, @"Unable to ini dirs.");
     circles = [[NSMutableDictionary alloc] initWithCapacity:0];
-    
+    self.scenario=nil;
+    realLocationTracker = [[L1BigBrother alloc] init];
+    fakeLocationTracker = [[L1BigBrother alloc] init];
 }
 
 
 -(void) viewDidAppear:(BOOL)animated
 {
-    [self setupScenario];
-    [locationManager startUpdatingLocation];
-
+    NSLog(@"View = %@",self.view);
+    if (!self.scenario){
+        [self setupScenario];
+        [locationManager startUpdatingLocation];
+    }
+    else{
+        //We just came back from the prefs pane.
+        //If we just set the use_real_location to off then we should update the manual location.
+        BOOL realGPSControl = [[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
+        if (!realGPSControl){
+            [self locationUpdate:mapViewController.manualUserLocation.coordinate];
+            
+        }
+    }
 }
 
 - (void)viewDidUnload
 {
-    [realGPSControl release];
-    realGPSControl = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -210,24 +220,29 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     NSLog(@"Location update [real]");
-    if (realGPSControl.on) [self locationUpdate:newLocation.coordinate];
+    BOOL realGPSControl = [[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
+    if (realGPSControl) {
+        BOOL trackMe = [[NSUserDefaults standardUserDefaults] boolForKey:@"track_user_location"];
+        if (trackMe) [self locationUpdate:newLocation.coordinate];
+        [realLocationTracker addLocation:newLocation];
+    }
 }
 
 -(void) manualLocationUpdate:(CLLocation*)location
 {
     NSLog(@"Location update [fake]");
-    if (!realGPSControl.on) [self locationUpdate:location.coordinate];
-}
-
-- (IBAction)toggleUseTrueLocation {
-    if (!realGPSControl.on){
-        [self locationUpdate:mapViewController.manualUserLocation.coordinate];
-        
+    BOOL realGPSControl = [[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
+    if (!realGPSControl) {
+        BOOL trackMe = [[NSUserDefaults standardUserDefaults] boolForKey:@"track_user_location"];
+        if (trackMe) [fakeLocationTracker addLocation:location];
+        [self locationUpdate:location.coordinate];
     }
 }
 
+
 -(void) locationUpdate:(CLLocationCoordinate2D) location
 {
+    
     for (L1Node * node in [self.scenario.nodes allValues]){
         CLRegion * region = [node region];
         BOOL wasEnabled = node.enabled;

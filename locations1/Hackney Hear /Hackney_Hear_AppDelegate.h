@@ -9,14 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @class Hackney_Hear_ViewController;
+@class HackneyHearTabViewController;
 
 @interface Hackney_Hear_AppDelegate : NSObject <UIApplicationDelegate> {
+    IBOutlet UITabBarController*  mainTabBarController;
 
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
-@property (nonatomic, retain) IBOutlet Hackney_Hear_ViewController *viewController;
+@property (nonatomic, retain) IBOutlet UITabBarController*  mainTabBarController;
 -(void) setupScenario;
 
 
