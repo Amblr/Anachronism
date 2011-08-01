@@ -20,6 +20,7 @@ int currentIndex = 0;
         self.key = resourceKey;
         self.saveLocal = YES;
         self.local = NO;
+        self.downloading = NO;
         resourceData = nil;
     } 
     return self;
@@ -59,9 +60,11 @@ int currentIndex = 0;
 -(void) downloadedResourceData:(NSData*)data response:(NSURLResponse*)response
 {
     self.local=YES;
+    self.downloading=NO;
     if (self.saveLocal){
         [[NSFileManager defaultManager] createFileAtPath:[self localFileName] contents:data attributes:nil];
         self.resourceData = nil;
+
     }
     else
     {
@@ -71,10 +74,25 @@ int currentIndex = 0;
     
 }
 
+-(void) rerunWrapper:(NSObject*) dummy
+{
+    [self downloadResourceData];    
+}
+
 -(void) failedDownloadingResourceDataWithError:(NSError*) error
 {
     NSLog(@"Failed download of resource.\nname:%@ \nurl: %@\nerror:%@",self.name,self.url,error);
-
+    NSRange range = [self.url rangeOfString:@"soundcloud"];
+    BOOL isSoundCloud = range.length!=0;
+    NSLog(@"code = %d",[error code]);
+    
+    if ([error code]==403 && isSoundCloud){
+        NSLog(@"Received  403 Error from SoundCloud - trying again in 30 seconds");
+        SEL selector = @selector(rerunWrapper:);
+        [self performSelector:selector withObject:nil afterDelay:30.0]; 
+    }
+    
+    
 //    if ([self.type isEqualToString:@"sound"]){
 //#warning TEST CODE
 //        NSArray* soundNames = [NSArray arrayWithObjects:@"momentum",@"major",@"dying",@"jonathan",@"youll",@"rock",@"worth", nil];
@@ -84,7 +102,7 @@ int currentIndex = 0;
 //        NSData * data = [NSData dataWithContentsOfFile:filename];
 //        [self downloadedResourceData:data response:nil];
 //    }
-        
+    self.downloading=NO;
 }
 
 -(void) downloadResourceData
@@ -96,11 +114,14 @@ int currentIndex = 0;
     if (self.saveLocal && [[NSFileManager defaultManager] fileExistsAtPath:[self localFileName]]){
         NSLog(@"Resource data %@ already downloaded.  Using cached version.",name);
         self.local=YES;
+        return;
     }
 
     if (![self.url isKindOfClass:[NSNull class]]   ){
     SimpleURLConnection * connection = [[SimpleURLConnection alloc] initWithURL:self.url delegate:self passSelector:@selector(downloadedResourceData:response:) failSelector:@selector(failedDownloadingResourceDataWithError:)];
     [connection runRequest];
+        self.downloading=YES;
+
     }
 
 }
@@ -117,6 +138,8 @@ int currentIndex = 0;
         self.local = NO;
         self.metadata = [NSMutableDictionary dictionaryWithDictionary:[data objectForKey:@"metadata"]];
         self.resourceData = nil;
+        self.downloading = NO;
+
         [self downloadResourceData];
     }
     return self;
@@ -133,5 +156,5 @@ int currentIndex = 0;
 }
 
 
-@synthesize name, url, type, local, key, metadata, saveLocal;
+@synthesize name, url, type, local, key, metadata, saveLocal,downloading;
 @end

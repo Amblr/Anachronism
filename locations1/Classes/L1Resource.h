@@ -14,6 +14,7 @@
     NSString * url;
     NSString * type;
     BOOL local;
+    BOOL downloading;
     BOOL saveLocal;
     NSString * localFilename;
     NSString * key;
@@ -31,10 +32,13 @@
 @property (retain) NSString * url;
 @property (retain) NSString * type;
 @property (assign) BOOL local;
+@property (assign) BOOL downloading;
 @property (assign) BOOL saveLocal;
 @property (retain) NSString * key;
 @property (retain) NSMutableDictionary * metadata;
 @property (retain) NSData * resourceData;
 
+
+-(void) downloadResourceData;
 
 @end
