@@ -9,15 +9,15 @@
 #import "SimpleURLConnection.h"
 
 
-#warning REMOVE THIS
-@implementation NSURLRequest (acceptAll)
-
-+(BOOL) allowsAnyHTTPSCertificateForHost:(id)host{
-	return YES;
-}
-
-@end
-
+//#warning REMOVE THIS
+//@implementation NSURLRequest (acceptAll)
+//
+//+(BOOL) allowsAnyHTTPSCertificateForHost:(id)host{
+//	return YES;
+//}
+//
+//@end
+//
 
 @implementation SimpleURLConnection
 
@@ -40,6 +40,7 @@
 	returnDelegate = delegate;
 	returnSelector = passSel;
 	failSelector   = failSel;
+    NSLog(@"URL:  ---- %@ ----",target);
 	return self;
 
 }
@@ -63,8 +64,13 @@
 	
 }
 
+- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse
+{
+    return request;
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
-	NSLog(@"Response received.");
+//	NSLog(@"Response received.");
 	int returnCode;
     if ([response isKindOfClass:[NSHTTPURLResponse class]]){
         
@@ -74,13 +80,16 @@
         returnCode = [httpResponse statusCode];
 	
         if (returnCode/100!=2){
+            NSLog(@"Code: %@",response);
             
+            NSLog(@"Header: %@",[httpResponse allHeaderFields]);
+            NSLog(@"Error %@",[NSHTTPURLResponse localizedStringForStatusCode:returnCode]);
             if (returnCode==401){
-                NSError* error=[self generateError:@"Failed With unauthorised" httpReturnCode:httpResponse errorNo:2];
+                NSError* error=[self generateError:@"Failed With unauthorised" httpReturnCode:httpResponse errorNo:returnCode];
                 [returnDelegate performSelector:failSelector withObject:error];
             }
             else{
-                NSError* error=[self generateError:@"Failed to establishConnection" httpReturnCode:httpResponse errorNo:3];
+                NSError* error=[self generateError:@"Failed to establishConnection" httpReturnCode:httpResponse errorNo:returnCode];
                 NSLog(@"return code is %d",returnCode);
                 [returnDelegate performSelector:failSelector withObject:error];
             }
@@ -110,7 +119,7 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection{
-	NSLog(@"SimpleURLConnection: Connection succeded");
+//	NSLog(@"SimpleURLConnection: Connection succeded");
 	[returnDelegate performSelector:returnSelector withObject:resultData withObject:httpResponse];
 	[resultData autorelease];
 	[httpResponse autorelease];
