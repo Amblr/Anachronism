@@ -11,7 +11,8 @@
 #import "L1Utils.h"
 
 
-#define SOUND_FADE_TIME 8.0
+#define SOUND_FADE_TIME 5.0
+#define SOUND_DECREASE_TIME_STEP 0.5
 
 @implementation Hackney_Hear_ViewController
 @synthesize scenario;
@@ -43,28 +44,35 @@
     locationManager.delegate = self;
     NSAssert(ok, @"Unable to ini dirs.");
     circles = [[NSMutableDictionary alloc] initWithCapacity:0];
-    self.scenario=nil;
+    //self.scenario=nil;
     realLocationTracker = [[L1BigBrother alloc] init];
     fakeLocationTracker = [[L1BigBrother alloc] init];
+    mapViewController.delegate=self;
+
 }
 
 
 -(void) viewDidAppear:(BOOL)animated
 {
     NSLog(@"View = %@",self.view);
+    realGPSControl = [[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
+    trackMe = [[NSUserDefaults standardUserDefaults] boolForKey:@"track_user_location"];
     if (!self.scenario){
-        [self setupScenario];
+//        [self setupScenario];
         [locationManager startUpdatingLocation];
+
     }
     else{
-        //We just came back from the prefs pane.
+        //We just came back from the prefs pane, perhaps.
         //If we just set the use_real_location to off then we should update the manual location.
-        BOOL realGPSControl = [[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
         if (!realGPSControl){
             [self locationUpdate:mapViewController.manualUserLocation.coordinate];
             
         }
     }
+    
+    NSLog(@"Scenario = [%@]",self.scenario.key);
+    NSLog(@"Nodes = [%@]",self.scenario.nodes);
 }
 
 - (void)viewDidUnload
@@ -83,20 +91,7 @@
 
 #pragma mark -
 #pragma mark Story Elements
--(void) setupScenario {
-    
-    // Use Dickens
-#ifdef ALEX_HEAR    
-    NSString * storyURL = @"http://amblr.heroku.com/scenarios/4e249f58d7c4b60001000023/stories/4e249fe5d7c4b600010000c1.json";
-    self.scenario = [L1Scenario scenarioFromStoryURL:storyURL withKey:@"4e249fe5d7c4b600010000c1"];
-#else
-    NSString * storyURL = @"http://amblr.heroku.com/scenarios/4e15c53add71aa000100025b/stories/4e15c6be7bd01600010000c0.json";
-    self.scenario = [L1Scenario scenarioFromStoryURL:storyURL withKey:@"4e15c53add71aa000100025b"];
-#endif        
-//    self.scenario = [L1Scenario scenarioFromNodesURL:nodesURL pathsURL:pathsURL];
-    mapViewController.delegate=self;
-    self.scenario.delegate = self;
-}
+
 
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes
 {
@@ -131,14 +126,6 @@
     }
 }
 
--(void) nodeDownloadFailedForScenario:(L1Scenario*) scenario
-{
-    NSString * message = @"You don't seem to have an internet connection.  Or possibly your humble developers have screwed up.  Probably the former.";
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"No Network" message:message delegate:self cancelButtonTitle:@"*Sigh*" otherButtonTitles:nil];
-    [alert show];
-    
-}
-
 
 #pragma  mark -
 #pragma mark Sound
@@ -156,8 +143,6 @@
 -(void) nodeSoundOn:(L1Node*) node
 {
            
-    MKCircle * circle = [circles valueForKey:node.key];
-    [mapViewController setColor:[UIColor blueColor] forCircle:circle];
     NSLog(@"Node on: %@",node.name);
     NSString * filename = [self filenameForNodeSound:node];
     if (filename){
@@ -175,7 +160,7 @@
 -(void) decreaseSourceVolume:(NSString*) identifier
 {
     CDLongAudioSource * sound = [audioSamples objectForKey:identifier];
-    sound.volume = sound.volume-1.0/(SOUND_FADE_TIME);
+    sound.volume = sound.volume-SOUND_DECREASE_TIME_STEP/(SOUND_FADE_TIME);
     if (sound.volume<=0){
         [sound stop];
         [audioSamples removeObjectForKey:identifier]; 
@@ -183,7 +168,7 @@
     else
     {
         SEL selector = @selector(decreaseSourceVolume:);
-        [self performSelector:selector withObject:identifier afterDelay:1.0];
+        [self performSelector:selector withObject:identifier afterDelay:SOUND_DECREASE_TIME_STEP];
     }
 }
 
@@ -197,9 +182,9 @@
         CDLongAudioSource * sound = [audioSamples objectForKey:node.key];
         if (sound){
             if (sound.volume==1.0){ //sound is not already fading
-                sound.volume = 1.0 - 1.0/(SOUND_FADE_TIME);
+                sound.volume = 1.0 - SOUND_DECREASE_TIME_STEP/(SOUND_FADE_TIME);
                 SEL selector = @selector(decreaseSourceVolume:);
-                [self performSelector:selector withObject:node.key afterDelay:1.0];
+                [self performSelector:selector withObject:node.key afterDelay:SOUND_DECREASE_TIME_STEP];
             }
             
         }
@@ -220,22 +205,30 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     NSLog(@"Location update [real]");
-    BOOL realGPSControl = [[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
     if (realGPSControl) {
-        BOOL trackMe = [[NSUserDefaults standardUserDefaults] boolForKey:@"track_user_location"];
-        if (trackMe) [self locationUpdate:newLocation.coordinate];
-        [realLocationTracker addLocation:newLocation];
+        NSLog(@"Using update");
+
+        [self locationUpdate:newLocation.coordinate];
+        if (trackMe)[realLocationTracker addLocation:newLocation];
     }
+    else{
+        NSLog(@"Ignoring update");
+        
+    }
+
 }
 
 -(void) manualLocationUpdate:(CLLocation*)location
 {
     NSLog(@"Location update [fake]");
-    BOOL realGPSControl = [[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
     if (!realGPSControl) {
-        BOOL trackMe = [[NSUserDefaults standardUserDefaults] boolForKey:@"track_user_location"];
-        if (trackMe) [fakeLocationTracker addLocation:location];
+        NSLog(@"Using update");
         [self locationUpdate:location.coordinate];
+        if (trackMe) [fakeLocationTracker addLocation:location];
+    }
+    else{
+        NSLog(@"Ignoring update");
+
     }
 }
 
@@ -247,9 +240,15 @@
         CLRegion * region = [node region];
         BOOL wasEnabled = node.enabled;
         BOOL nowEnabled = [region containsCoordinate:location];
+        if (nowEnabled) NSLog(@"Node now enabled: %@.  Old Status %d",node.name,wasEnabled);
         if ((!wasEnabled) && nowEnabled) [self nodeSoundOn:node];
         if (wasEnabled && (!nowEnabled)) [self nodeSoundOff:node];
         node.enabled = nowEnabled;
+        if (nowEnabled){
+            MKCircle * circle = [circles valueForKey:node.key];
+            [mapViewController setColor:[UIColor blueColor] forCircle:circle];
+
+        }
     }
 }
 

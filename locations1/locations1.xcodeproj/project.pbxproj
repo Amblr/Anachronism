@@ -433,6 +433,23 @@
 		D8D5CDF01396DCCB008112ED /* textfade.html in Resources */ = {isa = PBXBuildFile; fileRef = D8D5CDEE1396DA6E008112ED /* textfade.html */; };
 		D8DF6459139595910019F3D3 /* streetview.html in Resources */ = {isa = PBXBuildFile; fileRef = D8DF6458139595910019F3D3 /* streetview.html */; };
 		D8DFC8AD138BB38100C801F9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8DFC8AC138BB38100C801F9 /* libz.dylib */; };
+		D8F65BDD13E1E7C100E7953D /* HHMediaStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F65BDB13E1E7C100E7953D /* HHMediaStatusViewController.m */; };
+		D8F65BDE13E1E7C100E7953D /* HHMediaStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F65BDB13E1E7C100E7953D /* HHMediaStatusViewController.m */; };
+		D8F65BDF13E1E7C100E7953D /* HHMediaStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F65BDC13E1E7C100E7953D /* HHMediaStatusViewController.xib */; };
+		D8F65BE013E1E7C100E7953D /* HHMediaStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F65BDC13E1E7C100E7953D /* HHMediaStatusViewController.xib */; };
+		D8F65BEE13E40F8F00E7953D /* 40-inbox.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F65BED13E40F8F00E7953D /* 40-inbox.png */; };
+		D8F65BEF13E432E400E7953D /* 40-inbox.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F65BED13E40F8F00E7953D /* 40-inbox.png */; };
+		D8F65BF013E432E400E7953D /* 113-navigation.png in Resources */ = {isa = PBXBuildFile; fileRef = D868CC5713DB5A7200D254AC /* 113-navigation.png */; };
+		D8F65BF113E432EC00E7953D /* 40-inbox.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F65BED13E40F8F00E7953D /* 40-inbox.png */; };
+		D8F65BF213E432EC00E7953D /* 113-navigation.png in Resources */ = {isa = PBXBuildFile; fileRef = D868CC5713DB5A7200D254AC /* 113-navigation.png */; };
+		D8F65BF713E4372000E7953D /* 57-download.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F65BF313E4371F00E7953D /* 57-download.png */; };
+		D8F65BF813E4372000E7953D /* 57-download.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F65BF313E4371F00E7953D /* 57-download.png */; };
+		D8F65BF913E4372000E7953D /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F65BF413E4371F00E7953D /* 112-group.png */; };
+		D8F65BFA13E4372000E7953D /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F65BF413E4371F00E7953D /* 112-group.png */; };
+		D8F65BFB13E4372000E7953D /* 117-todo.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F65BF513E4371F00E7953D /* 117-todo.png */; };
+		D8F65BFC13E4372000E7953D /* 117-todo.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F65BF513E4371F00E7953D /* 117-todo.png */; };
+		D8F65BFD13E4372000E7953D /* 184-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F65BF613E4371F00E7953D /* 184-warning.png */; };
+		D8F65BFE13E4372000E7953D /* 184-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F65BF613E4371F00E7953D /* 184-warning.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -702,6 +719,14 @@
 		D8D5CDEE1396DA6E008112ED /* textfade.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = textfade.html; sourceTree = "<group>"; };
 		D8DF6458139595910019F3D3 /* streetview.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = streetview.html; path = Classes/streetview.html; sourceTree = "<group>"; };
 		D8DFC8AC138BB38100C801F9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D8F65BDA13E1E7C100E7953D /* HHMediaStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHMediaStatusViewController.h; sourceTree = "<group>"; };
+		D8F65BDB13E1E7C100E7953D /* HHMediaStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHMediaStatusViewController.m; sourceTree = "<group>"; };
+		D8F65BDC13E1E7C100E7953D /* HHMediaStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HHMediaStatusViewController.xib; sourceTree = "<group>"; };
+		D8F65BED13E40F8F00E7953D /* 40-inbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "40-inbox.png"; sourceTree = "<group>"; };
+		D8F65BF313E4371F00E7953D /* 57-download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "57-download.png"; sourceTree = "<group>"; };
+		D8F65BF413E4371F00E7953D /* 112-group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "112-group.png"; sourceTree = "<group>"; };
+		D8F65BF513E4371F00E7953D /* 117-todo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "117-todo.png"; sourceTree = "<group>"; };
+		D8F65BF613E4371F00E7953D /* 184-warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "184-warning.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1010,6 +1035,11 @@
 		D82BC9B413C3A118003D86B4 /* Hackney Hear  */ = {
 			isa = PBXGroup;
 			children = (
+				D8F65BF313E4371F00E7953D /* 57-download.png */,
+				D8F65BF413E4371F00E7953D /* 112-group.png */,
+				D8F65BF513E4371F00E7953D /* 117-todo.png */,
+				D8F65BF613E4371F00E7953D /* 184-warning.png */,
+				D8F65BED13E40F8F00E7953D /* 40-inbox.png */,
 				D868CC5C13DB5B0700D254AC /* 19-gear.png */,
 				D868CC5D13DB5B0700D254AC /* 20-gear2.png */,
 				D868CC5913DB5AC400D254AC /* 103-map.png */,
@@ -1026,6 +1056,9 @@
 				D82BC9C613C3A118003D86B4 /* Hackney_Hear_ViewController.xib */,
 				D82BC9B513C3A118003D86B4 /* Supporting Files */,
 				D809B06113DB672800C5B656 /* Settings.bundle */,
+				D8F65BDA13E1E7C100E7953D /* HHMediaStatusViewController.h */,
+				D8F65BDB13E1E7C100E7953D /* HHMediaStatusViewController.m */,
+				D8F65BDC13E1E7C100E7953D /* HHMediaStatusViewController.xib */,
 			);
 			path = "Hackney Hear ";
 			sourceTree = "<group>";
@@ -1442,6 +1475,7 @@
 				D809B04E13DB658400C5B656 /* IASKPSTextFieldSpecifierViewCell.xib in Resources */,
 				D809B05213DB658400C5B656 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */,
 				D809B05613DB658400C5B656 /* IASKSpecifierValuesView.xib in Resources */,
+				D8F65BEE13E40F8F00E7953D /* 40-inbox.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1481,6 +1515,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8F65BEF13E432E400E7953D /* 40-inbox.png in Resources */,
+				D8F65BF013E432E400E7953D /* 113-navigation.png in Resources */,
 				D8385E5713C4D1C50016EF07 /* HH_logo_57.jpg in Resources */,
 				D8385E5813C4D1C50016EF07 /* HH_logo_114.jpg in Resources */,
 				D82BC9B913C3A118003D86B4 /* InfoPlist.strings in Resources */,
@@ -1498,6 +1534,11 @@
 				D809B05313DB658400C5B656 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */,
 				D809B05713DB658400C5B656 /* IASKSpecifierValuesView.xib in Resources */,
 				D809B06213DB672800C5B656 /* Settings.bundle in Resources */,
+				D8F65BDF13E1E7C100E7953D /* HHMediaStatusViewController.xib in Resources */,
+				D8F65BF713E4372000E7953D /* 57-download.png in Resources */,
+				D8F65BF913E4372000E7953D /* 112-group.png in Resources */,
+				D8F65BFB13E4372000E7953D /* 117-todo.png in Resources */,
+				D8F65BFD13E4372000E7953D /* 184-warning.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1505,6 +1546,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8F65BF113E432EC00E7953D /* 40-inbox.png in Resources */,
+				D8F65BF213E432EC00E7953D /* 113-navigation.png in Resources */,
 				D837D85013D4D81B006C518C /* HH_logo_57.jpg in Resources */,
 				D837D85113D4D81B006C518C /* HH_logo_114.jpg in Resources */,
 				D837D85213D4D81B006C518C /* InfoPlist.strings in Resources */,
@@ -1524,6 +1567,11 @@
 				D809B05413DB658400C5B656 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */,
 				D809B05813DB658400C5B656 /* IASKSpecifierValuesView.xib in Resources */,
 				D809B06313DB672800C5B656 /* Settings.bundle in Resources */,
+				D8F65BE013E1E7C100E7953D /* HHMediaStatusViewController.xib in Resources */,
+				D8F65BF813E4372000E7953D /* 57-download.png in Resources */,
+				D8F65BFA13E4372000E7953D /* 112-group.png in Resources */,
+				D8F65BFC13E4372000E7953D /* 117-todo.png in Resources */,
+				D8F65BFE13E4372000E7953D /* 184-warning.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1755,6 +1803,7 @@
 				D809B03713DB658400C5B656 /* IASKSlider.m in Sources */,
 				D809B03B13DB658400C5B656 /* IASKSwitch.m in Sources */,
 				D809B03F13DB658400C5B656 /* IASKTextField.m in Sources */,
+				D8F65BDD13E1E7C100E7953D /* HHMediaStatusViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1834,6 +1883,7 @@
 				D809B03813DB658400C5B656 /* IASKSlider.m in Sources */,
 				D809B03C13DB658400C5B656 /* IASKSwitch.m in Sources */,
 				D809B04013DB658400C5B656 /* IASKTextField.m in Sources */,
+				D8F65BDE13E1E7C100E7953D /* HHMediaStatusViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2036,9 +2086,10 @@
 				INFOPLIST_FILE = "Hackney Hear /Hackney Hear -Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "Hackney Hear";
-				PROVISIONING_PROFILE = "E20BE7FE-F561-4933-A320-86BF328363C2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E20BE7FE-F561-4933-A320-86BF328363C2";
+				PROVISIONING_PROFILE = "6F8AF9FC-63F0-472C-9055-9AB9432BF112";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6F8AF9FC-63F0-472C-9055-9AB9432BF112";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2058,9 +2109,10 @@
 				INFOPLIST_FILE = "Hackney Hear /Hackney Hear -Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "Hackney Hear";
-				PROVISIONING_PROFILE = "E20BE7FE-F561-4933-A320-86BF328363C2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E20BE7FE-F561-4933-A320-86BF328363C2";
+				PROVISIONING_PROFILE = "6F8AF9FC-63F0-472C-9055-9AB9432BF112";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6F8AF9FC-63F0-472C-9055-9AB9432BF112";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2085,8 +2137,8 @@
 				INFOPLIST_FILE = "Hackney Hear /AlexHear.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "Alex Hear";
-				PROVISIONING_PROFILE = "E20BE7FE-F561-4933-A320-86BF328363C2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E20BE7FE-F561-4933-A320-86BF328363C2";
+				PROVISIONING_PROFILE = "F9BB5DD9-835F-49B5-A479-5E4432B6F433";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F9BB5DD9-835F-49B5-A479-5E4432B6F433";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2107,8 +2159,8 @@
 				INFOPLIST_FILE = "Hackney Hear /AlexHear.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "Alex Hear";
-				PROVISIONING_PROFILE = "E20BE7FE-F561-4933-A320-86BF328363C2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E20BE7FE-F561-4933-A320-86BF328363C2";
+				PROVISIONING_PROFILE = "F9BB5DD9-835F-49B5-A479-5E4432B6F433";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F9BB5DD9-835F-49B5-A479-5E4432B6F433";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

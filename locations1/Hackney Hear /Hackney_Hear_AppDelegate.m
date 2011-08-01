@@ -11,7 +11,7 @@
 #import "Hackney_Hear_ViewController.h"
 
 @implementation Hackney_Hear_AppDelegate
-
+@synthesize  scenario;
 
 @synthesize window=_window;
 
@@ -26,6 +26,7 @@
     self.window.rootViewController = self.mainTabBarController;
     NSLog(@"view controller = %@",self.mainTabBarController);
     [self.window makeKeyAndVisible];
+    [self setupScenario];
     return YES;
 }
 
@@ -73,6 +74,39 @@
     [_window release];
 //    [_viewController release];
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark Story Elements
+
+-(void) setupScenario {
+    
+    // Use Dickens
+#ifdef ALEX_HEAR    
+    NSString * storyURL = @"http://amblr.heroku.com/scenarios/4e249f58d7c4b60001000023/stories/4e249fe5d7c4b600010000c1.json";
+    self.scenario = [L1Scenario scenarioFromStoryURL:storyURL withKey:@"4e249fe5d7c4b600010000c1"];
+#else
+    NSString * storyURL = @"http://amblr.heroku.com/scenarios/4e15c53add71aa000100025b/stories/4e15c6be7bd01600010000c0.json";
+    self.scenario = [L1Scenario scenarioFromStoryURL:storyURL withKey:@"4e15c53add71aa000100025b"];
+#endif        
+    //    self.scenario = [L1Scenario scenarioFromNodesURL:nodesURL pathsURL:pathsURL];
+    self.scenario.delegate = hhViewController;
+    hhViewController.scenario = scenario;
+    mediaStatusViewController.scenario = scenario;
+}
+-(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes
+{
+    [hhViewController nodeSource:self didReceiveNodes:nodes];
+    
+}
+
+-(void) nodeDownloadFailedForScenario:(L1Scenario*) scenario
+{
+    NSString * message = @"You don't seem to have an internet connection.  Or possibly your humble developers have screwed up.  Probably the former.";
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"No Network" message:message delegate:self cancelButtonTitle:@"*Sigh*" otherButtonTitles:nil];
+    [alert show];
+    
 }
 
 

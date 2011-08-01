@@ -25,7 +25,8 @@
 //    IBOutlet UISwitch *realGPSControl;
     
     // Tracking the user's path
-    BOOL pathTracingEnabled;
+    BOOL trackMe;
+    BOOL realGPSControl;
     L1BigBrother * realLocationTracker;
     L1BigBrother * fakeLocationTracker;
 }
