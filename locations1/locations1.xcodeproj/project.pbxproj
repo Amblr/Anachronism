@@ -2083,8 +2083,13 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				"HEADER_SEARCH_PATHS[arch=*]" = "SoundCloudAPI/**";
 				INFOPLIST_FILE = "Hackney Hear /Hackney Hear -Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "Hackney Hear";
 				PROVISIONING_PROFILE = "6F8AF9FC-63F0-472C-9055-9AB9432BF112";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6F8AF9FC-63F0-472C-9055-9AB9432BF112";
@@ -2106,8 +2111,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hackney Hear /Hackney Hear -Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				"HEADER_SEARCH_PATHS[arch=*]" = "SoundCloudAPI/**";
 				INFOPLIST_FILE = "Hackney Hear /Hackney Hear -Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "Hackney Hear";
 				PROVISIONING_PROFILE = "6F8AF9FC-63F0-472C-9055-9AB9432BF112";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6F8AF9FC-63F0-472C-9055-9AB9432BF112";
