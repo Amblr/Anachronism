@@ -56,23 +56,23 @@
 {
     NSLog(@"View = %@",self.view);
     realGPSControl = [[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
+    NSLog(@"Real GPS Control is now:  %d",realGPSControl);
     trackMe = [[NSUserDefaults standardUserDefaults] boolForKey:@"track_user_location"];
+    [locationManager startUpdatingLocation];
     if (!self.scenario){
 //        [self setupScenario];
-        [locationManager startUpdatingLocation];
 
     }
     else{
-        //We just came back from the prefs pane, perhaps.
+        //We just came back from the prefs pane, or somewhere else, perhaps.
         //If we just set the use_real_location to off then we should update the manual location.
-        if (!realGPSControl){
+        if (realGPSControl){
+            [self locationUpdate:locationManager.location.coordinate];
+        }
+        else {
             [self locationUpdate:mapViewController.manualUserLocation.coordinate];
-            
         }
     }
-    
-    NSLog(@"Scenario = [%@]",self.scenario.key);
-    NSLog(@"Nodes = [%@]",self.scenario.nodes);
 }
 
 - (void)viewDidUnload
@@ -235,7 +235,7 @@
 
 -(void) locationUpdate:(CLLocationCoordinate2D) location
 {
-    
+    NSLog(@"Updated to location: lat = %f,   lon = %f", location.latitude,location.longitude);
     for (L1Node * node in [self.scenario.nodes allValues]){
         CLRegion * region = [node region];
         BOOL wasEnabled = node.enabled;
