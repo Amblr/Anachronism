@@ -1,0 +1,6 @@
+[submodule "locations1/Classes/SoundCloudAPI"]
+	path = locations1/Classes/SoundCloudAPI
+	url = git://github.com/soundcloud/cocoa-api-wrapper.git
+[submodule "SoundCloudAPI"]
+	path = SoundCloudAPI
+	url = git://github.com/soundcloud/cocoa-api-wrapper.git
