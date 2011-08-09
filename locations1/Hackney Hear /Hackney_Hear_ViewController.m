@@ -12,7 +12,22 @@
 
 
 #define SOUND_FADE_TIME 5.0
+#define SOUND_FADE_TIME_SPEECH 3.0
+#define SOUND_FADE_TIME_MUSIC 15.0
+#define SOUND_FADE_TIME_ATMOS 15.0
 #define SOUND_DECREASE_TIME_STEP 0.5
+#define SPEECH_MINIMUM_INTERVAL 60
+
+
+@implementation L1CDLongAudioSource
+@synthesize soundType;
+@synthesize key;
+
+@end
+
+
+
+
 
 @implementation Hackney_Hear_ViewController
 @synthesize scenario;
@@ -40,14 +55,16 @@
 //    audioEngine = [[SimpleAudioEngine alloc] init];
     audioSamples = [[NSMutableDictionary alloc] init];
     BOOL ok = [L1Utils initializeDirs];
+    NSAssert(ok, @"Unable to ini dirs.");
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
-    NSAssert(ok, @"Unable to ini dirs.");
     circles = [[NSMutableDictionary alloc] initWithCapacity:0];
     //self.scenario=nil;
     realLocationTracker = [[L1BigBrother alloc] init];
     fakeLocationTracker = [[L1BigBrother alloc] init];
     mapViewController.delegate=self;
+    activeSpeechTrack=nil;
+    lastCompletionTime = [[NSMutableDictionary alloc] initWithCapacity:0];
 
 }
 
@@ -96,11 +113,35 @@
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes
 {
     for (L1Node *node in [nodes allValues]){
+        //Check if node has any sound resources.  If not ignore it.
+        L1Resource * sound = nil;
+        for (L1Resource * resource in node.resources){
+            if ([resource.type isEqualToString:@"sound"]){
+                sound=resource;
+            }
+        }
+        if (!sound) continue;
+        
+        BOOL isSpeech= (sound.soundType==L1SoundTypeSpeech);
+
+        
         NSLog(@"HH Found node: %@",node.name);
         //Add circle overlay
-        MKCircle * circle = [MKCircle circleWithCenterCoordinate:node.coordinate radius:[node.radius doubleValue]];
+        UIColor * circleColor;
+        if (isSpeech){
+            circleColor = [UIColor cyanColor];
+        }
+        else{
+            circleColor = [UIColor greenColor];
+        }
+        
+        
+        L1Circle * circle = [mapViewController addCircleAt:node.coordinate radius:[node.radius doubleValue] soundType:sound.soundType];
+
+
         [circles setObject:circle forKey:node.key];
-        [mapViewController addOverlay:circle];
+
+        
         //Add node to map.
         [mapViewController addNode:node];
         //We use the enabled flag to track whether a node is playing.
@@ -127,40 +168,65 @@
 }
 
 
+
 #pragma  mark -
 #pragma mark Sound
--(NSString*) filenameForNodeSound:(L1Node*) node
+-(NSString*) filenameForNodeSound:(L1Node*) node getType:(L1SoundType*) soundType
 {
     for(L1Resource * resource in node.resources){
         if ([resource.type isEqualToString:@"sound"]) NSLog(@"Resource: %@, %d, %d",resource.name,resource.saveLocal,resource.local);
         if ([resource.type isEqualToString:@"sound"] && resource.saveLocal && resource.local){
+            *soundType = resource.soundType;
             return [resource localFileName];
         }   
     }
+    
     return nil;
 }
 
 -(void) nodeSoundOn:(L1Node*) node
-{
-           
+{           
     NSLog(@"Node on: %@",node.name);
-    NSString * filename = [self filenameForNodeSound:node];
+    L1SoundType soundType;
+    NSString * filename = [self filenameForNodeSound:node getType:&soundType];
+    
     if (filename){
-        CDLongAudioSource * sound = [[CDLongAudioSource alloc] init];
+        NSDate * lastPlay = [lastCompletionTime objectForKey:node.key];
+        if (lastPlay && [[NSDate date] timeIntervalSinceDate:lastPlay]<SPEECH_MINIMUM_INTERVAL){
+            NSLog(@"Not playing sound - too recent.");
+            return;
+        }
+        
+        L1CDLongAudioSource * sound = [[L1CDLongAudioSource alloc] init];
+        sound.delegate=self;
+        sound.soundType=soundType;
+        sound.key=node.key;
         [sound load:filename];
         [sound play];
         [audioSamples setObject:sound forKey:node.key];
         [sound release];
         
-        NSLog(@"Playing sound %@",filename);
+        //If a new speec track has come a long then fade out any existing one.
+        if (soundType==L1SoundTypeSpeech){
+            if (activeSpeechTrack) [self decreaseSourceVolume:activeSpeechTrack];
+            activeSpeechTrack=sound.key;
+        }
         
+        NSLog(@"Playing sound %@",filename);
     }
 }
 
 -(void) decreaseSourceVolume:(NSString*) identifier
 {
-    CDLongAudioSource * sound = [audioSamples objectForKey:identifier];
-    sound.volume = sound.volume-SOUND_DECREASE_TIME_STEP/(SOUND_FADE_TIME);
+    L1CDLongAudioSource * sound = [audioSamples objectForKey:identifier];
+    if (!sound) return; //sound must already have finished in the meantime.
+    float fadeTime = SOUND_FADE_TIME;
+    if (sound.soundType==L1SoundTypeAtmos) fadeTime=SOUND_FADE_TIME_ATMOS;
+    if (sound.soundType==L1SoundTypeMusic) fadeTime=SOUND_FADE_TIME_MUSIC;
+    if (sound.soundType==L1SoundTypeSpeech) fadeTime=SOUND_FADE_TIME_SPEECH;
+    
+    
+    sound.volume = sound.volume-SOUND_DECREASE_TIME_STEP/(fadeTime);
     if (sound.volume<=0){
         [sound stop];
         [audioSamples removeObjectForKey:identifier]; 
@@ -175,22 +241,35 @@
 -(void) nodeSoundOff:(L1Node*) node
 {
     NSLog(@"Node off: %@",node.name);
-    MKCircle * circle = [circles valueForKey:node.key];
-    [mapViewController setColor:[UIColor greenColor] forCircle:circle];
-    NSString * filename = [self filenameForNodeSound:node];
+    
+    L1SoundType soundType;
+    NSString * filename = [self filenameForNodeSound:node getType:&soundType];
     if (filename){
-        CDLongAudioSource * sound = [audioSamples objectForKey:node.key];
+        L1CDLongAudioSource * sound = [audioSamples objectForKey:node.key];
         if (sound){
             if (sound.volume==1.0){ //sound is not already fading
-                sound.volume = 1.0 - SOUND_DECREASE_TIME_STEP/(SOUND_FADE_TIME);
+                float fadeTime = SOUND_FADE_TIME;
+                if (sound.soundType==L1SoundTypeAtmos) fadeTime=SOUND_FADE_TIME_ATMOS;
+                if (sound.soundType==L1SoundTypeMusic) fadeTime=SOUND_FADE_TIME_MUSIC;
+                if (sound.soundType==L1SoundTypeSpeech) fadeTime=SOUND_FADE_TIME_SPEECH;
+
+                sound.volume = 1.0 - SOUND_DECREASE_TIME_STEP/fadeTime;
                 SEL selector = @selector(decreaseSourceVolume:);
                 [self performSelector:selector withObject:node.key afterDelay:SOUND_DECREASE_TIME_STEP];
             }
-            
         }
         for(L1Resource * resource in node.resources){
             if ([resource.type isEqualToString:@"sound"] && resource.saveLocal && resource.local){
                 [resource flush];
+                L1Circle * circle = [circles valueForKey:node.key];
+                if (circle){
+                    if (resource.soundType==L1SoundTypeSpeech){
+                        [mapViewController setColor:[UIColor cyanColor] forCircle:circle];
+                    }else {
+                        [mapViewController setColor:[UIColor greenColor] forCircle:circle];
+                    }
+                }
+
                 break;
                 
             }
@@ -245,11 +324,37 @@
         if (wasEnabled && (!nowEnabled)) [self nodeSoundOff:node];
         node.enabled = nowEnabled;
         if (nowEnabled){
-            MKCircle * circle = [circles valueForKey:node.key];
+            L1Circle * circle = [circles valueForKey:node.key];
             [mapViewController setColor:[UIColor blueColor] forCircle:circle];
 
         }
     }
 }
+
+
+- (void) cdAudioSourceDidFinishPlaying:(CDLongAudioSource *) audioSource
+{
+    if (![audioSource isKindOfClass:[L1CDLongAudioSource class]]) return;
+    L1CDLongAudioSource * source = (L1CDLongAudioSource*) audioSource;
+    NSLog(@"Sound finished: %@",source.key);
+    if ([source.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
+    
+    if (source.soundType==L1SoundTypeSpeech){
+        [lastCompletionTime setObject:[NSDate date] forKey:source.key];
+    }
+    
+    //We want to repeat music and atmost when they finish
+    if (source.soundType==L1SoundTypeMusic || source.soundType==L1SoundTypeAtmos){
+        [source play];
+    }
+    else
+    {
+        [audioSamples removeObjectForKey:source.key];
+        
+    }
+    
+    //        [timeLastFinished setObject:[NSDate date] forKey:audioSource.]
+}
+
 
 @end

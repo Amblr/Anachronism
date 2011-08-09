@@ -15,7 +15,20 @@
 #import "L1BigBrother.h"
 
 
-@interface Hackney_Hear_ViewController : UIViewController<CLLocationManagerDelegate> {
+@interface L1CDLongAudioSource : CDLongAudioSource
+{
+    L1SoundType soundType;
+    NSString * key;
+}
+@property (assign) L1SoundType soundType;
+@property (retain) NSString * key;
+@end
+
+
+
+
+
+@interface Hackney_Hear_ViewController : UIViewController<CLLocationManagerDelegate,CDLongAudioSourceDelegate> {
     L1Scenario * scenario;
     IBOutlet L1MapViewController * mapViewController;
     SimpleAudioEngine *audioEngine;
@@ -29,6 +42,9 @@
     BOOL realGPSControl;
     L1BigBrother * realLocationTracker;
     L1BigBrother * fakeLocationTracker;
+    NSString * activeSpeechTrack;
+    NSMutableDictionary * lastCompletionTime;
+    
 }
 @property (retain) L1Scenario * scenario;
 
@@ -38,14 +54,15 @@
 -(void) manualLocationUpdate:(CLLocation*)location;
 
 // Story contents
--(void) setupScenario;
+//-(void) setupScenario;
 -(void) pathSource:(id) pathManager didReceivePaths:(NSDictionary*) paths;
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes;
 -(void) nodeDownloadFailedForScenario:(L1Scenario*) scenario;
 // Sound
--(NSString*) filenameForNodeSound:(L1Node*) node;
 -(void) nodeSoundOff:(L1Node*) node;
 -(void) nodeSoundOn:(L1Node*) node;
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation;
+-(void) decreaseSourceVolume:(NSString*) identifier;
+-(NSString*) filenameForNodeSound:(L1Node*) node getType:(L1SoundType*) soundType;
 
 @end
