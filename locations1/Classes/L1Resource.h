@@ -9,6 +9,18 @@
 #import <Foundation/Foundation.h>
 
 
+
+typedef enum L1SoundType {
+    L1SoundTypeSpeech,
+    L1SoundTypeMusic,
+    L1SoundTypeAtmos,
+    L1SoundTypeOther,
+    L1SoundTypeUnknown,
+} L1SoundType;
+
+
+
+
 @interface L1Resource : NSObject {
     NSString * name;
     NSString * url;
@@ -20,6 +32,7 @@
     NSString * key;
     NSMutableDictionary * metadata;
     NSData * resourceData;
+    L1SoundType soundType;
 }
 
 -(id) initWithDictionary:(NSDictionary*) data;
@@ -27,6 +40,8 @@
 -(NSString*) localFileName;
 -(void) flush;
 
+
++(void) setupHHSpeechNodes;
 
 @property (retain) NSString * name;
 @property (retain) NSString * url;
@@ -37,6 +52,7 @@
 @property (retain) NSString * key;
 @property (retain) NSMutableDictionary * metadata;
 @property (retain) NSData * resourceData;
+@property (assign) L1SoundType soundType;
 
 
 -(void) downloadResourceData;

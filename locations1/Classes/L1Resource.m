@@ -9,19 +9,35 @@
 #import "L1Resource.h"
 #import "SimpleURLConnection.h"
 #import "L1Utils.h"
+#import "SBJsonParser.h"
 
-int currentIndex = 0;
+
+/* 
+ 
+ Temporary Hackney Hear Hack
+ 
+ 
+ */
+
+static NSSet * HHspeechNodes=nil;
+
+
+
+
+
 
 @implementation L1Resource
 
 -(id) initWithKey:(NSString *)resourceKey
 {
+    
     if ((self = [super init])){
         self.key = resourceKey;
         self.saveLocal = YES;
         self.local = NO;
         self.downloading = NO;
         resourceData = nil;
+        self.soundType=L1SoundTypeUnknown;
     } 
     return self;
 
@@ -126,8 +142,24 @@ int currentIndex = 0;
 
 }
 
+
++(void) setupHHSpeechNodes
+{
+    SBJsonParser * parser = [[SBJsonParser alloc] init];
+    NSData * data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"speech" ofType:@"json"]];
+    NSArray * arrayOfNames = [parser objectWithData:data];
+    HHspeechNodes = [[NSSet setWithArray:arrayOfNames] retain];
+    [parser release];
+
+}
+
 -(id) initWithDictionary:(NSDictionary*) data
 {
+    
+    if (HHspeechNodes==nil)[L1Resource setupHHSpeechNodes];
+
+    
+
     if ((self = [super init])){
         self.name = [data objectForKey:@"name"];
         self.key = [data objectForKey:@"id"];
@@ -139,7 +171,12 @@ int currentIndex = 0;
         self.metadata = [NSMutableDictionary dictionaryWithDictionary:[data objectForKey:@"metadata"]];
         self.resourceData = nil;
         self.downloading = NO;
-
+        self.soundType = L1SoundTypeUnknown;
+        if ([HHspeechNodes member:self.name]){
+            self.soundType=L1SoundTypeSpeech;
+            NSLog(@"Node %@ is SPEECH",self.name);
+        }
+        
         [self downloadResourceData];
     }
     return self;
@@ -156,5 +193,5 @@ int currentIndex = 0;
 }
 
 
-@synthesize name, url, type, local, key, metadata, saveLocal,downloading;
+@synthesize name, url, type, local, key, metadata, saveLocal,downloading, soundType;
 @end
