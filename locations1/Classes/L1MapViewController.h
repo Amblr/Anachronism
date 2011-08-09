@@ -15,6 +15,7 @@
 #import "L1Overlay.h"
 #import "L1OverlayView.h"
 #import "ManualUserLocation.h"
+#import "L1Circle.h"
 
 @interface L1MapViewController : UIViewController<MKMapViewDelegate> {
 	L1Scenario * scenario;
@@ -23,6 +24,7 @@
     SimulatedUserLocation * fakeUserLocation;
     L1OverlayView * singleOverlayView;
     ManualUserLocation * manualUserLocation;
+    NSMutableDictionary * circleColors;
 	
 }
 
@@ -46,10 +48,12 @@
 
 -(void) addManualUserLocationAt:(CLLocationCoordinate2D)coordinate;
 
+
+-(L1Circle*) addCircleAt:(CLLocationCoordinate2D) coordinate radius:(CLLocationDistance) radius soundType:(L1SoundType) soundType ;
 -(L1Overlay*) addOverlayImage:(UIImage*)image bottomLeft:(CLLocationCoordinate2D)bottomLeft topRight:(CLLocationCoordinate2D) topRight;
 -(void) addPath:(L1Path*)path;
 -(void) addNode:(L1Node*) node;
 -(void) addImageOverlay:(L1Overlay*) overlay;
 -(void) addOverlay:(id<MKOverlay>) overlay;
--(void) setColor:(UIColor*)color forCircle:(MKCircle*) circle;
+-(void) setColor:(UIColor*)color forCircle:(L1Circle*) circle;
 @end

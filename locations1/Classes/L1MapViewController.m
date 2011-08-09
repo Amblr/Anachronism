@@ -15,6 +15,7 @@
 //#import "L1Pin.h"
 #import "L1Overlay.h"
 #import "L1OverlayView.h"
+#import "L1Circle.h"
 
 @implementation L1MapViewController
 @synthesize  delegate;
@@ -49,6 +50,8 @@
     newRegion.center.longitude = -1.25;
     newRegion.span.latitudeDelta = 0.04;
     newRegion.span.longitudeDelta = 0.04;
+    
+    circleColors = [[NSMutableDictionary alloc] initWithCapacity:0];
 	
     [primaryMapView setRegion:newRegion animated:YES];
     
@@ -243,15 +246,26 @@
         return [overlayView autorelease];
     }
     
-    else if ([overlay isKindOfClass:[MKCircle class]]){
-        MKCircleView *circleView = [[MKCircleView alloc] initWithCircle:(MKCircle*)overlay];
+    else if ([overlay isKindOfClass:[L1Circle class]]){
+        L1Circle * myCircle = (L1Circle*) overlay;
+        MKCircle * circle = [MKCircle circleWithCenterCoordinate:myCircle.coordinate radius:myCircle.radius];
+        MKCircleView *circleView = [[MKCircleView alloc] initWithCircle:circle];
         circleView.alpha = 0.33;
-        circleView.fillColor = [UIColor greenColor];
+        if (myCircle.soundType==L1SoundTypeSpeech) circleView.fillColor = [UIColor cyanColor];
+        else circleView.fillColor = [UIColor greenColor];
         return [circleView autorelease];
     }
 	
 	return nil;
 }
+
+-(L1Circle*) addCircleAt:(CLLocationCoordinate2D) coordinate radius:(CLLocationDistance) radius soundType:(L1SoundType) soundType 
+{
+    L1Circle * circle = [[L1Circle alloc] initWithCenter:coordinate radius:radius soundType:soundType];
+    [primaryMapView addOverlay:circle];
+    return circle;
+}
+
 
 -(void) addImageOverlay:(L1Overlay*) overlay
 {
@@ -387,7 +401,7 @@
 }
 
 
--(void) setColor:(UIColor*)color forCircle:(MKCircle*) circle
+-(void) setColor:(UIColor*)color forCircle:(L1Circle*) circle
 {
     MKOverlayView * overlayView = [primaryMapView viewForOverlay:circle];
     if (!overlayView) return;
