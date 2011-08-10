@@ -251,8 +251,9 @@
         MKCircle * circle = [MKCircle circleWithCenterCoordinate:myCircle.coordinate radius:myCircle.radius];
         MKCircleView *circleView = [[MKCircleView alloc] initWithCircle:circle];
         circleView.alpha = 0.33;
-        if (myCircle.soundType==L1SoundTypeSpeech) circleView.fillColor = [UIColor cyanColor];
-        else circleView.fillColor = [UIColor greenColor];
+        if (myCircle.soundType==L1SoundTypeSpeech) circleView.strokeColor = [UIColor cyanColor];
+        
+        else circleView.strokeColor = [UIColor greenColor];
         return [circleView autorelease];
     }
 	
@@ -410,7 +411,7 @@
         return;
     }
     MKCircleView * circleView = (MKCircleView*) overlayView;
-    circleView.fillColor = color;
+    circleView.strokeColor = color;
 }
 
 @synthesize nodeContentViewController;

@@ -337,6 +337,14 @@
 		D883BC2C13F1BA1300252768 /* speech.json in Resources */ = {isa = PBXBuildFile; fileRef = D883BC2B13F1BA1300252768 /* speech.json */; };
 		D883BC3213F1CAF300252768 /* L1Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = D883BC3113F1CAF300252768 /* L1Circle.m */; };
 		D883BC3313F1CAF300252768 /* L1Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = D883BC3113F1CAF300252768 /* L1Circle.m */; };
+		D883BC4E13F2711200252768 /* L1DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D883BC4D13F2711200252768 /* L1DownloadManager.m */; };
+		D883BC4F13F2711200252768 /* L1DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D883BC4D13F2711200252768 /* L1DownloadManager.m */; };
+		D883BC5013F2711200252768 /* L1DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D883BC4D13F2711200252768 /* L1DownloadManager.m */; };
+		D883BC5113F2711200252768 /* L1DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D883BC4D13F2711200252768 /* L1DownloadManager.m */; };
+		D883BC5413F271C700252768 /* L1Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = D883BC5313F271C700252768 /* L1Queue.m */; };
+		D883BC5513F271C700252768 /* L1Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = D883BC5313F271C700252768 /* L1Queue.m */; };
+		D883BC5613F271C700252768 /* L1Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = D883BC5313F271C700252768 /* L1Queue.m */; };
+		D883BC5713F271C700252768 /* L1Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = D883BC5313F271C700252768 /* L1Queue.m */; };
 		D8867390139E97D80014B903 /* NSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = D8400676130B1F0F0038286A /* NSObject+JSON.m */; };
 		D8867392139E97D80014B903 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D8400678130B1F0F0038286A /* SBJsonParser.m */; };
 		D8867394139E97D80014B903 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D840067A130B1F0F0038286A /* SBJsonStreamParser.m */; };
@@ -682,6 +690,10 @@
 		D883BC2B13F1BA1300252768 /* speech.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = speech.json; sourceTree = "<group>"; };
 		D883BC3013F1CAF300252768 /* L1Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1Circle.h; sourceTree = "<group>"; };
 		D883BC3113F1CAF300252768 /* L1Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Circle.m; sourceTree = "<group>"; };
+		D883BC4C13F2711200252768 /* L1DownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1DownloadManager.h; sourceTree = "<group>"; };
+		D883BC4D13F2711200252768 /* L1DownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1DownloadManager.m; sourceTree = "<group>"; };
+		D883BC5213F271C700252768 /* L1Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; path = L1Queue.h; sourceTree = "<group>"; };
+		D883BC5313F271C700252768 /* L1Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Queue.m; sourceTree = "<group>"; };
 		D8867400139E98F90014B903 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D8867402139E98FE0014B903 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D8867404139E993E0014B903 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -1225,8 +1237,12 @@
 		D86803C213A8A2F500A4F3BE /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D883BC5213F271C700252768 /* L1Queue.h */,
+				D883BC5313F271C700252768 /* L1Queue.m */,
 				D84B82EB130B0F8D00A57BA1 /* SimpleURLConnection.h */,
 				D84B82EC130B0F8D00A57BA1 /* SimpleURLConnection.m */,
+				D883BC4C13F2711200252768 /* L1DownloadManager.h */,
+				D883BC4D13F2711200252768 /* L1DownloadManager.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1663,6 +1679,8 @@
 				D809B03613DB658400C5B656 /* IASKSlider.m in Sources */,
 				D809B03A13DB658400C5B656 /* IASKSwitch.m in Sources */,
 				D809B03E13DB658400C5B656 /* IASKTextField.m in Sources */,
+				D883BC4F13F2711200252768 /* L1DownloadManager.m in Sources */,
+				D883BC5513F271C700252768 /* L1Queue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1734,6 +1752,8 @@
 				D809B03513DB658400C5B656 /* IASKSlider.m in Sources */,
 				D809B03913DB658400C5B656 /* IASKSwitch.m in Sources */,
 				D809B03D13DB658400C5B656 /* IASKTextField.m in Sources */,
+				D883BC4E13F2711200252768 /* L1DownloadManager.m in Sources */,
+				D883BC5413F271C700252768 /* L1Queue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1815,6 +1835,8 @@
 				D809B03F13DB658400C5B656 /* IASKTextField.m in Sources */,
 				D8F65BDD13E1E7C100E7953D /* HHMediaStatusViewController.m in Sources */,
 				D883BC3213F1CAF300252768 /* L1Circle.m in Sources */,
+				D883BC5013F2711200252768 /* L1DownloadManager.m in Sources */,
+				D883BC5613F271C700252768 /* L1Queue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1896,6 +1918,8 @@
 				D809B04013DB658400C5B656 /* IASKTextField.m in Sources */,
 				D8F65BDE13E1E7C100E7953D /* HHMediaStatusViewController.m in Sources */,
 				D883BC3313F1CAF300252768 /* L1Circle.m in Sources */,
+				D883BC5113F2711200252768 /* L1DownloadManager.m in Sources */,
+				D883BC5713F271C700252768 /* L1Queue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
