@@ -10,7 +10,7 @@
 #import "SimpleURLConnection.h"
 #import "L1Utils.h"
 #import "SBJsonParser.h"
-
+#import "L1DownloadManager.h"
 
 /* 
  
@@ -134,8 +134,12 @@ static NSSet * HHspeechNodes=nil;
     }
 
     if (![self.url isKindOfClass:[NSNull class]]   ){
-    SimpleURLConnection * connection = [[SimpleURLConnection alloc] initWithURL:self.url delegate:self passSelector:@selector(downloadedResourceData:response:) failSelector:@selector(failedDownloadingResourceDataWithError:)];
-    [connection runRequest];
+        [[L1DownloadManager sharedL1DownloadManager] downloadURLString:self.url 
+                                                              delegate:self passSelector:@selector(downloadedResourceData:response:) 
+                                                          failSelector:@selector(failedDownloadingResourceDataWithError:)];
+        
+//    SimpleURLConnection * connection = [[SimpleURLConnection alloc] initWithURL:self.url delegate:self passSelector:@selector(downloadedResourceData:response:) failSelector:@selector(failedDownloadingResourceDataWithError:)];
+//    [connection runRequest];
         self.downloading=YES;
 
     }
