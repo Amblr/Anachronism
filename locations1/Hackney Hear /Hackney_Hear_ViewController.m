@@ -13,11 +13,13 @@
 
 #define SOUND_FADE_TIME 5.0
 #define SOUND_FADE_TIME_SPEECH 3.0
+#define SOUND_FADE_TIME_INTRO 2.0
 #define SOUND_FADE_TIME_MUSIC 15.0
 #define SOUND_FADE_TIME_ATMOS 15.0
 #define SOUND_DECREASE_TIME_STEP 0.5
 #define SPEECH_MINIMUM_INTERVAL 60
-
+#define INTRO_SOUND_BREAK_POINT 68
+#define INTRO_SOUND_KEY @"HH_INTRO_SOUND"
 
 @implementation L1CDLongAudioSource
 @synthesize soundType;
@@ -65,24 +67,85 @@
     mapViewController.delegate=self;
     activeSpeechTrack=nil;
     lastCompletionTime = [[NSMutableDictionary alloc] initWithCapacity:0];
+    proximityMonitor = [[L1DownloadProximityMonitor alloc] init];
+    introIsPlaying=NO;
+    skipButton=nil;
+    [self checkFirstLaunch];
+    
 
 }
 
+-(void) skipIntro
+{
+    NSLog(@"Skip");
+    [skipButton removeFromSuperview];
+    skipButton=nil;
+//    [self.view setNeedsDisplay];
+    [self decreaseSourceVolume:INTRO_SOUND_KEY];
+    introIsPlaying=NO;
+    introBeforeBreakPoint=NO;
+    
+}
+
+-(void) endIntroIfAudioReady:(NSObject*) dummy
+{
+    //We have reached the break-point in the audio.  From now on we should 
+    //end the intro if any audio is triggered.
+    NSLog(@"Reached Intro Audio Break Point");
+    introBeforeBreakPoint=NO;
+}
+
+-(void) checkFirstLaunch{
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *markerPath = [documentsPath stringByAppendingPathComponent:@"application_launched_before.marker"];
+    NSFileManager * manager = [[NSFileManager alloc]init];
+    if (![manager fileExistsAtPath:markerPath] || 1){
+        //Do all the first launch things
+        BOOL ok = [manager createFileAtPath:markerPath contents:[NSData data] attributes:nil];
+        NSAssert(ok, @"Failed to create marker file.");
+        
+        //Play the intro sound.
+        L1CDLongAudioSource * introSound = [[L1CDLongAudioSource alloc] init];
+        introSound.delegate=self;
+        introSound.soundType=L1SoundTypeIntro;
+        introSound.key=INTRO_SOUND_KEY;
+        NSString * filename = [[NSBundle mainBundle] pathForResource:@"HHIntroSound" ofType:@"mp3"];
+        [audioSamples setObject:introSound forKey:INTRO_SOUND_KEY];
+        [introSound load:filename];
+        [introSound play];
+        [introSound release];
+        introIsPlaying=YES;
+        introBeforeBreakPoint=YES;
+        
+        
+        //Set up the "skip" button
+        skipButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [skipButton addTarget:self 
+                   action:@selector(skipIntro)
+         forControlEvents:UIControlEventTouchUpInside];
+        [skipButton setTitle:@"Skip Intro" forState:UIControlStateNormal];
+        skipButton.frame = CGRectMake(80.0, 10.0, 160.0, 40.0);
+        [self.view addSubview:skipButton];
+        
+        
+        //Start a timer that will end when the natural break point in the sound is reached (?)
+        [self performSelector:@selector(endIntroIfAudioReady:) withObject:nil afterDelay:INTRO_SOUND_BREAK_POINT];
+        
+    }
+    [manager release];
+}
 
 -(void) viewDidAppear:(BOOL)animated
 {
-    NSLog(@"View = %@",self.view);
+    //We may have just lanched the application or have flipped back here from another tab
+    //either way we check if anything has changed in the options,
+    //and then alter our tracking behaviour accordingly.
+    //This is also a good time to check for location updates, in case the user
+    //just switched to real location from fake or vice versa.
     realGPSControl = [[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
-    NSLog(@"Real GPS Control is now:  %d",realGPSControl);
     trackMe = [[NSUserDefaults standardUserDefaults] boolForKey:@"track_user_location"];
     [locationManager startUpdatingLocation];
-    if (!self.scenario){
-//        [self setupScenario];
-
-    }
-    else{
-        //We just came back from the prefs pane, or somewhere else, perhaps.
-        //If we just set the use_real_location to off then we should update the manual location.
+    if (self.scenario){
         if (realGPSControl){
             [self locationUpdate:locationManager.location.coordinate];
         }
@@ -110,9 +173,14 @@
 #pragma mark Story Elements
 
 
+//This is a delegate method that gets called when some nodes have been downloaded.
+//in our case that means that the scenario download is complete and we
+//shoudl start normal behaviour.
+//That means reading through the nodes and adding them to the map if they have a sound attached.
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes
 {
     for (L1Node *node in [nodes allValues]){
+        
         //Check if node has any sound resources.  If not ignore it.
         L1Resource * sound = nil;
         for (L1Resource * resource in node.resources){
@@ -121,40 +189,47 @@
             }
         }
         if (!sound) continue;
-        
-        BOOL isSpeech= (sound.soundType==L1SoundTypeSpeech);
-
-        
         NSLog(@"HH Found node: %@",node.name);
-        //Add circle overlay
+        
+                
+        //Add circle overlay.  The colour depends on the sound type.
+        //Choose the colour here.
         UIColor * circleColor;
-        if (isSpeech){
-            circleColor = [UIColor cyanColor];
-        }
-        else{
-            circleColor = [UIColor greenColor];
-        }
+        BOOL isSpeech = (sound.soundType==L1SoundTypeSpeech);
+        if (isSpeech) circleColor = [UIColor cyanColor];
+        else circleColor = [UIColor greenColor];
         
-        
+        //Create the circle here, store it so we can keep track and change its color later,
+        //and add it to the map.
         L1Circle * circle = [mapViewController addCircleAt:node.coordinate radius:[node.radius doubleValue] soundType:sound.soundType];
-
-
         [circles setObject:circle forKey:node.key];
-
-        
-        //Add node to map.
         [mapViewController addNode:node];
+
         //We use the enabled flag to track whether a node is playing.
+        //None of them start enabled.
         node.enabled = NO; 
     }
+    
+    // If any nodes have been found we should zoom the map to their location.
+    //We use an arbitrary on to zoom to for now.
     if ([nodes count]) {
         L1Node * firstNode = [[nodes allValues] objectAtIndex:0];
-        [mapViewController zoomToNode:firstNode];   
+        [mapViewController zoomToNode:firstNode];
+        
+        //We also add a pin representing the fake user location (for testing)
+        //a little offset from the first node.
         CLLocationCoordinate2D firstNodeCoord = firstNode.coordinate;
         firstNodeCoord.latitude -= 5.0e-4;
         firstNodeCoord.longitude -= 5.0e-4;
         [mapViewController addManualUserLocationAt:firstNodeCoord];
     }
+    
+    //Now all the nodes are in place we can track them to see if we should
+    //download their data.  We do that with the proximity manager.
+    [proximityMonitor addNodes:[nodes allValues]];
+    
+    //This is also a good time to update our location.
+    //In particular to trigger proximity downloads.
     [self locationManager:locationManager didUpdateToLocation:locationManager.location fromLocation:nil];
     
 }
@@ -174,10 +249,13 @@
 -(NSString*) filenameForNodeSound:(L1Node*) node getType:(L1SoundType*) soundType
 {
     for(L1Resource * resource in node.resources){
-        if ([resource.type isEqualToString:@"sound"]) NSLog(@"Resource: %@, %d, %d",resource.name,resource.saveLocal,resource.local);
-        if ([resource.type isEqualToString:@"sound"] && resource.saveLocal && resource.local){
-            *soundType = resource.soundType;
-            return [resource localFileName];
+        if ([resource.type isEqualToString:@"sound"] && resource.saveLocal){
+            if (resource.local){
+                *soundType = resource.soundType;
+                return [resource localFileName];
+            }else{
+                [resource downloadResourceData]; //We wanted the data but could not get it.  Start DL now so we might next time.
+            }
         }   
     }
     
@@ -186,6 +264,7 @@
 
 -(void) nodeSoundOn:(L1Node*) node
 {           
+    
     NSLog(@"Node on: %@",node.name);
     L1SoundType soundType;
     NSString * filename = [self filenameForNodeSound:node getType:&soundType];
@@ -196,6 +275,11 @@
             NSLog(@"Not playing sound - too recent.");
             return;
         }
+        
+        //If we have reached the intro break point
+        //then starting any new node should kill the intro
+        if (!introBeforeBreakPoint) [self skipIntro];
+
         
         L1CDLongAudioSource * sound = [[L1CDLongAudioSource alloc] init];
         sound.delegate=self;
@@ -219,17 +303,20 @@
 -(void) decreaseSourceVolume:(NSString*) identifier
 {
     L1CDLongAudioSource * sound = [audioSamples objectForKey:identifier];
+    
     if (!sound) return; //sound must already have finished in the meantime.
+    L1SoundType soundType=sound.soundType;
     float fadeTime = SOUND_FADE_TIME;
-    if (sound.soundType==L1SoundTypeAtmos) fadeTime=SOUND_FADE_TIME_ATMOS;
-    if (sound.soundType==L1SoundTypeMusic) fadeTime=SOUND_FADE_TIME_MUSIC;
-    if (sound.soundType==L1SoundTypeSpeech) fadeTime=SOUND_FADE_TIME_SPEECH;
+    if (soundType==L1SoundTypeAtmos) fadeTime=SOUND_FADE_TIME_ATMOS;
+    if (soundType==L1SoundTypeMusic) fadeTime=SOUND_FADE_TIME_MUSIC;
+    if (soundType==L1SoundTypeSpeech) fadeTime=SOUND_FADE_TIME_SPEECH;
+    if (soundType==L1SoundTypeIntro) fadeTime=SOUND_FADE_TIME_INTRO;
     
     
     sound.volume = sound.volume-SOUND_DECREASE_TIME_STEP/(fadeTime);
     if (sound.volume<=0){
         [sound stop];
-        [audioSamples removeObjectForKey:identifier]; 
+         [audioSamples removeObjectForKey:identifier];    
     }
     else
     {
@@ -315,11 +402,20 @@
 -(void) locationUpdate:(CLLocationCoordinate2D) location
 {
     NSLog(@"Updated to location: lat = %f,   lon = %f", location.latitude,location.longitude);
+    [proximityMonitor updateLocation:location];
+    
+    //We do not want to start playing any kind of sound if the intro is still before its break point.
+    //So we should not enable any nodes or anything like that either.
+    //So quitting this suborutine early seems the easiest way of doing this.
+    if (introBeforeBreakPoint){
+        NSLog(@"Ignoring location update since intro has not reached break point");
+        return;
+    }
     for (L1Node * node in [self.scenario.nodes allValues]){
         CLRegion * region = [node region];
         BOOL wasEnabled = node.enabled;
         BOOL nowEnabled = [region containsCoordinate:location];
-        if (nowEnabled) NSLog(@"Node now enabled: %@.  Old Status %d",node.name,wasEnabled);
+        if (nowEnabled) NSLog(@"Node now (or still) enabled: %@.  Old Status %d",node.name,wasEnabled);
         if ((!wasEnabled) && nowEnabled) [self nodeSoundOn:node];
         if (wasEnabled && (!nowEnabled)) [self nodeSoundOff:node];
         node.enabled = nowEnabled;
@@ -337,7 +433,16 @@
     if (![audioSource isKindOfClass:[L1CDLongAudioSource class]]) return;
     L1CDLongAudioSource * source = (L1CDLongAudioSource*) audioSource;
     NSLog(@"Sound finished: %@",source.key);
+    
     if ([source.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
+    if ([source.key isEqualToString:INTRO_SOUND_KEY]){
+        introIsPlaying=NO;
+        NSLog(@"skipButton = %@",skipButton);
+        [skipButton removeFromSuperview];
+//        [self.view setNeedsDisplay];
+        skipButton=nil;
+    }
+
     
     if (source.soundType==L1SoundTypeSpeech){
         [lastCompletionTime setObject:[NSDate date] forKey:source.key];
@@ -350,10 +455,9 @@
     else
     {
         [audioSamples removeObjectForKey:source.key];
-        
     }
     
-    //        [timeLastFinished setObject:[NSDate date] forKey:audioSource.]
+    
 }
 
 

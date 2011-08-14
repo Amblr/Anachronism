@@ -27,7 +27,9 @@
         NSLog(@"Directory %@ already exists",directory);
     }
     else{
-        BOOL success = [os createDirectoryAtPath:directory attributes:nil];
+        
+        NSError * error;
+        BOOL success = [os createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:&error];
         if (success)
             NSLog(@"Created directory at %@",directory);
         else 
@@ -41,6 +43,7 @@
     [L1Utils createDirectoryIfNeeded:[L1Utils cacheDirectory]];
     [L1Utils createDirectoryIfNeeded:[L1Utils resourceDirectory]];
     [L1Utils createDirectoryIfNeeded:[L1Utils soundDirectory]];
+    return YES;
     
 }
 

@@ -123,6 +123,10 @@ static NSSet * HHspeechNodes=nil;
 
 -(void) downloadResourceData
 {
+    if (self.downloading){
+        NSLog(@"Already downloading resource %@",self.name);
+        return;
+    }
     if (!self.url){
         NSLog(@"Cannot download data for resource %@ - no URL",self.name);
         return;
@@ -133,7 +137,7 @@ static NSSet * HHspeechNodes=nil;
         return;
     }
 
-    if (![self.url isKindOfClass:[NSNull class]]   ){
+    if (![self.url isKindOfClass:[NSNull class]]){
         [[L1DownloadManager sharedL1DownloadManager] downloadURLString:self.url 
                                                               delegate:self passSelector:@selector(downloadedResourceData:response:) 
                                                           failSelector:@selector(failedDownloadingResourceDataWithError:)];
@@ -181,7 +185,7 @@ static NSSet * HHspeechNodes=nil;
             NSLog(@"Node %@ is SPEECH",self.name);
         }
         
-        [self downloadResourceData];
+//        [self downloadResourceData];
     }
     return self;
 }

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "LROAuth2Client.h"
 
-@interface L1User : NSObject {
+@interface L1User : NSObject<LROAuth2ClientDelegate> {
 	LROAuth2Client * oAuthClient;
 	UIWebView * oAuthWebView;
 	LROAuth2AccessToken * token;

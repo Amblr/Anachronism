@@ -15,7 +15,8 @@ typedef enum L1SoundType {
     L1SoundTypeMusic,
     L1SoundTypeAtmos,
     L1SoundTypeOther,
-    L1SoundTypeUnknown,
+    L1SoundTypeIntro,
+    L1SoundTypeUnknown
 } L1SoundType;
 
 

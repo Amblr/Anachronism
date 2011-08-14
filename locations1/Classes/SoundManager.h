@@ -29,7 +29,9 @@
 
 -(id) init;
 -(NSUInteger) createSource:(NSString*) filename withExtnesion:(NSString*) extension withKey:(NSString*) soundKey gain:(ALfloat) gain pitch:(ALfloat) pitch frequency:(ALfloat)frequency location:(NSArray*) loc loops:(BOOL)loops;
--(void) activateSourceWithKey:(NSString*) key;
+-(NSUInteger) activateSourceWithKey:(NSString*) key;
+-(NSUInteger) nextAvaliableSource;
+- (UInt32) audioFileSize:(AudioFileID)fileDescriptor;
 -(void) stopSourceWithKey:(NSString*)key;
 -(NSNumber*) getSourceForKey:(NSString*) key;
 +(SoundManager *) sharedSoundManager;
@@ -39,6 +41,7 @@
 -(void) updateListenerPosX:(NSNumber *)xPos posY:(NSNumber*) yPos;
 -(void)setLocationOfSoundWithKey:(NSString*)key xPos:(NSNumber*)x yPos:(NSNumber*) y;
 
+-(AudioFileID) openAudioFile:(NSString*) filePath;
 
 @property (retain) NSMutableArray* listenerPosition;
 @property (retain) NSMutableDictionary* soundSources;
@@ -46,3 +49,4 @@
 
 @property (retain) NSMutableArray* soundList;
 @end
+

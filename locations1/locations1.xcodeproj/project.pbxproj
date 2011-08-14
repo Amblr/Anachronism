@@ -13,6 +13,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow-IPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow-IPhone.xib */; };
+		D804125813F5B30900535D14 /* HHIntroSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D804125713F5B30900535D14 /* HHIntroSound.mp3 */; };
 		D8097FB61376D4140038245A /* L1Path.m in Sources */ = {isa = PBXBuildFile; fileRef = D8097FB51376D4140038245A /* L1Path.m */; };
 		D809B00513DB658400C5B656 /* IASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D809AFDF13DB658400C5B656 /* IASKAppSettingsViewController.m */; };
 		D809B00613DB658400C5B656 /* IASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D809AFDF13DB658400C5B656 /* IASKAppSettingsViewController.m */; };
@@ -284,6 +285,8 @@
 		D840068F130B1F0F0038286A /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = D8400686130B1F0F0038286A /* SBJsonWriter.m */; };
 		D8400740130BD1660038286A /* L1MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D840073E130BD1660038286A /* L1MapViewController.m */; };
 		D841B756130F0AB900AD449F /* pentagram.png in Resources */ = {isa = PBXBuildFile; fileRef = D841B755130F0AB900AD449F /* pentagram.png */; };
+		D844642213F312E400E70725 /* L1DownloadProximityMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = D844642113F312E400E70725 /* L1DownloadProximityMonitor.m */; };
+		D844642313F312E400E70725 /* L1DownloadProximityMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = D844642113F312E400E70725 /* L1DownloadProximityMonitor.m */; };
 		D844F8E413130C7B00E4AE13 /* L1ResponsiveNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D844F8E313130C7B00E4AE13 /* L1ResponsiveNode.m */; };
 		D84B3D8D13B25FAB00C98567 /* L1JsonSerializedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D84B3D8C13B25FAB00C98567 /* L1JsonSerializedObject.m */; };
 		D84B82D6130B0B7D00A57BA1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84B82D5130B0B7D00A57BA1 /* MapKit.framework */; };
@@ -474,6 +477,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* locations1_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = locations1_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* locations1-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "locations1-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		D804125713F5B30900535D14 /* HHIntroSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HHIntroSound.mp3; sourceTree = "<group>"; };
 		D8097FB41376D4140038245A /* L1Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1Path.h; sourceTree = "<group>"; };
 		D8097FB51376D4140038245A /* L1Path.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Path.m; sourceTree = "<group>"; };
 		D809AFDE13DB658400C5B656 /* IASKAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IASKAppSettingsViewController.h; sourceTree = "<group>"; };
@@ -601,6 +605,8 @@
 		D840073D130BD1660038286A /* L1MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1MapViewController.h; sourceTree = "<group>"; };
 		D840073E130BD1660038286A /* L1MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1MapViewController.m; sourceTree = "<group>"; };
 		D841B755130F0AB900AD449F /* pentagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pentagram.png; path = Images/pentagram.png; sourceTree = SOURCE_ROOT; };
+		D844642013F312E400E70725 /* L1DownloadProximityMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1DownloadProximityMonitor.h; sourceTree = "<group>"; };
+		D844642113F312E400E70725 /* L1DownloadProximityMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1DownloadProximityMonitor.m; sourceTree = "<group>"; };
 		D844F8E213130C7B00E4AE13 /* L1ResponsiveNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1ResponsiveNode.h; sourceTree = "<group>"; };
 		D844F8E313130C7B00E4AE13 /* L1ResponsiveNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1ResponsiveNode.m; sourceTree = "<group>"; };
 		D84B3D8B13B25FAB00C98567 /* L1JsonSerializedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1JsonSerializedObject.h; sourceTree = "<group>"; };
@@ -692,7 +698,7 @@
 		D883BC3113F1CAF300252768 /* L1Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Circle.m; sourceTree = "<group>"; };
 		D883BC4C13F2711200252768 /* L1DownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1DownloadManager.h; sourceTree = "<group>"; };
 		D883BC4D13F2711200252768 /* L1DownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1DownloadManager.m; sourceTree = "<group>"; };
-		D883BC5213F271C700252768 /* L1Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; path = L1Queue.h; sourceTree = "<group>"; };
+		D883BC5213F271C700252768 /* L1Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1Queue.h; sourceTree = "<group>"; };
 		D883BC5313F271C700252768 /* L1Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1Queue.m; sourceTree = "<group>"; };
 		D8867400139E98F90014B903 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D8867402139E98FE0014B903 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -1053,6 +1059,7 @@
 		D82BC9B413C3A118003D86B4 /* Hackney Hear  */ = {
 			isa = PBXGroup;
 			children = (
+				D804125713F5B30900535D14 /* HHIntroSound.mp3 */,
 				D8F65BF313E4371F00E7953D /* 57-download.png */,
 				D8F65BF413E4371F00E7953D /* 112-group.png */,
 				D8F65BF513E4371F00E7953D /* 117-todo.png */,
@@ -1243,6 +1250,8 @@
 				D84B82EC130B0F8D00A57BA1 /* SimpleURLConnection.m */,
 				D883BC4C13F2711200252768 /* L1DownloadManager.h */,
 				D883BC4D13F2711200252768 /* L1DownloadManager.m */,
+				D844642013F312E400E70725 /* L1DownloadProximityMonitor.h */,
+				D844642113F312E400E70725 /* L1DownloadProximityMonitor.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1565,6 +1574,7 @@
 				D8F65BFB13E4372000E7953D /* 117-todo.png in Resources */,
 				D8F65BFD13E4372000E7953D /* 184-warning.png in Resources */,
 				D883BC2C13F1BA1300252768 /* speech.json in Resources */,
+				D804125813F5B30900535D14 /* HHIntroSound.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1837,6 +1847,7 @@
 				D883BC3213F1CAF300252768 /* L1Circle.m in Sources */,
 				D883BC5013F2711200252768 /* L1DownloadManager.m in Sources */,
 				D883BC5613F271C700252768 /* L1Queue.m in Sources */,
+				D844642213F312E400E70725 /* L1DownloadProximityMonitor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1920,6 +1931,7 @@
 				D883BC3313F1CAF300252768 /* L1Circle.m in Sources */,
 				D883BC5113F2711200252768 /* L1DownloadManager.m in Sources */,
 				D883BC5713F271C700252768 /* L1Queue.m in Sources */,
+				D844642313F312E400E70725 /* L1DownloadProximityMonitor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

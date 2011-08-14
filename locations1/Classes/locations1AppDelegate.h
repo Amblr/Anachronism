@@ -24,7 +24,7 @@
 }
 
 
--(void) selectScenarioURL:(NSString*) url;
+//-(void) selectScenarioURL:(NSString*) url;
 
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

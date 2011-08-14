@@ -114,7 +114,12 @@ static SoundManager* sharedSoundManager = nil;
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:filename ofType:extension];
     NSLog(@"opening audio file");
-    NSUInteger bufferId=0;
+    
+    NSUInteger bufferId = 0;
+
+    
+    
+    
     unsigned char* data=NULL;
 
     if ([cachedSounds objectForKey:filename]){
@@ -138,7 +143,7 @@ static SoundManager* sharedSoundManager = nil;
         
         if(result != 0){
             NSLog(@"something went wrong loading the sound file %@ ",filename);
-            return;
+            return 0;
         }
         
         ALenum error = alGetError();
@@ -182,7 +187,7 @@ static SoundManager* sharedSoundManager = nil;
     OSStatus result = AudioFileOpenURL((CFURLRef)fileurl, kAudioFileReadPermission, 0, &fileId);
     if (result!=0) {
         NSLog(@"Error opening file %@",filePath);
-        return ;
+        return NULL;
     }
     return fileId;
 }
@@ -208,7 +213,7 @@ static SoundManager* sharedSoundManager = nil;
     ALfloat gain      = [[properties objectForKey:@"gain"] floatValue];
     ALfloat pitch     = [[properties objectForKey:@"pitch"] floatValue];
     ALboolean loops   = [[properties objectForKey:@"loops"] boolValue];
-    NSArray* location = [properties objectForKey:@"location"];
+//    NSArray* location = [properties objectForKey:@"location"];
     
     NSLog(@"got frquenct %f",frequency);
     NSLog(@"got gain %f",gain);

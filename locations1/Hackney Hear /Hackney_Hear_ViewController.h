@@ -13,6 +13,7 @@
 #import "L1MapViewController.h"
 #import "SimpleAudioEngine.h"
 #import "L1BigBrother.h"
+#import "L1DownloadProximityMonitor.h"
 
 
 @interface L1CDLongAudioSource : CDLongAudioSource
@@ -44,7 +45,10 @@
     L1BigBrother * fakeLocationTracker;
     NSString * activeSpeechTrack;
     NSMutableDictionary * lastCompletionTime;
-    
+    L1DownloadProximityMonitor * proximityMonitor;
+    NSDate * introSoundLaunchTime;
+    BOOL introIsPlaying, introBeforeBreakPoint;
+    UIButton * skipButton;
 }
 @property (retain) L1Scenario * scenario;
 
@@ -64,5 +68,5 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation;
 -(void) decreaseSourceVolume:(NSString*) identifier;
 -(NSString*) filenameForNodeSound:(L1Node*) node getType:(L1SoundType*) soundType;
-
+-(void) checkFirstLaunch;
 @end

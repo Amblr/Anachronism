@@ -9,7 +9,7 @@
 #import "SimpleURLConnection.h"
 
 
-//#warning REMOVE THIS
+// #warning REMOVE THIS
 //@implementation NSURLRequest (acceptAll)
 //
 //+(BOOL) allowsAnyHTTPSCertificateForHost:(id)host{
