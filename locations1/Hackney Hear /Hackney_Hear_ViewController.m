@@ -279,18 +279,33 @@
         //If we have reached the intro break point
         //then starting any new node should kill the intro
         if (!introBeforeBreakPoint) [self skipIntro];
-
         
-        L1CDLongAudioSource * sound = [[L1CDLongAudioSource alloc] init];
-        sound.delegate=self;
-        sound.soundType=soundType;
-        sound.key=node.key;
-        [sound load:filename];
-        [sound play];
+        L1CDLongAudioSource * sound = [audioSamples objectForKey:node.key];
+        
+        //If the sound is already in the audioSamples then we must have paused it earlier.
+        //so we just carry on from where we left off.
+        
+        //Otherwise we need to load it afresh.  This might be because it finished and was flushed or because 
+        //we never heard it before
+        BOOL newSound=false;
+        if (!sound){
+            newSound=true;
+            sound = [[L1CDLongAudioSource alloc] init];
+            sound.delegate=self;
+            sound.soundType=soundType;
+            sound.key=node.key;
+            [sound load:filename];
+            [sound play];
+        }
+        else{
+            sound.volume=1.0;
+            [sound resume];
+            
+        }
         [audioSamples setObject:sound forKey:node.key];
-        [sound release];
+        if (newSound) [sound release];
         
-        //If a new speec track has come a long then fade out any existing one.
+        //If a new speech track has come a long then fade out any existing one.
         if (soundType==L1SoundTypeSpeech){
             if (activeSpeechTrack) [self decreaseSourceVolume:activeSpeechTrack];
             activeSpeechTrack=sound.key;
@@ -314,9 +329,12 @@
     
     
     sound.volume = sound.volume-SOUND_DECREASE_TIME_STEP/(fadeTime);
+
+    //When the sound has fully faded we pause it rather than stopping it
+    //so we can restart it again later
     if (sound.volume<=0){
-        [sound stop];
-         [audioSamples removeObjectForKey:identifier];    
+        [sound pause];
+//         [audioSamples removeObjectForKey:identifier];    
     }
     else
     {
@@ -347,7 +365,7 @@
         }
         for(L1Resource * resource in node.resources){
             if ([resource.type isEqualToString:@"sound"] && resource.saveLocal && resource.local){
-                [resource flush];
+                //[resource flush];
                 L1Circle * circle = [circles valueForKey:node.key];
                 if (circle){
                     if (resource.soundType==L1SoundTypeSpeech){
