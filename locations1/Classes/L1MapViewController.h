@@ -16,6 +16,9 @@
 #import "L1OverlayView.h"
 #import "ManualUserLocation.h"
 #import "L1Circle.h"
+#import "TileOverlayView.h"
+#import "TileOverlay.h"
+
 
 @interface L1MapViewController : UIViewController<MKMapViewDelegate> {
 	L1Scenario * scenario;
@@ -25,6 +28,7 @@
     L1OverlayView * singleOverlayView;
     ManualUserLocation * manualUserLocation;
     NSMutableDictionary * circleColors;
+    TileOverlay * tileSet;
 	
 }
 
@@ -56,4 +60,5 @@
 -(void) addImageOverlay:(L1Overlay*) overlay;
 -(void) addOverlay:(id<MKOverlay>) overlay;
 -(void) setColor:(UIColor*)color forCircle:(L1Circle*) circle;
+-(void) addTilesFromDirectory:(NSString*)tileDir;
 @end

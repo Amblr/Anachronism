@@ -256,7 +256,11 @@
         else circleView.strokeColor = [UIColor greenColor];
         return [circleView autorelease];
     }
-	
+	else if ([overlay isKindOfClass:[TileOverlay class]]){
+        TileOverlayView *tileView = [[TileOverlayView alloc] initWithOverlay:overlay];
+        tileView.tileAlpha = 0.6;
+        return [tileView autorelease];
+    }
 	return nil;
 }
 
@@ -413,6 +417,33 @@
     MKCircleView * circleView = (MKCircleView*) overlayView;
     circleView.strokeColor = color;
 }
+
+
+-(void) addTilesFromDirectory:(NSString*)tileDir
+{
+    NSString *tileDirectory = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Tiles"];
+    if (!tileDirectory){
+        NSLog(@"Count not find tile dir!");
+        return;
+    }
+    TileOverlay *overlay = [[TileOverlay alloc] initWithTileDirectory:tileDirectory];
+    if (!overlay){
+        NSLog(@"Cound not initialize overlay!");
+        return;
+    }
+    [primaryMapView addOverlay:overlay];
+    
+    MKMapRect visibleRect = [primaryMapView mapRectThatFits:overlay.boundingMapRect];
+    visibleRect.size.width /= 2;
+    visibleRect.size.height /= 2;
+    visibleRect.origin.x += visibleRect.size.width / 2;
+    visibleRect.origin.y += visibleRect.size.height / 2;
+    primaryMapView.visibleMapRect = visibleRect;
+    
+    tileSet = overlay;
+  
+}
+
 
 @synthesize nodeContentViewController;
 @synthesize singleOverlayView;

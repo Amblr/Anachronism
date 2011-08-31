@@ -102,6 +102,14 @@
 		D809B06213DB672800C5B656 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D809B06113DB672800C5B656 /* Settings.bundle */; };
 		D809B06313DB672800C5B656 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D809B06113DB672800C5B656 /* Settings.bundle */; };
 		D81325F51395726200A7495C /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = D81325F41395726200A7495C /* loading.png */; };
+		D8189564140E234F001CD7AD /* TileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D8189563140E234F001CD7AD /* TileOverlay.m */; };
+		D8189565140E234F001CD7AD /* TileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D8189563140E234F001CD7AD /* TileOverlay.m */; };
+		D8189566140E234F001CD7AD /* TileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D8189563140E234F001CD7AD /* TileOverlay.m */; };
+		D8189567140E234F001CD7AD /* TileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D8189563140E234F001CD7AD /* TileOverlay.m */; };
+		D818956A140E2384001CD7AD /* TileOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8189569140E2384001CD7AD /* TileOverlayView.m */; };
+		D818956B140E2384001CD7AD /* TileOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8189569140E2384001CD7AD /* TileOverlayView.m */; };
+		D818956C140E2384001CD7AD /* TileOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8189569140E2384001CD7AD /* TileOverlayView.m */; };
+		D818956D140E2384001CD7AD /* TileOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8189569140E2384001CD7AD /* TileOverlayView.m */; };
 		D827AF99139D6D0900746161 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		D827AF9A139D6D0900746161 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		D827AF9B139D6D0900746161 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
@@ -295,6 +303,8 @@
 		D850D5F013895E9F00D67338 /* SimulatedLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D850D5EF13895E9F00D67338 /* SimulatedLocationManager.m */; };
 		D850D5F41389886600D67338 /* SimulatedUserLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D850D5F31389886500D67338 /* SimulatedUserLocation.m */; };
 		D850D5F6138991A100D67338 /* fakeUserLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = D850D5F5138991A100D67338 /* fakeUserLocation.png */; };
+		D850DA67140E26BE004906D0 /* Tiles in Resources */ = {isa = PBXBuildFile; fileRef = D850DA66140E26BE004906D0 /* Tiles */; };
+		D850DA68140E26BE004906D0 /* Tiles in Resources */ = {isa = PBXBuildFile; fileRef = D850DA66140E26BE004906D0 /* Tiles */; };
 		D859A950137D2BD200394419 /* icon_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D859A94F137D2BD200394419 /* icon_ipad.png */; };
 		D8675E611377129D00375431 /* MainWindow-IPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8675E601377129D00375431 /* MainWindow-IPad.xib */; };
 		D86803CE13A8A33B00A4F3BE /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D86803C613A8A33B00A4F3BE /* CDAudioManager.m */; };
@@ -518,6 +528,10 @@
 		D809B00413DB658400C5B656 /* IASKSpecifierValuesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IASKSpecifierValuesView.xib; sourceTree = "<group>"; };
 		D809B06113DB672800C5B656 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D81325F41395726200A7495C /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
+		D8189562140E234F001CD7AD /* TileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileOverlay.h; sourceTree = "<group>"; };
+		D8189563140E234F001CD7AD /* TileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileOverlay.m; sourceTree = "<group>"; };
+		D8189568140E2384001CD7AD /* TileOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileOverlayView.h; sourceTree = "<group>"; };
+		D8189569140E2384001CD7AD /* TileOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileOverlayView.m; sourceTree = "<group>"; };
 		D827AF97139D6D0900746161 /* Osprey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Osprey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D827AF9E139D6D0900746161 /* Osprey-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Osprey-Info.plist"; sourceTree = "<group>"; };
 		D827AFA0139D6D0900746161 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -622,6 +636,7 @@
 		D850D5F21389886500D67338 /* SimulatedUserLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulatedUserLocation.h; sourceTree = "<group>"; };
 		D850D5F31389886500D67338 /* SimulatedUserLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulatedUserLocation.m; sourceTree = "<group>"; };
 		D850D5F5138991A100D67338 /* fakeUserLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fakeUserLocation.png; sourceTree = "<group>"; };
+		D850DA66140E26BE004906D0 /* Tiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tiles; sourceTree = "<group>"; };
 		D859A94F137D2BD200394419 /* icon_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_ipad.png; path = ../../icon_ipad.png; sourceTree = "<group>"; };
 		D8675E601377129D00375431 /* MainWindow-IPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MainWindow-IPad.xib"; sourceTree = "<group>"; };
 		D86803C513A8A33B00A4F3BE /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
@@ -1059,6 +1074,7 @@
 		D82BC9B413C3A118003D86B4 /* Hackney Hear  */ = {
 			isa = PBXGroup;
 			children = (
+				D850DA66140E26BE004906D0 /* Tiles */,
 				D804125713F5B30900535D14 /* HHIntroSound.mp3 */,
 				D8F65BF313E4371F00E7953D /* 57-download.png */,
 				D8F65BF413E4371F00E7953D /* 112-group.png */,
@@ -1189,6 +1205,10 @@
 		D86803BF13A8A1E400A4F3BE /* Controllers & Views */ = {
 			isa = PBXGroup;
 			children = (
+				D8189562140E234F001CD7AD /* TileOverlay.h */,
+				D8189563140E234F001CD7AD /* TileOverlay.m */,
+				D8189568140E2384001CD7AD /* TileOverlayView.h */,
+				D8189569140E2384001CD7AD /* TileOverlayView.m */,
 				D8A7B0B8137C7194005FB761 /* MainViewController.h */,
 				D8A7B0B9137C7194005FB761 /* MainViewController.m */,
 				D8907EB013957A7700A9FDDF /* MediaListViewController.h */,
@@ -1575,6 +1595,7 @@
 				D8F65BFD13E4372000E7953D /* 184-warning.png in Resources */,
 				D883BC2C13F1BA1300252768 /* speech.json in Resources */,
 				D804125813F5B30900535D14 /* HHIntroSound.mp3 in Resources */,
+				D850DA67140E26BE004906D0 /* Tiles in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1608,6 +1629,7 @@
 				D8F65BFA13E4372000E7953D /* 112-group.png in Resources */,
 				D8F65BFC13E4372000E7953D /* 117-todo.png in Resources */,
 				D8F65BFE13E4372000E7953D /* 184-warning.png in Resources */,
+				D850DA68140E26BE004906D0 /* Tiles in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1691,6 +1713,8 @@
 				D809B03E13DB658400C5B656 /* IASKTextField.m in Sources */,
 				D883BC4F13F2711200252768 /* L1DownloadManager.m in Sources */,
 				D883BC5513F271C700252768 /* L1Queue.m in Sources */,
+				D8189565140E234F001CD7AD /* TileOverlay.m in Sources */,
+				D818956B140E2384001CD7AD /* TileOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1764,6 +1788,8 @@
 				D809B03D13DB658400C5B656 /* IASKTextField.m in Sources */,
 				D883BC4E13F2711200252768 /* L1DownloadManager.m in Sources */,
 				D883BC5413F271C700252768 /* L1Queue.m in Sources */,
+				D8189564140E234F001CD7AD /* TileOverlay.m in Sources */,
+				D818956A140E2384001CD7AD /* TileOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1848,6 +1874,8 @@
 				D883BC5013F2711200252768 /* L1DownloadManager.m in Sources */,
 				D883BC5613F271C700252768 /* L1Queue.m in Sources */,
 				D844642213F312E400E70725 /* L1DownloadProximityMonitor.m in Sources */,
+				D8189566140E234F001CD7AD /* TileOverlay.m in Sources */,
+				D818956C140E2384001CD7AD /* TileOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1932,6 +1960,8 @@
 				D883BC5113F2711200252768 /* L1DownloadManager.m in Sources */,
 				D883BC5713F271C700252768 /* L1Queue.m in Sources */,
 				D844642313F312E400E70725 /* L1DownloadProximityMonitor.m in Sources */,
+				D8189567140E234F001CD7AD /* TileOverlay.m in Sources */,
+				D818956D140E2384001CD7AD /* TileOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2135,14 +2165,14 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				"HEADER_SEARCH_PATHS[arch=*]" = "SoundCloudAPI/**";
 				INFOPLIST_FILE = "Hackney Hear /Hackney Hear -Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "Hackney Hear";
-				PROVISIONING_PROFILE = "6F8AF9FC-63F0-472C-9055-9AB9432BF112";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6F8AF9FC-63F0-472C-9055-9AB9432BF112";
+				PROVISIONING_PROFILE = "40087240-85C6-475D-B649-DD972AF37C95";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40087240-85C6-475D-B649-DD972AF37C95";
 				SDKROOT = iphoneos4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -2163,14 +2193,14 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				"HEADER_SEARCH_PATHS[arch=*]" = "SoundCloudAPI/**";
 				INFOPLIST_FILE = "Hackney Hear /Hackney Hear -Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "Hackney Hear";
-				PROVISIONING_PROFILE = "6F8AF9FC-63F0-472C-9055-9AB9432BF112";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6F8AF9FC-63F0-472C-9055-9AB9432BF112";
+				PROVISIONING_PROFILE = "40087240-85C6-475D-B649-DD972AF37C95";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40087240-85C6-475D-B649-DD972AF37C95";
 				SDKROOT = iphoneos4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

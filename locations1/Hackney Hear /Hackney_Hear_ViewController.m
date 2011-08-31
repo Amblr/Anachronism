@@ -153,6 +153,11 @@
             [self locationUpdate:mapViewController.manualUserLocation.coordinate];
         }
     }
+    
+    NSLog(@"Tiles adding");
+    NSString * tileDir = @"Tiles";
+    [mapViewController addTilesFromDirectory:tileDir];
+
 }
 
 - (void)viewDidUnload
