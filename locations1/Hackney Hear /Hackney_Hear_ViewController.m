@@ -16,24 +16,6 @@
 
 #define SPECIAL_SHAPE_NODE_NAME @"2508 bway sound track01"
 
-@implementation L1CDLongAudioSource
-@synthesize soundType;
-@synthesize key;
-
--(void) timeJump:(NSTimeInterval) deltaTime
-{
-    NSTimeInterval currentTime = audioSourcePlayer.currentTime;
-    NSTimeInterval newTime = currentTime+deltaTime;
-    NSTimeInterval maxTime = audioSourcePlayer.duration;
-    if (newTime<0.0) newTime=0.0;
-    if (newTime>maxTime) newTime=maxTime-0.01; //Give some buffer just before end.
-    [audioSourcePlayer setCurrentTime:newTime];
-    
-}
-
-
-@end
-
 
 
 
