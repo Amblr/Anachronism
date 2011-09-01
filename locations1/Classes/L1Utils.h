@@ -20,3 +20,6 @@
 +(BOOL) initializeDirs;
 
 @end
+
+
+int point_in_polygon(int nvert, float *vertx, float *verty, float testx, float testy);

@@ -12,6 +12,8 @@
 
 
 
+
+
 #define SPECIAL_SHAPE_NODE_NAME @"2508 bway sound track01"
 
 @implementation L1CDLongAudioSource
@@ -276,10 +278,25 @@
 #pragma mark Location Awareness
 
 
+/*
+ Coordinates of the special region.
+ -0.063043,51.535805
+ -0.061262,51.538181
+ -0.060328,51.537498
+ -0.061744,51.535519
+
+ 
+ */
+
 -(BOOL) inSpecialRegion:(CLLocationCoordinate2D) location
 {
+#define NVERT 4
+    float X[NVERT] = {-0.063043, -0.061262, -0.060328, -0.061744};
+    float Y[NVERT] = {51.535805, 51.538181, 51.537498, 51.535519};
     
-    return false;
+    int inRegion =  point_in_polygon(NVERT, X, Y, location.longitude, location.latitude);
+    if (inRegion) NSLog(@"In special region");
+    return inRegion;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
