@@ -17,9 +17,21 @@
 #define SOUND_FADE_TIME_MUSIC 15.0
 #define SOUND_FADE_TIME_ATMOS 15.0
 #define SOUND_DECREASE_TIME_STEP 0.5
+
+#define SOUND_RISE_TIME 5.0
+#define SOUND_RISE_TIME_SPEECH 3.0
+#define SOUND_RISE_TIME_INTRO 2.0
+#define SOUND_RISE_TIME_MUSIC 5.0
+#define SOUND_RISE_TIME_ATMOS 5.0
+#define SOUND_INCREASE_TIME_STEP 0.5
+
+
 #define SPEECH_MINIMUM_INTERVAL 60
 #define INTRO_SOUND_BREAK_POINT 68
 #define INTRO_SOUND_KEY @"HH_INTRO_SOUND"
+
+
+#define SPECIAL_SHAPE_NODE_NAME @"2508 bway sound track01"
 
 @implementation L1CDLongAudioSource
 @synthesize soundType;
@@ -156,7 +168,7 @@
     
     NSLog(@"Tiles adding");
     NSString * tileDir = @"Tiles";
-    [mapViewController addTilesFromDirectory:tileDir];
+    //[mapViewController addTilesFromDirectory:tileDir];
 
 }
 
@@ -303,8 +315,23 @@
             [sound play];
         }
         else{
-            sound.volume=1.0;
-            [sound resume];
+            //If it is a resumed sound then we can restart it.
+            //If speech, restart at full volume immediately
+            if (sound.soundType==L1SoundTypeSpeech){
+                sound.volume=1.0;
+                [sound resume];
+            }
+            //If not speech, fade in.
+            else{
+                float riseTime = SOUND_RISE_TIME;
+                if (sound.soundType==L1SoundTypeAtmos) riseTime=SOUND_RISE_TIME_ATMOS;
+                if (sound.soundType==L1SoundTypeMusic) riseTime=SOUND_RISE_TIME_MUSIC;
+                if (sound.soundType==L1SoundTypeSpeech) riseTime=SOUND_RISE_TIME_SPEECH;
+                [sound resume];
+                sound.volume = SOUND_INCREASE_TIME_STEP/riseTime;
+                SEL selector = @selector(increaseSourceVolume:);
+                [self performSelector:selector withObject:node.key afterDelay:SOUND_INCREASE_TIME_STEP];
+            }
             
         }
         [audioSamples setObject:sound forKey:node.key];
@@ -317,6 +344,33 @@
         }
         
         NSLog(@"Playing sound %@",filename);
+    }
+}
+
+//This is begging to be refactored.
+-(void) increaseSourceVolume:(NSString*) identifier
+{
+    L1CDLongAudioSource * sound = [audioSamples objectForKey:identifier];
+    
+    if (!sound) return; //sound must already have finished in the meantime.
+    L1SoundType soundType=sound.soundType;
+    float riseTime = SOUND_RISE_TIME;
+    if (soundType==L1SoundTypeAtmos) riseTime=SOUND_RISE_TIME_ATMOS;
+    if (soundType==L1SoundTypeMusic) riseTime=SOUND_RISE_TIME_MUSIC;
+    if (soundType==L1SoundTypeSpeech) riseTime=SOUND_RISE_TIME_SPEECH;
+    if (soundType==L1SoundTypeIntro) riseTime=SOUND_RISE_TIME_INTRO;
+    
+    
+    sound.volume = sound.volume+SOUND_INCREASE_TIME_STEP/(riseTime);
+    
+    //When the sound has fully risen we just stop increasing it
+    if (sound.volume>=1.0){
+        sound.volume = 1.0;
+    }
+    else  //otherwise schedule the next volume rise.
+    {
+        SEL selector = @selector(increaseSourceVolume:);
+        [self performSelector:selector withObject:identifier afterDelay:SOUND_INCREASE_TIME_STEP];
     }
 }
 
@@ -369,8 +423,7 @@
             }
         }
         for(L1Resource * resource in node.resources){
-            if ([resource.type isEqualToString:@"sound"] && resource.saveLocal && resource.local){
-                //[resource flush];
+            if ([resource.type isEqualToString:@"sound"]){
                 L1Circle * circle = [circles valueForKey:node.key];
                 if (circle){
                     if (resource.soundType==L1SoundTypeSpeech){
@@ -390,6 +443,13 @@
 
 #pragma mark -
 #pragma mark Location Awareness
+
+
+-(BOOL) inSpecialRegion:(CLLocationCoordinate2D) location
+{
+    
+    return false;
+}
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
@@ -438,6 +498,10 @@
         CLRegion * region = [node region];
         BOOL wasEnabled = node.enabled;
         BOOL nowEnabled = [region containsCoordinate:location];
+        if ([node.name isEqualToString:SPECIAL_SHAPE_NODE_NAME]){
+            nowEnabled = [self inSpecialRegion:location];
+        }
+
         if (nowEnabled) NSLog(@"Node now (or still) enabled: %@.  Old Status %d",node.name,wasEnabled);
         if ((!wasEnabled) && nowEnabled) [self nodeSoundOn:node];
         if (wasEnabled && (!nowEnabled)) [self nodeSoundOff:node];
