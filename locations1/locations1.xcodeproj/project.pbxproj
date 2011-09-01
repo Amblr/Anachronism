@@ -452,6 +452,46 @@
 		D8BB836613C5AE2D003CBDDF /* nodes.json in Resources */ = {isa = PBXBuildFile; fileRef = D8BB836413C5AE2D003CBDDF /* nodes.json */; };
 		D8BB836713C5AE2D003CBDDF /* paths.json in Resources */ = {isa = PBXBuildFile; fileRef = D8BB836513C5AE2D003CBDDF /* paths.json */; };
 		D8CAC115140FF8EF00881ACB /* Tiles in Resources */ = {isa = PBXBuildFile; fileRef = D8CAC114140FF8EF00881ACB /* Tiles */; };
+		D8CAC13A141003E500881ACB /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC118141003E500881ACB /* RegexKitLite.m */; };
+		D8CAC13B141003E500881ACB /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC118141003E500881ACB /* RegexKitLite.m */; };
+		D8CAC13C141003E500881ACB /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC118141003E500881ACB /* RegexKitLite.m */; };
+		D8CAC13D141003E500881ACB /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC118141003E500881ACB /* RegexKitLite.m */; };
+		D8CAC13E141003E500881ACB /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC11C141003E500881ACB /* DDXMLElementAdditions.m */; };
+		D8CAC13F141003E500881ACB /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC11C141003E500881ACB /* DDXMLElementAdditions.m */; };
+		D8CAC140141003E500881ACB /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC11C141003E500881ACB /* DDXMLElementAdditions.m */; };
+		D8CAC141141003E500881ACB /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC11C141003E500881ACB /* DDXMLElementAdditions.m */; };
+		D8CAC142141003E500881ACB /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC11F141003E500881ACB /* NSString+DDXML.m */; };
+		D8CAC143141003E500881ACB /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC11F141003E500881ACB /* NSString+DDXML.m */; };
+		D8CAC144141003E500881ACB /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC11F141003E500881ACB /* NSString+DDXML.m */; };
+		D8CAC145141003E500881ACB /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC11F141003E500881ACB /* NSString+DDXML.m */; };
+		D8CAC146141003E500881ACB /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC122141003E500881ACB /* DDXMLDocument.m */; };
+		D8CAC147141003E500881ACB /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC122141003E500881ACB /* DDXMLDocument.m */; };
+		D8CAC148141003E500881ACB /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC122141003E500881ACB /* DDXMLDocument.m */; };
+		D8CAC149141003E500881ACB /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC122141003E500881ACB /* DDXMLDocument.m */; };
+		D8CAC14A141003E500881ACB /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC124141003E500881ACB /* DDXMLElement.m */; };
+		D8CAC14B141003E500881ACB /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC124141003E500881ACB /* DDXMLElement.m */; };
+		D8CAC14C141003E500881ACB /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC124141003E500881ACB /* DDXMLElement.m */; };
+		D8CAC14D141003E500881ACB /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC124141003E500881ACB /* DDXMLElement.m */; };
+		D8CAC14E141003E500881ACB /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC126141003E500881ACB /* DDXMLNode.m */; };
+		D8CAC14F141003E500881ACB /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC126141003E500881ACB /* DDXMLNode.m */; };
+		D8CAC150141003E500881ACB /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC126141003E500881ACB /* DDXMLNode.m */; };
+		D8CAC151141003E500881ACB /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC126141003E500881ACB /* DDXMLNode.m */; };
+		D8CAC152141003E500881ACB /* HTNotifier.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8CAC12A141003E500881ACB /* HTNotifier.strings */; };
+		D8CAC153141003E500881ACB /* HTNotifier.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8CAC12A141003E500881ACB /* HTNotifier.strings */; };
+		D8CAC154141003E500881ACB /* HTNotifier.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8CAC12A141003E500881ACB /* HTNotifier.strings */; };
+		D8CAC155141003E500881ACB /* HTNotifier.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8CAC12A141003E500881ACB /* HTNotifier.strings */; };
+		D8CAC156141003E500881ACB /* HTFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC130141003E500881ACB /* HTFunctions.m */; };
+		D8CAC157141003E500881ACB /* HTFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC130141003E500881ACB /* HTFunctions.m */; };
+		D8CAC158141003E500881ACB /* HTFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC130141003E500881ACB /* HTFunctions.m */; };
+		D8CAC159141003E500881ACB /* HTFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC130141003E500881ACB /* HTFunctions.m */; };
+		D8CAC15A141003E500881ACB /* HTNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC132141003E500881ACB /* HTNotice.m */; };
+		D8CAC15B141003E500881ACB /* HTNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC132141003E500881ACB /* HTNotice.m */; };
+		D8CAC15C141003E500881ACB /* HTNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC132141003E500881ACB /* HTNotice.m */; };
+		D8CAC15D141003E500881ACB /* HTNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC132141003E500881ACB /* HTNotice.m */; };
+		D8CAC15E141003E500881ACB /* HTNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC134141003E500881ACB /* HTNotifier.m */; };
+		D8CAC15F141003E500881ACB /* HTNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC134141003E500881ACB /* HTNotifier.m */; };
+		D8CAC160141003E500881ACB /* HTNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC134141003E500881ACB /* HTNotifier.m */; };
+		D8CAC161141003E500881ACB /* HTNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAC134141003E500881ACB /* HTNotifier.m */; };
 		D8D130DE1316EB7D00243D80 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D130DD1316EB7D00243D80 /* CoreLocation.framework */; };
 		D8D5CDF01396DCCB008112ED /* textfade.html in Resources */ = {isa = PBXBuildFile; fileRef = D8D5CDEE1396DA6E008112ED /* textfade.html */; };
 		D8DF6459139595910019F3D3 /* streetview.html in Resources */ = {isa = PBXBuildFile; fileRef = D8DF6458139595910019F3D3 /* streetview.html */; };
@@ -753,6 +793,35 @@
 		D8BB836413C5AE2D003CBDDF /* nodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nodes.json; sourceTree = "<group>"; };
 		D8BB836513C5AE2D003CBDDF /* paths.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paths.json; sourceTree = "<group>"; };
 		D8CAC114140FF8EF00881ACB /* Tiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tiles; sourceTree = "<group>"; };
+		D8CAC117141003E500881ACB /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		D8CAC118141003E500881ACB /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		D8CAC11B141003E500881ACB /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
+		D8CAC11C141003E500881ACB /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
+		D8CAC11E141003E500881ACB /* NSString+DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDXML.h"; sourceTree = "<group>"; };
+		D8CAC11F141003E500881ACB /* NSString+DDXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DDXML.m"; sourceTree = "<group>"; };
+		D8CAC120141003E500881ACB /* DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXML.h; sourceTree = "<group>"; };
+		D8CAC121141003E500881ACB /* DDXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLDocument.h; sourceTree = "<group>"; };
+		D8CAC122141003E500881ACB /* DDXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLDocument.m; sourceTree = "<group>"; };
+		D8CAC123141003E500881ACB /* DDXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElement.h; sourceTree = "<group>"; };
+		D8CAC124141003E500881ACB /* DDXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElement.m; sourceTree = "<group>"; };
+		D8CAC125141003E500881ACB /* DDXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLNode.h; sourceTree = "<group>"; };
+		D8CAC126141003E500881ACB /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLNode.m; sourceTree = "<group>"; };
+		D8CAC128141003E500881ACB /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
+		D8CAC12B141003E500881ACB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/HTNotifier.strings; sourceTree = "<group>"; };
+		D8CAC12C141003E500881ACB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/HTNotifier.strings; sourceTree = "<group>"; };
+		D8CAC12D141003E500881ACB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/HTNotifier.strings; sourceTree = "<group>"; };
+		D8CAC12E141003E500881ACB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/HTNotifier.strings; sourceTree = "<group>"; };
+		D8CAC12F141003E500881ACB /* HTFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTFunctions.h; sourceTree = "<group>"; };
+		D8CAC130141003E500881ACB /* HTFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTFunctions.m; sourceTree = "<group>"; };
+		D8CAC131141003E500881ACB /* HTNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTNotice.h; sourceTree = "<group>"; };
+		D8CAC132141003E500881ACB /* HTNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTNotice.m; sourceTree = "<group>"; };
+		D8CAC133141003E500881ACB /* HTNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTNotifier.h; sourceTree = "<group>"; };
+		D8CAC134141003E500881ACB /* HTNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTNotifier.m; sourceTree = "<group>"; };
+		D8CAC135141003E500881ACB /* HTNotifierDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTNotifierDelegate.h; sourceTree = "<group>"; };
+		D8CAC136141003E500881ACB /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/HTNotifier.strings; sourceTree = "<group>"; };
+		D8CAC137141003E500881ACB /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/HTNotifier.strings; sourceTree = "<group>"; };
+		D8CAC138141003E500881ACB /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/HTNotifier.strings; sourceTree = "<group>"; };
+		D8CAC139141003E500881ACB /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/HTNotifier.strings"; sourceTree = "<group>"; };
 		D8D130DD1316EB7D00243D80 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D8D5CDEE1396DA6E008112ED /* textfade.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = textfade.html; sourceTree = "<group>"; };
 		D8DF6458139595910019F3D3 /* streetview.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = streetview.html; path = Classes/streetview.html; sourceTree = "<group>"; };
@@ -1278,6 +1347,9 @@
 		D86803C313A8A30800A4F3BE /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
+				D8CAC116141003E500881ACB /* regexkitlite */,
+				D8CAC119141003E500881ACB /* kissxml */,
+				D8CAC129141003E500881ACB /* hoptoadnotifier */,
 				D809AFDC13DB658400C5B656 /* InAppSettingsKit */,
 				D86803C413A8A33B00A4F3BE /* CocosDenshion */,
 				D8778E431312F08C003874F6 /* LROAuth2 */,
@@ -1390,6 +1462,73 @@
 			path = LROAuth2Client;
 			sourceTree = "<group>";
 		};
+		D8CAC116141003E500881ACB /* regexkitlite */ = {
+			isa = PBXGroup;
+			children = (
+				D8CAC117141003E500881ACB /* RegexKitLite.h */,
+				D8CAC118141003E500881ACB /* RegexKitLite.m */,
+			);
+			path = regexkitlite;
+			sourceTree = "<group>";
+		};
+		D8CAC119141003E500881ACB /* kissxml */ = {
+			isa = PBXGroup;
+			children = (
+				D8CAC11A141003E500881ACB /* Additions */,
+				D8CAC11D141003E500881ACB /* Categories */,
+				D8CAC120141003E500881ACB /* DDXML.h */,
+				D8CAC121141003E500881ACB /* DDXMLDocument.h */,
+				D8CAC122141003E500881ACB /* DDXMLDocument.m */,
+				D8CAC123141003E500881ACB /* DDXMLElement.h */,
+				D8CAC124141003E500881ACB /* DDXMLElement.m */,
+				D8CAC125141003E500881ACB /* DDXMLNode.h */,
+				D8CAC126141003E500881ACB /* DDXMLNode.m */,
+				D8CAC127141003E500881ACB /* Private */,
+			);
+			path = kissxml;
+			sourceTree = "<group>";
+		};
+		D8CAC11A141003E500881ACB /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				D8CAC11B141003E500881ACB /* DDXMLElementAdditions.h */,
+				D8CAC11C141003E500881ACB /* DDXMLElementAdditions.m */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
+		D8CAC11D141003E500881ACB /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				D8CAC11E141003E500881ACB /* NSString+DDXML.h */,
+				D8CAC11F141003E500881ACB /* NSString+DDXML.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		D8CAC127141003E500881ACB /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				D8CAC128141003E500881ACB /* DDXMLPrivate.h */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
+		D8CAC129141003E500881ACB /* hoptoadnotifier */ = {
+			isa = PBXGroup;
+			children = (
+				D8CAC12A141003E500881ACB /* HTNotifier.strings */,
+				D8CAC12F141003E500881ACB /* HTFunctions.h */,
+				D8CAC130141003E500881ACB /* HTFunctions.m */,
+				D8CAC131141003E500881ACB /* HTNotice.h */,
+				D8CAC132141003E500881ACB /* HTNotice.m */,
+				D8CAC133141003E500881ACB /* HTNotifier.h */,
+				D8CAC134141003E500881ACB /* HTNotifier.m */,
+				D8CAC135141003E500881ACB /* HTNotifierDelegate.h */,
+			);
+			path = hoptoadnotifier;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1476,6 +1615,13 @@
 				French,
 				German,
 				en,
+				de,
+				es,
+				fr,
+				nl,
+				ro,
+				ru,
+				"zh-Hant",
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -1529,6 +1675,7 @@
 				D809B05213DB658400C5B656 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */,
 				D809B05613DB658400C5B656 /* IASKSpecifierValuesView.xib in Resources */,
 				D8F65BEE13E40F8F00E7953D /* 40-inbox.png in Resources */,
+				D8CAC153141003E500881ACB /* HTNotifier.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1561,6 +1708,7 @@
 				D809B04D13DB658400C5B656 /* IASKPSTextFieldSpecifierViewCell.xib in Resources */,
 				D809B05113DB658400C5B656 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */,
 				D809B05513DB658400C5B656 /* IASKSpecifierValuesView.xib in Resources */,
+				D8CAC152141003E500881ACB /* HTNotifier.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1595,6 +1743,7 @@
 				D883BC2C13F1BA1300252768 /* speech.json in Resources */,
 				D804125813F5B30900535D14 /* HHIntroSound.mp3 in Resources */,
 				D8CAC115140FF8EF00881ACB /* Tiles in Resources */,
+				D8CAC154141003E500881ACB /* HTNotifier.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1628,6 +1777,7 @@
 				D8F65BFA13E4372000E7953D /* 112-group.png in Resources */,
 				D8F65BFC13E4372000E7953D /* 117-todo.png in Resources */,
 				D8F65BFE13E4372000E7953D /* 184-warning.png in Resources */,
+				D8CAC155141003E500881ACB /* HTNotifier.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1713,6 +1863,15 @@
 				D883BC5513F271C700252768 /* L1Queue.m in Sources */,
 				D8189565140E234F001CD7AD /* TileOverlay.m in Sources */,
 				D818956B140E2384001CD7AD /* TileOverlayView.m in Sources */,
+				D8CAC13B141003E500881ACB /* RegexKitLite.m in Sources */,
+				D8CAC13F141003E500881ACB /* DDXMLElementAdditions.m in Sources */,
+				D8CAC143141003E500881ACB /* NSString+DDXML.m in Sources */,
+				D8CAC147141003E500881ACB /* DDXMLDocument.m in Sources */,
+				D8CAC14B141003E500881ACB /* DDXMLElement.m in Sources */,
+				D8CAC14F141003E500881ACB /* DDXMLNode.m in Sources */,
+				D8CAC157141003E500881ACB /* HTFunctions.m in Sources */,
+				D8CAC15B141003E500881ACB /* HTNotice.m in Sources */,
+				D8CAC15F141003E500881ACB /* HTNotifier.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1788,6 +1947,15 @@
 				D883BC5413F271C700252768 /* L1Queue.m in Sources */,
 				D8189564140E234F001CD7AD /* TileOverlay.m in Sources */,
 				D818956A140E2384001CD7AD /* TileOverlayView.m in Sources */,
+				D8CAC13A141003E500881ACB /* RegexKitLite.m in Sources */,
+				D8CAC13E141003E500881ACB /* DDXMLElementAdditions.m in Sources */,
+				D8CAC142141003E500881ACB /* NSString+DDXML.m in Sources */,
+				D8CAC146141003E500881ACB /* DDXMLDocument.m in Sources */,
+				D8CAC14A141003E500881ACB /* DDXMLElement.m in Sources */,
+				D8CAC14E141003E500881ACB /* DDXMLNode.m in Sources */,
+				D8CAC156141003E500881ACB /* HTFunctions.m in Sources */,
+				D8CAC15A141003E500881ACB /* HTNotice.m in Sources */,
+				D8CAC15E141003E500881ACB /* HTNotifier.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1874,6 +2042,15 @@
 				D844642213F312E400E70725 /* L1DownloadProximityMonitor.m in Sources */,
 				D8189566140E234F001CD7AD /* TileOverlay.m in Sources */,
 				D818956C140E2384001CD7AD /* TileOverlayView.m in Sources */,
+				D8CAC13C141003E500881ACB /* RegexKitLite.m in Sources */,
+				D8CAC140141003E500881ACB /* DDXMLElementAdditions.m in Sources */,
+				D8CAC144141003E500881ACB /* NSString+DDXML.m in Sources */,
+				D8CAC148141003E500881ACB /* DDXMLDocument.m in Sources */,
+				D8CAC14C141003E500881ACB /* DDXMLElement.m in Sources */,
+				D8CAC150141003E500881ACB /* DDXMLNode.m in Sources */,
+				D8CAC158141003E500881ACB /* HTFunctions.m in Sources */,
+				D8CAC15C141003E500881ACB /* HTNotice.m in Sources */,
+				D8CAC160141003E500881ACB /* HTNotifier.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1960,6 +2137,15 @@
 				D844642313F312E400E70725 /* L1DownloadProximityMonitor.m in Sources */,
 				D8189567140E234F001CD7AD /* TileOverlay.m in Sources */,
 				D818956D140E2384001CD7AD /* TileOverlayView.m in Sources */,
+				D8CAC13D141003E500881ACB /* RegexKitLite.m in Sources */,
+				D8CAC141141003E500881ACB /* DDXMLElementAdditions.m in Sources */,
+				D8CAC145141003E500881ACB /* NSString+DDXML.m in Sources */,
+				D8CAC149141003E500881ACB /* DDXMLDocument.m in Sources */,
+				D8CAC14D141003E500881ACB /* DDXMLElement.m in Sources */,
+				D8CAC151141003E500881ACB /* DDXMLNode.m in Sources */,
+				D8CAC159141003E500881ACB /* HTFunctions.m in Sources */,
+				D8CAC15D141003E500881ACB /* HTNotice.m in Sources */,
+				D8CAC161141003E500881ACB /* HTNotifier.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2012,6 +2198,21 @@
 				D82BC9C713C3A118003D86B4 /* en */,
 			);
 			name = Hackney_Hear_ViewController.xib;
+			sourceTree = "<group>";
+		};
+		D8CAC12A141003E500881ACB /* HTNotifier.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D8CAC12B141003E500881ACB /* de */,
+				D8CAC12C141003E500881ACB /* en */,
+				D8CAC12D141003E500881ACB /* es */,
+				D8CAC12E141003E500881ACB /* fr */,
+				D8CAC136141003E500881ACB /* nl */,
+				D8CAC137141003E500881ACB /* ro */,
+				D8CAC138141003E500881ACB /* ru */,
+				D8CAC139141003E500881ACB /* zh-Hant */,
+			);
+			name = HTNotifier.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
