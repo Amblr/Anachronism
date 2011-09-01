@@ -11,27 +11,6 @@
 #import "L1Utils.h"
 
 
-#define SOUND_FADE_TIME 5.0
-#define SOUND_FADE_TIME_SPEECH 3.0
-#define SOUND_FADE_TIME_INTRO 2.0
-#define SOUND_FADE_TIME_MUSIC 15.0
-#define SOUND_FADE_TIME_ATMOS 15.0
-#define SOUND_DECREASE_TIME_STEP 0.5
-
-#define SOUND_RISE_TIME 5.0
-#define SOUND_RISE_TIME_SPEECH 3.0
-#define SOUND_RISE_TIME_INTRO 2.0
-#define SOUND_RISE_TIME_MUSIC 5.0
-#define SOUND_RISE_TIME_ATMOS 5.0
-#define SOUND_INCREASE_TIME_STEP 0.5
-
-#define SPEECH_RESTART_REWIND 2.0
-
-
-#define SPEECH_MINIMUM_INTERVAL 60
-#define INTRO_SOUND_BREAK_POINT 68
-#define INTRO_SOUND_KEY @"HH_INTRO_SOUND"
-
 
 #define SPECIAL_SHAPE_NODE_NAME @"2508 bway sound track01"
 
@@ -80,8 +59,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    audioEngine = [[SimpleAudioEngine alloc] init];
-    audioSamples = [[NSMutableDictionary alloc] init];
+    soundManager = [[HHSoundManager alloc] init];
+
     BOOL ok = [L1Utils initializeDirs];
     NSAssert(ok, @"Unable to ini dirs.");
     locationManager = [[CLLocationManager alloc] init];
@@ -91,10 +70,7 @@
     realLocationTracker = [[L1BigBrother alloc] init];
     fakeLocationTracker = [[L1BigBrother alloc] init];
     mapViewController.delegate=self;
-    activeSpeechTrack=nil;
-    lastCompletionTime = [[NSMutableDictionary alloc] initWithCapacity:0];
     proximityMonitor = [[L1DownloadProximityMonitor alloc] init];
-    introIsPlaying=NO;
     skipButton=nil;
     NSLog(@"Tiles adding");
     NSString * tileDir = @"Tiles";
@@ -105,25 +81,15 @@
 
 }
 
--(void) skipIntro
+
+-(void) skipIntro:(NSObject*) dummy
 {
-    NSLog(@"Skip");
     [skipButton removeFromSuperview];
-    skipButton=nil;
-//    [self.view setNeedsDisplay];
-    [self decreaseSourceVolume:INTRO_SOUND_KEY];
-    introIsPlaying=NO;
-    introBeforeBreakPoint=NO;
-    
+    skipButton = nil;
+    [soundManager skipIntro];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
--(void) endIntroIfAudioReady:(NSObject*) dummy
-{
-    //We have reached the break-point in the audio.  From now on we should 
-    //end the intro if any audio is triggered.
-    NSLog(@"Reached Intro Audio Break Point");
-    introBeforeBreakPoint=NO;
-}
 
 -(void) checkFirstLaunch{
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -135,23 +101,18 @@
         NSAssert(ok, @"Failed to create marker file.");
         
         //Play the intro sound.
-        L1CDLongAudioSource * introSound = [[L1CDLongAudioSource alloc] init];
-        introSound.delegate=self;
-        introSound.soundType=L1SoundTypeIntro;
-        introSound.key=INTRO_SOUND_KEY;
-        NSString * filename = [[NSBundle mainBundle] pathForResource:@"HHIntroSound" ofType:@"mp3"];
-        [audioSamples setObject:introSound forKey:INTRO_SOUND_KEY];
-        [introSound load:filename];
-        [introSound play];
-        [introSound release];
-        introIsPlaying=YES;
-        introBeforeBreakPoint=YES;
+        [soundManager startIntro];
+            
         
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(aWindowBecameMain:)
+                                                     name:HH_INTRO_SOUND_ENDED_NOTIFICATION object:nil];
+
         
         //Set up the "skip" button
         skipButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [skipButton addTarget:self 
-                   action:@selector(skipIntro)
+                       action:@selector(skipIntro:)
          forControlEvents:UIControlEventTouchUpInside];
         [skipButton setTitle:@"Skip Intro" forState:UIControlStateNormal];
         skipButton.frame = CGRectMake(80.0, 10.0, 160.0, 40.0);
@@ -159,7 +120,6 @@
         
         
         //Start a timer that will end when the natural break point in the sound is reached (?)
-        [self performSelector:@selector(endIntroIfAudioReady:) withObject:nil afterDelay:INTRO_SOUND_BREAK_POINT];
         
     }
     [manager release];
@@ -300,149 +260,16 @@
     NSLog(@"Node on: %@",node.name);
     L1SoundType soundType;
     NSString * filename = [self filenameForNodeSound:node getType:&soundType];
-    
     if (filename){
-        NSDate * lastPlay = [lastCompletionTime objectForKey:node.key];
-        if (lastPlay && [[NSDate date] timeIntervalSinceDate:lastPlay]<SPEECH_MINIMUM_INTERVAL){
-            NSLog(@"Not playing sound - too recent.");
-            return;
-        }
-        
-        //If we have reached the intro break point
-        //then starting any new node should kill the intro
-        if (!introBeforeBreakPoint) [self skipIntro];
-        
-        L1CDLongAudioSource * sound = [audioSamples objectForKey:node.key];
-        
-        //If the sound is already in the audioSamples then we must have paused it earlier.
-        //so we just carry on from where we left off.
-        
-        //Otherwise we need to load it afresh.  This might be because it finished and was flushed or because 
-        //we never heard it before
-        BOOL newSound=false;
-        if (!sound){
-            newSound=true;
-            sound = [[L1CDLongAudioSource alloc] init];
-            sound.delegate=self;
-            sound.soundType=soundType;
-            sound.key=node.key;
-            [sound load:filename];
-            [sound play];
-        }
-        else{
-            //If it is a resumed sound then we can restart it.
-            //But we rewind two seconds
-            //If speech, restart at full volume immediately
-            if (sound.soundType==L1SoundTypeSpeech){
-                sound.volume=1.0;
-                [sound timeJump:-SPEECH_RESTART_REWIND];
-
-                [sound resume];
-            }
-            //If not speech, fade in.
-            else{
-                float riseTime = SOUND_RISE_TIME;
-                if (sound.soundType==L1SoundTypeAtmos) riseTime=SOUND_RISE_TIME_ATMOS;
-                if (sound.soundType==L1SoundTypeMusic) riseTime=SOUND_RISE_TIME_MUSIC;
-                if (sound.soundType==L1SoundTypeSpeech) riseTime=SOUND_RISE_TIME_SPEECH;
-                [sound resume];
-                sound.volume = SOUND_INCREASE_TIME_STEP/riseTime;
-                SEL selector = @selector(increaseSourceVolume:);
-                [self performSelector:selector withObject:node.key afterDelay:SOUND_INCREASE_TIME_STEP];
-            }
-            
-        }
-        [audioSamples setObject:sound forKey:node.key];
-        if (newSound) [sound release];
-        
-        //If a new speech track has come a long then fade out any existing one.
-        if (soundType==L1SoundTypeSpeech){
-            if (activeSpeechTrack) [self decreaseSourceVolume:activeSpeechTrack];
-            activeSpeechTrack=sound.key;
-        }
-        
-        NSLog(@"Playing sound %@",filename);
+        [soundManager playSoundWithFilename:filename key:node.key type:soundType];
     }
 }
 
-//This is begging to be refactored.
--(void) increaseSourceVolume:(NSString*) identifier
-{
-    L1CDLongAudioSource * sound = [audioSamples objectForKey:identifier];
-    
-    if (!sound) return; //sound must already have finished in the meantime.
-    L1SoundType soundType=sound.soundType;
-    float riseTime = SOUND_RISE_TIME;
-    if (soundType==L1SoundTypeAtmos) riseTime=SOUND_RISE_TIME_ATMOS;
-    if (soundType==L1SoundTypeMusic) riseTime=SOUND_RISE_TIME_MUSIC;
-    if (soundType==L1SoundTypeSpeech) riseTime=SOUND_RISE_TIME_SPEECH;
-    if (soundType==L1SoundTypeIntro) riseTime=SOUND_RISE_TIME_INTRO;
-    
-    
-    sound.volume = sound.volume+SOUND_INCREASE_TIME_STEP/(riseTime);
-    
-    //When the sound has fully risen we just stop increasing it
-    if (sound.volume>=1.0){
-        sound.volume = 1.0;
-    }
-    else  //otherwise schedule the next volume rise.
-    {
-        SEL selector = @selector(increaseSourceVolume:);
-        [self performSelector:selector withObject:identifier afterDelay:SOUND_INCREASE_TIME_STEP];
-    }
-}
-
--(void) decreaseSourceVolume:(NSString*) identifier
-{
-    L1CDLongAudioSource * sound = [audioSamples objectForKey:identifier];
-    
-    if (!sound) return; //sound must already have finished in the meantime.
-    L1SoundType soundType=sound.soundType;
-    float fadeTime = SOUND_FADE_TIME;
-    if (soundType==L1SoundTypeAtmos) fadeTime=SOUND_FADE_TIME_ATMOS;
-    if (soundType==L1SoundTypeMusic) fadeTime=SOUND_FADE_TIME_MUSIC;
-    if (soundType==L1SoundTypeSpeech) fadeTime=SOUND_FADE_TIME_SPEECH;
-    if (soundType==L1SoundTypeIntro) fadeTime=SOUND_FADE_TIME_INTRO;
-    
-    
-    sound.volume = sound.volume-SOUND_DECREASE_TIME_STEP/(fadeTime);
-
-    //When the sound has fully faded we pause it rather than stopping it
-    //so we can restart it again later
-    if (sound.volume<=0){
-        [sound pause];
-//         [audioSamples removeObjectForKey:identifier];    
-    }
-    else
-    {
-        SEL selector = @selector(decreaseSourceVolume:);
-        [self performSelector:selector withObject:identifier afterDelay:SOUND_DECREASE_TIME_STEP];
-    }
-}
 
 -(void) nodeSoundOff:(L1Node*) node
 {
     NSLog(@"Node off: %@",node.name);
-    
-    L1SoundType soundType;
-    NSString * filename = [self filenameForNodeSound:node getType:&soundType];
-    if (filename){
-        L1CDLongAudioSource * sound = [audioSamples objectForKey:node.key];
-        if (sound){
-            if (sound.volume==1.0){ //sound is not already fading
-                float fadeTime = SOUND_FADE_TIME;
-                if (sound.soundType==L1SoundTypeAtmos) fadeTime=SOUND_FADE_TIME_ATMOS;
-                if (sound.soundType==L1SoundTypeMusic) fadeTime=SOUND_FADE_TIME_MUSIC;
-                if (sound.soundType==L1SoundTypeSpeech) fadeTime=SOUND_FADE_TIME_SPEECH;
-
-                sound.volume = 1.0 - SOUND_DECREASE_TIME_STEP/fadeTime;
-                SEL selector = @selector(decreaseSourceVolume:);
-                [self performSelector:selector withObject:node.key afterDelay:SOUND_DECREASE_TIME_STEP];
-            }
-        }
-
-
-    }
+        [soundManager stopSoundWithKey:node.key];
 }
 
 #pragma mark -
@@ -494,7 +321,7 @@
     //We do not want to start playing any kind of sound if the intro is still before its break point.
     //So we should not enable any nodes or anything like that either.
     //So quitting this suborutine early seems the easiest way of doing this.
-    if (introBeforeBreakPoint){
+    if (soundManager.introBeforeBreakPoint){
         NSLog(@"Ignoring location update since intro has not reached break point");
         return;
     }
@@ -536,38 +363,6 @@
 }
 
 
-
-- (void) cdAudioSourceDidFinishPlaying:(CDLongAudioSource *) audioSource
-{
-    if (![audioSource isKindOfClass:[L1CDLongAudioSource class]]) return;
-    L1CDLongAudioSource * source = (L1CDLongAudioSource*) audioSource;
-    NSLog(@"Sound finished: %@",source.key);
-    
-    if ([source.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
-    if ([source.key isEqualToString:INTRO_SOUND_KEY]){
-        introIsPlaying=NO;
-        NSLog(@"skipButton = %@",skipButton);
-        [skipButton removeFromSuperview];
-//        [self.view setNeedsDisplay];
-        skipButton=nil;
-    }
-
-    
-    if (source.soundType==L1SoundTypeSpeech){
-        [lastCompletionTime setObject:[NSDate date] forKey:source.key];
-    }
-    
-    //We want to repeat music and atmost when they finish
-    if (source.soundType==L1SoundTypeMusic || source.soundType==L1SoundTypeAtmos){
-        [source play];
-    }
-    else
-    {
-        [audioSamples removeObjectForKey:source.key];
-    }
-    
-    
-}
 
 
 @end

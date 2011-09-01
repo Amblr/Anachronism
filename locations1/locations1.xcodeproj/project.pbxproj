@@ -101,6 +101,12 @@
 		D809B05813DB658400C5B656 /* IASKSpecifierValuesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D809B00413DB658400C5B656 /* IASKSpecifierValuesView.xib */; };
 		D809B06213DB672800C5B656 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D809B06113DB672800C5B656 /* Settings.bundle */; };
 		D809B06313DB672800C5B656 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D809B06113DB672800C5B656 /* Settings.bundle */; };
+		D80A9A63141004E300A34F68 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D80A9A62141004E300A34F68 /* libicucore.dylib */; };
+		D80A9A65141004EA00A34F68 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D80A9A64141004EA00A34F68 /* libxml2.dylib */; };
+		D80A9A681410144600A34F68 /* HHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D80A9A671410144600A34F68 /* HHSoundManager.m */; };
+		D80A9A691410144600A34F68 /* HHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D80A9A671410144600A34F68 /* HHSoundManager.m */; };
+		D80A9A6A1410144600A34F68 /* HHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D80A9A671410144600A34F68 /* HHSoundManager.m */; };
+		D80A9A6B1410144600A34F68 /* HHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D80A9A671410144600A34F68 /* HHSoundManager.m */; };
 		D81325F51395726200A7495C /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = D81325F41395726200A7495C /* loading.png */; };
 		D8189564140E234F001CD7AD /* TileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D8189563140E234F001CD7AD /* TileOverlay.m */; };
 		D8189565140E234F001CD7AD /* TileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D8189563140E234F001CD7AD /* TileOverlay.m */; };
@@ -566,6 +572,10 @@
 		D809B00313DB658400C5B656 /* IASKPSToggleSwitchSpecifierViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IASKPSToggleSwitchSpecifierViewCell.xib; sourceTree = "<group>"; };
 		D809B00413DB658400C5B656 /* IASKSpecifierValuesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IASKSpecifierValuesView.xib; sourceTree = "<group>"; };
 		D809B06113DB672800C5B656 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		D80A9A62141004E300A34F68 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = ../../../../../../../usr/lib/libicucore.dylib; sourceTree = "<group>"; };
+		D80A9A64141004EA00A34F68 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = ../../../../../../../usr/lib/libxml2.dylib; sourceTree = "<group>"; };
+		D80A9A661410144600A34F68 /* HHSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHSoundManager.h; sourceTree = "<group>"; };
+		D80A9A671410144600A34F68 /* HHSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHSoundManager.m; sourceTree = "<group>"; };
 		D81325F41395726200A7495C /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 		D8189562140E234F001CD7AD /* TileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileOverlay.h; sourceTree = "<group>"; };
 		D8189563140E234F001CD7AD /* TileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileOverlay.m; sourceTree = "<group>"; };
@@ -881,6 +891,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D80A9A65141004EA00A34F68 /* libxml2.dylib in Frameworks */,
+				D80A9A63141004E300A34F68 /* libicucore.dylib in Frameworks */,
 				D82BCA0113C3A4A2003D86B4 /* libz.dylib in Frameworks */,
 				D82BCA1813C3A616003D86B4 /* AVFoundation.framework in Frameworks */,
 				D82BCA1613C3A599003D86B4 /* MobileCoreServices.framework in Frameworks */,
@@ -948,6 +960,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				D80A9A64141004EA00A34F68 /* libxml2.dylib */,
+				D80A9A62141004E300A34F68 /* libicucore.dylib */,
 				D82BCA1913C3A68D003D86B4 /* CoreLocation.framework */,
 				D82BCA1713C3A616003D86B4 /* AVFoundation.framework */,
 				D82BCA1513C3A599003D86B4 /* MobileCoreServices.framework */,
@@ -1162,6 +1176,8 @@
 				D82BC9C013C3A118003D86B4 /* MainWindow.xib */,
 				D82BC9C313C3A118003D86B4 /* Hackney_Hear_ViewController.h */,
 				D82BC9C413C3A118003D86B4 /* Hackney_Hear_ViewController.m */,
+				D80A9A661410144600A34F68 /* HHSoundManager.h */,
+				D80A9A671410144600A34F68 /* HHSoundManager.m */,
 				D82BC9C613C3A118003D86B4 /* Hackney_Hear_ViewController.xib */,
 				D82BC9B513C3A118003D86B4 /* Supporting Files */,
 				D809B06113DB672800C5B656 /* Settings.bundle */,
@@ -1872,6 +1888,7 @@
 				D8CAC157141003E500881ACB /* HTFunctions.m in Sources */,
 				D8CAC15B141003E500881ACB /* HTNotice.m in Sources */,
 				D8CAC15F141003E500881ACB /* HTNotifier.m in Sources */,
+				D80A9A691410144600A34F68 /* HHSoundManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1956,6 +1973,7 @@
 				D8CAC156141003E500881ACB /* HTFunctions.m in Sources */,
 				D8CAC15A141003E500881ACB /* HTNotice.m in Sources */,
 				D8CAC15E141003E500881ACB /* HTNotifier.m in Sources */,
+				D80A9A681410144600A34F68 /* HHSoundManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2051,6 +2069,7 @@
 				D8CAC158141003E500881ACB /* HTFunctions.m in Sources */,
 				D8CAC15C141003E500881ACB /* HTNotice.m in Sources */,
 				D8CAC160141003E500881ACB /* HTNotifier.m in Sources */,
+				D80A9A6A1410144600A34F68 /* HHSoundManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2146,6 +2165,7 @@
 				D8CAC159141003E500881ACB /* HTFunctions.m in Sources */,
 				D8CAC15D141003E500881ACB /* HTNotice.m in Sources */,
 				D8CAC161141003E500881ACB /* HTNotifier.m in Sources */,
+				D80A9A6B1410144600A34F68 /* HHSoundManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2349,7 +2369,7 @@
 		D82BC9C913C3A118003D86B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CD_DEBUG = 1;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Joe ZUNTZ";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joe ZUNTZ";
@@ -2374,6 +2394,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40087240-85C6-475D-B649-DD972AF37C95";
 				SDKROOT = iphoneos4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2381,7 +2402,7 @@
 		D82BC9CA13C3A118003D86B4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CD_DEBUG = 1;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Joe ZUNTZ";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joe ZUNTZ";
@@ -2402,6 +2423,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40087240-85C6-475D-B649-DD972AF37C95";
 				SDKROOT = iphoneos4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

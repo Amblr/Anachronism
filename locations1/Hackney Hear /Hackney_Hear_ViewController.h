@@ -14,31 +14,17 @@
 #import "SimpleAudioEngine.h"
 #import "L1BigBrother.h"
 #import "L1DownloadProximityMonitor.h"
-
-
-@interface L1CDLongAudioSource : CDLongAudioSource
-{
-    L1SoundType soundType;
-    NSString * key;
-    BOOL isFading;
-    BOOL isRising;
-}
-
--(void) timeJump:(NSTimeInterval) deltaTime;
-
-@property (assign) L1SoundType soundType;
-@property (retain) NSString * key;
-@end
+#import "HHSoundManager.h"
 
 
 
 
 
-@interface Hackney_Hear_ViewController : UIViewController<CLLocationManagerDelegate,CDLongAudioSourceDelegate> {
+
+@interface Hackney_Hear_ViewController : UIViewController<CLLocationManagerDelegate> {
     L1Scenario * scenario;
     IBOutlet L1MapViewController * mapViewController;
-    SimpleAudioEngine *audioEngine;
-    NSMutableDictionary *audioSamples;
+
     CLLocationManager *locationManager;
     NSMutableDictionary *circles;
 //    IBOutlet UISwitch *realGPSControl;
@@ -48,12 +34,10 @@
     BOOL realGPSControl;
     L1BigBrother * realLocationTracker;
     L1BigBrother * fakeLocationTracker;
-    NSString * activeSpeechTrack;
-    NSMutableDictionary * lastCompletionTime;
     L1DownloadProximityMonitor * proximityMonitor;
-    NSDate * introSoundLaunchTime;
-    BOOL introIsPlaying, introBeforeBreakPoint;
     UIButton * skipButton;
+    HHSoundManager * soundManager;
+    
 }
 @property (retain) L1Scenario * scenario;
 
