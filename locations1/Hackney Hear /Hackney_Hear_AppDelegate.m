@@ -28,7 +28,7 @@
     NSLog(@"view controller = %@",self.mainTabBarController);
     [self.window makeKeyAndVisible];
     [self setupScenario];
-//    [HTNotifier startNotifierWithAPIKey:@"bf9845eaf284ec17a3652f0a82d70702" environmentName:HTNotifierDevelopmentEnvironment];
+    [HTNotifier startNotifierWithAPIKey:@"bf9845eaf284ec17a3652f0a82d70702" environmentName:HTNotifierDevelopmentEnvironment];
 
     return YES;
 }
