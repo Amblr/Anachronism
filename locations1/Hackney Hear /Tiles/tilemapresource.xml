@@ -3,8 +3,8 @@
 	  <Title>output.vrt</Title>
 	  <Abstract></Abstract>
 	  <SRS>EPSG:900913</SRS>
-	  <BoundingBox minx="51.53300733703932" miny="-0.06765650863892" maxx="51.54473906642971" maxy="-0.05577227960611"/>
-	  <Origin x="51.53300733703932" y="-0.06765650863892"/>
+	  <BoundingBox minx="51.53430603440849" miny="-0.06737402632712" maxx="51.54438767137786" maxy="-0.05598390572685"/>
+	  <Origin x="51.53430603440849" y="-0.06737402632712"/>
 	  <TileFormat width="256" height="256" mime-type="image/png" extension="png"/>
 	  <TileSets profile="mercator">
 	    <TileSet href="14" units-per-pixel="9.55462853393555" order="14"/>
