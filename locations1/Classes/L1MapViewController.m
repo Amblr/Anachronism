@@ -251,6 +251,7 @@
         MKCircle * circle = [MKCircle circleWithCenterCoordinate:myCircle.coordinate radius:myCircle.radius];
         MKCircleView *circleView = [[MKCircleView alloc] initWithCircle:circle];
         circleView.alpha = 0.33;
+        circleView.lineWidth = 3.0;
         if (myCircle.soundType==L1SoundTypeSpeech) circleView.strokeColor = [UIColor cyanColor];
         
         else circleView.strokeColor = [UIColor greenColor];
@@ -258,7 +259,7 @@
     }
 	else if ([overlay isKindOfClass:[TileOverlay class]]){
         TileOverlayView *tileView = [[TileOverlayView alloc] initWithOverlay:overlay];
-        tileView.tileAlpha = 0.6;
+        tileView.tileAlpha = 1.0;
         return [tileView autorelease];
     }
 	return nil;

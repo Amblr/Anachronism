@@ -20,7 +20,12 @@
 {
     L1SoundType soundType;
     NSString * key;
+    BOOL isFading;
+    BOOL isRising;
 }
+
+-(void) timeJump:(NSTimeInterval) deltaTime;
+
 @property (assign) L1SoundType soundType;
 @property (retain) NSString * key;
 @end

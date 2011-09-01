@@ -25,6 +25,8 @@
 #define SOUND_RISE_TIME_ATMOS 5.0
 #define SOUND_INCREASE_TIME_STEP 0.5
 
+#define SPEECH_RESTART_REWIND 2.0
+
 
 #define SPEECH_MINIMUM_INTERVAL 60
 #define INTRO_SOUND_BREAK_POINT 68
@@ -36,6 +38,18 @@
 @implementation L1CDLongAudioSource
 @synthesize soundType;
 @synthesize key;
+
+-(void) timeJump:(NSTimeInterval) deltaTime
+{
+    NSTimeInterval currentTime = audioSourcePlayer.currentTime;
+    NSTimeInterval newTime = currentTime+deltaTime;
+    NSTimeInterval maxTime = audioSourcePlayer.duration;
+    if (newTime<0.0) newTime=0.0;
+    if (newTime>maxTime) newTime=maxTime-0.01; //Give some buffer just before end.
+    [audioSourcePlayer setCurrentTime:newTime];
+    
+}
+
 
 @end
 
@@ -82,7 +96,11 @@
     proximityMonitor = [[L1DownloadProximityMonitor alloc] init];
     introIsPlaying=NO;
     skipButton=nil;
+    NSLog(@"Tiles adding");
+    NSString * tileDir = @"Tiles";
+    [mapViewController addTilesFromDirectory:tileDir];
     [self checkFirstLaunch];
+
     
 
 }
@@ -166,9 +184,6 @@
         }
     }
     
-    NSLog(@"Tiles adding");
-    NSString * tileDir = @"Tiles";
-    //[mapViewController addTilesFromDirectory:tileDir];
 
 }
 
@@ -316,9 +331,12 @@
         }
         else{
             //If it is a resumed sound then we can restart it.
+            //But we rewind two seconds
             //If speech, restart at full volume immediately
             if (sound.soundType==L1SoundTypeSpeech){
                 sound.volume=1.0;
+                [sound timeJump:-SPEECH_RESTART_REWIND];
+
                 [sound resume];
             }
             //If not speech, fade in.
@@ -422,21 +440,7 @@
                 [self performSelector:selector withObject:node.key afterDelay:SOUND_DECREASE_TIME_STEP];
             }
         }
-        for(L1Resource * resource in node.resources){
-            if ([resource.type isEqualToString:@"sound"]){
-                L1Circle * circle = [circles valueForKey:node.key];
-                if (circle){
-                    if (resource.soundType==L1SoundTypeSpeech){
-                        [mapViewController setColor:[UIColor cyanColor] forCircle:circle];
-                    }else {
-                        [mapViewController setColor:[UIColor greenColor] forCircle:circle];
-                    }
-                }
 
-                break;
-                
-            }
-        }
 
     }
 }
@@ -509,10 +513,28 @@
         if (nowEnabled){
             L1Circle * circle = [circles valueForKey:node.key];
             [mapViewController setColor:[UIColor blueColor] forCircle:circle];
-
+        }
+        else{
+            for(L1Resource * resource in node.resources){
+                if ([resource.type isEqualToString:@"sound"]){
+                    L1Circle * circle = [circles valueForKey:node.key];
+                    if (circle){
+                        if (resource.soundType==L1SoundTypeSpeech){
+                            [mapViewController setColor:[UIColor cyanColor] forCircle:circle];
+                        }else {
+                            [mapViewController setColor:[UIColor greenColor] forCircle:circle];
+                        }
+                    }
+                    
+                    break;
+                    
+                }
+            }            
+            
         }
     }
 }
+
 
 
 - (void) cdAudioSourceDidFinishPlaying:(CDLongAudioSource *) audioSource
