@@ -55,7 +55,6 @@
 -(void) nodeSoundOff:(L1Node*) node;
 -(void) nodeSoundOn:(L1Node*) node;
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation;
--(void) decreaseSourceVolume:(NSString*) identifier;
 -(NSString*) filenameForNodeSound:(L1Node*) node getType:(L1SoundType*) soundType;
 -(void) checkFirstLaunch;
 @end
