@@ -112,8 +112,6 @@
     introIsPlaying=YES;
     introBeforeBreakPoint=YES;
     [self performSelector:@selector(introBreakReached:) withObject:nil afterDelay:INTRO_SOUND_BREAK_POINT];
-
-
 }
 
 
@@ -185,12 +183,13 @@
         if (sound.soundType==L1SoundTypeSpeech){
             sound.volume=1.0;
             [sound timeJump:-SPEECH_RESTART_REWIND];
-            [sound resume];
         }
         //If not speech, fade in.
         else{
             [self fadeInSound:sound.key];
         }
+        [sound resume];
+
         
     }
     
@@ -258,28 +257,42 @@
 
 
 //This method gets triggered every 1/2 second or so to update the sound volumes.
+//We keep track of whether there are any sounds rising or falling.
 -(void) updateSoundVolumes:(NSObject*) dummy
 {
+    //Quick exit if there are no sounds to process.
     int nRising = [risingSounds count];
     int nFading = [fadingSounds count];
     if (nRising==0 && nFading==0) return;
 
-    NSArray * fadingSoundsArray = [fadingSounds allValues];
+    //Fade out the fading sounds.
+    NSArray * fadingSoundsArray;
+    @synchronized(fadingSounds){
+        fadingSoundsArray = [fadingSounds allValues];
+    }
     for (L1CDLongAudioSource * sound in fadingSoundsArray){
+        //Reduce the volume by the correct amount, which depends on the total fade time.
         float fadeTime = [self fadeTimeForSound:sound];
         sound.volume = sound.volume-SOUND_UPDATE_TIME_STEP/fadeTime;        
-        //When the sound has fully faded we pause so we can restart it later.
         NSLog(@"Fading %@",sound.key);
+        
+        //When the sound has fully faded we pause so we can restart it later.
         if (sound.volume<=0.0){
             sound.volume=0.0;
-            NSLog(@"Done fading %@",sound.key);
+            NSLog(@"Done fading %@ - pausing",sound.key);
             [sound pause];
+            //This is no longer the active speech track as it has finished.
             if ([sound.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
-            [fadingSounds removeObjectForKey:sound.key];
+            @synchronized(fadingSounds){
+                [fadingSounds removeObjectForKey:sound.key];
+            }
         }
     }
     
-    NSArray * risingSoundsArray = [risingSounds allValues];
+    NSArray * risingSoundsArray;
+    @synchronized(risingSounds){
+        risingSoundsArray = [risingSounds allValues];
+    }
     for (L1CDLongAudioSource * sound in risingSoundsArray){
         float riseTime = [self riseTimeForSound:sound];
         sound.volume = sound.volume+SOUND_UPDATE_TIME_STEP/riseTime;        
@@ -290,7 +303,9 @@
             NSLog(@"Done rising %@",sound.key);
 
             sound.volume=1.0;
-            [risingSounds removeObjectForKey:sound.key];
+            @synchronized(risingSounds){
+                [risingSounds removeObjectForKey:sound.key];
+            }
         }
 
     }
@@ -299,30 +314,51 @@
 
 - (void) cdAudioSourceDidFinishPlaying:(CDLongAudioSource *) audioSource
 {
+    
+    // This sound *should* be an instance of our subclass.  Otherwise not sure what
+    // is happening
     if (![audioSource isKindOfClass:[L1CDLongAudioSource class]]) return;
     L1CDLongAudioSource * source = (L1CDLongAudioSource*) audioSource;
     NSLog(@"Sound finished: %@",source.key);
     
+    
+    // If the sound is a speech track then note that it is no longer active, 
+    // so that another can replace it without a clash.
     if ([source.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
+
+    // If this track is the intro track then note that it has stopped playing so we do
+    // not try to stop it again.  We also post a notificiation that tells the main view controller
+    // (and anyone else who wants to know) that it has finsihed.
     if ([source.key isEqualToString:INTRO_SOUND_KEY]){
         introIsPlaying=NO;
         [[NSNotificationCenter defaultCenter] postNotificationName:HH_INTRO_SOUND_ENDED_NOTIFICATION object:nil];
     }
     
-    
+    // We do not want to play speech nodes twice in a short time period if they
+    // finish completely.  Record what time it finished so we can check again later.
     if (source.soundType==L1SoundTypeSpeech){
         [lastCompletionTime setObject:[NSDate date] forKey:source.key];
     }
     
     //We want to repeat music and atmost when they finish
-    if (source.soundType==L1SoundTypeMusic || source.soundType==L1SoundTypeAtmos){
+//    if (source.soundType==L1SoundTypeMusic || source.soundType==L1SoundTypeAtmos){
+    if (source.soundType!=L1SoundTypeSpeech){
         [source play];
     }
     else
+        // For other sounds we just note that they are no longer rising or falling and remove the reference
+        // to them so they are freed.
     {
-        if ([risingSounds objectForKey:source.key]) [risingSounds removeObjectForKey:source.key];
+        @synchronized(risingSounds){
+            if ([risingSounds objectForKey:source.key]) [risingSounds removeObjectForKey:source.key];
+        }
+        @synchronized(fadingSounds){
         if ([fadingSounds objectForKey:source.key]) [fadingSounds removeObjectForKey:source.key];
-        [audioSamples removeObjectForKey:source.key];
+        }
+        @synchronized(audioSamples){
+            [audioSamples removeObjectForKey:source.key];
+        }    
+        
     }
     
     
