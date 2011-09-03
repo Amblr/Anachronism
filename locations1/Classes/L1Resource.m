@@ -98,16 +98,17 @@ static NSSet * HHspeechNodes=nil;
 -(void) failedDownloadingResourceDataWithError:(NSError*) error
 {
     NSLog(@"Failed download of resource.\nname:%@ \nurl: %@\nerror:%@",self.name,self.url,error);
-    NSRange range = [self.url rangeOfString:@"soundcloud"];
-    BOOL isSoundCloud = range.length!=0;
+//    NSRange range = [self.url rangeOfString:@"soundcloud"];
+//    BOOL isSoundCloud = range.length!=0;
     NSLog(@"code = %d",[error code]);
     
-    if ([error code]==403 && isSoundCloud){
-        NSLog(@"Received  403 Error from SoundCloud - trying again in 30 seconds");
+    if ([error code]!=404){
+        NSLog(@"Re-trying download soon");
         SEL selector = @selector(rerunWrapper:);
         [self performSelector:selector withObject:nil afterDelay:30.0]; 
     }
-    
+    self.downloading=NO;
+
     
 //    if ([self.type isEqualToString:@"sound"]){
 //#warning TEST CODE
@@ -118,7 +119,6 @@ static NSSet * HHspeechNodes=nil;
 //        NSData * data = [NSData dataWithContentsOfFile:filename];
 //        [self downloadedResourceData:data response:nil];
 //    }
-    self.downloading=NO;
 }
 
 -(void) downloadResourceData
