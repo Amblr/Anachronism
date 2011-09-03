@@ -11,7 +11,7 @@
 #import "L1Utils.h"
 
 
-
+#define FORCE_INTRO_LANUCH 1
 
 
 #define SPECIAL_SHAPE_NODE_NAME @"2508 bway sound track01"
@@ -75,11 +75,13 @@
 }
 
 
+
+
 -(void) checkFirstLaunch{
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *markerPath = [documentsPath stringByAppendingPathComponent:@"application_launched_before.marker"];
     NSFileManager * manager = [[NSFileManager alloc]init];
-    if (![manager fileExistsAtPath:markerPath] || 1){
+    if (![manager fileExistsAtPath:markerPath] || FORCE_INTRO_LANUCH){
         //Do all the first launch things
         BOOL ok = [manager createFileAtPath:markerPath contents:[NSData data] attributes:nil];
         NSAssert(ok, @"Failed to create marker file.");
@@ -89,7 +91,7 @@
             
         
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(aWindowBecameMain:)
+                                                 selector:@selector(skipIntro:)
                                                      name:HH_INTRO_SOUND_ENDED_NOTIFICATION object:nil];
 
         
@@ -253,7 +255,7 @@
 -(void) nodeSoundOff:(L1Node*) node
 {
     NSLog(@"Node off: %@",node.name);
-        [soundManager stopSoundWithKey:node.key];
+    [soundManager stopSoundWithKey:node.key];
 }
 
 #pragma mark -
