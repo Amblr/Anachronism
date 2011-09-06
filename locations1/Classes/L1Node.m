@@ -52,7 +52,7 @@ static NSDateFormatter * dateParser = nil;
 {
 	self.name = [nodeDictionary objectForKey:@"name"]; 
 	self.text = [nodeDictionary objectForKey:@"description"]; 
-    NSLog(@"desc = %@", self.text);
+//    NSLog(@"desc = %@", self.text);
 	self.radius = [nodeDictionary objectForKey:@"radius"];
 	NSArray * coords = [nodeDictionary objectForKey:@"coords"];
 	self.latitude = [coords objectAtIndex:0];
@@ -69,7 +69,7 @@ static NSDateFormatter * dateParser = nil;
     }
         NSString * dateString = [self.metadata objectForKey:@"date"];
     self.date = [dateParser dateFromString:dateString];
-    NSLog(@"date = %@ (%@)",self.date,[nodeDictionary objectForKey:@"created_at"]);
+//    NSLog(@"date = %@ (%@)",self.date,[nodeDictionary objectForKey:@"created_at"]);
 
     /* Resources.  Get an array of them. */
     self.resources = [[[NSMutableArray alloc] init] autorelease];
