@@ -72,6 +72,8 @@
     if (self){
         audioSamples = [[NSMutableDictionary alloc] initWithCapacity:0];
         activeSpeechTrack=nil;
+        activeAtmosTrack=nil;
+        activeMusicTrack=nil;
         fadingSounds = [[NSMutableDictionary alloc] initWithCapacity:0];
         risingSounds = [[NSMutableDictionary alloc] initWithCapacity:0];
         
@@ -79,7 +81,10 @@
         introIsPlaying=NO;
         volumeChangeTimer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(updateSoundVolumes:) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:volumeChangeTimer forMode:NSDefaultRunLoopMode];
-        if ([L1Utils versionIs3X]){
+        
+        on3G = [L1Utils versionIs3X];
+        
+        if (on3G){
             speechTimeForInterruption = SPEECH_TIME_FOR_INTERRUPTION_3G;
             speechDurationForNoInterruption = SPEECH_DURATION_FOR_NO_INTERRUPTION_3G;
         }
@@ -266,6 +271,30 @@
         }
         activeSpeechTrack=sound.key;
     }
+    if (on3G){
+        if (soundType==L1SoundTypeAtmos){
+            if (activeAtmosTrack){
+                [self fadeOutSound:activeAtmosTrack];
+                NSLog(@"Fading old atmos track: %@",activeAtmosTrack);
+            }
+            activeAtmosTrack=sound.key;
+        }
+        else if (soundType==L1SoundTypeMusic){
+            if (activeMusicTrack){
+                [self fadeOutSound:activeMusicTrack];
+                NSLog(@"Fading old music track: %@",activeMusicTrack);
+            }
+            activeMusicTrack=sound.key;
+        }
+        
+        
+    }
+
+        
+        
+        
+        
+        
     
     NSLog(@"Playing sound %@",filename);
     }
@@ -348,7 +377,13 @@
             [sound pause];
             //This is no longer the active speech track as it has finished.
             if ([sound.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
-                [fadingSounds removeObjectForKey:sound.key];
+            if (on3G){
+                if ([sound.key isEqualToString:activeAtmosTrack]) activeAtmosTrack=nil;
+                if ([sound.key isEqualToString:activeMusicTrack]) activeMusicTrack=nil;
+                
+            }
+            
+            [fadingSounds removeObjectForKey:sound.key];
         }
     }
     
@@ -387,6 +422,12 @@
     // so that another can replace it without a clash.
     if ([source.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
 
+    if (on3G){
+        if ([source.key isEqualToString:activeMusicTrack]) activeMusicTrack=nil;
+        if ([source.key isEqualToString:activeAtmosTrack]) activeAtmosTrack=nil;
+
+    }
+        
     // If this track is the intro track then note that it has stopped playing so we do
     // not try to stop it again.  We also post a notificiation that tells the main view controller
     // (and anyone else who wants to know) that it has finsihed.

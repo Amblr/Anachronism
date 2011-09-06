@@ -37,7 +37,14 @@
     NSMutableDictionary * fadingSounds;
     NSMutableDictionary * risingSounds;
     NSMutableDictionary *audioSamples;
+
     NSString * activeSpeechTrack;
+    NSString * activeMusicTrack;
+    NSString * activeAtmosTrack;
+    
+    BOOL on3G;
+    
+    
     BOOL introIsPlaying;
     BOOL introBeforeBreakPoint;
     NSDate * introSoundLaunchTime;
