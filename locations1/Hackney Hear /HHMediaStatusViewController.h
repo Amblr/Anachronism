@@ -15,6 +15,10 @@
     UIImage * warningIcon;
     UIImage * doneIcon;
     UIImage * downloadingIcon;
+    NSMutableArray * readyResources;
+    NSMutableArray * downloadingResources;
+    NSMutableArray * problemResources;
+    
 }
 
 @property (retain) L1Scenario * scenario;

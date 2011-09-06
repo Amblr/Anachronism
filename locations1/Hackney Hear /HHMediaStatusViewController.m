@@ -9,6 +9,10 @@
 #import "HHMediaStatusViewController.h"
 #import "L1Node.h"
 
+#define READY_SECTION 0
+#define DOWNLOADING_SECTION 1
+#define PROBLEM_SECTION 2
+
 
 @implementation HHMediaStatusViewController
 @synthesize scenario;
@@ -17,14 +21,61 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.scenario = nil;
-        warningIcon = nil;
-        doneIcon = nil;
-        downloadingIcon = nil;
-        
 
     }
     return self;
+}
+
+-(void) awakeFromNib
+{
+    [super awakeFromNib];
+    self.scenario = nil;
+    warningIcon = nil;
+    doneIcon = nil;
+    downloadingIcon = nil;
+    readyResources = [[NSMutableArray alloc] initWithCapacity:0];
+    problemResources = [[NSMutableArray alloc] initWithCapacity:0];
+    downloadingResources = [[NSMutableArray alloc] initWithCapacity:0];
+
+    NSLog(@"View awoken!");
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resourceReady:) name:L1_RESOURCE_DATA_IS_READY object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resourceProblem:) name:L1_RESOURCE_DATA_IS_PROBLEM object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resourceDownloading:) name:L1_RESOURCE_DATA_IS_DOWNLOADING object:nil];
+
+    
+}
+
+-(void) resourceDownloading:(NSNotification*) notification
+{
+    L1Resource * resource = [notification object];
+
+    if ([downloadingResources indexOfObject:resource.name]==NSNotFound) [downloadingResources addObject:resource.name];
+    NSLog(@"NOTIFICATION %@",L1_RESOURCE_DATA_IS_DOWNLOADING);
+    [self.tableView reloadData];
+}
+
+
+-(void) resourceReady:(NSNotification*) notification
+{
+    L1Resource * resource = [notification object];
+    NSLog(@"NOTIFICATION %@",L1_RESOURCE_DATA_IS_READY);
+    NSLog(@"Resource = %@",resource);
+
+    if ([readyResources indexOfObject:resource.name]==NSNotFound) [readyResources addObject:resource.name];
+    [downloadingResources removeObject:resource.name];
+    [problemResources removeObject:resource.name];
+    [self.tableView reloadData];
+
+}
+
+-(void) resourceProblem:(NSNotification*) notification
+{
+    L1Resource * resource = [notification object];
+    NSLog(@"NOTIFICATION %@",L1_RESOURCE_DATA_IS_PROBLEM);
+
+        if ([problemResources indexOfObject:resource.name]==NSNotFound)[problemResources addObject:resource.name];
+    [self.tableView reloadData];
+
 }
 
 - (void)dealloc
@@ -97,19 +148,30 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    NSLog(@"Three sections");
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"Scenario: %@",self.scenario);
-    // Return the number of rows in the section.
-    if (self.scenario){
-        int N = [self.scenario.nodes count];
-        NSLog(@"Key: %@  (%d nodes)",self.scenario.key,N);
-        return N;
+    if (section==READY_SECTION){
+        return [readyResources count];
+    }
+    else if (section==DOWNLOADING_SECTION){
+        return [downloadingResources count];
+    }
+    else if (section==PROBLEM_SECTION){
+        return [problemResources count];
     }
     return 0;
+//    NSLog(@"Scenario: %@",self.scenario);
+//    // Return the number of rows in the section.
+//    if (self.scenario){
+//        int N = [self.scenario.nodes count];
+//        NSLog(@"Key: %@  (%d nodes)",self.scenario.key,N);
+//        return N;
+//    }
+//    return 0;
 }
 
 -(UIImage*) iconForDoneStatus:(BOOL) done downloadingStatus:(BOOL) downloading
@@ -135,24 +197,22 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-    
-    L1Node * node = [[self.scenario.nodes allValues] objectAtIndex:[indexPath indexAtPosition:1]];
-    
-
-    L1Resource * firstResource = nil;
-    for(L1Resource * resource in node.resources){
-        if ([resource.type isEqualToString:@"sound"] && resource.saveLocal && resource.local){
-            firstResource = resource;
-            break;
-        }   
+    cell.textLabel.adjustsFontSizeToFitWidth=YES;
+    int section = [indexPath indexAtPosition:0];
+    int number = [indexPath indexAtPosition:1];
+    if (section==READY_SECTION){
+        cell.textLabel.text = [readyResources objectAtIndex:number];
+        cell.imageView.image = [self iconForDoneStatus:YES downloadingStatus:NO];
     }
-    if (firstResource){
-        cell.imageView.image = [self iconForDoneStatus:firstResource.local downloadingStatus:firstResource.downloading];
-        cell.textLabel.text = node.name;
-
+    else if (section==PROBLEM_SECTION){
+        cell.textLabel.text = [problemResources objectAtIndex:number];
+        cell.imageView.image = [self iconForDoneStatus:NO downloadingStatus:NO];
     }
+    else if (section==DOWNLOADING_SECTION){
+        cell.textLabel.text = [downloadingResources objectAtIndex:number];
+        cell.imageView.image = [self iconForDoneStatus:NO downloadingStatus:YES];
         
-    // Configure the l
+    }
     
     return cell;
 }
