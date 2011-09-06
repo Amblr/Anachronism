@@ -46,6 +46,7 @@
 -(void) zoomToNode:(L1Node*) node;
 -(void) zoomToCoordinate:(CLLocationCoordinate2D) coordinate;
 -(void) zoomInToNode:(L1Node*) node;
+-(void) zoomInToCoordinate:(CLLocationCoordinate2D) center size:(float) size;
 
 -(void) mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view;
 -(void) mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray*) annotationViews;

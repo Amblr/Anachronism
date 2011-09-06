@@ -45,15 +45,22 @@
     [super viewDidLoad];
 	primaryMapView.delegate=self;
     
-    MKCoordinateRegion newRegion;
-    newRegion.center.latitude = 51.75;
-    newRegion.center.longitude = -1.25;
-    newRegion.span.latitudeDelta = 0.04;
-    newRegion.span.longitudeDelta = 0.04;
+//    MKCoordinateRegion newRegion;
+//    newRegion.center.latitude = 51.75;
+//    newRegion.center.longitude = -1.25;
+//    newRegion.span.latitudeDelta = 0.04;
+//    newRegion.span.longitudeDelta = 0.04;
     
     circleColors = [[NSMutableDictionary alloc] initWithCapacity:0];
-	
-    [primaryMapView setRegion:newRegion animated:YES];
+
+    float lat_center = 51.535463;
+    float lon_center = -0.062656;
+    CLLocationCoordinate2D center;
+    center.latitude=lat_center;
+    center.longitude=lon_center;
+    [self zoomInToCoordinate:center size:400.0];
+
+//    [primaryMapView setRegion:newRegion animated:NO];
     
     SimulatedLocationManager * fakeManager = [SimulatedLocationManager sharedSimulatedLocationManager];
     [fakeManager.delegates addObject:self];
@@ -97,11 +104,12 @@
 
 }
 
+
+
 -(void) zoomToNode:(L1Node*) node
 {
     CLLocationCoordinate2D centerCoord = [node coordinate];
     [self zoomToCoordinate:centerCoord];
-
 }
 
 
@@ -110,8 +118,15 @@
     CLLocationCoordinate2D centerCoordinate = node.coordinate;
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(centerCoordinate, 1000., 1000.);
     [primaryMapView setRegion:region animated:YES];
-
 }
+
+-(void) zoomInToCoordinate:(CLLocationCoordinate2D) center size:(float) size
+{
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(center, size, size);
+    [primaryMapView setRegion:region animated:YES];
+}
+
+
 
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
@@ -252,7 +267,7 @@
         MKCircleView *circleView = [[MKCircleView alloc] initWithCircle:circle];
         circleView.alpha = 0.33;
         circleView.lineWidth = 3.0;
-        if (myCircle.soundType==L1SoundTypeSpeech) circleView.strokeColor = [UIColor cyanColor];
+        if (myCircle.soundType==L1SoundTypeSpeech) circleView.strokeColor = [UIColor redColor];
         
         else circleView.strokeColor = [UIColor greenColor];
         return [circleView autorelease];
