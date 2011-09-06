@@ -19,6 +19,6 @@
 
 -(void) addNodes:(NSArray*) newNodes;
 -(void) updateLocation:(CLLocationCoordinate2D)location;
-
+-(void) downloadAll;
 
 @end

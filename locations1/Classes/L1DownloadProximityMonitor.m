@@ -7,7 +7,7 @@
 //
 
 #import "L1DownloadProximityMonitor.h"
-#define DEFAULT_PROXIMITY_TRIGGER 250
+#define DEFAULT_PROXIMITY_TRIGGER 150
 
 @implementation L1DownloadProximityMonitor
 @synthesize proximityTrigger;
@@ -47,11 +47,21 @@
     [updatedLocation release];
 }
 
-
+-(void) downloadAll
+{
+    for (L1Node * node in nodes){
+        for (L1Resource * resource in node.resources){
+            if (!resource.local) {
+                [resource downloadResourceData];   
+            }
+        }
+    }
+}
 
 -(void) dealloc
 {
     [nodes release];
+    [super dealloc];
 }
 
 @end
