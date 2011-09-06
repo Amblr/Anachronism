@@ -7,11 +7,12 @@
 //
 
 #import "HHSoundManager.h"
+#import "L1Utils.h"
 
 #define SOUND_UPDATE_TIME_STEP 0.5
 
 #define SOUND_FADE_TIME 5.0
-#define SOUND_FADE_TIME_SPEECH 3.0
+#define SOUND_FADE_TIME_SPEECH 2.0
 #define SOUND_FADE_TIME_INTRO 2.0
 #define SOUND_FADE_TIME_MUSIC 15.0
 #define SOUND_FADE_TIME_ATMOS 15.0
@@ -24,12 +25,12 @@
 
 #define SPEECH_RESTART_REWIND 2.0
 
-
-#define SPEECH_MINIMUM_INTERVAL 60
+#define SPEECH_MINIMUM_INTERVAL 420
 #define INTRO_SOUND_BREAK_POINT 68
 #define INTRO_SOUND_KEY @"HH_INTRO_SOUND"
 
-
+#define SPEECH_TIME_FOR_INTERRUPTION_3G 15.0
+#define SPEECH_DURATION_FOR_NO_INTERRUPTION_3G 60.0
 
 @implementation L1CDLongAudioSource
 @synthesize soundType;
@@ -43,7 +44,16 @@
     if (newTime<0.0) newTime=0.0;
     if (newTime>maxTime) newTime=maxTime-0.01; //Give some buffer just before end, just in case.
     [audioSourcePlayer setCurrentTime:newTime];
-    
+}
+
+-(NSTimeInterval) currentTime
+{
+    return audioSourcePlayer.currentTime;
+}
+
+-(NSTimeInterval) totalTime
+{
+    return audioSourcePlayer.duration;
 }
 
 
@@ -69,6 +79,16 @@
         introIsPlaying=NO;
         volumeChangeTimer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(updateSoundVolumes:) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:volumeChangeTimer forMode:NSDefaultRunLoopMode];
+        if ([L1Utils versionIs3X]){
+            speechTimeForInterruption = SPEECH_TIME_FOR_INTERRUPTION_3G;
+            speechDurationForNoInterruption = SPEECH_DURATION_FOR_NO_INTERRUPTION_3G;
+        }
+        else{
+            speechTimeForInterruption = 0.0;
+            speechDurationForNoInterruption = 0.0;
+        }
+        NSLog(@"Min progress for interruption: %f",speechTimeForInterruption);
+        NSLog(@"Duration for never any interruption: %f",speechDurationForNoInterruption);
    
     }
     return self;
@@ -80,26 +100,34 @@
 #pragma mark Intro Sound
 -(void) skipIntro
 {
+    //This quick exit test is outside the test because otherwise we can get a deadlock
+    //if another synchronized method here posts a notification to the main view which in turn
+    //calls this again.  Bad design on my part.
     if (!introIsPlaying) return;
+    @synchronized(self){
     NSLog(@"Skipping Intro");
     [self fadeOutSound:INTRO_SOUND_KEY];
     introIsPlaying=NO;
     introBeforeBreakPoint=NO;
-    
+    }
 }
 
 
 -(void) introBreakReached:(NSObject*) dummy
 {
+    @synchronized(self){
     //We have reached the break-point in the audio.  From now on we should 
     //end the intro if any audio is triggered.
     NSLog(@"Reached Intro Audio Break Point");
     introBeforeBreakPoint=NO;
+    }
 }
 
 
 -(void) startIntro
 {
+    @synchronized(self){
+
     L1CDLongAudioSource * introSound = [[L1CDLongAudioSource alloc] init];
     introSound.delegate=self;
     introSound.soundType=L1SoundTypeIntro;
@@ -112,26 +140,30 @@
     introIsPlaying=YES;
     introBeforeBreakPoint=YES;
     [self performSelector:@selector(introBreakReached:) withObject:nil afterDelay:INTRO_SOUND_BREAK_POINT];
+    }
 }
 
 
 -(void) fadeOutSound:(NSString *) key
 {
+    @synchronized(self){
+
     L1CDLongAudioSource * sound = [audioSamples objectForKey:key];
     if (!sound){
         NSLog(@"Tried to fade out sound not found: %@",sound.key);
         return;
     }
     //If the sound is already rising then we should over-rule this and start fading.
-    if ([risingSounds objectForKey:key]){
-        [risingSounds removeObjectForKey:key];
+        if ([risingSounds objectForKey:key]){
+            [risingSounds removeObjectForKey:key];
+        }
+        [fadingSounds setObject:sound forKey:key];
     }
-    [fadingSounds setObject:sound forKey:key];
-    
 }
 
 -(void) fadeInSound:(NSString *) key
 {
+    @synchronized(self){
     L1CDLongAudioSource * sound = [audioSamples objectForKey:key];
     if (!sound){
         NSLog(@"Tried to fade out sound not found: %@",sound.key);
@@ -139,26 +171,51 @@
     }
 
     //If the sound is already fading then we should over-rule this and start rising.
-    if ([fadingSounds objectForKey:key]){
-        [fadingSounds removeObjectForKey:key];
+        if ([fadingSounds objectForKey:key]){
+            [fadingSounds removeObjectForKey:key];
+        }
+        [risingSounds setObject:sound forKey:key];
     }
-    [risingSounds setObject:sound forKey:key];
+}
 
-    
+
+-(BOOL) newSpeechNodeShouldStart
+{
+    @synchronized(self){
+    L1CDLongAudioSource * sound = nil;
+    sound = [audioSamples objectForKey:activeSpeechTrack];
+    if (!sound) return YES;
+    if ([sound totalTime]<speechTimeForInterruption) return NO;
+    if ([sound currentTime]<speechDurationForNoInterruption) return NO;
+    return YES;
+    }
 }
 
 
 -(void) playSoundWithFilename:(NSString*)filename key:(NSString*)key type:(L1SoundType) soundType
 {
-    NSDate * lastPlay = [lastCompletionTime objectForKey:key];
-    if (lastPlay && [[NSDate date] timeIntervalSinceDate:lastPlay]<SPEECH_MINIMUM_INTERVAL){
-        NSLog(@"Not playing sound - too recent.");
-        return;
+    @synchronized(self){
+    if (soundType==L1SoundTypeSpeech){
+        NSDate * lastPlay = [lastCompletionTime objectForKey:key];
+        NSTimeInterval timeSinceLastPlay = [[NSDate date] timeIntervalSinceDate:lastPlay];
+        if (lastPlay) NSLog(@"Sound %@ was last completed at %f",key,timeSinceLastPlay);
+        else NSLog(@"Sound has never previously been completed");
+
+        if (lastPlay && (timeSinceLastPlay<SPEECH_MINIMUM_INTERVAL)){
+            NSLog(@"Not playing sound - too recent.");
+            return;
+        }
     }
     
     //If we have reached the intro break point
     //then starting any new node should kill the intro
-    if (!introBeforeBreakPoint) [self skipIntro];
+    //we also post the general notificiation.
+    //In general this does cause the skipIntro to be invoked twice, annoyingly.
+    //I had to put the test for quick return in that method outside the synchronization for that reason.
+    if (!introBeforeBreakPoint){
+         [self skipIntro];   
+        [[NSNotificationCenter defaultCenter] postNotificationName:HH_INTRO_SOUND_ENDED_NOTIFICATION object:nil];
+    }
     
     //If we find the sound in audioSamples then we must have played it before.
     //Otherwise it is new
@@ -167,6 +224,7 @@
     //If this is a new sound we will need to load it and then play it.
     //And this is pretty much it.
     if (!sound){
+        NSLog(@"New sound found!");
         sound = [[L1CDLongAudioSource alloc] init];
         sound.delegate=self;
         sound.soundType=soundType;
@@ -177,18 +235,25 @@
         [sound release];
     }
     else{
+        NSLog(@"Resuming old sound.");
+
         //If it is a resumed sound then we can restart it.
         //But we rewind two seconds
         //If speech, restart at full volume immediately
         if (sound.soundType==L1SoundTypeSpeech){
+            NSLog(@"The resumed sound is speech - jumping back and setting volume to 1.0");
+            [sound resume];
             sound.volume=1.0;
+
             [sound timeJump:-SPEECH_RESTART_REWIND];
         }
         //If not speech, fade in.
         else{
+            NSLog(@"The resumed sound is not speech - fading in.");
+            [sound resume];
+
             [self fadeInSound:sound.key];
         }
-        [sound resume];
 
         
     }
@@ -203,6 +268,7 @@
     }
     
     NSLog(@"Playing sound %@",filename);
+    }
 }
 
 
@@ -260,6 +326,7 @@
 //We keep track of whether there are any sounds rising or falling.
 -(void) updateSoundVolumes:(NSObject*) dummy
 {
+    @synchronized(self){
     //Quick exit if there are no sounds to process.
     int nRising = [risingSounds count];
     int nFading = [fadingSounds count];
@@ -267,9 +334,7 @@
 
     //Fade out the fading sounds.
     NSArray * fadingSoundsArray;
-    @synchronized(fadingSounds){
         fadingSoundsArray = [fadingSounds allValues];
-    }
     for (L1CDLongAudioSource * sound in fadingSoundsArray){
         //Reduce the volume by the correct amount, which depends on the total fade time.
         float fadeTime = [self fadeTimeForSound:sound];
@@ -283,16 +348,12 @@
             [sound pause];
             //This is no longer the active speech track as it has finished.
             if ([sound.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
-            @synchronized(fadingSounds){
                 [fadingSounds removeObjectForKey:sound.key];
-            }
         }
     }
     
     NSArray * risingSoundsArray;
-    @synchronized(risingSounds){
         risingSoundsArray = [risingSounds allValues];
-    }
     for (L1CDLongAudioSource * sound in risingSoundsArray){
         float riseTime = [self riseTimeForSound:sound];
         sound.volume = sound.volume+SOUND_UPDATE_TIME_STEP/riseTime;        
@@ -303,17 +364,17 @@
             NSLog(@"Done rising %@",sound.key);
 
             sound.volume=1.0;
-            @synchronized(risingSounds){
                 [risingSounds removeObjectForKey:sound.key];
-            }
         }
 
+    }
     }
 }
 
 
 - (void) cdAudioSourceDidFinishPlaying:(CDLongAudioSource *) audioSource
 {
+    @synchronized(self){
     
     // This sound *should* be an instance of our subclass.  Otherwise not sure what
     // is happening
@@ -349,18 +410,12 @@
         // For other sounds we just note that they are no longer rising or falling and remove the reference
         // to them so they are freed.
     {
-        @synchronized(risingSounds){
             if ([risingSounds objectForKey:source.key]) [risingSounds removeObjectForKey:source.key];
-        }
-        @synchronized(fadingSounds){
         if ([fadingSounds objectForKey:source.key]) [fadingSounds removeObjectForKey:source.key];
-        }
-        @synchronized(audioSamples){
             [audioSamples removeObjectForKey:source.key];
-        }    
         
     }
-    
+    }
     
 }
 

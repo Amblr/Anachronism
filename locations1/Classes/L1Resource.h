@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#define L1_RESOURCE_DATA_IS_READY @"L1_RESOURCE_DATA_IS_READY"
+#define L1_RESOURCE_DATA_IS_PROBLEM @"L1_RESOURCE_DATA_IS_PROBLEM"
+#define L1_RESOURCE_DATA_IS_DOWNLOADING @"L1_RESOURCE_DATA_IS_DOWNLOADING"
 
 
 typedef enum L1SoundType {
@@ -27,6 +29,7 @@ typedef enum L1SoundType {
     NSString * url;
     NSString * type;
     BOOL local;
+    BOOL bundled;
     BOOL downloading;
     BOOL saveLocal;
     NSString * localFilename;
@@ -39,8 +42,9 @@ typedef enum L1SoundType {
 -(id) initWithDictionary:(NSDictionary*) data;
 -(id) initWithKey:(NSString*) resourceKey;
 -(NSString*) localFileName;
+-(NSString*) localFilePath;
 -(void) flush;
-
+-(NSString*) bundleFilename;
 
 +(void) setupHHSpeechNodes;
 

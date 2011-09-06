@@ -23,6 +23,8 @@
 }
 
 -(void) timeJump:(NSTimeInterval) deltaTime;
+-(NSTimeInterval) currentTime;
+-(NSTimeInterval) totalTime;
 
 @property (assign) L1SoundType soundType;
 @property (retain) NSString * key;
@@ -41,6 +43,9 @@
     NSDate * introSoundLaunchTime;
     NSMutableDictionary * lastCompletionTime;
     NSTimer * volumeChangeTimer;
+    NSDate * activeSpeechStartTime;
+    NSTimeInterval speechTimeForInterruption;
+    NSTimeInterval speechDurationForNoInterruption;
 
 }
 

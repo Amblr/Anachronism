@@ -43,6 +43,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    realGPSControl=[[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
+    
     soundManager = [[HHSoundManager alloc] init];
 
     BOOL ok = [L1Utils initializeDirs];
@@ -68,10 +70,13 @@
 
 -(void) skipIntro:(NSObject*) dummy
 {
+    NSLog(@"The intro ended or was skipped somehow.");
     [skipButton removeFromSuperview];
     skipButton = nil;
     [soundManager skipIntro];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self locationUpdate:locationManager.location.coordinate];
+
 }
 
 
@@ -119,6 +124,7 @@
     //This is also a good time to check for location updates, in case the user
     //just switched to real location from fake or vice versa.
     realGPSControl = [[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
+//    realGPSControl=YES;
     trackMe = [[NSUserDefaults standardUserDefaults] boolForKey:@"track_user_location"];
     [locationManager startUpdatingLocation];
     if (self.scenario){
@@ -174,7 +180,7 @@
         //Choose the colour here.
         UIColor * circleColor;
         BOOL isSpeech = (sound.soundType==L1SoundTypeSpeech);
-        if (isSpeech) circleColor = [UIColor cyanColor];
+        if (isSpeech) circleColor = [UIColor redColor];
         else circleColor = [UIColor greenColor];
         
         //Create the circle here, store it so we can keep track and change its color later,
@@ -192,8 +198,14 @@
     //We use an arbitrary on to zoom to for now.
     if ([nodes count]) {
         L1Node * firstNode = [[nodes allValues] objectAtIndex:0];
-        [mapViewController zoomToNode:firstNode];
-        
+//        [mapViewController zoomInToCoordinate:];
+//        -(void) zoomInToCoordinate:(CLLocationCoordinate2D) center size:(float) size
+        float lat_center = 51.535463;
+        float lon_center = -0.062656;
+        CLLocationCoordinate2D center;
+        center.latitude=lat_center;
+        center.longitude=lon_center;
+        [mapViewController zoomInToCoordinate:center size:400.0];
         //We also add a pin representing the fake user location (for testing)
         //a little offset from the first node.
         CLLocationCoordinate2D firstNodeCoord = firstNode.coordinate;
@@ -230,7 +242,7 @@
         if ([resource.type isEqualToString:@"sound"] && resource.saveLocal){
             if (resource.local){
                 *soundType = resource.soundType;
-                return [resource localFileName];
+                return [resource localFilePath];
             }else{
                 [resource downloadResourceData]; //We wanted the data but could not get it.  Start DL now so we might next time.
             }
@@ -348,7 +360,7 @@
                     L1Circle * circle = [circles valueForKey:node.key];
                     if (circle){
                         if (resource.soundType==L1SoundTypeSpeech){
-                            [mapViewController setColor:[UIColor cyanColor] forCircle:circle];
+                            [mapViewController setColor:[UIColor redColor] forCircle:circle];
                         }else {
                             [mapViewController setColor:[UIColor greenColor] forCircle:circle];
                         }
@@ -363,6 +375,11 @@
     }
 }
 
+
+-(IBAction) downloadAllTheThings
+{
+    [proximityMonitor downloadAll];
+}
 
 
 
