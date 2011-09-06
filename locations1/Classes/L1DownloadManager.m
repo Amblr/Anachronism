@@ -10,7 +10,7 @@
 #import "SynthesizeSingleton.h"
 
 
-#define DEFAULT_MAX_SIMULTANEOUS_DOWNLOADS 5
+#define DEFAULT_MAX_SIMULTANEOUS_DOWNLOADS 4
 
 
 @interface L1DownloadTarget : NSObject {
@@ -146,5 +146,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(L1DownloadManager)
     [self considerDownload];
     
 }
+
 
 @end

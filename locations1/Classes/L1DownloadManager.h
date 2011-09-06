@@ -14,8 +14,7 @@
     int maxSimultaneousDownloads;
     int currentDownloadIndex;
     NSMutableArray * currentDownloads;
-    L1Queue * downloadQueue;
-    
+    L1Queue * downloadQueue;    
 }
 
 
