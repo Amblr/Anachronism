@@ -18,6 +18,7 @@
 +(NSString*) resourceDirectory;
 +(NSString*) soundDirectory;
 +(BOOL) initializeDirs;
++(BOOL) versionIs3X;
 
 @end
 

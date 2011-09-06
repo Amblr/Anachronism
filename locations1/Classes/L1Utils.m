@@ -47,6 +47,18 @@
     
 }
 
+
++(BOOL) versionIs3X
+{
+    NSString * versionString = [[UIDevice currentDevice] systemVersion];
+    NSLog(@"Device version string: %@",versionString);
+    if ([versionString characterAtIndex:0]=='3'){
+        return YES;
+    }
+    return NO;
+    
+}
+
 +(NSString*) cacheDirectory
 {
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, NO);
