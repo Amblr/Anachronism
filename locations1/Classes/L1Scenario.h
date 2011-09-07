@@ -45,6 +45,9 @@
 -(int) nodeCount;
 -(int) pathCount;
 
+
++(L1Scenario*) scenarioFromStoryFile:(NSString*) filename withKey:(NSString *)scenarioKey;
+
 -(void) downloadedNodeData:(NSData*) data withResponse:(NSHTTPURLResponse*) response;
 -(void) failedNodeDownloadWithError:(NSError*) error;
 -(void) startNodeDownload:(NSString *) url;

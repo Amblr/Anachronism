@@ -10,7 +10,7 @@
 #import "SimpleURLConnection.h"
 #import "JSON.h"
 #import "L1Experience.h"
-
+#import "ASIHTTPRequest.h"
 
 @implementation L1Scenario
 @synthesize nodes;
@@ -47,12 +47,12 @@
 
 -(void) startStoryDownload:(NSString*)urlString
 {
+    
     SimpleURLConnection * connection = [[SimpleURLConnection alloc] initWithURL:urlString
                                                                        delegate:self 
                                                                    passSelector:@selector(downloadedStoryData:withResponse:) 
                                                                    failSelector:@selector(failedStoryDownloadWithError:) ];
-	
-	
+#warning REMOVE THIS TEMPORARY HACK AND PUT PASSWORD SOMEWHERE SENSIBLE
 	[connection.request addValue:@"application/json" forHTTPHeaderField:@"Content-type"];
 	[connection runRequest];
 
@@ -102,6 +102,7 @@
 
     
 }
+
 
 +(L1Scenario*) scenarioFromScenarioURL:(NSString*) url withKey:(NSString *)scenarioKey
 {
@@ -207,6 +208,16 @@
     [scenario startStoryDownload:url];
     return [scenario autorelease];
 }
+
++(L1Scenario*) scenarioFromStoryFile:(NSString*) filename withKey:(NSString *)scenarioKey
+{
+    L1Scenario * scenario = [[L1Scenario alloc] init];
+    scenario.key = scenarioKey;
+    NSData * data = [NSData dataWithContentsOfFile:filename];
+    [scenario downloadedStoryData:data withResponse:nil];
+    return [scenario autorelease];
+}
+
 
 //-(void) downloadStoryList:(NSString*) urlString
 //{
