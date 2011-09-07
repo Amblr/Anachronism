@@ -36,7 +36,7 @@
 
 -(void) failedStoryDownloadWithError:(NSError*) error
 {
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"A problem" message:@"Sorry - there was a problem with the app.  Please inform the Amblr Tream" delegate:nil cancelButtonTitle:@"*Sigh*" otherButtonTitles: nil];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"A problem" message:@"Sorry - there was a problem with the app.  Please inform the Amblr Team" delegate:nil cancelButtonTitle:@"*Sigh*" otherButtonTitles: nil];
     [alert show];
     
     
