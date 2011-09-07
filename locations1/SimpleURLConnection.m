@@ -80,7 +80,7 @@
         returnCode = [httpResponse statusCode];
 	
         if (returnCode/100!=2){
-            NSLog(@"Code: %@",response);
+            NSLog(@"Code: %d",returnCode);
             
             NSLog(@"Header: %@",[httpResponse allHeaderFields]);
             NSLog(@"Error %@",[NSHTTPURLResponse localizedStringForStatusCode:returnCode]);
