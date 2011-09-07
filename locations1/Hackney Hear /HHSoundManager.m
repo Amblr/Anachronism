@@ -14,8 +14,8 @@
 #define SOUND_FADE_TIME 5.0
 #define SOUND_FADE_TIME_SPEECH 2.0
 #define SOUND_FADE_TIME_INTRO 2.0
-#define SOUND_FADE_TIME_MUSIC 15.0
-#define SOUND_FADE_TIME_ATMOS 15.0
+#define SOUND_FADE_TIME_MUSIC 10.0
+#define SOUND_FADE_TIME_ATMOS 10.0
 
 #define SOUND_RISE_TIME 5.0
 #define SOUND_RISE_TIME_SPEECH 3.0
@@ -65,6 +65,7 @@
 
 @implementation HHSoundManager
 @synthesize introBeforeBreakPoint;
+@synthesize globallyPaused;
 
 -(id) init
 {
@@ -82,6 +83,8 @@
         volumeChangeTimer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(updateSoundVolumes:) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:volumeChangeTimer forMode:NSDefaultRunLoopMode];
         
+        globallyPaused=NO;
+        globallyPausedSounds = [[NSMutableArray alloc] initWithCapacity:0];
         on3G = [L1Utils versionIs3X];
         
         if (on3G){
@@ -199,6 +202,9 @@
 
 -(void) playSoundWithFilename:(NSString*)filename key:(NSString*)key type:(L1SoundType) soundType
 {
+    //Do not start playing new things if globally paused.
+    if (globallyPaused) return;
+    
     @synchronized(self){
     if (soundType==L1SoundTypeSpeech){
         NSDate * lastPlay = [lastCompletionTime objectForKey:key];
@@ -290,19 +296,19 @@
         
     }
 
-        
-        
-        
-        
-        
-    
-    NSLog(@"Playing sound %@",filename);
+
+        if (soundType==L1SoundTypeAtmos) NSLog(@"Playing atmos %@",filename);
+        else if (soundType==L1SoundTypeMusic) NSLog(@"Playing music %@",filename);
+        else if (soundType==L1SoundTypeSpeech) NSLog(@"Playing speech %@",filename);
+        else if (soundType==L1SoundTypeUnknown) NSLog(@"Playing unkown sound type %@",filename);
+        else NSLog(@"Playing something mysterious: %@",filename);
     }
 }
 
 
 -(void) stopSoundWithKey:(NSString*) key
 {
+    if (globallyPaused) return;
     [self fadeOutSound:key];
     
 }
@@ -355,6 +361,9 @@
 //We keep track of whether there are any sounds rising or falling.
 -(void) updateSoundVolumes:(NSObject*) dummy
 {
+    //Do not update if global pause is active.
+    if (globallyPaused) return;
+
     @synchronized(self){
     //Quick exit if there are no sounds to process.
     int nRising = [risingSounds count];
@@ -453,11 +462,43 @@
     {
             if ([risingSounds objectForKey:source.key]) [risingSounds removeObjectForKey:source.key];
         if ([fadingSounds objectForKey:source.key]) [fadingSounds removeObjectForKey:source.key];
-            [audioSamples removeObjectForKey:source.key];
+        [audioSamples removeObjectForKey:source.key];
         
     }
     }
     
+}
+
+-(void) unpauseGlobal{
+    for (L1CDLongAudioSource * sound in globallyPausedSounds){
+        [sound resume];
+    }
+    [globallyPausedSounds removeAllObjects];
+    globallyPaused=NO;
+    
+}
+
+-(void) pauseGlobal{
+    for (NSString * key in audioSamples){
+        L1CDLongAudioSource * sound = [audioSamples objectForKey:key];
+        if ([sound isPlaying]){
+            [sound pause];
+            [globallyPausedSounds addObject:sound];
+        }
+    }
+    globallyPaused=YES;
+}
+
+-(void) toggleGlobalPause
+{
+    @synchronized(self){
+    if (globallyPaused){
+        [self unpauseGlobal];
+    }
+    else{
+        [self pauseGlobal];
+    }
+    }
 }
 
 

@@ -10,6 +10,7 @@
 
 #import "Hackney_Hear_ViewController.h"
 #import "HTNotifier.h"
+#import "SimpleURLConnection.h"
 
 @implementation Hackney_Hear_AppDelegate
 @synthesize  scenario;
@@ -27,8 +28,9 @@
     self.window.rootViewController = self.mainTabBarController;
     NSLog(@"view controller = %@",self.mainTabBarController);
     [self.window makeKeyAndVisible];
-    [self setupScenario];
+//    [self setupScenario];
     [HTNotifier startNotifierWithAPIKey:@"bf9845eaf284ec17a3652f0a82d70702" environmentName:HTNotifierDevelopmentEnvironment];
+    [self authenticate];
 
     return YES;
 }
@@ -83,6 +85,58 @@
 #pragma mark -
 #pragma mark Story Elements
 
+-(void) hackScenarioReady:(NSData*) data
+{
+    [scenario downloadedStoryData:data withResponse:nil];
+    
+}
+
+
+-(void) authenticate
+{
+    NSString * signin = @"http://amblr.heroku.com/users/sign_in";
+    NSString * username = @"hackneyproductions@gmail.com";
+    NSString * password = @"hackneyhear";
+    NSString * dataString = [NSString stringWithFormat:@"{'user' : { 'email' : '%@', 'password' : '%@'}}", username,password];
+    
+    SimpleURLConnection * connection = [[SimpleURLConnection alloc] initWithURL:signin 
+                                                                       delegate:self 
+                                                                   passSelector:@selector(doneAuthentication:response:) 
+                                                                   failSelector:@selector(failedAuthentication:)];
+    NSMutableURLRequest * request = connection.request;
+    
+    //	[self.request setHTTPMethod:@"POST"];
+//	[self.request addValue:@"application/xml" forHTTPHeaderField:@"Content-Type"];
+//	[self.request setHTTPBody:data];
+
+    [request setHTTPMethod:@"POST"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+    NSData * data = [dataString dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:data];
+    [connection runRequest];
+    
+}
+
+-(void) doneAuthentication:(NSData*) data response:(NSHTTPURLResponse*) response
+{
+    int code = [response statusCode];
+    NSLog(@"Response %d to authentication: %@",code,[NSHTTPURLResponse localizedStringForStatusCode:code]);
+    NSString * text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",text);
+    [self setupScenario];
+}
+
+-(void) failedAuthentication:(NSError*) error
+{
+    NSString * message = [error localizedDescription];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Authentication Error" message:message delegate:self cancelButtonTitle:@"*Sigh*" otherButtonTitles:nil];
+    [alert show];
+
+    
+}
+
 -(void) setupScenario {
     
     // Use Dickens
@@ -91,12 +145,25 @@
     self.scenario = [L1Scenario scenarioFromStoryURL:storyURL withKey:@"4e249fe5d7c4b600010000c1"];
 #else
     NSString * storyURL = @"http://amblr.heroku.com/scenarios/4e15c53add71aa000100025b/stories/4e15c6be7bd01600010000c0.json";
+//    NSString * storyURL = @"http://www-astro.physics.ox.ac.uk/~jaz/story.json";
+    
     self.scenario = [L1Scenario scenarioFromStoryURL:storyURL withKey:@"4e15c53add71aa000100025b"];
+//    NSString * storyFile = [[NSBundle mainBundle]pathForResource:@"story" ofType:@"json"];
+
+    //    self.scenario = [L1Scenario scenarioFromStoryFile:storyFile withKey:@"4e15c53add71aa000100025b"];
+//    self.scenario = [[L1Scenario alloc] init];
+
+//#warning SETTING SCENARIO FROM FIXED FILE!
+//    self.scenario.key = @"4e15c53add71aa000100025b";
+//    NSData * data = [NSData dataWithContentsOfFile:storyFile];
+//    [self performSelector:@selector(hackScenarioReady:) withObject:data afterDelay:5.0];
+    
 #endif        
     //    self.scenario = [L1Scenario scenarioFromNodesURL:nodesURL pathsURL:pathsURL];
     self.scenario.delegate = hhViewController;
     hhViewController.scenario = scenario;
     mediaStatusViewController.scenario = scenario;
+    
 }
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes
 {

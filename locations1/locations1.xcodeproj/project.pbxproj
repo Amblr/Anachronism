@@ -592,6 +592,9 @@
 		D8DFC8AD138BB38100C801F9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8DFC8AC138BB38100C801F9 /* libz.dylib */; };
 		D8E867D8141673EE0043664C /* music.json in Resources */ = {isa = PBXBuildFile; fileRef = D8E867D6141673EE0043664C /* music.json */; };
 		D8E867D9141673EE0043664C /* atmos.json in Resources */ = {isa = PBXBuildFile; fileRef = D8E867D7141673EE0043664C /* atmos.json */; };
+		D8E867DC1416A5DE0043664C /* icon_controls_3.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E867DA1416A5DE0043664C /* icon_controls_3.png */; };
+		D8E867DD1416A5DE0043664C /* icon_controls_4.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E867DB1416A5DE0043664C /* icon_controls_4.png */; };
+		D8F4441514177FD2005074C9 /* story.json in Resources */ = {isa = PBXBuildFile; fileRef = D8F4441414177FD2005074C9 /* story.json */; };
 		D8F65BDD13E1E7C100E7953D /* HHMediaStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F65BDB13E1E7C100E7953D /* HHMediaStatusViewController.m */; };
 		D8F65BDE13E1E7C100E7953D /* HHMediaStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F65BDB13E1E7C100E7953D /* HHMediaStatusViewController.m */; };
 		D8F65BDF13E1E7C100E7953D /* HHMediaStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F65BDC13E1E7C100E7953D /* HHMediaStatusViewController.xib */; };
@@ -1015,6 +1018,9 @@
 		D8DFC8AC138BB38100C801F9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D8E867D6141673EE0043664C /* music.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = music.json; sourceTree = "<group>"; };
 		D8E867D7141673EE0043664C /* atmos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = atmos.json; sourceTree = "<group>"; };
+		D8E867DA1416A5DE0043664C /* icon_controls_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_controls_3.png; sourceTree = "<group>"; };
+		D8E867DB1416A5DE0043664C /* icon_controls_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_controls_4.png; sourceTree = "<group>"; };
+		D8F4441414177FD2005074C9 /* story.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = story.json; sourceTree = "<group>"; };
 		D8F65BDA13E1E7C100E7953D /* HHMediaStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHMediaStatusViewController.h; sourceTree = "<group>"; };
 		D8F65BDB13E1E7C100E7953D /* HHMediaStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHMediaStatusViewController.m; sourceTree = "<group>"; };
 		D8F65BDC13E1E7C100E7953D /* HHMediaStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HHMediaStatusViewController.xib; sourceTree = "<group>"; };
@@ -1336,6 +1342,7 @@
 		D82BC9B413C3A118003D86B4 /* Hackney Hear  */ = {
 			isa = PBXGroup;
 			children = (
+				D8F4441414177FD2005074C9 /* story.json */,
 				D8672C07141555AA0024DE5B /* HH-sounds */,
 				D8CAC114140FF8EF00881ACB /* Tiles */,
 				D804125713F5B30900535D14 /* HHIntroSound.mp3 */,
@@ -1349,6 +1356,8 @@
 				D868CC5913DB5AC400D254AC /* 103-map.png */,
 				D868CC5713DB5A7200D254AC /* 113-navigation.png */,
 				D8BB836413C5AE2D003CBDDF /* nodes.json */,
+				D8E867DA1416A5DE0043664C /* icon_controls_3.png */,
+				D8E867DB1416A5DE0043664C /* icon_controls_4.png */,
 				D8BB836513C5AE2D003CBDDF /* paths.json */,
 				D8385E5313C4D1A40016EF07 /* HH_logo_57.jpg */,
 				D8385E5413C4D1A40016EF07 /* HH_logo_114.jpg */,
@@ -1357,9 +1366,9 @@
 				D82BC9C013C3A118003D86B4 /* MainWindow.xib */,
 				D82BC9C313C3A118003D86B4 /* Hackney_Hear_ViewController.h */,
 				D82BC9C413C3A118003D86B4 /* Hackney_Hear_ViewController.m */,
+				D82BC9C613C3A118003D86B4 /* Hackney_Hear_ViewController.xib */,
 				D80A9A661410144600A34F68 /* HHSoundManager.h */,
 				D80A9A671410144600A34F68 /* HHSoundManager.m */,
-				D82BC9C613C3A118003D86B4 /* Hackney_Hear_ViewController.xib */,
 				D82BC9B513C3A118003D86B4 /* Supporting Files */,
 				D809B06113DB672800C5B656 /* Settings.bundle */,
 				D8F65BDA13E1E7C100E7953D /* HHMediaStatusViewController.h */,
@@ -2126,6 +2135,9 @@
 				D8672CB3141555AA0024DE5B /* 4e6297624809080001000be9.mp3 in Resources */,
 				D8E867D8141673EE0043664C /* music.json in Resources */,
 				D8E867D9141673EE0043664C /* atmos.json in Resources */,
+				D8E867DC1416A5DE0043664C /* icon_controls_3.png in Resources */,
+				D8E867DD1416A5DE0043664C /* icon_controls_4.png in Resources */,
+				D8F4441514177FD2005074C9 /* story.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -37,10 +37,13 @@
     L1DownloadProximityMonitor * proximityMonitor;
     UIButton * skipButton;
     HHSoundManager * soundManager;
+    IBOutlet UIButton * pauseButton;
+    
     
 }
 @property (retain) L1Scenario * scenario;
 
+-(IBAction) globalPauseToggle;
 
 // Location awareness
 -(void) locationUpdate:(CLLocationCoordinate2D) location;

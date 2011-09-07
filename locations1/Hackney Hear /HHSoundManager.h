@@ -54,10 +54,14 @@
     NSTimeInterval speechTimeForInterruption;
     NSTimeInterval speechDurationForNoInterruption;
 
+    NSMutableArray * globallyPausedSounds;
+    BOOL globallyPaused;
+
+        
 }
 
 @property (readonly) BOOL introBeforeBreakPoint;
-
+@property (readonly) BOOL globallyPaused;
 
 
 -(void) playSoundWithFilename:(NSString*)filename key:(NSString*)key type:(L1SoundType) soundType;
@@ -70,5 +74,6 @@
 -(void) fadeInSound:(NSString *) key;
 -(void) fadeOutSound:(NSString *) key;
 
+-(void) toggleGlobalPause;
 
 @end

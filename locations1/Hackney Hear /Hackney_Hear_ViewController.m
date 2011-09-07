@@ -381,6 +381,15 @@
     [proximityMonitor downloadAll];
 }
 
-
+-(IBAction) globalPauseToggle
+{
+    [soundManager toggleGlobalPause];
+    if (soundManager.globallyPaused){
+        pauseButton.imageView.image = [UIImage imageNamed:@"icon_controls_3.png"];
+    }
+    else{
+        pauseButton.imageView.image = [UIImage imageNamed:@"icon_controls_4.png"];
+    }
+}
 
 @end
