@@ -265,8 +265,8 @@
         L1Circle * myCircle = (L1Circle*) overlay;
         MKCircle * circle = [MKCircle circleWithCenterCoordinate:myCircle.coordinate radius:myCircle.radius];
         MKCircleView *circleView = [[MKCircleView alloc] initWithCircle:circle];
-        circleView.alpha = 0.33;
-        circleView.lineWidth = 3.0;
+        circleView.alpha = 0.75;
+        circleView.lineWidth = 1.0;
         if (myCircle.soundType==L1SoundTypeSpeech) circleView.strokeColor = [UIColor redColor];
         
         else circleView.strokeColor = [UIColor greenColor];
