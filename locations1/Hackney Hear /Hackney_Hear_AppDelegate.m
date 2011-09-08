@@ -12,6 +12,8 @@
 #import "HTNotifier.h"
 #import "SimpleURLConnection.h"
 
+#define LOAD_SCENARIO_FROM_FILE 0
+
 @implementation Hackney_Hear_AppDelegate
 @synthesize  scenario;
 
@@ -30,8 +32,12 @@
     [self.window makeKeyAndVisible];
 //    [self setupScenario];
     [HTNotifier startNotifierWithAPIKey:@"bf9845eaf284ec17a3652f0a82d70702" environmentName:HTNotifierDevelopmentEnvironment];
+    
+#if LOAD_SCENARIO_FROM_FILE
+    [self setupScenario];
+#else
     [self authenticate];
-
+#endif
     return YES;
 }
 
@@ -85,11 +91,6 @@
 #pragma mark -
 #pragma mark Story Elements
 
--(void) hackScenarioReady:(NSData*) data
-{
-    [scenario downloadedStoryData:data withResponse:nil];
-    
-}
 
 
 -(void) authenticate
@@ -134,29 +135,37 @@
     
 }
 
--(void) setupScenario {
+-(void) hackScenarioReady:(NSData*) data
+{
+    [scenario downloadedStoryData:data withResponse:nil];
     
-    // Use Dickens
+}
+
+
+-(void) setupScenario {
+
+#if LOAD_SCENARIO_FROM_FILE
+#warning SETTING SCENARIO FROM FIXED FILE!
+    NSString * storyFile = [[NSBundle mainBundle]pathForResource:@"story" ofType:@"json"];
+    self.scenario = [[L1Scenario alloc] init];
+    self.scenario.key = @"4e15c53add71aa000100025b";
+    NSData * data = [NSData dataWithContentsOfFile:storyFile];
+    [self performSelector:@selector(hackScenarioReady:) withObject:data afterDelay:5.0];
+#else
+    
 #ifdef ALEX_HEAR    
     NSString * storyURL = @"http://amblr.heroku.com/scenarios/4e249f58d7c4b60001000023/stories/4e249fe5d7c4b600010000c1.json";
-    self.scenario = [L1Scenario scenarioFromStoryURL:storyURL withKey:@"4e249fe5d7c4b600010000c1"];
+    NSString scenarioKey = @"4e15c53add71aa000100025"
 #else
     NSString * storyURL = @"http://amblr.heroku.com/scenarios/4e15c53add71aa000100025b/stories/4e15c6be7bd01600010000c0.json";
-//    NSString * storyURL = @"http://www-astro.physics.ox.ac.uk/~jaz/story.json";
+    NSString * scenarioKey = @"4e249f58d7c4b60001000023";
     
-    self.scenario = [L1Scenario scenarioFromStoryURL:storyURL withKey:@"4e15c53add71aa000100025b"];
-//    NSString * storyFile = [[NSBundle mainBundle]pathForResource:@"story" ofType:@"json"];
-
-    //    self.scenario = [L1Scenario scenarioFromStoryFile:storyFile withKey:@"4e15c53add71aa000100025b"];
-//    self.scenario = [[L1Scenario alloc] init];
-
-//#warning SETTING SCENARIO FROM FIXED FILE!
-//    self.scenario.key = @"4e15c53add71aa000100025b";
-//    NSData * data = [NSData dataWithContentsOfFile:storyFile];
-//    [self performSelector:@selector(hackScenarioReady:) withObject:data afterDelay:5.0];
-    
+#endif
+    self.scenario = [L1Scenario scenarioFromStoryURL:storyURL withKey:scenarioKey];
 #endif        
-    //    self.scenario = [L1Scenario scenarioFromNodesURL:nodesURL pathsURL:pathsURL];
+
+    
+    
     self.scenario.delegate = hhViewController;
     hhViewController.scenario = scenario;
     mediaStatusViewController.scenario = scenario;
