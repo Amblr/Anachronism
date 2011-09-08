@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 
+#define TREAT_SIMULATOR_AS_3G 1
+
 @interface L1Utils : NSObject {
     
     

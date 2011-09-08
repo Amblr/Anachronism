@@ -7,7 +7,7 @@
 //
 
 #import "L1Utils.h"
-
+#import "L1DeviceHardware.h"
 
 
 
@@ -50,12 +50,8 @@
 
 +(BOOL) versionIs3X
 {
-    NSString * versionString = [[UIDevice currentDevice] systemVersion];
-    NSLog(@"Device version string: %@",versionString);
-    if ([versionString characterAtIndex:0]=='3'){
-        return YES;
-    }
-    return NO;
+    L1HardwareType hType = [L1DeviceHardware platform];
+    return (hType==L1HardwareTypeiPhone3G || hType==L1HardwareTypeiPhone3GS) || (TREAT_SIMULATOR_AS_3G && hType==L1HardwareTypeSimulator);
     
 }
 
