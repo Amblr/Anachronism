@@ -43,8 +43,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    realGPSControl=[[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
-    
+//    realGPSControl=[[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
+    realGPSControl = YES;
     soundManager = [[HHSoundManager alloc] init];
 
     BOOL ok = [L1Utils initializeDirs];
@@ -123,8 +123,8 @@
     //and then alter our tracking behaviour accordingly.
     //This is also a good time to check for location updates, in case the user
     //just switched to real location from fake or vice versa.
-    realGPSControl = [[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
-//    realGPSControl=YES;
+//    realGPSControl = [[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
+    realGPSControl=YES;
     trackMe = [[NSUserDefaults standardUserDefaults] boolForKey:@"track_user_location"];
     [locationManager startUpdatingLocation];
     if (self.scenario){
@@ -185,9 +185,11 @@
         
         //Create the circle here, store it so we can keep track and change its color later,
         //and add it to the map.
-        L1Circle * circle = [mapViewController addCircleAt:node.coordinate radius:[node.radius doubleValue] soundType:sound.soundType];
+        if (![node.name isEqualToString:SPECIAL_SHAPE_NODE_NAME]){
+            L1Circle * circle = [mapViewController addCircleAt:node.coordinate radius:[node.radius doubleValue] soundType:sound.soundType];
         [circles setObject:circle forKey:node.key];
         [mapViewController addNode:node];
+        }
 
         //We use the enabled flag to track whether a node is playing.
         //None of them start enabled.
@@ -211,7 +213,7 @@
         CLLocationCoordinate2D firstNodeCoord = firstNode.coordinate;
         firstNodeCoord.latitude -= 5.0e-4;
         firstNodeCoord.longitude -= 5.0e-4;
-        [mapViewController addManualUserLocationAt:firstNodeCoord];
+//        [mapViewController addManualUserLocationAt:firstNodeCoord];
     }
     
     //Now all the nodes are in place we can track them to see if we should
@@ -338,6 +340,9 @@
         NSLog(@"Ignoring location update since intro has not reached break point");
         return;
     }
+    NSMutableArray * offNodes = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray * onNodes = [NSMutableArray arrayWithCapacity:0];
+    
     for (L1Node * node in [self.scenario.nodes allValues]){
         CLRegion * region = [node region];
         BOOL wasEnabled = node.enabled;
@@ -347,8 +352,8 @@
         }
 
         if (nowEnabled) NSLog(@"Node now (or still) enabled: %@.  Old Status %d",node.name,wasEnabled);
-        if ((!wasEnabled) && nowEnabled) [self nodeSoundOn:node];
-        if (wasEnabled && (!nowEnabled)) [self nodeSoundOff:node];
+        if (nowEnabled && (!wasEnabled)) [onNodes addObject:node];
+        if ((!nowEnabled) && wasEnabled) [offNodes addObject:node];
         node.enabled = nowEnabled;
         if (nowEnabled){
             L1Circle * circle = [circles valueForKey:node.key];
@@ -373,6 +378,15 @@
             
         }
     }
+    
+    for (L1Node * node in offNodes){
+        [self nodeSoundOff:node];        
+    }
+    for (L1Node * node in onNodes){
+        [self nodeSoundOn:node];
+    }
+
+
 }
 
 
