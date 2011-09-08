@@ -95,9 +95,9 @@
 -(void) authenticate
 {
     NSString * signin = @"http://amblr.heroku.com/users/sign_in";
-    NSString * username = @"hackneyproductions@gmail.com";
-    NSString * password = @"hackneyhear";
-    NSString * dataString = [NSString stringWithFormat:@"{'user' : { 'email' : '%@', 'password' : '%@'}}", username,password];
+    NSString * email = @"hackneyproductions@gmail.com";
+    NSString * name = @"hackneyhear";
+    NSString * dataString = [NSString stringWithFormat:@"{'user' : { 'email' : '%@', 'password' : '%@'}}", email,name];
     
     SimpleURLConnection * connection = [[SimpleURLConnection alloc] initWithURL:signin 
                                                                        delegate:self 
@@ -105,10 +105,6 @@
                                                                    failSelector:@selector(failedAuthentication:)];
     NSMutableURLRequest * request = connection.request;
     
-    //	[self.request setHTTPMethod:@"POST"];
-//	[self.request addValue:@"application/xml" forHTTPHeaderField:@"Content-Type"];
-//	[self.request setHTTPBody:data];
-
     [request setHTTPMethod:@"POST"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -123,9 +119,10 @@
 {
     int code = [response statusCode];
     NSLog(@"Response %d to authentication: %@",code,[NSHTTPURLResponse localizedStringForStatusCode:code]);
-    NSString * text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"%@",text);
+//    NSString * text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//    NSLog(@"%@",text);
     [self setupScenario];
+    
 }
 
 -(void) failedAuthentication:(NSError*) error
