@@ -543,6 +543,10 @@
 		D8B19D90131EDD1F00FB56A4 /* pentagram_high_res.png in Resources */ = {isa = PBXBuildFile; fileRef = D8B19D8F131EDD1F00FB56A4 /* pentagram_high_res.png */; };
 		D8B19DCB131F022B00FB56A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B19DCA131F022B00FB56A4 /* QuartzCore.framework */; };
 		D8B1A0391323020D00FB56A4 /* oxford_map.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8B1A0381323020D00FB56A4 /* oxford_map.jpg */; };
+		D8BAF86414193AAC0024A687 /* L1DeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = D8BAF86314193AAC0024A687 /* L1DeviceHardware.m */; };
+		D8BAF86514193AAC0024A687 /* L1DeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = D8BAF86314193AAC0024A687 /* L1DeviceHardware.m */; };
+		D8BAF86614193AAC0024A687 /* L1DeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = D8BAF86314193AAC0024A687 /* L1DeviceHardware.m */; };
+		D8BAF86714193AAC0024A687 /* L1DeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = D8BAF86314193AAC0024A687 /* L1DeviceHardware.m */; };
 		D8BB836613C5AE2D003CBDDF /* nodes.json in Resources */ = {isa = PBXBuildFile; fileRef = D8BB836413C5AE2D003CBDDF /* nodes.json */; };
 		D8BB836713C5AE2D003CBDDF /* paths.json in Resources */ = {isa = PBXBuildFile; fileRef = D8BB836513C5AE2D003CBDDF /* paths.json */; };
 		D8CAC115140FF8EF00881ACB /* Tiles in Resources */ = {isa = PBXBuildFile; fileRef = D8CAC114140FF8EF00881ACB /* Tiles */; };
@@ -980,6 +984,8 @@
 		D8B19D8F131EDD1F00FB56A4 /* pentagram_high_res.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pentagram_high_res.png; path = Images/pentagram_high_res.png; sourceTree = SOURCE_ROOT; };
 		D8B19DCA131F022B00FB56A4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D8B1A0381323020D00FB56A4 /* oxford_map.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oxford_map.jpg; sourceTree = "<group>"; };
+		D8BAF86214193AAC0024A687 /* L1DeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L1DeviceHardware.h; sourceTree = "<group>"; };
+		D8BAF86314193AAC0024A687 /* L1DeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L1DeviceHardware.m; sourceTree = "<group>"; };
 		D8BB836413C5AE2D003CBDDF /* nodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nodes.json; sourceTree = "<group>"; };
 		D8BB836513C5AE2D003CBDDF /* paths.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paths.json; sourceTree = "<group>"; };
 		D8CAC114140FF8EF00881ACB /* Tiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tiles; sourceTree = "<group>"; };
@@ -1553,8 +1559,6 @@
 				D8097FB51376D4140038245A /* L1Path.m */,
 				D82EFEC113103BC700057D16 /* L1Story.h */,
 				D82EFEC213103BC700057D16 /* L1Story.m */,
-				D82BCA3013C4548C003D86B4 /* L1Utils.h */,
-				D82BCA3113C4548C003D86B4 /* L1Utils.m */,
 				D868CBFE13DB3F5E00D254AC /* L1BigBrother.h */,
 				D868CBFF13DB3F5E00D254AC /* L1BigBrother.m */,
 			);
@@ -1641,6 +1645,10 @@
 				D883BC4D13F2711200252768 /* L1DownloadManager.m */,
 				D844642013F312E400E70725 /* L1DownloadProximityMonitor.h */,
 				D844642113F312E400E70725 /* L1DownloadProximityMonitor.m */,
+				D8BAF86214193AAC0024A687 /* L1DeviceHardware.h */,
+				D8BAF86314193AAC0024A687 /* L1DeviceHardware.m */,
+				D82BCA3013C4548C003D86B4 /* L1Utils.h */,
+				D82BCA3113C4548C003D86B4 /* L1Utils.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -2267,6 +2275,7 @@
 				D8CAC15B141003E500881ACB /* HTNotice.m in Sources */,
 				D8CAC15F141003E500881ACB /* HTNotifier.m in Sources */,
 				D80A9A691410144600A34F68 /* HHSoundManager.m in Sources */,
+				D8BAF86514193AAC0024A687 /* L1DeviceHardware.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2352,6 +2361,7 @@
 				D8CAC15A141003E500881ACB /* HTNotice.m in Sources */,
 				D8CAC15E141003E500881ACB /* HTNotifier.m in Sources */,
 				D80A9A681410144600A34F68 /* HHSoundManager.m in Sources */,
+				D8BAF86414193AAC0024A687 /* L1DeviceHardware.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2448,6 +2458,7 @@
 				D8CAC15C141003E500881ACB /* HTNotice.m in Sources */,
 				D8CAC160141003E500881ACB /* HTNotifier.m in Sources */,
 				D80A9A6A1410144600A34F68 /* HHSoundManager.m in Sources */,
+				D8BAF86614193AAC0024A687 /* L1DeviceHardware.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2544,6 +2555,7 @@
 				D8CAC15D141003E500881ACB /* HTNotice.m in Sources */,
 				D8CAC161141003E500881ACB /* HTNotifier.m in Sources */,
 				D80A9A6B1410144600A34F68 /* HHSoundManager.m in Sources */,
+				D8BAF86714193AAC0024A687 /* L1DeviceHardware.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
