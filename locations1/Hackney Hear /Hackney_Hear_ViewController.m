@@ -12,10 +12,10 @@
 
 
 #define FORCE_INTRO_LANUCH 1
+#define ALLOW_FAKE_LOCATION 0
 
 
 #define SPECIAL_SHAPE_NODE_NAME @"2508 bway sound track01"
-
 
 
 
@@ -43,8 +43,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    realGPSControl=[[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
+#if ALLOW_FAKE_LOCATION
+    realGPSControl=[[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
+#else
     realGPSControl = YES;
+#endif
     soundManager = [[HHSoundManager alloc] init];
 
     BOOL ok = [L1Utils initializeDirs];
@@ -123,8 +126,11 @@
     //and then alter our tracking behaviour accordingly.
     //This is also a good time to check for location updates, in case the user
     //just switched to real location from fake or vice versa.
-//    realGPSControl = [[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
+#if ALLOW_FAKE_LOCATION
+    realGPSControl = [[NSUserDefaults standardUserDefaults] boolForKey:@"use_real_location"];
+#else
     realGPSControl=YES;
+#endif
     trackMe = [[NSUserDefaults standardUserDefaults] boolForKey:@"track_user_location"];
     [locationManager startUpdatingLocation];
     if (self.scenario){
@@ -213,7 +219,9 @@
         CLLocationCoordinate2D firstNodeCoord = firstNode.coordinate;
         firstNodeCoord.latitude -= 5.0e-4;
         firstNodeCoord.longitude -= 5.0e-4;
-//        [mapViewController addManualUserLocationAt:firstNodeCoord];
+#if ALLOW_FAKE_LOCATION
+        [mapViewController addManualUserLocationAt:firstNodeCoord];
+#endif
     }
     
     //Now all the nodes are in place we can track them to see if we should
