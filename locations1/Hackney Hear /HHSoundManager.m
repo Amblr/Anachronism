@@ -14,8 +14,8 @@
 #define SOUND_FADE_TIME 5.0
 #define SOUND_FADE_TIME_SPEECH 2.0
 #define SOUND_FADE_TIME_INTRO 2.0
-#define SOUND_FADE_TIME_MUSIC 10.0
-#define SOUND_FADE_TIME_ATMOS 10.0
+#define SOUND_FADE_TIME_MUSIC 5.0
+#define SOUND_FADE_TIME_ATMOS 5.0
 
 #define SOUND_RISE_TIME 5.0
 #define SOUND_RISE_TIME_SPEECH 3.0
@@ -85,7 +85,9 @@
         
         globallyPaused=NO;
         globallyPausedSounds = [[NSMutableArray alloc] initWithCapacity:0];
-        on3G = [L1Utils versionIs3X];
+//        on3G = [L1Utils versionIs3X];
+#warning DISABLED on3G
+        on3G = NO;
         
         if (on3G){
             speechTimeForInterruption = SPEECH_TIME_FOR_INTERRUPTION_3G;
@@ -193,8 +195,11 @@
     L1CDLongAudioSource * sound = nil;
     sound = [audioSamples objectForKey:activeSpeechTrack];
     if (!sound) return YES;
-    if ([sound totalTime]<speechTimeForInterruption) return NO;
-    if ([sound currentTime]<speechDurationForNoInterruption) return NO;
+    NSTimeInterval totalTime = [sound totalTime];
+    NSTimeInterval currentTime = [sound currentTime];
+    NSLog(@"speechNodeShouldStart:  total: %f  current: %f  timeForInterrupt: %f   timeForNeverInterrupt: %f",totalTime,currentTime,speechTimeForInterruption,speechDurationForNoInterruption);
+    if (currentTime<speechTimeForInterruption) return NO;
+    if (totalTime<speechDurationForNoInterruption) return NO;
     return YES;
     }
 }
@@ -214,6 +219,11 @@
 
         if (lastPlay && (timeSinceLastPlay<SPEECH_MINIMUM_INTERVAL)){
             NSLog(@"Not playing sound - too recent.");
+            return;
+        }
+        
+        if (![self newSpeechNodeShouldStart]){
+            NSLog(@"Not starting new sound  - criterion breached!");
             return;
         }
     }
@@ -384,6 +394,8 @@
             sound.volume=0.0;
             NSLog(@"Done fading %@ - pausing",sound.key);
             [sound pause];
+            //We can drop the intro altogether now as we will never replay it.
+            if (sound.soundType==L1SoundTypeIntro) [audioSamples removeObjectForKey:sound.key];
             //This is no longer the active speech track as it has finished.
             if ([sound.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
             if (on3G){
@@ -453,14 +465,14 @@
     
     //We want to repeat music and atmost when they finish
 //    if (source.soundType==L1SoundTypeMusic || source.soundType==L1SoundTypeAtmos){
-    if (source.soundType!=L1SoundTypeSpeech){
+    if (source.soundType==L1SoundTypeAtmos || source.soundType==L1SoundTypeMusic){
         [source play];
     }
     else
         // For other sounds we just note that they are no longer rising or falling and remove the reference
         // to them so they are freed.
     {
-            if ([risingSounds objectForKey:source.key]) [risingSounds removeObjectForKey:source.key];
+        if ([risingSounds objectForKey:source.key]) [risingSounds removeObjectForKey:source.key];
         if ([fadingSounds objectForKey:source.key]) [fadingSounds removeObjectForKey:source.key];
         [audioSamples removeObjectForKey:source.key];
         
